@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.spring.miniproject.dao.CategoryMapper">
+	<insert id="insert" parameterType="CategoryDto">
+		INSERT INTO category (category_name)
+		VALUES(#{category_name})
+	</insert>
+
+	<select id="select" parameterType="int" resultType="CategoryDto">
+		SELECT category_id, category_name
+		FROM category
+		WHERE category_id = #{category_id};
+	</select>
+
+	<select id="selectAll" resultType="CategoryDto">
+		SELECT category_id, category_name
+		FROM category
+	</select>
+
+	<select id="count" resultType="int">
+		SELECT count(*) FROM category
+	</select>
+
+	<update id="update" parameterType="CategoryDto">
+		UPDATE category
+		SET	category_name = #{category_name}
+		WHERE category_id = #{category_id}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM category
+		WHERE category_id = #{category_id}
+	</delete>
+
+	<delete id="deleteAll">
+		DELETE FROM category
+	</delete>
+
+</mapper>

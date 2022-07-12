@@ -1,0 +1,77 @@
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-webkit-search-results-button,
+input::-webkit-search-results-decoration {
+    display: none;
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px 20px;
+}
+
+.header-inner a,
+.nav .nav-inner a {
+    color: black;
+    text-decoration-line: none;
+}
+
+.header-inner .site-name {
+    font-size: 50px;
+    font-weight: bolder;
+}
+
+.header-inner .form-search {
+    display: flex;
+    flex: 1 1 auto;
+    padding: 0 12px;
+    justify-content: flex-end;
+}
+
+.header-inner .form-search > div {
+    display: flex;
+    border-bottom: 2px black solid;
+    padding: 5px 0;
+}
+
+.header-inner .form-search .search-input {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+}
+
+.header-inner .form-search .search-input:focus {
+    outline: none;
+}
+
+.header-inner .form-search .search-btn {
+    font-size: 25px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.header-inner .nav-mine {
+    margin-left: 60px;
+    font-size: 30px;
+}
+
+.header-inner .nav-mine .btn-mypage {
+    margin-left: 15px;
+}
+
+.nav .nav-inner {
+    margin: 0 auto;
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav .nav-inner a {
+    padding: 18px 8px;
+    font-size: 17px;
+    line-height: 24px;
+    font-weight: 700;
+}

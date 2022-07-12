@@ -23,6 +23,7 @@
 .content-wrap{
 	width: 100%;
 	background: yellow;
+	display:block;
 }
 
 .content{

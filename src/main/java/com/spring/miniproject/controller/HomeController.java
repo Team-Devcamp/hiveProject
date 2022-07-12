@@ -30,9 +30,9 @@ public class HomeController {
 
 	@GetMapping("/test")
 	public String test(Model m) {
-			int testCnt = userService.count();
-
-			m.addAttribute("testCnt",testCnt);
+//			int testCnt = userService.count();
+//
+//			m.addAttribute("testCnt",testCnt);
 
 		return "home.tiles";
 	}

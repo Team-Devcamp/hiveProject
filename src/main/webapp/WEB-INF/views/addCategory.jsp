@@ -17,14 +17,18 @@
     let msg = "${msg}";
     if(msg=="CATEGORY_ADD_ERR")
         alert("카테고리 추가에 실패하였습니다. 다시 시도해 주세요.");
+    if(msg=="CATEGORY_MODIFY_ERR")
+        alert("카테고리 수정에 실패하였습니다. 다시 시도해 주세요.")
 </script>
 <div class="wrap">
     <div class="header">헤더입니다</div>
     <div class="main">
         <p>${categoryDto.category_id} 카테고리를 ${mode=="new" ? "추가" : "수정"}하는 화면입니다.</p>
         <form id="form" action="" method="">
+            <input id="category-id" name="category_id" type="hidden" value="${categoryDto.category_id}">
             <input id="category-name" name="category_name" type="text" value="${categoryDto.category_name}">
-            <button type="button" id="addBtn">추가 하기</button>
+            ${mode=="new" ? '<button type="button" id="addBtn">추가하기</button>' : '<button type="button" id="modBtn">수정하기</button>'}
+
         </form>
     </div>
     <div class="footer">푸터입니다</div>
@@ -46,6 +50,17 @@
 
             let form = $("#form");
             form.attr("action", "<c:url value='/category/add'/>");
+            form.attr("method", "post");
+
+            if(formCheck()) {
+                form.submit();
+            }
+        });
+
+        $("#modBtn").on("click", function() {
+
+            let form = $("#form");
+            form.attr("action", "<c:url value='/category/modify'/>");
             form.attr("method", "post");
 
             if(formCheck()) {

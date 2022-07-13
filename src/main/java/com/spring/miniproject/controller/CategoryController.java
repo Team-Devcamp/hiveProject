@@ -1,6 +1,7 @@
 package com.spring.miniproject.controller;
 
 import com.spring.miniproject.domain.CategoryDto;
+import com.spring.miniproject.domain.ProductOptionDto;
 import com.spring.miniproject.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,11 +20,12 @@ public class CategoryController {
     @Autowired
     CategoryService categoryService;
 
-    // 등록된 카테고리 목록 보여주기
+    // 등록된 카테고리 대분류 목록, 카테고리 소분류 목록 보여주기
     @GetMapping("/list")
     public String getAllCategoryList(Model m) {
         try {
-            List<CategoryDto> categoryList = categoryService.getAllCategoryList();
+            List<CategoryDto> categoryList = categoryService.selectAllCategoryList();
+
             m.addAttribute("categoryList", categoryList);
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,7 +45,7 @@ public class CategoryController {
     @PostMapping("/add")
     public String addCategory(CategoryDto categoryDto, Model m, RedirectAttributes rattr) {
         try {
-            int rowCnt = categoryService.addCategory(categoryDto);
+            int rowCnt = categoryService.insertCategory(categoryDto);
 
             if(rowCnt != 1) {
                 throw new Exception("카테고리 추가에 실패했습니다.");
@@ -62,7 +64,7 @@ public class CategoryController {
     @GetMapping("/read")
     public String readCategory(Integer category_id) {
         try {
-            CategoryDto categoryDto = categoryService.readCategory(category_id);
+            CategoryDto categoryDto = categoryService.selectCategory(category_id);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -81,20 +83,21 @@ public class CategoryController {
 
     // 카테고리 수정 내용을 DB에 반영
     @PostMapping("/modify")
-    public String modifyCategory(CategoryDto categoryDto, Model m, HttpServletRequest request) {
+    public String modifyCategory(CategoryDto categoryDto, Model m, HttpServletRequest request, RedirectAttributes rattr) {
         try {
 //            HttpSession session = request.getSession();
-            int rowCnt = categoryService.modifyCategory(categoryDto);
-            System.out.println("rowCnt = " + rowCnt);
-            System.out.println("categoryDto = " + categoryDto);
+            int rowCnt = categoryService.updateCategory(categoryDto);
+
             if(rowCnt != 1) {
                 throw new Exception("카테고리 수정에 실패했습니다.");
             }
 
+            rattr.addFlashAttribute("msg", "CATEGORY_MODIFY_SUCCESS");
             return "redirect:/category/list";
         } catch (Exception e) {
             e.printStackTrace();
             m.addAttribute("categoryDto", categoryDto);
+            m.addAttribute("msg", "CATEGORY_MODIFY_ERR");
             return "addCategory";
         }
 
@@ -104,7 +107,7 @@ public class CategoryController {
     @PostMapping("/remove")
     public String removeCategory(Integer category_id, Model m) {
         try {
-            int rowCnt = categoryService.removeCategory(category_id);
+            int rowCnt = categoryService.deleteCategory(category_id);
 
             if(rowCnt != 1) {
                 throw new Exception("카테고리 삭제에 실패했습니다.");
@@ -121,7 +124,7 @@ public class CategoryController {
     @PostMapping("removeAll")
     public String removeAllCategory() {
         try {
-            int rowCnt = categoryService.removeAllCategory();
+            int rowCnt = categoryService.deleteAllCategory();
             if(rowCnt != 1) {
                 throw new Exception("카테고리 전체 삭제에 실패했습니다.");
             }
@@ -131,4 +134,11 @@ public class CategoryController {
 
         return "redirect:/category/list";
     }
+
+    /*
+    카레고리 소분류 등록, 수정, 삭제
+    ex) 상의 - 셔츠, 반팔티, 맨투맨
+        하의 - 청바지, 반바지
+    */
+
 }

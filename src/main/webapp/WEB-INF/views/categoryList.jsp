@@ -16,6 +16,8 @@
     let msg = "${msg}";
     if(msg=="CATEGORY_ADD_SUCCESS")
         alert("카테고리가 추가되었습니다.");
+    if(msg=="CATEGORY_MODIFY_SUCCESS")
+        alert("카테고리가 수정되었습니다.");
 </script>
     <div class="wrap">
         <div class="header">헤더입니다</div>
@@ -43,7 +45,9 @@
                 type:'POST',       // 요청 메서드
                 url: '/category/remove?category_id=' + category_id,  // 요청 URI
                 success : function(){
-                    alert("카테고리가 삭제되었습니다.")
+                    alert("카테고리가 삭제되었습니다.");
+                    location.href='http://localhost:9000/category/list';
+                    //location.reload();
                     // $(this).unwrap()
                 },
                 error   : function(){ alert("카테고리 삭제에 실패했습니다.") } // 에러가 발생했을 때, 호출될 함수

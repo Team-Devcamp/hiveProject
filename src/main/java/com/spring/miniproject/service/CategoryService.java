@@ -1,21 +1,24 @@
 package com.spring.miniproject.service;
 
 import com.spring.miniproject.domain.CategoryDto;
+import com.spring.miniproject.domain.ProductOptionDto;
 
 import java.util.List;
 
 public interface CategoryService {
-    int addCategory(CategoryDto categoryDto) throws Exception;
 
-    CategoryDto readCategory(Integer category_id) throws Exception;
+    int insertCategory(CategoryDto categoryDto) throws Exception;
 
-    List<CategoryDto> getAllCategoryList() throws Exception;
+    CategoryDto selectCategory(Integer category_id) throws Exception;
 
-    int getNumberOfCategories() throws Exception;
+    List<CategoryDto> selectAllCategoryList() throws Exception;
 
-    int modifyCategory(CategoryDto categoryDto) throws Exception;
+    int countCategories() throws Exception;
 
-    int removeCategory(Integer category_id) throws Exception;
+    int updateCategory(CategoryDto categoryDto) throws Exception;
 
-    int removeAllCategory() throws Exception;
+    int deleteCategory(Integer category_id) throws Exception;
+
+    int deleteAllCategory() throws Exception;
+
 }

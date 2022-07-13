@@ -2,7 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=eclipse
 
 #RDS config
-config/
+db.properties
 
 pom.properties
 MANIFEST.MF

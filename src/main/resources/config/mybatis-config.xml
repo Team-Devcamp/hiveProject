@@ -6,5 +6,6 @@
     <typeAliases>
         <typeAlias alias="UserDto" type="com.spring.miniproject.domain.UserDto"/>
         <typeAlias alias="NoticeDto" type="com.spring.miniproject.domain.NoticeDto"/>
+        <typeAlias alias="CategoryDto" type="com.spring.miniproject.domain.CategoryDto"/>
     </typeAliases>
 </configuration>

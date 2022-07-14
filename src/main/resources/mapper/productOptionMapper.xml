@@ -4,8 +4,8 @@
         
 <mapper namespace="com.spring.miniproject.dao.CategoryMapper">
 	<insert id="insertProductOption" parameterType="ProductOptionDto">
-		INSERT (product_id, option_name)
-		INTO product_option
+		INSERT
+		INTO product_option (product_id, option_name)
 		VALUES (#{product_id}, #{option_name})
 	</insert>
 

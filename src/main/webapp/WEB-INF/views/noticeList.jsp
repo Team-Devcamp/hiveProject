@@ -45,9 +45,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="notice" items="${list}">
+                <c:forEach var="notice" items="${list}" varStatus="i">
                     <tr>
-                        <td>${notice.notice_id}</td>
+                        <td>${ph.totalCnt - (ph.page-1)*ph.pageSize - i.index}</td>
                         <th>
                             <a href="/notice/detail?notice_id=${notice.notice_id}">${notice.notice_title}</a>
                         </th>
@@ -64,7 +64,7 @@
             <a href="<c:url value='/notice/list?page=${ph.beginPage-1}&pageSize=${ph.pageSize}'/>">&lt;</a>
         </c:if>
         <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
-            <a href="<c:url value='/notice/list?page=${i}&pageSize=${ph.pageSize}'/>">${i}</a>
+            <a class="current" href="<c:url value='/notice/list?page=${i}&pageSize=${ph.pageSize}'/>">${i}</a>
         </c:forEach>
         <c:if test="${ph.showNext}">
             <a href="<c:url value='/notice/list?page=${ph.endPage+1}&pageSize=${ph.pageSize}'/>">&gt;</a>

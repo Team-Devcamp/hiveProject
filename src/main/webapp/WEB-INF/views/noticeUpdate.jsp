@@ -14,29 +14,41 @@
 <section class="notice">
     <div class="page-title">
         <div class="container">
-            <h3>공지사항 등록</h3>
+            <h3>공지사항 수정</h3>
         </div>
     </div>
 
-    <form action="/notice/insert" method="post">
+    <form method="post">
         <div class="write-content">
             <div class="write-title">
-                <input type="text" name="notice_title" placeholder="제목을 입력하세요.">
+                <input type="text" name="notice_title" value="${data.notice_title}" placeholder="제목을 입력하세요.">
             </div>
             <div class="write-detail">
-                <textarea name="notice_content" placeholder="내용을 입력하세요."></textarea>
+                <textarea name="notice_content" placeholder="내용을 입력하세요.">${data.notice_content}</textarea>
             </div>
         </div>
         <div class="button">
-            <button class="btn" type="submit">등록하기</button>
+            <button class="btn" type="submit">수정하기</button>
         </div>
     </form>
     <div class="button">
-        <button class="btn" onclick="location.href='/notice/list'">돌아가기</button>
+        <button class="btn" onclick=history.back();>돌아가기</button>
     </div>
 </section>
 
 <%-- Footer --%>
 
+<script type="text/javascript">
+    $(function () {
+        $(".btn").click(function () {
+            let result = confirm('정말 수정하시겠습니까?');
+            if (result) {
+                location.replace("/notice/update?notice_id=${data.notice_id}");
+            } else {
+
+            }
+        })
+    });
+</script>
 </body>
 </html>

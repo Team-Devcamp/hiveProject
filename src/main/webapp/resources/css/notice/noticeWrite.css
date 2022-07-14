@@ -59,6 +59,7 @@ section.notice {
 /* 공지 등록 버튼 */
 .button {
     text-align: center;
+    margin-top: 20px;
 }
 
 .btn {

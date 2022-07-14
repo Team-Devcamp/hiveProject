@@ -6,11 +6,19 @@ import java.util.List;
 import java.util.Map;
 
 public interface NoticeService {
-    int getCount() throws Exception;
+    int getCount() throws Exception; // 페이징 관련
 
-    List<NoticeDto> getPage(Map map) throws Exception;
+    List<NoticeDto> getPage(Map map) throws Exception; // 페이징 관련
 
-    List<NoticeDto> selectList() throws Exception;
+    List<NoticeDto> selectList() throws Exception; // 목록
 
-    NoticeDto selectDetail(int notice_no) throws Exception;
+    NoticeDto selectDetail(int notice_id) throws Exception; // 상세
+
+    void insertNotice(NoticeDto noticeDto) throws Exception; // 등록
+
+    void updateNotice(NoticeDto noticeDto) throws Exception; // 수정
+
+    void deleteNotice(int notice_id) throws Exception; // 삭제
+
+    void viewCount(int notice_id) throws Exception; // 조회수 증가
 }

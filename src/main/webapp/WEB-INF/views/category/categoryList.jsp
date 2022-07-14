@@ -10,6 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <title>categoryList</title>
+    <link rel="stylesheet" href="/css/common/reset.css">
+
 </head>
 <body>
 <script>
@@ -20,7 +22,7 @@
         alert("카테고리가 수정되었습니다.");
 </script>
     <div class="wrap">
-        <div class="header">헤더입니다</div>
+
         <div class="main">
             <c:forEach var="categoryDto" items="${categoryList}">
                 <div class="category">
@@ -33,8 +35,6 @@
         </div>
         <button id="addBtn" class="btn-add" onclick="location.href='<c:url value="/category/add"/>'">카테고리 추가</button>
 
-
-        <div class="footer">푸터입니다</div>
     </div>
     <script>
 

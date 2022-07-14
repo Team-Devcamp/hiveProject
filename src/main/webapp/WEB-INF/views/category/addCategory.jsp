@@ -11,6 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <title>addCategory</title>
+    <link rel="stylesheet" href="/css/common/reset.css">
+
 </head>
 <body>
 <script>
@@ -21,7 +23,7 @@
         alert("카테고리 수정에 실패하였습니다. 다시 시도해 주세요.")
 </script>
 <div class="wrap">
-    <div class="header">헤더입니다</div>
+
     <div class="main">
         <p>${categoryDto.category_id} 카테고리를 ${mode=="new" ? "추가" : "수정"}하는 화면입니다.</p>
         <form id="form" action="" method="">
@@ -31,7 +33,7 @@
 
         </form>
     </div>
-    <div class="footer">푸터입니다</div>
+
 </div>
 <script>
     let formCheck = function() {

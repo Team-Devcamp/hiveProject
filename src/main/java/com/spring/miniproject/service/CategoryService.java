@@ -11,7 +11,7 @@ public interface CategoryService {
 
     CategoryDto selectCategory(Integer category_id) throws Exception;
 
-    List<CategoryDto> selectAllCategoryList() throws Exception;
+    List<CategoryDto> selectAllCategory() throws Exception;
 
     int countCategories() throws Exception;
 

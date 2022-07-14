@@ -4,6 +4,7 @@ import com.spring.miniproject.dao.CategoryDao;
 import com.spring.miniproject.dao.ProductOptionDao;
 import com.spring.miniproject.domain.CategoryDto;
 import com.spring.miniproject.domain.ProductOptionDto;
+import com.spring.miniproject.domain.SubCategoryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<CategoryDto> selectAllCategoryList() throws Exception {
+    public List<CategoryDto> selectAllCategory() throws Exception {
         return categoryDao.selectAllCategory();
     }
 

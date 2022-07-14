@@ -2,8 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ page session="true"%>
 
-<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -57,9 +55,9 @@
             tmp += ' data-option-id=' + option.option_id
             tmp += ' data-option-name=' + option.option_name + '>'
 
-            tmp += ' <p>상품 번호<span class="product_id">' + option.product_id + '</span></p>'
-            tmp += ' <p>상위옵션 번호<div class="option_id">' + option.option_id + '</div></p>'
-            tmp += ' <p>상위옵션 이름<div class="option_name">' + option.option_name + '</div></p>'
+            tmp += ' <div class="product-id"><p>상품 번호 ' + option.product_id + '</p></div>'
+            tmp += ' <div class="option-id"><p>상위옵션 번호 ' + option.option_id + '</p></div>'
+            tmp += ' <div class="option-name"><p>상위옵션 이름 ' + option.option_name + '</p></div>'
             tmp += '<button class="modify-option-btn">수정</button>'
             tmp += '<button class="delete-option-btn">삭제</button>'
 
@@ -81,115 +79,119 @@
         }); // $.ajax()
     }
 
-    // 메인 메서드
-    $(document).ready(function(){
-        showProductOptionList();
+    // 상위옵션 추가 버튼 클릭했을 때
+    $("#add-option-btn").click(function(){
+        let option_name = $("input[name=option_name]").val();
+        let product_id = $("input[name=product_id]").val();
 
-        $("#add-option-btn").click(function(){
-            let option_name = $("input[name=option_name]").val();
-            let product_id = $("input[name=product_id]").val();
+        if(option_name.trim()=='') {
+            alert("추가할 상위옵션을 입력하세요.");
+            $("input[name=option_name]").focus();
+            return;
+        }
 
-            if(option_name.trim()=='') {
-                alert("상위옵션을 입력해주세요.")
-                $("input[name=option_name]").focus()
-                return;
-            }
+        $.ajax({
+            type:'POST',       // 요청 메서드
+            url: '/productmanage/productoption/add',
+            headers : { "content-type": "application/json"}, // 요청 헤더
+            data : JSON.stringify({product_id:product_id, option_name:option_name}),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
+            success : function(result){
+                $("input[name=option_name]").val('');
+                $("input[name=product_id]").val('');
 
-            $.ajax({
-                type:'POST',       // 요청 메서드
-                url: '/productmanage/productoption/add?product_id=' + product_id + '&option_name=' + option_name,
-                headers : { "content-type": "application/json"}, // 요청 헤더
-                data : JSON.stringify({product_id:product_id, option_name:option_name}),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
-                success : function(result){
-                    $("input[name=option_name]").val('');
-                    $("input[name=product_id]").val('');
-
-                    alert(result);
-                    showProductOptionList();
-                },
-                error   :
-                    console.log(option_name, product_id),
-                    function(){ alert("상위옵션 등록 에러") } // 에러가 발생했을 때, 호출될 함수
-            }); // $.ajax()
-
-        });
-
-        // 상위옵션 수정 버튼 눌렀을 때
-        $(".product-option-list").on("click", ".modify-option-btn", function() {
-            let option_id = $(this).parent().attr("data-option-id");
-            let product_id = $(this).parent().attr("data-product-id");
-            let option_name = $(this).parent().attr("data-option-name");
-            let modForm = $("#product-option-modify-form").css("display");
-
-            // 이미 수정버튼을 누른 상태이면 다시 수정 form 숨기기
-            if(modForm=="block") {
-                $("#product-option-modify-form").css("display", "none");
-                return;
-            }
-            // 1. form의 위치를 버튼 바로 아래로 옮긴다.
-            $("#product-option-modify-form").appendTo($(this).parent());
-
-            // 2. form을 나타내고
-            $("#product-option-modify-form").css("display", "block");
-
-            // 3. product_id와 option_name을 input에 뿌려주기
-            $("input[id=modify-product-id]").val(product_id);
-            $("input[id=modify-option-name]").val(option_name);
-
-            // 4. 수정 완료버튼에 option_id 전달한다.
-            $("#submit-modify-option-btn").attr("data-option-id", option_id);
+                alert(result);
+                showProductOptionList();
+            },
+            error   : function() {
+                alert("상위옵션 등록 에러");
+            } // 에러가 발생했을 때, 호출될 함수
 
 
-        });
-
-        // 댓글 수정 완료 버튼
-        $("#submit-modify-option-btn").on("click", function () {
-            let option_id = $(this).attr("data-option-id");
-            // let product_id = $("input[id=modify-product-id]").val();
-            let option_name = $("input[id=modify-option-name]").val();
-
-            if(option_name.trim()=='') {
-                alert("내용을 입력해주세요.");
-                $("input[id=modify-option-name]").focus();
-                return;
-            }
-
-            $.ajax({
-                type:'POST',
-                url: '/productmanage/productoption/modify?option_id=' + option_id + '&option_name=' + option_name,
-                headers: {"content-type" : "application/json"}, // 요청 헤더
-                data : JSON.stringify({option_id:option_id, option_name:option_name}), // 서버로 전송할 데이터, stringify()로 직렬화 필요.
-                success : function(result) {
-                    alert(result);
-                    showProductOptionList();
-                },
-                error : function() {
-                    alert("상품 상위옵션 수정 에러")
-                }
-            }); // $.ajax()
-
-            $("#product-option-modify-form").css("display", "none")
-            $("input[id=modify-product-id]").val('');
-            $("input[id=modify-option-name]").val('');
-            $("#product-option-modify-form").appendTo("body");
-        });
-
-        // 상위옵션 삭제 버튼 눌렀을 때
-        $(".product-option-list").on("click", ".delete-option-btn", function() {
-            let option_id = $(this).parent().attr("data-option-id");
-
-            $.ajax({
-                type:'POST',       // 요청 메서드
-                url: '/productmanage/productoption/delete?option_id='+ option_id,  // 요청 URI
-                success : function(result){
-                    alert(result);
-                    showProductOptionList();
-                },
-                error   : function(){ alert("상품 상위옵션 삭제 에러") } // 에러가 발생했을 때, 호출될 함수
-            }); // $.ajax()
-        });
+        }); // $.ajax()
 
     });
+
+    // 상위옵션 수정 버튼 눌렀을 때
+    $(".product-option-list").on("click", ".modify-option-btn", function() {
+        let option_id = $(this).parent().attr("data-option-id");
+        let product_id = $(this).parent().attr("data-product-id");
+        let option_name = $(this).parent().attr("data-option-name");
+        let modForm = $("#product-option-modify-form").css("display");
+
+        // 이미 수정버튼을 누른 상태이면 다시 수정 form 숨기기
+        if(modForm=="block") {
+            $("#product-option-modify-form").css("display", "none");
+            return;
+        }
+        // 1. form의 위치를 수정 버튼 바로 아래로 옮긴다.
+        $("#product-option-modify-form").appendTo($(this).parent());
+
+        // 2. form을 나타내고
+        $("#product-option-modify-form").css("display", "block");
+
+        // 3. product_id와 option_name을 input에 뿌려주기
+        $("input[id=modify-product-id]").val(product_id);
+        $("input[id=modify-option-name]").val(option_name);
+
+        // 4. 수정 완료버튼에 option_id 전달한다.
+        $("#submit-modify-option-btn").attr("data-option-id", option_id);
+
+
+    });
+
+    // 수정완료 버튼 눌렀을 때
+    $("#submit-modify-option-btn").on("click", function () {
+        let option_id = $(this).attr("data-option-id");
+        // let product_id = $("input[id=modify-product-id]").val();
+        let option_name = $("input[id=modify-option-name]").val();
+
+        if(option_name.trim()=='') {
+            alert("수정할 상위옵션을 입력하세요.");
+            $("input[id=modify-option-name]").focus();
+            return;
+        }
+
+        $.ajax({
+            type:'POST',
+            url: '/productmanage/productoption/modify',
+            headers: {"content-type" : "application/json"}, // 요청 헤더
+            data : JSON.stringify({option_id:option_id, option_name:option_name}), // 서버로 전송할 데이터, stringify()로 직렬화 필요.
+            success : function(result) {
+                alert(result);
+                showProductOptionList();
+            },
+            error : function() {
+                alert("상품 상위옵션 수정 에러")
+            }
+        }); // $.ajax()
+
+        $("#product-option-modify-form").css("display", "none")
+        $("input[id=modify-product-id]").val('');
+        $("input[id=modify-option-name]").val('');
+        $("#product-option-modify-form").appendTo("body");
+    });
+
+    // 상위옵션 삭제 버튼 눌렀을 때
+    $(".product-option-list").on("click", ".delete-option-btn", function() {
+        let option_id = $(this).parent().attr("data-option-id");
+
+        $.ajax({
+            type:'POST',       // 요청 메서드
+            url: '/productmanage/productoption/delete?option_id='+ option_id,  // 요청 URI
+            success : function(result){
+                alert(result);
+                showProductOptionList();
+            },
+            error   : function(){ alert("상품 상위옵션 삭제 에러") } // 에러가 발생했을 때, 호출될 함수
+        }); // $.ajax()
+    });
+
+    // 메인 메서드
+    $(document).ready(function() {
+        showProductOptionList();
+
+    });
+
 </script>
 </body>
 </html>

@@ -32,7 +32,7 @@
 <nav class="nav">
     <div class="nav-inner">
         <a href="/">홈</a>
-        <a href="#">스토어</a>
+        <a href="/product/list">스토어</a>
         <a href="/event/">이벤트</a>
         <a href="#">공지사항</a>
     </div>

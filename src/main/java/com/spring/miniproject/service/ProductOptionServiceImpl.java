@@ -24,8 +24,8 @@ public class ProductOptionServiceImpl implements ProductOptionService {
     }
 
     @Override
-    public List<ProductOptionDto> selectAllProductOption() throws Exception {
-        return productOptionDao.selectAllProductOption();
+    public List<ProductOptionDto> selectAllProductOption(Integer product_id) throws Exception {
+        return productOptionDao.selectAllProductOption(product_id);
     }
 
     @Override

@@ -13,7 +13,7 @@ public class ProductOptionDaoImpl implements ProductOptionDao {
     @Autowired
     SqlSession session;
 
-    private String namespace = "com.spring.miniproject.dao.CategoryMapper.";
+    private String namespace = "com.spring.miniproject.dao.ProductOptionMapper.";
 
     @Override
     public int insertProductOption(ProductOptionDto productOptionDto) throws Exception {
@@ -26,8 +26,8 @@ public class ProductOptionDaoImpl implements ProductOptionDao {
     }
 
     @Override
-    public List<ProductOptionDto> selectAllProductOption() throws Exception {
-        return session.selectList(namespace + "selectAllProductOption");
+    public List<ProductOptionDto> selectAllProductOption(Integer product_id) throws Exception {
+        return session.selectList(namespace + "selectAllProductOption",product_id);
     }
 
     @Override

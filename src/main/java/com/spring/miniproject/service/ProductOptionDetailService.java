@@ -2,6 +2,7 @@ package com.spring.miniproject.service;
 
 import com.spring.miniproject.domain.ProductOptionDetailDto;
 import com.spring.miniproject.domain.ProductOptionDto;
+import com.spring.miniproject.domain.SubCategoryDto;
 
 import java.util.List;
 
@@ -11,7 +12,9 @@ public interface ProductOptionDetailService{
 
     ProductOptionDetailDto selectProductDetailOption(Integer option_detail_id) throws Exception;
 
-    List<ProductOptionDetailDto> selectAllProductDetailOption(Integer product_detail_id) throws Exception;
+    List<ProductOptionDetailDto> selectAllProductDetailOption() throws Exception;
+
+    List<ProductOptionDetailDto> selectSpecificProductOptionDetail(Integer product_id, Integer option_id) throws Exception;
 
     int countProductDetailOption() throws Exception;
 

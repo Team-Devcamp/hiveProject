@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.spring.miniproject.dao.ProductOptionDetailMapper">
+	<insert id="insertProductOptionDetail" parameterType="ProductOptionDetailDto">
+		INSERT
+		INTO product_detail_option (product_id, option_id, option_detail_name)
+		VALUES (#{product_id}, #{option_id}, #{option_detail_name})
+	</insert>
+
+	<select id="selectAllProductOptionDetail" resultType="ProductOptionDetailDto">
+		SELECT option_detail_id, option_id, product_id, option_detail_name
+		FROM product_option_detail
+	</select>
+
+	<select id="selectSpecificProductOptionDetail" parameterType="java.util.Map" resultType="ProductOptionDetailDto">
+		SELECT option_detail_id, option_id, product_id, option_detail_name
+		FROM product_option_detail
+		WHERE product_id = #{product_id} and option_id = #{option_id}
+	</select>
+
+	<select id="countProductOptionDetail" resultType="int">
+		SELECT count(*) FROM product_option_detail
+	</select>
+
+	<update id="updateProductOptionDetail" parameterType="ProductOptionDetailDto">
+		UPDATE product_option_detail
+		SET option_detail_name = #{option_detail_name}
+		WHERE option_detail_id = #{option_detail_id}
+	</update>
+
+	<delete id="deleteProductOptionDetail" parameterType="int">
+		DELETE FROM product_option_detail
+		WHERE option_detail_id = #{option_detail_id}
+	</delete>
+
+	<delete id="deleteAllProductOptionDetail">
+		DELETE FROM product_option_detail
+	</delete>
+</mapper>
+

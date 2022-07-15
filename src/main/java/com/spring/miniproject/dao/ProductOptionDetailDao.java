@@ -1,8 +1,10 @@
 package com.spring.miniproject.dao;
 
 import com.spring.miniproject.domain.ProductOptionDetailDto;
+import com.spring.miniproject.domain.SubCategoryDto;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ProductOptionDetailDao {
 
@@ -10,7 +12,9 @@ public interface ProductOptionDetailDao {
 
     ProductOptionDetailDto selectProductDetailOption(Integer option_detail_id);
 
-    List<ProductOptionDetailDto> selectAllProductDetailOption(Integer product_detail_id);
+    List<ProductOptionDetailDto> selectAllProductDetailOption();
+
+    List<ProductOptionDetailDto> selectSpecificProductOptionDetail(Map<String, Integer> map);
 
     int countProductDetailOption();
 
@@ -19,4 +23,5 @@ public interface ProductOptionDetailDao {
     int deleteProductDetailOption(Integer option_id);
 
     int deleteAllProductDetailOption();
+
 }

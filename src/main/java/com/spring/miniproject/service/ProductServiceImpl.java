@@ -1,6 +1,7 @@
 package com.spring.miniproject.service;
 
 import com.spring.miniproject.dao.ProductDao;
+import com.spring.miniproject.domain.ProductReviewDto;
 import com.spring.miniproject.domain.ProductDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,5 +1,6 @@
 package com.spring.miniproject.dao;
 
+import com.spring.miniproject.domain.ProductReviewDto;
 import com.spring.miniproject.domain.ProductDto;
 
 import java.util.List;

@@ -1,5 +1,6 @@
 package com.spring.miniproject.controller;
 
+import com.spring.miniproject.domain.ProductReviewDto;
 import com.spring.miniproject.domain.CategoryDto;
 import com.spring.miniproject.domain.ProductDto;
 import com.spring.miniproject.domain.SubCategoryDto;

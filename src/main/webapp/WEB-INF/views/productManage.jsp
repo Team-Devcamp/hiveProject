@@ -96,6 +96,7 @@
             headers : { "content-type": "application/json"}, // 요청 헤더
             data : JSON.stringify({product_id:product_id, option_name:option_name}),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
             success : function(result){
+                console.log(result);
                 $("input[name=option_name]").val('');
                 $("input[name=product_id]").val('');
 

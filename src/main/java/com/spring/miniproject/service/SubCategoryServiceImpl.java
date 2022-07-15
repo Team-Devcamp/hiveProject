@@ -23,6 +23,10 @@ public class SubCategoryServiceImpl implements SubCategoryService {
         return subCategoryDao.selectAllSubCategory();
     }
     @Override
+    public List<SubCategoryDto> selectSpecificSubCategory(Integer category_id) throws Exception {
+        return subCategoryDao.selectSpecificSubCategory(category_id);
+    }
+    @Override
     public int countSubCategory() throws Exception {
         return subCategoryDao.countSubCategory();
     }

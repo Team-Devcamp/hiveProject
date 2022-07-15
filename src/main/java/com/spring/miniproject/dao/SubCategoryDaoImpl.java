@@ -26,6 +26,11 @@ public class SubCategoryDaoImpl implements SubCategoryDao {
     }
 
     @Override
+    public List<SubCategoryDto> selectSpecificSubCategory(Integer category_id) throws Exception {
+        return session.selectList(namespace + "selectSpecificSubCategory", category_id);
+    }
+
+    @Override
     public int countSubCategory() throws Exception {
         return session.selectOne(namespace + "countSubCategory");
     }

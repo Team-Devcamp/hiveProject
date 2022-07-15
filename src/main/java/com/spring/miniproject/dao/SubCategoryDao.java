@@ -9,6 +9,8 @@ public interface SubCategoryDao {
 
     List<SubCategoryDto> selectAllSubCategory() throws Exception;
 
+    List<SubCategoryDto> selectSpecificSubCategory(Integer category_id) throws Exception;
+
     int countSubCategory() throws Exception;
 
     int updateSubCategory(SubCategoryDto subCategoryDto) throws Exception;

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.spring.miniproject.dao.ProductReviewMapper">
+
+	<select id="selectReview" parameterType="int" resultType="ProductReviewDto">
+		SELECT user_email, review_content, write_date
+		FROM product_review
+		WHERE product_id = #{product_id}
+		ORDER BY write_date DESC
+	</select>
+
+	<select id="countReview" resultType="int">
+		SELECT count(*) FROM product_review
+	</select>
+
+</mapper>

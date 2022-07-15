@@ -5,6 +5,35 @@
 <head>
     <title>마이페이지</title>
     <link rel="stylesheet" href="<c:url value='/css/user/mypage.css'/>">
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        $(document).ready(function (){
+            var user_email = "${userDto.user_email}";
+            $("#join-out").on("click",function (){
+               var question = confirm("정말 탈퇴하시겠습니까?");
+
+               if(question){
+                   $.ajax({
+                       type:"GET",
+                       url:"/register/delete",
+                       data: {user_email:user_email},
+                       cache : false,
+                       success:function(data) {
+                           if (data == "success") {
+                               alert("회원탈퇴가 성공적으로 처리되었습니다.");
+                               location.href = "<c:url value='/'/>"
+                               return;
+                           }else{
+                               alert("회원탈퇴가 실패하였습니다.");
+                           }
+                       }
+                   });
+               }else{
+                    return;
+               }
+            });
+        });
+    </script>
 </head>
 <body>
 <div class="wrap">
@@ -28,7 +57,7 @@
                 <p>프로필 정보</p>
                 <p class="line"></p>
                 <span><img src = "<c:url value='/image/user/profile_unknown.png'/>"></span>
-                <h6 id="profile-id">ch4570</h6>
+                <h6 id="profile-id">${userDto.user_name}</h6>
                 <input type="button" id="add-img" value="이미지 등록">
                 <input type="button" id="del-img" value="이미지 삭제">
                 <p class="line-id"></p>
@@ -36,24 +65,24 @@
                     <p>로그인 정보</p>
                     <ul>
                         <li>이메일 주소</li>
-                        <li>ch***0@naver.com</li>
+                        <li>${userDto.user_email}</li>
                         <h6 class="line-login"></h6>
                     </ul>
                     <h6 class="password">비밀번호</h6>
-                    <input type="password" id="look-pwd" value="dfadfadsfdaf">
+                    <input type="password" id="look-pwd" value="${userDto.user_password}">
                     <h6 class="line-login-end"></h6>
                 </div>
                 <div class="user-info">
                     <p>개인정보</p>
                     <h6 id="user-name">이름</h6>
-                    <h6 id="user-id">ch4570</h6>
+                    <h6 id="user-id">${userDto.user_name}</h6>
                     <h6 class="info-line"></h6>
                     <h6 id="user-phone">휴대폰번호</h6>
-                    <h6 id="user-phone-num">010-8***-*545</h6>
+                    <h6 id="user-phone-num">${userDto.user_phone}</h6>
                     <h6 class="info-end-line"></h6>
                 </div>
                 <div class="out-of-join">
-                    <a href="#">회원 탈퇴</a>
+                    <a href="#" id="join-out">회원 탈퇴</a>
                 </div>
             </div>
         </div>

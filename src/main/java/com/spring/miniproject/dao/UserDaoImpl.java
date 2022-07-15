@@ -19,7 +19,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public UserDto selectOneUser(String user_email) {
-		return sqlSession.selectOne(namespace+"selectUser",user_email);
+		return sqlSession.selectOne(namespace+"selectOneUser",user_email);
 	}
 
 	@Override

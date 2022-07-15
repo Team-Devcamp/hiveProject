@@ -91,7 +91,7 @@ public class RegisterController {
     public String findPassword(String user_email) throws Exception{
         UserDto userDto = userService.selectOneUser(user_email);
         if(userDto!=null){
-            return mailCheckService.mailCheck(user_email);
+            return findPasswordService.mailCheck(user_email);
         }else{
             return "fail";
         }

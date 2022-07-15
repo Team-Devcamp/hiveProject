@@ -11,13 +11,17 @@
 						       #{user_birth},#{user_phone},#{user_nickname})
 	</insert>
 
-	<select id="selectUser" resultType="UserDto" parameterType="String">
+	<select id="selectOneUser" resultType="UserDto" parameterType="String">
 		SELECT * FROM user WHERE user_email = #{user_email}
 	</select>
 
 	<update id="updatePassword" parameterType="UserDto">
 		UPDATE user SET user_password = #{user_password} WHERE user_email = #{user_email}
 	</update>
+
+	<delete id="deleteOneUser" parameterType="String">
+		DELETE FROM user WHERE user_email = #{user_email}
+	</delete>
 
 
 </mapper>

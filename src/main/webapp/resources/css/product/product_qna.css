@@ -1,0 +1,139 @@
+#qna_container {
+    padding: 20px 100px 30px 100px;
+}
+
+#qna_container h1 {
+    font-size: medium;
+    border-top: 1px solid #e2e2e5;
+    border-bottom: 1px solid #e2e2e5;
+    color: #8492a6;
+    padding: 20px;
+    width: auto;
+    margin-bottom: 20px;
+    align: center;
+}
+
+#qna_write {
+    display: flex;
+    justify-content: center;
+    padding: 30px 30px;
+    text-align: left;
+    width:1000px;
+}
+
+#qna_write label {
+    display: inline-block;
+    width: 80px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#qna_write input[type='text'], #qna_write textarea {
+    border: 1px solid #ccc;
+    vertical-align: middle;
+    padding: 3px 10px;
+    font-size: 12px;
+    line-height: 150%;
+    width: 380px;
+}
+
+#qna_write textarea {
+    margin-top: 10px;
+    width: 380px;
+    height: 90px
+}
+
+.qnaSubmitBtn{
+    display: flex;
+    justify-content: center;
+}
+#qnaSubmitBtn{
+    background: #1c1c1c;
+    color: white;
+    padding: 3px 7px;
+    margin: 20px 0;
+}
+
+#titleDiv{
+    font-size: 8px;
+}
+
+
+/*qna list*/
+.qna {padding:0 112px}
+.qna.on {display:block !important}
+.qna .qna-info {padding:51px 0 20px 0;text-align:center; border-bottom: 1px solid #ccc; }
+.qna .qna-info .qnaTit {display:inline-block;position:relative;height:35px;font-size:48px;line-height:35px}
+.qna .qna-info .ea {margin-top:40px;text-align:center}
+.qna .qna-info .ea em {display:inline-block;height:13px;font-size:19px;line-height:13px}
+.lNone {padding:35px 0}
+.lNone div {width:100%;height:84px;margin:0 auto; text-align:center}
+
+.qna .qna-info .ea p {margin-top:12px;font-size:12px;line-height:20px;letter-spacing:-0.3px}
+.qna .qna-info a {
+    display:inline-block;
+    width:114px;height:32px;margin:23px 0;
+    padding:10px 0;border:1px solid #ccc;
+    font-size:14px;line-height:13px;
+    letter-spacing:-0.3px;
+    background: #1c1c1c;
+    color: white;
+    text-decoration: none;
+}
+
+
+.qna{
+    padding: 0;
+}
+.qna .qnaInfo a{
+    height: auto;
+}
+.qna-list .qna-table{
+    width: 100%;
+}
+.qna-table th{
+    padding: 18px 0;
+    font-size: 0.875rem;
+}
+.qna-table td,
+.qna .qnaInfo .ea p{
+    font-size: 0.875rem;
+}
+.qna-list .qnaCont .a p{
+    line-height: 1.5;
+}
+
+
+/**/
+.qna-table{
+    font-family: "Helvetica Neue", "Noto Sans KR", sans-serif;
+    font-weight: 400;
+}
+.qna-table th {
+    padding: 18px 0;
+    font-size: 0.875rem;
+    border-bottom: 1px solid #000;
+    background-color: #f9f9f9;
+    font-size: 13px;
+    text-align: center;
+    line-height: 13px;
+}
+
+.qna-table td {
+    padding: 18px 0;
+    font-size: 0.875rem;
+    border-bottom: 1px solid #000;
+    font-size: 13px;
+    text-align: center;
+    line-height: 13px;
+}
+
+.qna-answer .a {
+    letter-spacing: 0;
+    font-size: 16px;
+}
+
+.hidden{
+    display:none;
+}

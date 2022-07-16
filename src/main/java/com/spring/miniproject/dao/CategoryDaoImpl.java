@@ -17,36 +17,36 @@ public class CategoryDaoImpl implements CategoryDao {
 
     @Override
     public int insertCategory(CategoryDto categoryDto) throws Exception {
-        return session.insert(namespace + "insert", categoryDto);
+        return session.insert(namespace + "insertCategory", categoryDto);
     }
 
     @Override
     public CategoryDto selectCategory(Integer category_id) throws Exception {
-        return session.selectOne(namespace + "select", category_id);
+        return session.selectOne(namespace + "selectCategory", category_id);
     }
 
     @Override
     public List<CategoryDto> selectAllCategory() throws Exception {
-        return session.selectList(namespace + "selectAll");
+        return session.selectList(namespace + "selectAllCategory");
     }
 
     @Override
     public int countCategory() throws Exception {
-        return session.selectOne(namespace + "count");
+        return session.selectOne(namespace + "countCategory");
     }
 
     @Override
     public int updateCategory(CategoryDto categoryDto) throws Exception {
-        return session.update(namespace + "update", categoryDto);
+        return session.update(namespace + "updateCategory", categoryDto);
     }
 
     @Override
     public int deleteCategory(Integer category_id) throws Exception {
-        return session.delete(namespace + "delete", category_id);
+        return session.delete(namespace + "deleteCategory", category_id);
     }
 
     @Override
     public int deleteAllCategory() throws Exception {
-        return session.delete(namespace + "deleteAll");
+        return session.delete(namespace + "deleteAllCategory");
     }
 }

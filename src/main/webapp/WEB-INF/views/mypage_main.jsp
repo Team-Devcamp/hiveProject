@@ -9,6 +9,7 @@
     <script>
         $(document).ready(function (){
             var user_email = "${userDto.user_email}";
+            var image_path = $("#user_profile").attr("src");
             $("#join-out").on("click",function (){
                var question = confirm("정말 탈퇴하시겠습니까?");
 
@@ -31,6 +32,34 @@
                }else{
                     return;
                }
+            });
+
+            $("#add-img").on("click",function (){
+                var popup = window.open('/mypage/image/add', '프로필 이미지 등록', 'width=700px,height=800px,scrollbars=yes');
+            });
+
+            $("#del-img").on("click",function (){
+                if(image_path=="" || image_path==null || image_path=="/image/user/profile_unknown.png"){
+                    alert("등록된 이미지가 없습니다.");
+                    return;
+                }
+                var question = confirm("이미지를 삭제하시겠습니까?");
+                if(question){
+                    $.ajax({
+                        type: "POST",
+                        url : "/mypage/image/delete",
+                        data : {user_email:user_email},
+                        success: function(data){
+                            if(data=="success"){
+                                alert("프로필 이미지가 삭제되었습니다.");
+                                location.href = "/mypage";
+                            }else{
+                                alert("삭제에 실패했습니다.");
+                            }
+                        }
+                    });
+                }
+
             });
         });
     </script>
@@ -56,7 +85,7 @@
             <div class="profile-info">
                 <p>프로필 정보</p>
                 <p class="line"></p>
-                <span><img src = "<c:url value='/image/user/profile_unknown.png'/>"></span>
+                <span><img src = "<c:url value='${userDto.profile_image}'/>" id="user_profile"></span>
                 <h6 id="profile-id">${userDto.user_name}</h6>
                 <input type="button" id="add-img" value="이미지 등록">
                 <input type="button" id="del-img" value="이미지 삭제">
@@ -69,7 +98,7 @@
                         <h6 class="line-login"></h6>
                     </ul>
                     <h6 class="password">비밀번호</h6>
-                    <input type="password" id="look-pwd" value="${userDto.user_password}">
+                    <input type="password" id="look-pwd" value="**********">
                     <h6 class="line-login-end"></h6>
                 </div>
                 <div class="user-info">

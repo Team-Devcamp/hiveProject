@@ -1,8 +1,7 @@
 package com.spring.miniproject.dao;
 
 import com.spring.miniproject.domain.UserDto;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.stereotype.Repository;
+import com.spring.miniproject.domain.UserProfileDto;
 
 
 public interface UserDao {
@@ -11,4 +10,6 @@ public interface UserDao {
 	public UserDto selectOneUser(String user_email);
 	public int updateUserPassword(UserDto userDto);
 	public int deleteOneUser(String user_email);
+	public int updateProfileImage(UserProfileDto userProfileDto);
+	public int updateImageOrigin(String user_email);
 }

@@ -1,6 +1,7 @@
 package com.spring.miniproject.service;
 
 import com.spring.miniproject.domain.UserDto;
+import com.spring.miniproject.domain.UserProfileDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int deleteOneUser(String user_email) {
 		return userDao.deleteOneUser(user_email);
+	}
+
+	@Override
+	public int updateProfileImage(UserProfileDto userProfileDto) {
+		return userDao.updateProfileImage(userProfileDto);
+	}
+
+	@Override
+	public int updateImageOrigin(String user_email) {
+		return userDao.updateImageOrigin(user_email);
 	}
 }
 

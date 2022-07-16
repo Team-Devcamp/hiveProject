@@ -64,26 +64,26 @@ public class ProductController {
 
         try {
             ProductDto productDto = productService.selectProduct(product_id);
-            List<ProductOptionDto> productOptionList = productOptionService.selectAllProductOption(product_id);
+            List<ProductOptionDto> productOptionList = productOptionService.
+                                                            selectAllProductOption(product_id);
 
             Map<String, List<ProductOptionDetailDto>> optionMap = new HashMap<>();
 
             for(int i=0; i<productOptionList.size(); i++){
                 String option_name = productOptionList.get(i).getOption_name();
                 Integer option_id = productOptionList.get(i).getOption_id();
-                System.out.println("넘어오나?"+option_name+" "+option_id);
+//                System.out.println("넘어오나?"+option_name+" "+option_id);
 
-                List<ProductOptionDetailDto> productOptionDetailList = productOptionDetailService.selectSpecificProductOptionDetail(product_id,option_id);
+                List<ProductOptionDetailDto> productOptionDetailList =
+                        productOptionDetailService.selectSpecificProductOptionDetail(product_id,option_id);
                 optionMap.put(option_name, productOptionDetailList);
             }
             m.addAttribute("productDto", productDto);
             m.addAttribute("product_id",product_id);
             m.addAttribute("optionMap",optionMap);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return "product/product_detail.tiles";
     }
 

@@ -278,7 +278,7 @@
                                 <!-- //상품에 대해서 궁금한 점이 있으시면 문의하여 주세요.신속하고 정확하게 답변드리도록 하겠습니다. -->
                                 <p>상품에 대해서 궁금한 점이 있으시면 문의하여 주세요.<br>신속하고 정확하게 답변드리도록 하겠습니다.</p>
                             </div>
-                            <a href="#none">상품 문의</a><!-- //상품 문의 -->
+                            <a href="#none" id="regQnaBtn">상품 문의</a><!-- //상품 문의 -->
                         </div>
                     </div>
 
@@ -327,13 +327,19 @@
                             </tbody>
                         </table>
 
+                        <table class="qna-table">
 
+                            <div id="qnaShowList"></div>
 
-                        <div id="qnaShowList"></div>
+                            <div class="qna-paging">
+                                <div id="qnaPagingDiv"></div>
+                            </div>
 
+                        </table>
                     </div>
 
-                    <%-- <tr class="tit">
+
+                   <%--  <tr class="tit">
                          <td>1</td>
                          <td class="tal"><a href="#none">사이즈</a></td>
                          <td>
@@ -344,25 +350,21 @@
                          <td>
                              <span>답변완료</span>
                          </td>
-                     </tr>
-
-                     <tr class="">
-                         <td colspan="6">
-                             <div class="qna-answer">
-                                 <div class="q">
-                                     <em>ㅡ</em>
-                                 </div>
-
-                                 <div class="a">
-                                     <em>답변</em><!-- ##답변 -->
-                                     <p><br><br><br></p>
-                                 </div>
-                             </div>
-                         </td>
                      </tr>--%>
+                    <%--<tr class="">
+                        <td colspan="6">
+                            <div class="qna-answer">
+                                <div class="q">
+                                    <em>${qnaDto.qna_content}</em>
+                                </div>
 
-
-
+                                <div class="a">
+                                    <em>답변</em><!-- ##답변 -->
+                                    <p><br><br><br></p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>--%>
 
 
                 </div>

@@ -36,6 +36,6 @@
 	</delete>
 
 	<delete id="deleteAllProductOption">
-		DELETE FROM category
+		DELETE FROM product_option
 	</delete>
 </mapper>

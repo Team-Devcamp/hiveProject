@@ -27,9 +27,9 @@ public class ProductManageController {
     // 상품 상위 옵션 목록 불러오기
     @GetMapping("/productoption/list")
     @ResponseBody
-    public ResponseEntity<List<ProductOptionDto>> getAllProductOptionList() {
+    public ResponseEntity<List<ProductOptionDto>> getAllProductOptionList(Integer product_id) {
         try {
-            List<ProductOptionDto> productOptionList = productOptionService.selectAllProductOption();
+            List<ProductOptionDto> productOptionList = productOptionService.selectAllProductOption(product_id);
 
             return new ResponseEntity<>(productOptionList, HttpStatus.OK);
         } catch (Exception e) {

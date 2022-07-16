@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.miniproject.dao.NoticeMapper">
+    <sql id="selectFromNotice">
+        SELECT  notice_id, notice_title, notice_content, writer, write_date, modify_date, view_cnt, upload_file
+        FROM    notice
+    </sql>
+
+    <!-- 페이징을 위한 카운트 -->
+    <select id="count" resultType="int">
+        SELECT  count(*)
+        FROM    notice
+    </select>
+
+    <!-- notice 모든 데이터 호출 -->
+    <select id="selectAll" resultType="NoticeDto">
+        SELECT  *
+        FROM    notice
+    </select>
+
+    <!-- 페이징을 위한 정렬 -->
+    <select id="selectPage" parameterType="map" resultType="NoticeDto">
+        <include refid="selectFromNotice"/>
+        ORDER BY write_date DESC, notice_id DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <!-- 공지사항 상세보기 -->
+    <select id="selectDetail" resultType="NoticeDto">
+        SELECT  notice_id, notice_title, notice_content, write_date
+        FROM    notice
+        WHERE   notice_id = #{notice_id}
+    </select>
+
+    <!-- 공지사항 등록 -->
+    <insert id="noticeWrite">
+        INSERT INTO notice (notice_title, notice_content, writer, write_date)
+        VALUES             (#{notice_title}, #{notice_content}, '장민수', now())
+    </insert>
+
+    <!-- 공지사항 수정 -->
+    <update id="updateNotice">
+        UPDATE  notice
+        SET     notice_title = #{notice_title},
+                notice_content = #{notice_content},
+                modify_date = now()
+        WHERE   notice_id = #{notice_id}
+    </update>
+
+    <!-- 공지사항 삭제 -->
+    <delete id="deleteNotice">
+        DELETE FROM notice
+        WHERE       notice_id = #{notice_id}
+
+    </delete>
+
+    <!-- 게시글 조회수 증가 -->
+    <update id="viewCount">
+        UPDATE notice
+        SET    view_cnt = view_cnt + 1
+        WHERE  notice_id = #{notice_id}
+    </update>
+</mapper>

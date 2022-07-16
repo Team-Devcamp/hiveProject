@@ -13,7 +13,14 @@
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script>
         $(document).ready(function(){
-
+            var auth_check = "${param.email_check}".trim();
+            var email_check = "${email_check}".trim();
+            if(auth_check=="true"){
+                $("#check_email").val("true");
+            }
+            if(email_check=="true"){
+                $("#check_email").val("true");
+            }
             $("#register-btn-join").on("click",function (){
                 let register_form = $("#register-form").val();
                 let user_email = $("input[name=user_email]").val();
@@ -22,7 +29,7 @@
                 let user_name = $("input[name=user_name]").val();
                 let user_birth = $("input[name=user_birth]").val();
                 let user_phone = $("input[name=user_phone]").val();
-                let check_email = $("input[name=check-email]").val();
+                let check_email = $("input[name=check_email]").val();
 
                 if(user_email=="" || user_email == null){
                     alert("이메일을 입력해주세요");
@@ -92,7 +99,7 @@
                     <form:input path="user_email" cssClass="register-input-form" id="user_email" placeholder=" 예) hive@hive.com" value="${param.user_email}" readonly="${param.user_email == null ? false : true}"/><br>
                     <form:errors path="user_email" cssClass="error-msg"></form:errors>
                     <input type="button" class="email-check-btn" value="이메일 인증"><br>
-                    <input type="hidden" id="check-email" name="check-email" value="${param.email_check == null ? "false" : "true"}">
+                    <input type="hidden" id="check_email" name="check_email" value="false" readonly="readonly">
                     <form:label path="user_password" class="input-register">비밀번호</form:label>
                     <form:password path="user_password"  cssClass= "register-input-form"  id="user_password" placeholder="영문,숫자,특수문자 혼합 8-16자"/><br>
                     <form:errors path="user_password" cssClass="error-msg"></form:errors>

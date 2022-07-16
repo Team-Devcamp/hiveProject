@@ -36,13 +36,17 @@ public class RegisterController {
     @GetMapping("/register")
     public String registerUser(Model model){
         model.addAttribute("userDto",new UserDto());
-        return "register_form";
+        return "register_form.tiles";
     }
 
     @PostMapping("/register")
-    public String registerUser(@Valid UserDto userDto, BindingResult bindingResult){
+    public String registerUser(@Valid UserDto userDto, BindingResult bindingResult,String check_email,Model model){
+
+        if(check_email.equals("true")){
+            model.addAttribute("email_check",check_email);
+        }
         if(bindingResult.hasErrors()){
-            return "register_form";
+            return "register_form.tiles";
         }else{
             // 비밀번호 암호화 인코딩
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();

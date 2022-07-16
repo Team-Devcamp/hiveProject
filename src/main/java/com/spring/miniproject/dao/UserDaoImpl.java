@@ -1,6 +1,7 @@
 package com.spring.miniproject.dao;
 
 import com.spring.miniproject.domain.UserDto;
+import com.spring.miniproject.domain.UserProfileDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -30,6 +31,16 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public int deleteOneUser(String user_email) {
 		return sqlSession.delete(namespace+"deleteOneUser",user_email);
+	}
+
+	@Override
+	public int updateProfileImage(UserProfileDto userProfileDto) {
+		return sqlSession.update(namespace+"updateProfileImage",userProfileDto);
+	}
+
+	@Override
+	public int updateImageOrigin(String user_email) {
+		return sqlSession.update(namespace+"updateImageOrigin",user_email);
 	}
 
 }

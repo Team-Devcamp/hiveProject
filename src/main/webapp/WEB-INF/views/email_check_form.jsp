@@ -46,7 +46,7 @@
                     return;
                 }else{
                     alert("정상적으로 인증되었습니다!");
-                    $(opener.document).find("#check-email").val("true");
+                    $(opener.document).find("#check_email").val("true");
                     $(opener.document).find("#user_email").val(user_email);
                     $(opener.document).find("#user_email").attr("readonly",true);
                     window.close();

@@ -13,5 +13,6 @@
         <typeAlias alias="ProductOptionDto" type="com.spring.miniproject.domain.ProductOptionDto"/>
         <typeAlias alias="SubCategoryDto" type="com.spring.miniproject.domain.SubCategoryDto"/>
         <typeAlias alias="ProductOptionDetailDto" type="com.spring.miniproject.domain.ProductOptionDetailDto"/>
+        <typeAlias alias="QnaPaging" type="com.spring.miniproject.domain.QnaPaging"/>
     </typeAliases>
 </configuration>

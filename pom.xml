@@ -160,12 +160,20 @@
 		</dependency>
 
 		<!-- 앞으로 추가할 Dependency는 여기 아래에 작성해주세요! -->
+		<!-- 한글 경로로 인한 xml 파싱 오류 해결 -->
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+			<version>2.9.1</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.13.3</version>
 		</dependency>
+
+    <!-- dev-notice 한글깨짐처리 -->
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -257,6 +265,7 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.4</version>
 		</dependency>
+
 
 
 

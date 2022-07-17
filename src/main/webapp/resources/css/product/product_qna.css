@@ -137,3 +137,18 @@
 .hidden{
     display:none;
 }
+.show{
+    display: none;
+}
+
+.qna-paging{
+    padding: 20px 0;
+    font-width: bold;
+}
+#currentPaging,#paging:hover{
+    cursor: pointer;
+}
+
+#qna_title:hover{
+    cursor: pointer;
+}

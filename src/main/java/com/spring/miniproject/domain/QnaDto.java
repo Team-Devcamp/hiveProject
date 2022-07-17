@@ -1,5 +1,6 @@
 package com.spring.miniproject.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -10,23 +11,14 @@ public class QnaDto {
     private String qna_title;
     private String qna_content;
     private String writer;
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd")
     private Date write_date;
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd")
     private Date modify_date;
     private int status;
     private int secret;
 
-
-    public QnaDto(int qna_id, int product_id, String qna_title, String qna_content, String writer, Date write_date, Date modify_date, int status, int secret) {
-        this.qna_id = qna_id;
-        this.product_id = product_id;
-        this.qna_title = qna_title;
-        this.qna_content = qna_content;
-        this.writer = writer;
-        this.write_date = write_date;
-        this.modify_date = modify_date;
-        this.status = status;
-        this.secret = secret;
-    }
+    public QnaDto() {}
 
     public int getQna_id() {
         return qna_id;

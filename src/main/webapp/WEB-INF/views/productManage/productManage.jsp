@@ -64,8 +64,8 @@
 
         options.forEach(function(option) {
             tmp += '<li class="option" data-product-id=' + option.product_id
-            tmp += 'data-option-id=' + option.option_id
-            tmp += 'data-option-name=' + option.option_name + '>'
+            tmp += ' data-option-id=' + option.option_id
+            tmp += ' data-option-name=' + option.option_name + '>'
 
             tmp += ' <div class="product-id"><p>상품 번호 ' + option.product_id + '</p></div>'
             tmp += ' <div class="option-id"><p>상위옵션 번호 ' + option.option_id + '</p></div>'
@@ -146,6 +146,8 @@
         let option_name = $(this).parent().attr("data-option-name");
         let modForm = $("#product-option-modify-form").css("display");
 
+        console.log(option_id, product_id, option_name)
+
         // 이미 수정버튼을 누른 상태이면 다시 수정 form 숨기기
         if(modForm=="block") {
             $("#product-option-modify-form").css("display", "none");
@@ -170,7 +172,7 @@
     // 수정완료 버튼 눌렀을 때
     $("#submit-modify-option-btn").on("click", function () {
         let option_id = $(this).attr("data-option-id");
-        // let product_id = $("input[id=modify-product-id]").val();
+        let product_id = $("input[id=modify-product-id]").val();
         let option_name = $("input[id=modify-option-name]").val();
 
         if(option_name.trim()=='') {
@@ -186,7 +188,7 @@
             data : JSON.stringify({option_id:option_id, option_name:option_name}), // 서버로 전송할 데이터, stringify()로 직렬화 필요.
             success : function(result) {
                 alert(result);
-                showProductOptionList();
+                showProductOptionList(product_id);
             },
             error : function() {
                 alert("상품 상위옵션 수정 에러")

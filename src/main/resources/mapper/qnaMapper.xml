@@ -4,7 +4,7 @@
         
 <mapper namespace="com.spring.miniproject.dao.QnaMapper">
 
-	<insert id="insertQna" parameterType="QnaDto">
+	<insert id="insertQna" parameterType="QnaDto" >
 		INSERT INTO qna (qna_id,product_id,qna_title, qna_content, writer, write_date)
 		VALUES(null, #{product_id},#{qna_title},#{qna_content},#{writer}, now() )
 	</insert>
@@ -15,15 +15,24 @@
 	</delete>
 
 
-	<select id="selectQnaList" parameterType="int" resultType="QnaDto">
+	<select id="selectQnaList" parameterType="java.util.Map" resultType="QnaDto">
 		SELECT *
 		from qna
 		WHERE product_id = #{product_id}
+		ORDER BY write_date DESC, qna_id DESC
+        LIMIT #{startNum}, #{endNum}
+	</select>
+
+	<select id="selectQna" parameterType="java.util.Map" resultType="QnaDto">
+		SELECT *
+		from qna
+		WHERE qna_id = #{qna_id} and product_id = #{product_id} and writer = #{writer}
 		ORDER BY write_date
 	</select>
 
-	<select id="countQna" resultType="int">
+	<select id="countQna" parameterType="int" resultType="int">
 		SELECT count(*) FROM qna
+		WHERE product_id = #{product_id}
 	</select>
 
 

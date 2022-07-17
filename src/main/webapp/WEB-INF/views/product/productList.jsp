@@ -41,11 +41,11 @@
             <div class="product-list">
                 <c:forEach var="productDto" items="${productList}">
                     <li class="product">
-                        <a href="#">
+                        <a href="/product/detail?product_id=${productDto.product_id}">
                             <img src="" alt="상품 이미지">
                         </a>
-                        <a href="#">
-                            <p>${productDto.product_title}</p>
+                        <a href="/product/detail?product_id=${productDto.product_id}">
+                            <p>${productDto.product_title} </p>
                         </a>
                         <div class="detail-price">
                             <strong class="current-price">${productDto.product_price}</strong>

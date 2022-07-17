@@ -1,0 +1,29 @@
+@charset "utf-8";
+@import "../common/reset.css";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+body {font-family: 'Noto Sans KR', sans-serif;}
+a {text-decoration: none; color:inherit;}
+
+.wrap{width: 100%; height:100%; margin-top: 20px; overflow: hidden; margin: 0 auto;}
+.wrap .content {margin: 0 auto; width: 620px; height: 600px;}
+.wrap .nav {overflow: hidden;  font-size: 25px; margin-top: 30px;}
+
+
+.wrap .tit { margin-left: 250px; font-weight: bold;}
+.wrap .txt {margin-top: 60px; font-size: 18px;}
+.wrap .text {position: relative;}
+
+
+.email-chk-form .input-box-id .mail-id {border-radius: 10px; width: 615px; height: 42px; margin-top: 10px;
+                        border: 1px solid rgb(228, 230, 233);}
+.email-chk-form .input-box-id .user-email {border-radius: 10px; width: 505px; height: 42px; margin-top: 10px; 
+    position: relative; border: 1px solid rgb(228, 230, 233);}
+.email-chk-form .input-box-id .txt {margin-top: 20px; display: block;}
+.email-chk-form input::placeholder{padding-left: 10px;}
+.email-chk-form .email-chk-btn {border-radius: 10px; width: 102px; height: 48px;
+                                position: absolute; top: 117px; background: black; margin-left: 10px; border:none;}
+.email-chk-form .email-chk-btn[value="인증 요청"]{font-size: 16px; color: white;}
+.input-box {margin: 0 auto;}
+.submit-btn {margin-top: 50px; width: 620px; height: 55px; border-radius: 10px;}
+.submit-btn[value="이메일 인증확인"]{font-size: 16px; color: white; background: black; border:none}

@@ -2,10 +2,7 @@ package com.spring.miniproject.controller;
 
 import com.google.gson.JsonObject;
 import com.spring.miniproject.domain.*;
-import com.spring.miniproject.service.CategoryService;
-import com.spring.miniproject.service.ProductOptionService;
-import com.spring.miniproject.service.ProductService;
-import com.spring.miniproject.service.SubCategoryService;
+import com.spring.miniproject.service.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,29 +25,38 @@ import java.util.UUID;
 public class ProductManageController {
 
     @Autowired
-    ProductOptionService productOptionService;
+    private ProductOptionService productOptionService;
 
     @Autowired
-    CategoryService categoryService;
+    private CategoryService categoryService;
 
     @Autowired
-    SubCategoryService subCategoryService;
+    private SubCategoryService subCategoryService;
 
     @Autowired
-    ProductService productService;
+    private ProductService productService;
+
+    @Autowired
+    private ProductStockService productStockService;
 
     @GetMapping("")
-    public String productManagePage() {
-        return "productManage.tiles";
+    public String productManagePage(Model m) {
+        try {
+            List<ProductDto> productList = productService.selectAllProduct();
+            m.addAttribute("productList", productList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "productManage/productManage.tiles";
     }
-    //  상품 상위 옵션
+
 
     // 상품 상위 옵션 목록 불러오기
     @GetMapping("/productoption/list")
     @ResponseBody
-    public ResponseEntity<List<ProductOptionDto>> getAllProductOptionList() {
+    public ResponseEntity<List<ProductOptionDto>> getAllProductOptionList(Integer product_id) {
         try {
-            List<ProductOptionDto> productOptionList = productOptionService.selectAllProductOption();
+            List<ProductOptionDto> productOptionList = productOptionService.selectAllProductOption(product_id);
 
             return new ResponseEntity<>(productOptionList, HttpStatus.OK);
         } catch (Exception e) {
@@ -79,6 +85,7 @@ public class ProductManageController {
         }
     }
 
+    // 상품 상위옵션 수정
     @PostMapping("/productoption/modify")
     @ResponseBody
     public ResponseEntity<String> modifyProductOption(@RequestBody ProductOptionDto productOptionDto, Model m) {
@@ -96,6 +103,7 @@ public class ProductManageController {
         }
     }
 
+    // 상품 상위옵션 삭제
     @PostMapping("/productoption/delete")
     @ResponseBody
     public ResponseEntity<String> deleteProductOption(Integer option_id, Model m) {
@@ -129,6 +137,7 @@ public class ProductManageController {
         return "productManage/registerProduct";
     }
 
+    // 상품을 DB에 등록
     @PostMapping("/registerproduct")
     public String registerProduct(ProductDto productDto, Model m) {
         try {
@@ -150,7 +159,7 @@ public class ProductManageController {
 
     }
 
-
+    // 텍스트 편집기에 img 파일 업로드 하는 메서드
     @ResponseBody
     @RequestMapping(value = "/uploadimage")
     public void communityImageUpload(HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile) throws Exception{
@@ -204,12 +213,23 @@ public class ProductManageController {
                     }
                 }
 
-
             }
 
         }
     }
 
+    @GetMapping("/productstock")
+    @ResponseBody
+    public ResponseEntity<ProductStockDto> getProductStock(@RequestBody ProductStockDto productStockDto) {
+        try {
+            ProductStockDto productStock = productStockService.selectProductStock(productStockDto);
 
+            return new ResponseEntity<>(productStock, HttpStatus.OK);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
 
 }

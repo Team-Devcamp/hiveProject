@@ -26,8 +26,8 @@ public class ProductOptionDaoImpl implements ProductOptionDao {
     }
 
     @Override
-    public List<ProductOptionDto> selectAllProductOption() throws Exception {
-        return session.selectList(namespace + "selectAllProductOption");
+    public List<ProductOptionDto> selectAllProductOption(Integer product_id) throws Exception {
+        return session.selectList(namespace + "selectAllProductOption", product_id);
     }
 
     @Override

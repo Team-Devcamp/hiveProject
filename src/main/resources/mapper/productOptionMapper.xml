@@ -15,9 +15,10 @@
 		WHERE option_id = #{option_id}
 	</select>
 
-	<select id="selectAllProductOption" resultType="ProductOptionDto">
+	<select id="selectAllProductOption" parameterType="int" resultType="ProductOptionDto">
 		SELECT option_id, product_id, option_name
 		FROM product_option
+		WHERE product_id = #{product_id}
 	</select>
 
 	<select id="countProductOption" resultType="int">

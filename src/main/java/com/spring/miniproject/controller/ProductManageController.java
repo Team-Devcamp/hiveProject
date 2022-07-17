@@ -1,21 +1,27 @@
 package com.spring.miniproject.controller;
 
-import com.spring.miniproject.domain.CategoryDto;
-import com.spring.miniproject.domain.ProductDto;
-import com.spring.miniproject.domain.ProductOptionDto;
-import com.spring.miniproject.domain.SubCategoryDto;
+import com.google.gson.JsonObject;
+import com.spring.miniproject.domain.*;
 import com.spring.miniproject.service.CategoryService;
 import com.spring.miniproject.service.ProductOptionService;
 import com.spring.miniproject.service.ProductService;
 import com.spring.miniproject.service.SubCategoryService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.util.List;
+import java.util.UUID;
+
 
 @Controller
 @RequestMapping("/productmanage")
@@ -120,16 +126,16 @@ public class ProductManageController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return "registerProduct";
+        return "productManage/registerProduct";
     }
 
     @PostMapping("/registerproduct")
-    @ResponseBody
-    public String registerProduct(@RequestBody ProductDto productDto, Model m) {
+    public String registerProduct(ProductDto productDto, Model m) {
         try {
             productDto.setProduct_thumb_nail("썸네일 임시 삽입");
+
             int rowCnt = productService.insertProduct(productDto);
-            System.out.println("productDto = " + productDto);
+
             if(rowCnt != 1) {
                 throw new Exception("상품 등록에 실패했습니다.");
             }
@@ -139,23 +145,71 @@ public class ProductManageController {
         } catch (Exception e) {
             e.printStackTrace();
             m.addAttribute("productDto", productDto);
-            return "registerProduct";
+            return "productManage/registerProduct";
         }
 
     }
 
-//    // 네이버 스마트에디터 test용, 상품 등록 페이지 보여주기
-//    @GetMapping("/test")
-//    public String test() {
-//
-//        return "test";
-//    }
-//
-//    @PostMapping("/test2")
-//    @ResponseBody
-//    public String test2(@RequestBody String content) {
-//        System.out.println("content = " + content);
-//        return "test";
-//    }
+
+    @ResponseBody
+    @RequestMapping(value = "/uploadimage")
+    public void communityImageUpload(HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile) throws Exception{
+        JsonObject jsonObject = new JsonObject();
+        PrintWriter printWriter = null;
+        OutputStream out = null;
+        MultipartFile file = multiFile.getFile("upload");
+
+        if(file != null) {
+            if(file.getSize() >0 && StringUtils.isNotBlank(file.getName())) {
+                if(file.getContentType().toLowerCase().startsWith("image/")) {
+                    try{
+
+                        String fileName = file.getOriginalFilename();
+                        byte[] bytes = file.getBytes();
+
+                        String uploadPath = req.getSession().getServletContext().getRealPath("/resources/image/product/productInfo"); //저장경로
+                        System.out.println("uploadPath = " + uploadPath);
+
+                        File uploadFile = new File(uploadPath);
+                        if(!uploadFile.exists()) {
+                            uploadFile.mkdir();
+                        }
+                        String fileName2 = UUID.randomUUID().toString();
+                        uploadPath = uploadPath + "/" + fileName2 +fileName;
+                        System.out.println("uploadPath = " + uploadPath);
+
+                        out = new FileOutputStream(new File(uploadPath));
+                        out.write(bytes);
+
+                        printWriter = resp.getWriter();
+                        String fileUrl = req.getContextPath() + "/image/product/productInfo/" +fileName2 +fileName; //url경로
+
+                        System.out.println("fileUrl = " + fileUrl);
+                        JsonObject json = new JsonObject();
+                        json.addProperty("uploaded", 1);
+                        json.addProperty("fileName", fileName);
+                        json.addProperty("url", fileUrl);
+                        printWriter.print(json);
+                        System.out.println(json);
+
+                    }catch(IOException e){
+                        e.printStackTrace();
+                    } finally {
+                        if (out != null) {
+                            out.close();
+                        }
+                        if (printWriter != null) {
+                            printWriter.close();
+                        }
+                    }
+                }
+
+
+            }
+
+        }
+    }
+
+
 
 }

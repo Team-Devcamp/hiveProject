@@ -66,8 +66,5 @@ public class ProductController {
         }
         return "product/productList.tiles";
     }
-
-
-
-
+    
 }

@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="/css/product/product_detail.css">
     <link rel="stylesheet" href="/css/product/product_review.css">
     <link rel="stylesheet" href="/css/product/product_qna.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
 
 
 <%--
@@ -107,30 +108,26 @@
                 </strong>
 
                 <p class="product-desc">
-                    [반바지 1+1/미친가격] 트레이닝 쿨링 반바지 남자 스포츠 헬스 츄리닝 밴딩 여름 팬츠 짐웨어<br>
+                    판매수량 최다 상품! <br>미니 하이버는 모든 상품 무료배송!<br>
                     ${productDto.product_name}
                 </p>
 
 
 
-                <form action="" method="POST" class="product-form">
+<%--                <form action="" method="POST" class="product-form">--%>
                     <div class="form-options">
                         <div class="form-select-wrap">
-
+                            <%--옵션번호도 받아올지 고민--%>
                             <c:forEach items="${optionMap}" var="firstOption">
 
                                 <select class="form-select" aria-label="Default select example">
-                                    <option selected>${firstOption.key}을 선텍해 주세요</option>
+                                    <option value="${firstOption.key}" selected>${firstOption.key} 선텍</option>
                                         <c:forEach items="${firstOption.value}" var="secondOption">
-                                            <option value="1">${secondOption.option_detail_name}</option>
+                                            <option value="${secondOption.option_detail_name}" id="${secondOption.option_detail_id}">${secondOption.option_detail_name}</option>
                                         </c:forEach>
                                 </select>
 
                             </c:forEach>
-<%--
-                            <option value="1">화이트</option>
-                            <option value="2">베이지</option>
-                            <option value="3">블랙</option>--%>
 
                             <%--<select class="form-select" aria-label="Default select example">
                                 <option selected>사이즈를 선책해 주세요</option>
@@ -139,72 +136,132 @@
                                 <option value="3">105</option>
                             </select>--%>
 
-                        </div>
-
-
-                        <div class="stats-likes">
-                            <dt>
-                                Likes
-                            </dt>
-                            <dd>
-                                찜
-                            </dd>
-                        </div>
-
-                        <div class="form-group form-quantity">
-                            <label for="quantity">
-                                주문수량
-                            </label>
-                            <div class="combo-box">
-                                <button type="button" id="minus-button" aria-label="Add"></button>
-                                <input type="number" name="quantity" id="quantity" min="0" max="10" value="1" />
-                                <button type="button" id="plus-button" aria-label="Remove"></button>
+                            <div class="stats-likes">
+                                <dt>
+                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                    <i class="fa fa-heart" aria-hidden="true"></i>
+                                </dt>
+                                <dd class="hidden">
+                                    찜
+                                </dd>
                             </div>
                         </div>
+
+
+
+
+
                     </div>
 
 
-                    <!--  선택한상품 + 수량선택콤보박스 + 금액 보여줘야할 곳
-                  <dl class="product-detail">
+                  <%--  선택한상품 + 수량선택콤보박스 + 금액 보여줘야할 곳--%>
+                  <%-- form <dl class="product-detail" style="display: none">
+                      <div>
+                          <dt>
+                            주문수량
+                          </dt>
+                          <dd>
+                              <div class="form-group form-quantity">
+                                  &lt;%&ndash;<label for="quantity">
+                                      주문수량
+                                  </label>&ndash;%&gt;
+                                  <div class="combo-box">
+                                      <button type="button" id="minus-button" aria-label="Add"></button>
+                                      <input type="number" name="quantity" id="quantity" min="0" max="10" value="1" />
+                                      <button type="button" id="plus-button" aria-label="Remove"></button>
+                                  </div>
+                              </div>
+                          </dd>
+                      </div>
+                      <div>
+                          <dt >
+                            색상
+                          </dt>
+                          <dd id="datail_option1">
+                            네이비
+                          </dd>
+                      </div>
+                      <div >
+                          <dt>
+                            사이즈
+                          </dt>
+                          <dd id="datail_option2">
+                            L(100)
+                          </dd>
+                      </div>
+                      <div >
+                          <dt>
+                              금액
+                          </dt>
+                          <dd id="sum_price">
+                              <span id="cost">${productDto.product_price}</span>
+                          </dd>
+                      </div>
+
+                  </dl>--%>
+                <%--<div class="product-detail-form" >
+                    <dl class="product-detail" >
                     <div>
-                      <dt>
-                        상품명
-                      </dt>
-                      <dd>
-                        ABCDEF반바지
-                      </dd>
+                        <dt>
+                            주문수량
+                        </dt>
+                        <dd>
+                            <div class="form-group form-quantity">
+                                &lt;%&ndash;<label for="quantity">
+                                    주문수량
+                                </label>&ndash;%&gt;
+                                <div class="combo-box">
+                                    <button type="button" id="minus-button" aria-label="Add"></button>
+                                    <input type="number" name="quantity" id="quantity" min="0" max="10" value="1" />
+                                    <button type="button" class="plus-button" id="plus-button" aria-label="Remove"></button>
+                                </div>
+                            </div>
+                        </dd>
                     </div>
                     <div>
-                      <dt>
-                        색상
-                      </dt>
-                      <dd>
-                        네이비
-                      </dd>
+                        <dt >
+                            색상
+                        </dt>
+                        <dd id="datail_option1">
+                            네이비aaaaaaaaaaaaaaaa
+                        </dd>
                     </div>
-                    <div>
-                      <dt>
-                        사이즈
-                      </dt>
-                      <dd>
-                        L(100)
-                      </dd>
+                    <div >
+                        <dt>
+                            사이즈
+                        </dt>
+                        <dd id="datail_option2">
+                            L(100)
+                        </dd>
                     </div>
-                  </dl>
-                  -->
+                    <div >
+                        <dt>
+                            금액
+                        </dt>
+                        <dd id="sum_price">
+                            <span id="cost">${productDto.product_price}</span>
+                        </dd>
+                    </div>
+
+                </dl>
+                </div>--%>
+                <div class="product-selected-list">
+                    <div class="p-selected"></div>
+                </div>
+
 
 
                     <button type="button" class="form-submit">
                         장바구니
                     </button>
                     <br>
-                    <button type="submit" class="form-submit">
+                    <button type="button" id="orderBtn" class="form-submit">
                         주문하기
                     </button>
 
 
 
-                </form>
+<%--                </form>--%>
 
             </div>
         </section>

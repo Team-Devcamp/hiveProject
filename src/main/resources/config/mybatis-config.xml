@@ -12,5 +12,6 @@
         <typeAlias alias="CategoryDto" type="com.spring.miniproject.domain.CategoryDto"/>
         <typeAlias alias="ProductOptionDto" type="com.spring.miniproject.domain.ProductOptionDto"/>
         <typeAlias alias="SubCategoryDto" type="com.spring.miniproject.domain.SubCategoryDto"/>
+        <typeAlias alias="ProductStockDto" type="com.spring.miniproject.domain.ProductStockDto"/>
     </typeAliases>
 </configuration>

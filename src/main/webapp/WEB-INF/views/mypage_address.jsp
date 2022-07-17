@@ -4,6 +4,18 @@
 <html>
 <title>주소록</title>
 <link rel="stylesheet" href="<c:url value='/css/user/mypage_address_style.css'/>">
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+    $(document).ready(function (){
+
+        $("#add-address").on("click",function (){
+            var popup = window.open('/mypage/address/insert', '배송지 입력', 'width=700px,height=800px,scrollbars=yes');
+        }) ;
+        $("#add-address-btn").on("click",function (){
+            var popup = window.open('/mypage/address/insert', '배송지 입력', 'width=700px,height=800px,scrollbars=yes');
+        }) ;
+    });
+</script>
 </head>
 <body>
 <header></header>

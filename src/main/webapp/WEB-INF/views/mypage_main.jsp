@@ -6,10 +6,21 @@
     <title>마이페이지</title>
     <link rel="stylesheet" href="<c:url value='/css/user/mypage.css'/>">
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
     <script>
         $(document).ready(function (){
             var user_email = "${userDto.user_email}";
             var image_path = $("#user_profile").attr("src");
+
+            $("#user-profile-address").mouseover(function (){$(this).css({"color":"black","font-weight":"bold"})});
+            $("#user-profile-address").mouseout(function (){$(this).css("color","rgb(207, 210, 215)")});
+            $("#pur-history").mouseover(function (){$(this).css({"color":"black","font-weight":"bold"})});
+            $("#pur-history").mouseout(function (){$(this).css("color","rgb(207, 210, 215)")});
+            $("#inter-items").mouseover(function (){$(this).css({"color":"black","font-weight":"bold"})});
+            $("#inter-items").mouseout(function (){$(this).css("color","rgb(207, 210, 215)")});
+            $("#user-profile-info").mouseover(function (){$(this).css({"color":"black","font-weight":"bold"})});
+            $("#user-profile-info").mouseout(function (){$(this).css("color","rgb(207, 210, 215)")});
+
             $("#join-out").on("click",function (){
                var question = confirm("정말 탈퇴하시겠습니까?");
 
@@ -79,7 +90,7 @@
                 <p>내 정보</p>
                 <ul>
                     <a href="#"><li id="user-profile-info">프로필 정보</li></a>
-                    <a href="#"><li id="user-profile-address">주소록</li></a>
+                    <a href="<c:url value='/mypage/address/list'/>"><li id="user-profile-address">주소록</li></a>
                 </ul>
             </div>
             <div class="profile-info">

@@ -1,5 +1,6 @@
 package com.spring.miniproject.service;
 
+import com.spring.miniproject.domain.PageHandlerDto;
 import com.spring.miniproject.domain.UserAddressDto;
 import com.spring.miniproject.domain.UserDto;
 import com.spring.miniproject.domain.UserProfileDto;
@@ -74,6 +75,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int updateUserAddress(UserAddressDto userAddressDto) {
 		return userDao.updateUserAddress(userAddressDto);
+	}
+
+	@Override
+	public List<UserAddressDto> selectAddressList(PageHandlerDto pageHandlerDto) {
+		return userDao.selectAddressList(pageHandlerDto);
 	}
 }
 

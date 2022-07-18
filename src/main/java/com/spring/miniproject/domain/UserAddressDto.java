@@ -9,6 +9,9 @@ public class UserAddressDto {
     private String address_detail;
     private String zipcode;
 
+    public UserAddressDto() {
+    }
+
     public UserAddressDto(int user_id, String receiver_name, String receiver_phone, String address, String address_detail, String zipcode) {
         this.user_id = user_id;
         this.receiver_name = receiver_name;
@@ -81,5 +84,18 @@ public class UserAddressDto {
 
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
+    }
+
+    @Override
+    public String toString() {
+        return "UserAddressDto{" +
+                "address_id=" + address_id +
+                ", user_id=" + user_id +
+                ", receiver_name='" + receiver_name + '\'' +
+                ", receiver_phone='" + receiver_phone + '\'' +
+                ", address='" + address + '\'' +
+                ", address_detail='" + address_detail + '\'' +
+                ", zipcode='" + zipcode + '\'' +
+                '}';
     }
 }

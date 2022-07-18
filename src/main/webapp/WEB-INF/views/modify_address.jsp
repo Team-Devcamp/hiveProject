@@ -16,6 +16,7 @@
                 var address_detail = $("#detail-address").val();
                 var post_number = $("#post-number").val();
                 var phone_pattern = /01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}/;
+                var formValues = $("form[name=user-address-form]").serialize();
 
 
                 if(user_name == null || user_name == ""){
@@ -48,8 +49,21 @@
                     return;
                 }
 
-                $("form").submit();
-
+                $.ajax({
+                    url : '/mypage/address/modify/save',
+                    type : 'POST',
+                    data : formValues,
+                    datatype : 'json',
+                    success: function (data){
+                        if(data=='success'){
+                            alert('변경에 성공했습니다.');
+                            window.close();
+                            opener.location.href = '/mypage/address/list';
+                        }else{
+                            alert('변경에 실패했습니다.');
+                        }
+                    }
+                });
             });
 
         });
@@ -84,14 +98,14 @@
             </header>
         </div>
         <div class="input-box">
-            <form name="user_address_form" action="/mypage/address/modify/save" method="post">
+            <form name="user-address-form" action="#" method="post">
             <input tyte="text" placeholder="이름" id="user-name" name="user_name">
             <input type="text" placeholder="010-0000-0000 형식으로 입력해주세요" id="user-phone" name="user_phone">
             <input type="text" placeholder="우편번호" id="post-number" name="post_number" readonly="readonly">
             <input type="text" placeholder="주소" id="address" name="address" readonly="readonly">
             <input type="text" placeholder="상세 주소" id="detail-address" name="detail_address">
             <input type="button" class="find-post" id="find-post" value="우편번호 찾기" onclick="findAddress()">
-                <input type="hidden" readonly="readonly" value="${address_id}">
+                <input type="hidden" readonly="readonly" value="${address_id}" name="address_id">
             </form>
         </div>
         <input type="button" class="submit-btn" id="submit-btn" value="배송지 등록">

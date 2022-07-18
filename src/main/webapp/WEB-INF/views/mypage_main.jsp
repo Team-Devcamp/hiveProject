@@ -21,6 +21,13 @@
             $("#user-profile-info").mouseover(function (){$(this).css({"color":"black","font-weight":"bold"})});
             $("#user-profile-info").mouseout(function (){$(this).css("color","rgb(207, 210, 215)")});
 
+            $("#logout-btn").on("click",function (){
+               var question = confirm("로그아웃 하시겠습니까?")
+               if(question){
+                   location.href = "/logout";
+               }
+            });
+
             $("#join-out").on("click",function (){
                var question = confirm("정말 탈퇴하시겠습니까?");
 
@@ -123,6 +130,7 @@
                 </div>
                 <div class="out-of-join">
                     <a href="#" id="join-out">회원 탈퇴</a>
+                    <a href="#" id="logout-btn">로그아웃</a>
                 </div>
             </div>
         </div>

@@ -201,7 +201,7 @@ input[type="number"] {
 .product-detail {
     width: 100%;
     border-radius: 6px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     font-size: 15px;
     line-height: 1.4666666667;
     overflow: hidden;
@@ -211,7 +211,9 @@ input[type="number"] {
     display: flex;
     align-items: center;
     width: 100%;
-    padding: 8px 14px;
+    padding: 4px 14px;
+    border-radius: 3px;
+    border: 1px solid #f7f7f7;
 }
 
 .product-detail div:nth-child(2n-1) {
@@ -273,7 +275,7 @@ input[type="number"] {
 .form-size > label {
     margin-bottom: 16px;
 }
-
+                                           ㅔ
 .combo-box {
     display: flex;
 }
@@ -318,24 +320,6 @@ input[type="number"] {
     border-top: 1px solid #e4e4e4;
     border-bottom: 1px solid #e4e4e4;
     color: #1c1c1c;
-}
-
-.radio-buttons {
-    display: flex;
-    align-items: center;
-}
-
-.radio-button {
-    display: flex;
-    align-items: center;
-    margin-right: 20px;
-    color: #545454;
-}
-
-.radio-button input {
-    position: relative;
-    top: -1px;
-    margin-right: 10px;
 }
 
 .form-submit {
@@ -384,7 +368,6 @@ input[type="number"] {
 .icon-cart {
     background-image: url("/image/product/product_detail/assets/icon-cart.svg");
 }
-
 
 
 /*tab menu*/
@@ -452,12 +435,6 @@ input[type="number"] {
     display:none;
     margin-top: 70px;
 }
-
-
-
-
-
-
 .combo-box .button{
     font-size: 15px;
     font-weight: bold;
@@ -466,6 +443,35 @@ input[type="number"] {
     border: 1px solid #e2e2e5;
 
 }
+
+
+.form-select-wrap{
+    position: relative;
+}
+.stats-likes{
+    position: absolute;
+    top:38px;
+    right:65px;
+    border: 1px solid gainsboro;
+    border-radius: 5px;
+}
+
+.stats-likes i{
+    padding:15px;
+    color: red;
+
+}
+/*
+.stats-likes i:hover{
+    cursor: pointer;
+    background: black;
+    border-radius: 5px;
+}*/
+
+
+/*<i class="fa fa-heart-o" aria-hidden="true"></i>
+<i class="fa fa-heart" aria-hidden="true"></i>*/
+
 
 
 

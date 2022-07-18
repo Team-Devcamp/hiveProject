@@ -211,7 +211,9 @@ input[type="number"] {
     display: flex;
     align-items: center;
     width: 100%;
-    padding: 8px 14px;
+    padding: 4px 14px;
+    border-radius: 3px;
+    border: 1px solid #f7f7f7;
 }
 
 .product-detail div:nth-child(2n-1) {
@@ -273,7 +275,7 @@ input[type="number"] {
 .form-size > label {
     margin-bottom: 16px;
 }
-
+                                           ㅔ
 .combo-box {
     display: flex;
 }
@@ -318,24 +320,6 @@ input[type="number"] {
     border-top: 1px solid #e4e4e4;
     border-bottom: 1px solid #e4e4e4;
     color: #1c1c1c;
-}
-
-.radio-buttons {
-    display: flex;
-    align-items: center;
-}
-
-.radio-button {
-    display: flex;
-    align-items: center;
-    margin-right: 20px;
-    color: #545454;
-}
-
-.radio-button input {
-    position: relative;
-    top: -1px;
-    margin-right: 10px;
 }
 
 .form-submit {
@@ -477,11 +461,12 @@ input[type="number"] {
     color: red;
 
 }
+/*
 .stats-likes i:hover{
     cursor: pointer;
     background: black;
     border-radius: 5px;
-}
+}*/
 
 
 /*<i class="fa fa-heart-o" aria-hidden="true"></i>

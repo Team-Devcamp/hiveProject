@@ -16,7 +16,7 @@ public interface ProductOptionDetailService{
 
     List<ProductOptionDetailDto> selectSpecificProductOptionDetail(Integer product_id, Integer option_id) throws Exception;
 
-    int countProductDetailOption() throws Exception;
+    int countProductOptionDetail() throws Exception;
 
     int updateProductOptionDetail(ProductOptionDetailDto productOptionDetailDto) throws Exception;
 

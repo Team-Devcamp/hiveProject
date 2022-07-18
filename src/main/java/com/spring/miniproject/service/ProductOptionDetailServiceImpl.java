@@ -40,7 +40,8 @@ public class ProductOptionDetailServiceImpl implements ProductOptionDetailServic
     }
 
     @Override
-    public int countProductDetailOption() throws Exception {
+
+    public int countProductOptionDetail() throws Exception {
         return productOptionDetailDao.countProductOptionDetail();
     }
 

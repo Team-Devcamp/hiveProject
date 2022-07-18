@@ -1,8 +1,11 @@
 package com.spring.miniproject.dao;
 
+import com.spring.miniproject.domain.PageHandlerDto;
+import com.spring.miniproject.domain.UserAddressDto;
 import com.spring.miniproject.domain.UserDto;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.stereotype.Repository;
+import com.spring.miniproject.domain.UserProfileDto;
+
+import java.util.List;
 
 
 public interface UserDao {
@@ -11,4 +14,13 @@ public interface UserDao {
 	public UserDto selectOneUser(String user_email);
 	public int updateUserPassword(UserDto userDto);
 	public int deleteOneUser(String user_email);
+	public int updateProfileImage(UserProfileDto userProfileDto);
+	public int updateImageOrigin(String user_email);
+	public int selectUserAddressCnt(int user_id);
+	public int selectUserId(String user_email);
+	public int insertUserAddress(UserAddressDto userAdressDto);
+	public List<UserAddressDto> selectUserAddress(int user_id);
+	public int deleteUserAddress(Integer address_id);
+	public int updateUserAddress(UserAddressDto userAddressDto);
+	public List<UserAddressDto> selectAddressList(PageHandlerDto pageHandlerDto);
 }

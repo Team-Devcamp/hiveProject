@@ -10,6 +10,8 @@
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script>
         $(document).ready(function (){
+            let error_msg = "${error_msg}";
+            let error_msg_social = "${error_msg_social}";
             $(".login-btn").on("click",function (){
                let user_email = $("input[name=user_email]").val();
                let user_pwd = $("input[name=user_password]").val();
@@ -27,6 +29,13 @@
                $("form").submit();
 
             });
+            if(error_msg != null && error_msg != ""){
+                alert(error_msg);
+            }
+
+            if(error_msg_social != null && error_msg_social != ""){
+                alert(error_msg_social);
+            }
         });
     </script>
 </head>

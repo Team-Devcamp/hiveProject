@@ -6,9 +6,7 @@
     <typeAliases>
         <typeAlias alias="UserDto" type="com.spring.miniproject.domain.UserDto"/>
         <typeAlias alias="UserProfileDto" type="com.spring.miniproject.domain.UserProfileDto"/>
-        <typeAlias alias="PageHandlerDto" type="com.spring.miniproject.domain.PageHandlerDto"/>
         <typeAlias alias="UserAddressDto" type="com.spring.miniproject.domain.UserAddressDto"/>
-        <typeAlias alias="NoticeDto" type="com.spring.miniproject.domain.NoticeDto"/>
         <typeAlias alias="CategoryDto" type="com.spring.miniproject.domain.CategoryDto"/>
         <typeAlias alias="ProductReviewDto" type="com.spring.miniproject.domain.ProductReviewDto"/>
         <typeAlias alias="QnaDto" type="com.spring.miniproject.domain.QnaDto"/>
@@ -16,10 +14,5 @@
         <typeAlias alias="CategoryDto" type="com.spring.miniproject.domain.CategoryDto"/>
         <typeAlias alias="ProductOptionDto" type="com.spring.miniproject.domain.ProductOptionDto"/>
         <typeAlias alias="SubCategoryDto" type="com.spring.miniproject.domain.SubCategoryDto"/>
-        <typeAlias alias="ProductStockDto" type="com.spring.miniproject.domain.ProductStockDto"/>
-
-        <typeAlias alias="ProductOptionDetailDto" type="com.spring.miniproject.domain.ProductOptionDetailDto"/>
-        <typeAlias alias="QnaPaging" type="com.spring.miniproject.domain.QnaPaging"/>
-
     </typeAliases>
 </configuration>

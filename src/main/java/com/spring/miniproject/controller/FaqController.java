@@ -10,6 +10,6 @@ public class FaqController  {
 
     @RequestMapping(value = "/faq")
     public String faqList (HttpServletRequest request) throws Exception {
-        return "faq";
+        return "faq.tiles";
     }
 }

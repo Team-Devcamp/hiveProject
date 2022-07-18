@@ -27,23 +27,22 @@ public class UserDto {
     private String profile_image;
     private Date register_date;
     private Date modify_date;
-    private String user_nickname;
 
     public UserDto() {
     }
+
 
     public UserDto(String user_email, String user_password) {
         this.user_email = user_email;
         this.user_password = user_password;
     }
 
-    public UserDto(String user_email, String user_password, String user_name, String user_birth, String user_phone, String user_nickname) {
+    public UserDto(String user_email, String user_password, String user_name, String user_birth, String user_phone) {
         this.user_email = user_email;
         this.user_password = user_password;
         this.user_name = user_name;
         this.user_birth = user_birth;
         this.user_phone = user_phone;
-        this.user_nickname = user_nickname;
     }
 
     public UserDto(String user_id, String user_email, String user_password, String user_name, String user_birth, String user_phone, String profile_image, Date register_date, Date modify_date, String user_nickname) {
@@ -56,16 +55,8 @@ public class UserDto {
         this.profile_image = profile_image;
         this.register_date = register_date;
         this.modify_date = modify_date;
-        this.user_nickname = user_nickname;
     }
 
-    public String getUser_nickname() {
-        return user_nickname;
-    }
-
-    public void setUser_nickname(String user_nickname) {
-        this.user_nickname = user_nickname;
-    }
 
     public String getUser_id() {
         return user_id;

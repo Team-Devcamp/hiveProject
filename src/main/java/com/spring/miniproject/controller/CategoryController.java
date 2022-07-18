@@ -1,15 +1,18 @@
 package com.spring.miniproject.controller;
 
 import com.spring.miniproject.domain.CategoryDto;
+import com.spring.miniproject.domain.SubCategoryDto;
 import com.spring.miniproject.service.CategoryService;
+import com.spring.miniproject.service.SubCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -19,116 +22,172 @@ public class CategoryController {
     @Autowired
     CategoryService categoryService;
 
-    // 등록된 카테고리 목록 보여주기
-    @GetMapping("/list")
-    public String getAllCategoryList(Model m) {
+    @Autowired
+    SubCategoryService subCategoryService;
+
+    @GetMapping("")
+    public String getAllCategory() {
+        return "category/categoryList.tiles";
+    }
+
+    // 등록된 카테고리 대분류 목록 보여주기
+    @GetMapping("/categorylist")
+    @ResponseBody
+    public List<CategoryDto> getAllCategoryList() {
+        List<CategoryDto> categoryList = null;
         try {
-            List<CategoryDto> categoryList = categoryService.getAllCategoryList();
-            m.addAttribute("categoryList", categoryList);
+            categoryList = categoryService.selectAllCategory();
+//
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return "categoryList";
+        return categoryList;
     }
 
     // 카테고리 추가하는 form 보여주기
     @GetMapping("/add")
     public String addCategory(Model m) {
         m.addAttribute("mode", "new");
-        return "addCategory";
+        return "category/addCategory.tiles";
     }
 
     // 작성한 form을 DB에 추가하기
     @PostMapping("/add")
-    public String addCategory(CategoryDto categoryDto, Model m, RedirectAttributes rattr) {
+    @ResponseBody
+    public ResponseEntity<String> addCategory(@RequestBody CategoryDto categoryDto) {
         try {
-            int rowCnt = categoryService.addCategory(categoryDto);
-
+            int rowCnt = categoryService.insertCategory(categoryDto);
+            
             if(rowCnt != 1) {
                 throw new Exception("카테고리 추가에 실패했습니다.");
             }
-
-            rattr.addFlashAttribute("msg", "CATEGORY_ADD_SUCCESS");
-            return "redirect:/category/list";
+            return new ResponseEntity<>("CATEGORY_ADD_SUCCESS", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            m.addAttribute("categoryDto", categoryDto);
-            m.addAttribute("msg", "CATEGORY_ADD_ERR");
-            return "addCategory";
+            return new ResponseEntity<>("CATEGORY_ADD_ERR", HttpStatus.BAD_REQUEST);
         }
     }
-    // 카테고리 읽기
-    @GetMapping("/read")
-    public String readCategory(Integer category_id) {
-        try {
-            CategoryDto categoryDto = categoryService.readCategory(category_id);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "redirect:/category/list";
-        }
-
-        return "Category";
-    }
-
-    // 카테고리 수정 화면 보여주기
-    @GetMapping("/modify")
-    public String modifyCategory(CategoryDto categoryDto, Model m) {
-
-        return "addCategory";
-    }
-
-    // 카테고리 수정 내용을 DB에 반영
+    // 카테고리 수정하기
     @PostMapping("/modify")
-    public String modifyCategory(CategoryDto categoryDto, Model m, HttpServletRequest request) {
+    @ResponseBody
+    public ResponseEntity<String> modifyCategory(@RequestBody CategoryDto categoryDto, Model m, HttpServletRequest request, RedirectAttributes rattr) {
         try {
 //            HttpSession session = request.getSession();
-            int rowCnt = categoryService.modifyCategory(categoryDto);
-            System.out.println("rowCnt = " + rowCnt);
-            System.out.println("categoryDto = " + categoryDto);
+            int rowCnt = categoryService.updateCategory(categoryDto);
+
             if(rowCnt != 1) {
                 throw new Exception("카테고리 수정에 실패했습니다.");
             }
 
-            return "redirect:/category/list";
+            return new ResponseEntity<>("CATEGORY_MODIFY_SUCCESS", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
             m.addAttribute("categoryDto", categoryDto);
-            return "addCategory";
+            return new ResponseEntity<>("CATEGORY_MODIFY_ERR", HttpStatus.BAD_REQUEST);
         }
 
     }
 
     // 카테고리 삭제
-    @PostMapping("/remove")
-    public String removeCategory(Integer category_id, Model m) {
+    @PostMapping("/delete")
+    @ResponseBody
+    public ResponseEntity<String> deleteCategory(@RequestBody Integer category_id) {
+
         try {
-            int rowCnt = categoryService.removeCategory(category_id);
+            int rowCnt = categoryService.deleteCategory(category_id);
 
             if(rowCnt != 1) {
                 throw new Exception("카테고리 삭제에 실패했습니다.");
             }
-
+            return new ResponseEntity<>("CATEGORY_REMOVE_SUCCESS", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
+            return new ResponseEntity<>("CATEGORY_REMOVE_ERR", HttpStatus.BAD_REQUEST);
         }
 
-        return "redirect:/category/list";
     }
 
-    // 카테고리 전체 삭제
-    @PostMapping("removeAll")
-    public String removeAllCategory() {
+
+    /*
+    하위 카테고리 등록, 수정, 삭제
+    ex) 상의 - 셔츠, 반팔티, 맨투맨
+        하의 - 청바지, 반바지
+    */
+
+
+    // 서브카테고리 목록 보여주기
+    @GetMapping("/subcategorylist")
+    @ResponseBody
+    public List<SubCategoryDto> getAllSubCategoryList() {
+        List<SubCategoryDto> subCategoryList = null;
         try {
-            int rowCnt = categoryService.removeAllCategory();
-            if(rowCnt != 1) {
-                throw new Exception("카테고리 전체 삭제에 실패했습니다.");
-            }
+            subCategoryList = subCategoryService.selectAllSubCategory();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return "redirect:/category/list";
+        return subCategoryList;
     }
+
+    // 서브카테고리 추가하기
+    @PostMapping("/addsub")
+    @ResponseBody
+    public ResponseEntity<String> addSubCategory(@RequestBody SubCategoryDto subCategoryDto) {
+
+        try {
+            int rowCnt = subCategoryService.insertSubCategory(subCategoryDto);
+
+            if(rowCnt != 1) {
+                throw new Exception("서브 카테고리 추가에 실패했습니다.");
+            }
+
+            return new ResponseEntity<>("SUBCATEGORY_ADD_SUCCESS", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("SUBCATEGORY_ADD_ERR", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    // 서브카테고리 수정하기
+    @PostMapping("/modifysub")
+    @ResponseBody
+    public ResponseEntity<String> modifySubCategory(@RequestBody SubCategoryDto subCategoryDto, Model m) {
+        try {
+//            HttpSession session = request.getSession();
+            int rowCnt = subCategoryService.updateSubCategory(subCategoryDto);
+
+            if(rowCnt != 1) {
+                throw new Exception("서브카테고리 수정에 실패했습니다.");
+            }
+
+            return new ResponseEntity<>("SUBCATEGORY_MODIFY_SUCCESS", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            m.addAttribute("subCategoryDto", subCategoryDto);
+            return new ResponseEntity<>("SUBCATEGORY_MODIFY_ERR", HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
+    @PostMapping("/deletesub")
+    @ResponseBody
+    public ResponseEntity<String> deleteSubCategory(@RequestBody Integer sub_category_id) {
+
+        try {
+            int rowCnt = subCategoryService.deleteSubCategory(sub_category_id);
+
+            if(rowCnt != 1) {
+                throw new Exception("카테고리 삭제에 실패했습니다.");
+            }
+            return new ResponseEntity<>("SUBCATEGORY_REMOVE_SUCCESS", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("SUBCATEGORY_REMOVE_ERR", HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
 }

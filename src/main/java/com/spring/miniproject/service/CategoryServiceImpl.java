@@ -1,7 +1,10 @@
 package com.spring.miniproject.service;
 
 import com.spring.miniproject.dao.CategoryDao;
+import com.spring.miniproject.dao.ProductOptionDao;
 import com.spring.miniproject.domain.CategoryDto;
+import com.spring.miniproject.domain.ProductOptionDto;
+import com.spring.miniproject.domain.SubCategoryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,37 +17,38 @@ public class CategoryServiceImpl implements CategoryService {
     CategoryDao categoryDao;
 
     @Override
-    public int addCategory(CategoryDto categoryDto) throws Exception {
+    public int insertCategory(CategoryDto categoryDto) throws Exception {
         return categoryDao.insertCategory(categoryDto);
     }
 
     @Override
-    public CategoryDto readCategory(Integer category_id) throws Exception {
+    public CategoryDto selectCategory(Integer category_id) throws Exception {
         return categoryDao.selectCategory(category_id);
     }
 
     @Override
-    public List<CategoryDto> getAllCategoryList() throws Exception {
+    public List<CategoryDto> selectAllCategory() throws Exception {
         return categoryDao.selectAllCategory();
     }
 
     @Override
-    public int getNumberOfCategories() throws Exception {
+    public int countCategories() throws Exception {
         return categoryDao.countCategory();
     }
 
     @Override
-    public int modifyCategory(CategoryDto categoryDto) throws Exception {
+    public int updateCategory(CategoryDto categoryDto) throws Exception {
         return categoryDao.updateCategory(categoryDto);
     }
 
     @Override
-    public int removeCategory(Integer category_id) throws Exception {
+    public int deleteCategory(Integer category_id) throws Exception {
         return categoryDao.deleteCategory(category_id);
     }
 
     @Override
-    public int removeAllCategory() throws Exception {
+    public int deleteAllCategory() throws Exception {
         return categoryDao.deleteAllCategory();
     }
+
 }

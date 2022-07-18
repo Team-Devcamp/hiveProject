@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.spring.miniproject.dao.QnaMapper">
+
+	<insert id="insertQna" parameterType="QnaDto">
+		INSERT INTO qna (qna_id,product_id,qna_title, qna_content, writer, write_date)
+		VALUES(null, #{product_id},#{qna_title},#{qna_content},#{writer}, now() )
+	</insert>
+
+	<delete id="deleteQna" parameterType="java.util.Map" >
+		DELETE FROM qna
+		WHERE qna_id = #{qna_id} and product_id = #{product_id} and writer = #{writer}
+	</delete>
+
+
+	<select id="selectQnaList" parameterType="int" resultType="QnaDto">
+		SELECT *
+		from qna
+		WHERE product_id = #{product_id}
+		ORDER BY write_date
+	</select>
+
+	<select id="countQna" resultType="int">
+		SELECT count(*) FROM qna
+	</select>
+
+
+
+
+</mapper>

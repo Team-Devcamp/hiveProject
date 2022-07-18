@@ -5,14 +5,12 @@ import com.spring.miniproject.domain.UserProfileDto;
 import com.spring.miniproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.nio.file.Files;
 
@@ -22,7 +20,9 @@ public class UserImageController {
     @Autowired
     private UserService userService;
 
+
     private String uploadPath = "C:\\Users\\ch457\\Documents\\hiveProject_NEW\\src\\main\\webapp\\resources\\image\\user\\profile";
+
 
     @RequestMapping("/mypage/image/add")
     public String addUserImage(){

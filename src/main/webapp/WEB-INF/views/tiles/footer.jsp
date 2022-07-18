@@ -7,10 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="padding">
     <div>대표이사</div>
     <div>사업자</div>
     <div>고객센터</div>
     <div>개인정보처리방침</div>
     <div>자주 묻는 질문</div>
+</div>
 </body>
 </html>

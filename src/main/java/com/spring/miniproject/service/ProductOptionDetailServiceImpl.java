@@ -16,13 +16,13 @@ public class ProductOptionDetailServiceImpl implements ProductOptionDetailServic
     ProductOptionDetailDao productOptionDetailDao;
 
     @Override
-    public int insertProductDetailOption(ProductOptionDetailDto productOptionDetailDto) throws Exception {
-        return productOptionDetailDao.insertProductDetailOption(productOptionDetailDto);
+    public int insertProductOptionDetail(ProductOptionDetailDto productOptionDetailDto) throws Exception {
+        return productOptionDetailDao.insertProductOptionDetail(productOptionDetailDto);
     }
 
     @Override
-    public ProductOptionDetailDto selectProductDetailOption(Integer option_detail_id) throws Exception {
-        return productOptionDetailDao.selectProductDetailOption(option_detail_id);
+    public ProductOptionDetailDto selectProductOptionDetail(Integer option_detail_id) throws Exception {
+        return productOptionDetailDao.selectProductOptionDetail(option_detail_id);
     }
 
     @Override
@@ -35,27 +35,27 @@ public class ProductOptionDetailServiceImpl implements ProductOptionDetailServic
     }
 
     @Override
-    public List<ProductOptionDetailDto> selectAllProductDetailOption() throws Exception {
-        return productOptionDetailDao.selectAllProductDetailOption();
+    public List<ProductOptionDetailDto> selectAllProductOptionDetail() throws Exception {
+        return productOptionDetailDao.selectAllProductOptionDetail();
     }
 
     @Override
     public int countProductDetailOption() throws Exception {
-        return productOptionDetailDao.countProductDetailOption();
+        return productOptionDetailDao.countProductOptionDetail();
     }
 
     @Override
-    public int updateProductDetailOption(ProductOptionDetailDto productOptionDetailDto) throws Exception {
-        return productOptionDetailDao.updateProductDetailOption(productOptionDetailDto);
+    public int updateProductOptionDetail(ProductOptionDetailDto productOptionDetailDto) throws Exception {
+        return productOptionDetailDao.updateProductOptionDetail(productOptionDetailDto);
     }
 
     @Override
-    public int deleteProductDetailOption(Integer option_id) throws Exception {
-        return productOptionDetailDao.deleteProductDetailOption(option_id);
+    public int deleteProductOptionDetail(Integer option_id) throws Exception {
+        return productOptionDetailDao.deleteProductOptionDetail(option_id);
     }
 
     @Override
-    public int deleteAllProductDetailOption() throws Exception {
-        return productOptionDetailDao.deleteAllProductDetailOption();
+    public int deleteAllProductOptionDetail() throws Exception {
+        return productOptionDetailDao.deleteAllProductOptionDetail();
     }
 }

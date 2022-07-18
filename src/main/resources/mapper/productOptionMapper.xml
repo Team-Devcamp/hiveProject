@@ -18,6 +18,7 @@
 	<select id="selectAllProductOption" resultType="ProductOptionDto">
 		SELECT option_id, product_id, option_name
 		FROM product_option
+		WHERE product_id=#{product_id}
 	</select>
 
 	<select id="countProductOption" resultType="int">

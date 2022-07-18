@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.spring.miniproject.dao.ProductStockMapper">
+	<insert id="insertProductStock" parameterType="ProductStockDto">
+		INSERT INTO product_stock
+		VALUES (#{product_id}, #{option_id}, #{option_detail_id}, #{product_stock})
+	</insert>
+
+	<select id="selectProductStock" parameterType="ProductStockDto" resultType="ProductStockDto">
+		SELECT product_id, option_id, option_detail_id, product_stock
+		FROM product_stock
+		WHERE product_id = #{product_id} AND option_id = #{option_id} AND option_detail_id = #{option_detail_id}
+	</select>
+
+	<update id="updateProductStock" parameterType="ProductStockDto">
+		UPDATE product_stock
+		SET product_stock = #{product_stock}
+		WHERE product_id = #{product_id} AND option_id = #{option_id} AND option_detail_id = #{option_detail_id}
+	</update>
+
+	<delete id="deleteProductStock" parameterType="ProductStockDto">
+		DELETE FROM product_stock
+		WHERE product_id = #{product_id} AND option_id = #{option_id} AND option_detail_id = #{option_detail_id}
+	</delete>
+</mapper>

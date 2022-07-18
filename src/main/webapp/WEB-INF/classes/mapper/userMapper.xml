@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.spring.miniproject.dao.UserMapper">
+
+
+	<insert id="insertUser" parameterType="UserDto">
+		INSERT INTO user(user_email,user_password,user_name,user_birth,user_phone)
+						VALUES(#{user_email},#{user_password},#{user_name},
+						       #{user_birth},#{user_phone})
+	</insert>
+
+	<select id="selectOneUser" resultType="UserDto" parameterType="String">
+		SELECT * FROM user WHERE user_email = #{user_email}
+	</select>
+
+	<update id="updatePassword" parameterType="UserDto">
+		UPDATE user SET user_password = #{user_password} WHERE user_email = #{user_email}
+	</update>
+
+	<delete id="deleteOneUser" parameterType="String">
+		DELETE FROM user WHERE user_email = #{user_email}
+	</delete>
+
+	<update id="updateProfileImage" parameterType="UserProfileDto">
+		UPDATE user SET profile_image = #{profile_image} WHERE user_email = #{user_email}
+	</update>
+	
+	<update id="updateImageOrigin" parameterType="String">
+		UPDATE user SET profile_image = "/image/user/profile_unknown.png" WHERE user_email = #{user_email}
+	</update>
+
+	<insert id="insertUserAddress" parameterType="UserAddressDto">
+		INSERT INTO user_address(user_id,receiver_name,receiver_phone,address,address_detail,zipcode)
+		VALUES(#{user_id},#{receiver_name},#{receiver_phone},#{address},#{address_detail},#{zipcode})
+	</insert>
+
+	<select id="selectUserAddressCnt" resultType="Integer" parameterType="Integer">
+		SELECT COUNT(*) FROM user_address WHERE user_id = #{user_id}
+	</select>
+
+	<select id="selectUserId" parameterType="String" resultType="int">
+		SELECT user_id FROM user WHERE user_email = #{user_email}
+	</select>
+
+	<select id="selectUserAddress" parameterType="Integer" resultType="UserAddressDto">
+		SELECT * FROM  user_address WHERE user_id = #{user_id}
+	</select>
+
+	<delete id="deleteUserAddress" parameterType="Integer">
+		DELETE FROM user_address WHERE address_id = #{address_id}
+	</delete>
+
+	<update id="updateUserAddress" parameterType="UserAddressDto">
+		UPDATE user_address set user_id=#{user_id}, receiver_name=#{receiver_name},receiver_phone=#{receiver_phone}, address=#{address},
+				address_detail=#{address_detail}, zipcode=#{zipcode}
+	</update>
+</mapper>

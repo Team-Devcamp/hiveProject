@@ -58,6 +58,7 @@ input[type="number"] {
 .product-container-wrap{
     width:100%;
     min-width: 1200px;
+    padding-bottom: 300px;
 }
 .container {
     width: 100%;
@@ -135,7 +136,7 @@ input[type="number"] {
 
 .product-title {
     margin-bottom: 12px;
-    font-size: 36px;
+    font-size: 28px;
     font-weight: 600;
     line-height: 1.3333333333;
     letter-spacing: -0.03em;
@@ -200,7 +201,7 @@ input[type="number"] {
 .product-detail {
     width: 100%;
     border-radius: 6px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     font-size: 15px;
     line-height: 1.4666666667;
     overflow: hidden;
@@ -210,7 +211,9 @@ input[type="number"] {
     display: flex;
     align-items: center;
     width: 100%;
-    padding: 8px 14px;
+    padding: 4px 14px;
+    border-radius: 3px;
+    border: 1px solid #f7f7f7;
 }
 
 .product-detail div:nth-child(2n-1) {
@@ -245,7 +248,7 @@ input[type="number"] {
     background: url("/image/product/product_detail/assets/angle-down-solid.svg") no-repeat 94% 50%; /* 네이티브 화살표 대체 */
     background-size : 12px;
     border: 1px solid #e4e4e4;
-    border-radius: 5px; /* iOS 둥근모서리 제거 */
+    border-radius: 5px;
     -webkit-appearance: none; /* 네이티브 외형 감추기 */
     -moz-appearance: none;
     appearance: none;
@@ -272,7 +275,7 @@ input[type="number"] {
 .form-size > label {
     margin-bottom: 16px;
 }
-
+                                           ㅔ
 .combo-box {
     display: flex;
 }
@@ -317,24 +320,6 @@ input[type="number"] {
     border-top: 1px solid #e4e4e4;
     border-bottom: 1px solid #e4e4e4;
     color: #1c1c1c;
-}
-
-.radio-buttons {
-    display: flex;
-    align-items: center;
-}
-
-.radio-button {
-    display: flex;
-    align-items: center;
-    margin-right: 20px;
-    color: #545454;
-}
-
-.radio-button input {
-    position: relative;
-    top: -1px;
-    margin-right: 10px;
 }
 
 .form-submit {
@@ -385,10 +370,14 @@ input[type="number"] {
 }
 
 
-
 /*tab menu*/
-.tab_wrap{ font-family: "Roboto", sans-serif; letter-spacing: -0.02em; }
-.tab_menu{position:relative;}
+.tab_wrap{
+    font-family: "Roboto", sans-serif;
+    letter-spacing: -0.02em;
+}
+.tab_menu{
+    position:relative;
+}
 .tab_menu .list{
     display: flex;
     justify-content: center;
@@ -415,6 +404,11 @@ input[type="number"] {
     text-decoration: none;
 }
 
+.cont_area{
+    text-align:center;
+    margin-top: 70px;
+}
+
 .tab_menu .list .cont{
     display:none;
     position:absolute;
@@ -424,7 +418,7 @@ input[type="number"] {
     color:blue;
     text-align:center;
     width:1200px;
-    height:500px;
+    height:1000px;
     line-height:100px;
 }
 
@@ -432,6 +426,7 @@ input[type="number"] {
 .tab_menu .list li.is_on{
     border-bottom: 2px solid #444;
 }
+
 .tab_menu .list li.is_on .btn{
     color: #444;
     font-weight: 600;
@@ -439,14 +434,7 @@ input[type="number"] {
 .tab_menu .list li.is_on .cont{
     display:none;
     margin-top: 70px;
-
 }
-
-
-
-
-
-
 .combo-box .button{
     font-size: 15px;
     font-weight: bold;
@@ -455,6 +443,37 @@ input[type="number"] {
     border: 1px solid #e2e2e5;
 
 }
+
+
+.form-select-wrap{
+    position: relative;
+}
+.stats-likes{
+    position: absolute;
+    top:38px;
+    right:65px;
+    border: 1px solid gainsboro;
+    border-radius: 5px;
+}
+
+.stats-likes i{
+    padding:15px;
+    color: red;
+
+}
+/*
+.stats-likes i:hover{
+    cursor: pointer;
+    background: black;
+    border-radius: 5px;
+}*/
+
+
+/*<i class="fa fa-heart-o" aria-hidden="true"></i>
+<i class="fa fa-heart" aria-hidden="true"></i>*/
+
+
+
 
 
 

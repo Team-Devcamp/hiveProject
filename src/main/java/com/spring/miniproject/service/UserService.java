@@ -1,5 +1,6 @@
 package com.spring.miniproject.service;
 
+import com.spring.miniproject.domain.PageHandlerDto;
 import com.spring.miniproject.domain.UserAddressDto;
 import com.spring.miniproject.domain.UserDto;
 import com.spring.miniproject.domain.UserProfileDto;
@@ -21,4 +22,5 @@ public interface UserService {
 	public List<UserAddressDto> selectUserAddress(int user_id);
 	public int deleteUserAddress(Integer address_id);
 	public int updateUserAddress(UserAddressDto userAddressDto);
+	public List<UserAddressDto> selectAddressList(PageHandlerDto pageHandlerDto);
 }

@@ -21,6 +21,16 @@
             $("#add-address").on("click",function (){
                 var popup = window.open('/mypage/address/insert', '배송지 입력', 'width=700px,height=800px,scrollbars=yes');
             }) ;
+
+            var success_msg = "${success_msg}";
+            var error_msg = "${error_msg}";
+
+            if(success_msg != null && success_msg != ""){
+                alert(success_msg);
+            }
+            if(error_msg != null && error_msg != ""){
+                alert(error_msg);
+            }
         });
 
 
@@ -53,19 +63,25 @@
                         <p><span id="user-name">${list.receiver_name}</span><br>
                             <span id="user-phone">${list.receiver_phone}</span><br>
                             <span id="user-address">(${list.zipcode})${list.address} ${list.address_detail}</span>
-                            <a href="<c:url value='/mypage/address/modify?address_id=${list.address_id}'/>"><input type="button" id="modify-btn" value="수정"></a>
-                            <a href="<c:url value='/mypage/address/delete?address_id=${list.address_id}'/>"><input type="button" id="delete-btn" value="삭제"><br></a>
+                            <a href="#" onclick="window.open('<c:url value='/mypage/address/modify?address_id=${list.address_id}'/>', '배송지 수정', 'width=700px,height=800px,scrollbars=yes');">
+                                <input type="button" id="modify-btn" value="수정"></a>
+                            <a href="<c:url value='/mypage/address/delete?address_id=${list.address_id}'/>" onclick="return confirm('주소를 삭제하시겠습니까? 삭제 후 복구가 불가능합니다.')">
+                                <input type="button" id="delete-btn" value="삭제"><br></a>
                         <h6 class="end-line"></h6>
                         </p>
                     </c:forEach>
                 </div>
                 <div class="paging">
                     <ul>
-                        <a href="#"><li>1</li></a>
-                        <a href="#"><li>2</li></a>
-                        <a href="#"><li>3</li></a>
-                        <a href="#"><li>4</li></a>
-                        <a href="#"><li>5</li></a>
+                        <c:if test="${paging.preView eq 'true'}">
+                            <a href="<c:url value="/mypage/address/list?page=${paging.beginPage-1}"/>">&lt;</a>
+                        </c:if>
+                        <c:forEach var="i" begin="${paging.beginPage}" end="${paging.endPage}">
+                            <a href="<c:url value='/mypage/address/list?page=${i}'/>"><li>${i}</li></a>
+                        </c:forEach>
+                        <c:if test="${paging.nextView eq 'true'}">
+                            <a href="<c:url value="/mypage/address/list?page=${paging.endPage+1}"/>">&gt;</a>
+                        </c:if>
                     </ul>
                 </div>
             </div>

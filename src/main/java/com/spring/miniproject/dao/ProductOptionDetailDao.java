@@ -8,20 +8,20 @@ import java.util.Map;
 
 public interface ProductOptionDetailDao {
 
-    int insertProductDetailOption(ProductOptionDetailDto productOptionDetailDto);
+    int insertProductOptionDetail(ProductOptionDetailDto productOptionDetailDto);
 
-    ProductOptionDetailDto selectProductDetailOption(Integer option_detail_id);
+    ProductOptionDetailDto selectProductOptionDetail(Integer option_detail_id);
 
-    List<ProductOptionDetailDto> selectAllProductDetailOption();
+    List<ProductOptionDetailDto> selectAllProductOptionDetail();
 
     List<ProductOptionDetailDto> selectSpecificProductOptionDetail(Map<String, Integer> map);
 
-    int countProductDetailOption();
+    int countProductOptionDetail();
 
-    int updateProductDetailOption(ProductOptionDetailDto productOptionDetailDto);
+    int updateProductOptionDetail(ProductOptionDetailDto productOptionDetailDto);
 
-    int deleteProductDetailOption(Integer option_id);
+    int deleteProductOptionDetail(Integer option_id);
 
-    int deleteAllProductDetailOption();
+    int deleteAllProductOptionDetail();
 
 }

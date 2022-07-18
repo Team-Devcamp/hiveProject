@@ -6,7 +6,7 @@
 <mapper namespace="com.spring.miniproject.dao.ProductOptionDetailMapper">
 	<insert id="insertProductOptionDetail" parameterType="ProductOptionDetailDto">
 		INSERT
-		INTO product_detail_option (product_id, option_id, option_detail_name)
+		INTO product_option_detail (product_id, option_id, option_detail_name)
 		VALUES (#{product_id}, #{option_id}, #{option_detail_name})
 	</insert>
 

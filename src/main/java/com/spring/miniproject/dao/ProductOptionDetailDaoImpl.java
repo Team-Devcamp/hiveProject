@@ -16,19 +16,19 @@ public class ProductOptionDetailDaoImpl implements ProductOptionDetailDao{
     private String namespace = "com.spring.miniproject.dao.ProductOptionDetailMapper.";
 
     @Override
-    public int insertProductDetailOption(ProductOptionDetailDto productOptionDetailDto) {
+    public int insertProductOptionDetail(ProductOptionDetailDto productOptionDetailDto) {
 
-        return session.insert(namespace+"insertProductDetailOption",productOptionDetailDto);
+        return session.insert(namespace+"insertProductOptionDetail",productOptionDetailDto);
     }
 
     @Override
-    public ProductOptionDetailDto selectProductDetailOption(Integer option_detail_id) {
-        return session.selectOne(namespace+"selectProductDetailOption",option_detail_id);
+    public ProductOptionDetailDto selectProductOptionDetail(Integer option_detail_id) {
+        return session.selectOne(namespace+"selectProductOptionDetail",option_detail_id);
     }
 
     @Override
-    public List<ProductOptionDetailDto> selectAllProductDetailOption() {
-        return session.selectList(namespace+"selectAllProductDetailOption");
+    public List<ProductOptionDetailDto> selectAllProductOptionDetail() {
+        return session.selectList(namespace+"selectAllProductOptionDetail");
     }
 
     @Override
@@ -37,22 +37,22 @@ public class ProductOptionDetailDaoImpl implements ProductOptionDetailDao{
     }
 
     @Override
-    public int countProductDetailOption() {
-        return session.selectOne(namespace + "countProductDetailOption");
+    public int countProductOptionDetail() {
+        return session.selectOne(namespace + "countProductOptionDetail");
     }
 
     @Override
-    public int updateProductDetailOption(ProductOptionDetailDto productOptionDetailDto) {
-        return session.update(namespace + "updateProductDetailOption", productOptionDetailDto);
+    public int updateProductOptionDetail(ProductOptionDetailDto productOptionDetailDto) {
+        return session.update(namespace + "updateProductOptionDetail", productOptionDetailDto);
     }
 
     @Override
-    public int deleteProductDetailOption(Integer option_detail_id) {
-        return session.delete(namespace + "deleteProductDetailOption", option_detail_id);
+    public int deleteProductOptionDetail(Integer option_detail_id) {
+        return session.delete(namespace + "deleteProductOptionDetail", option_detail_id);
     }
 
     @Override
-    public int deleteAllProductDetailOption() {
-        return session.delete(namespace + "deleteAllProductDetailOption");
+    public int deleteAllProductOptionDetail() {
+        return session.delete(namespace + "deleteAllProductOptionDetail");
     }
 }

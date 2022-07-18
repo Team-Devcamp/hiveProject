@@ -8,19 +8,19 @@ import java.util.List;
 
 public interface ProductOptionDetailService{
 
-    int insertProductDetailOption(ProductOptionDetailDto productOptionDetailDto) throws Exception;
+    int insertProductOptionDetail(ProductOptionDetailDto productOptionDetailDto) throws Exception;
 
-    ProductOptionDetailDto selectProductDetailOption(Integer option_detail_id) throws Exception;
+    ProductOptionDetailDto selectProductOptionDetail(Integer option_detail_id) throws Exception;
 
-    List<ProductOptionDetailDto> selectAllProductDetailOption() throws Exception;
+    List<ProductOptionDetailDto> selectAllProductOptionDetail() throws Exception;
 
     List<ProductOptionDetailDto> selectSpecificProductOptionDetail(Integer product_id, Integer option_id) throws Exception;
 
-    int countProductDetailOption() throws Exception;
+    int countProductOptionDetail() throws Exception;
 
-    int updateProductDetailOption(ProductOptionDetailDto productOptionDetailDto) throws Exception;
+    int updateProductOptionDetail(ProductOptionDetailDto productOptionDetailDto) throws Exception;
 
-    int deleteProductDetailOption(Integer option_id) throws Exception;
+    int deleteProductOptionDetail(Integer option_id) throws Exception;
 
-    int deleteAllProductDetailOption() throws Exception;
+    int deleteAllProductOptionDetail() throws Exception;
 }

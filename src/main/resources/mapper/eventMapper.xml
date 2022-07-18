@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.spring.miniproject.dao.EventMapper">
+
+    <select id="selectAllEvent" resultType="EventDto">
+        SELECT event_id, event_title, event_content, writer, write_date, view_cnt, upload_file
+        FROM event
+        ORDER BY write_date DESC
+    </select>
+
+    <select id="selectEvent" parameterType="int" resultType="EventDto">
+        SELECT event_id, event_title, event_content, writer, write_date, view_cnt, upload_file
+        FROM event
+        WHERE event_id = #{event_id}
+    </select>
+
+    <select id="countEvent" resultType="int">
+        SELECT count(*)
+        FROM event
+    </select>
+
+    <select id="selectEventPage" resultType="EventDto" parameterType="map">
+        SELECT event_id, event_title, event_content, writer, write_date, view_cnt, upload_file
+        FROM event
+        ORDER BY write_date DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <delete id="deleteEventForAdmin" parameterType="int">
+        DELETE FROM event
+        WHERE event_id = #{event_id}
+    </delete>
+
+    <insert id="insertEvent" parameterType="EventDto">
+        INSERT INTO event(event_title, event_content, writer, write_date)
+        VALUES (#{event_title}, #{event_content}, #{writer}, now())
+    </insert>
+
+    <update id="updateEvent" parameterType="EventDto">
+        UPDATE event
+        SET event_title = #{event_title}, event_content = #{event_content}, modify_date = now()
+        WHERE event_id = #{event_id}
+    </update>
+    
+    <update id="increaseViewCnt" parameterType="int">
+        UPDATE event
+        SET view_cnt = view_cnt + 1
+        WHERE event_id = #{event_id}
+    </update>
+
+</mapper>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias alias="UserDto" type="com.spring.miniproject.domain.UserDto"/>
+        <typeAlias alias="CategoryDto" type="com.spring.miniproject.domain.CategoryDto"/>
+        <typeAlias alias="EventDto" type="com.spring.miniproject.domain.EventDto"/>
+        <typeAlias alias="UploadFileDto" type="com.spring.miniproject.domain.UploadFileDto"/>
+    </typeAliases>
+</configuration>

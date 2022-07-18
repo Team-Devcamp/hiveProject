@@ -1,0 +1,99 @@
+.event-board {
+    width: 70%;
+    margin: 100px auto;
+}
+
+.form-wrap {
+    width: 100%;
+}
+
+.board-header_title,
+.board-content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.board-header_title {
+    margin-bottom: 35px;
+}
+
+.board-header_title input {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    padding: 5px 0;
+    line-height: 1.5;
+    height: 100%;
+    font-size: 15px;
+    transition: border-bottom .1s ease-in-out;
+}
+
+.board-header_title input:focus {
+    border-bottom: 2px solid black;
+}
+
+.label {
+    margin-bottom: 20px;
+    font-size: 25px;
+}
+
+.board-content textarea {
+    width: 99.3%;
+    height: 23em;
+    border: none;
+    resize: none;
+    border: 1px solid;
+    margin-bottom: 1px;
+}
+
+.board-header_title input:focus,
+.board-content textarea:focus {
+    outline: none;
+}
+
+.board-attach {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    margin-bottom: 35px;
+}
+
+.board-attach input {
+    display: none;
+}
+
+.board-attach label {
+    cursor: pointer;
+    padding: 3px 0;
+    border: 1px black solid;
+    display: flex;
+    justify-content: center;
+}
+
+.board-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.board-btn input,
+.board-btn button {
+    display: inline-block;
+    background-color: #fff;
+    width: 200px;
+    padding: 10px 0;
+    font-size: 15px;
+    color: #000;
+    border: 1px solid #000;
+    cursor: pointer;
+    transition: background-color .2s ease-in-out, color .2s ease-in-out;
+}
+
+.board-btn input:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.ck-content {
+    height: 300px;
+}

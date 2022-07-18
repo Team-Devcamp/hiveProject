@@ -2,36 +2,32 @@ package com.spring.miniproject.domain;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class EventDto {
 
-    private int event_id;
+    private Integer event_id;
     private String event_title;
     private String event_content;
     private String writer;
     private Date write_date;
     private Date modify_date;
     private int view_cnt;
-    private List upload_file;
+    private List<UploadFileDto> upload_file;
 
-    public EventDto(){}
+    public EventDto() {}
 
-    public EventDto(int event_id, String event_title, String event_content, String writer, Date write_date, Date modify_date, int view_cnt, List upload_file) {
-        this.event_id = event_id;
+    public EventDto(String event_title, String event_content, String writer) {
         this.event_title = event_title;
         this.event_content = event_content;
         this.writer = writer;
-        this.write_date = write_date;
-        this.modify_date = modify_date;
-        this.view_cnt = view_cnt;
-        this.upload_file = upload_file;
     }
 
-    public int getEvent_id() {
+    public Integer getEvent_id() {
         return event_id;
     }
 
-    public void setEvent_id(int event_id) {
+    public void setEvent_id(Integer event_id) {
         this.event_id = event_id;
     }
 
@@ -83,12 +79,25 @@ public class EventDto {
         this.view_cnt = view_cnt;
     }
 
-    public List getUpload_file() {
+    public List<UploadFileDto> getUpload_file() {
         return upload_file;
     }
 
-    public void setUpload_file(List upload_file) {
+    public void setUpload_file(List<UploadFileDto> upload_file) {
         this.upload_file = upload_file;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EventDto eventDto = (EventDto) o;
+        return Objects.equals(event_id, eventDto.event_id) && Objects.equals(event_title, eventDto.event_title) && Objects.equals(event_content, eventDto.event_content) && Objects.equals(writer, eventDto.writer);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(event_id, event_title, event_content, writer);
     }
 
     @Override

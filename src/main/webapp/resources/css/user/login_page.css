@@ -1,0 +1,29 @@
+@charset "utf-8";
+@import "../common/reset.css";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+body {font-family: 'Noto Sans KR', sans-serif;}
+a {text-decoration: none; color:inherit;}
+
+.wrap{margin: 0 auto; overflow: hidden; width: 100%; height: 100%;}
+.wrap .content {width: 640px; height: 600px;margin: auto;}
+.wrap .content .main-tit {width:100%; font-size: 23px; line-height: 1.5; font-weight: bold; margin-top: 100px;}
+.wrap .content .sub-tit {font-size:14px; line-height: 1.5; margin-top: 5px; color:#808080;}
+.content .login-form {margin: 0 auto;}
+.content .login-form .login-input-form{border-radius: 8px; width: 600px; height: 42px; border: 1px solid rgb(228, 230, 233);}
+.content .login-form .login-input-form {margin-top: 15px; padding-left: 15px;}
+.content .login-form .login-btn{border-radius: 8px; width: 609px; height: 50px; margin-top: 20px; background: rgb(32, 36, 41);}
+.content .login-form .login-btn[value="로그인"]{color:white; font-size: 16px; font-weight: bold;}
+.content .login-form input::placeholder {padding-left: 8px; font-size: 16px;}
+
+.content .menu{margin-top: 20px; margin-left: 160px;}
+.content .menu p span{margin-left: 10px; margin-left: 10px;}
+.content .menu p span::after{content: "|"; margin-left:10px}
+.content .menu p span:nth-child(3)::after{content: "";}
+.content .social{text-align: center; margin-top: 80px;}
+.content .social span{position: relative; margin-right: 30px; color: rgb(207, 210, 215);}
+.content .social span::after{content:"";   background: rgb(207, 210, 215); height: 1px; position: absolute; width: 200px; top:12px; right:-210px}
+.content .social span::before{content:"";  background: rgb(207, 210, 215); height: 1px; position: absolute; width: 200px; top:12px; left:-210px}
+.content .icon {margin-left: 185px;}
+.content .icon img{height: 100px; width: 100px; margin-top: 20px;}
+.content .icon span a:nth-child(1){margin-right: 40px;}

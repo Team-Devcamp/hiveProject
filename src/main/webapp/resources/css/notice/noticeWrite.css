@@ -1,0 +1,87 @@
+@charset "UTF-8";
+
+
+
+section.notice {
+    padding: 80px 0;
+}
+.page-title {
+    margin-bottom: 60px;
+}
+.page-title h3 {
+    font-size: 28px;
+    color: #333333;
+    font-weight: 400;
+    text-align: center;
+}
+
+/* 게시글 작성 영역 */
+.write-content {
+    text-align: center;
+}
+.write-title input {
+    width: 600px;
+    height: 30px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+.write-detail textarea {
+    width: 600px;
+    height: 300px;
+    margin-left: 20px;
+    border-radius: 10px;
+    resize: none;
+}
+.write-detail .detail-name {
+    vertical-align: middle;
+}
+
+
+/* reset */
+* {
+    list-style: none;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.clearfix:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.container {
+    width: 1100px;
+    margin: 0 auto;
+}
+
+/* 공지 등록 버튼 */
+.button {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    justify-content: center;
+    height:34px;
+    padding:6px 12px;
+    font-weight: bold;
+    font-size:14px;
+    line-height: 19px;
+    color:#1c242e;
+    text-align: center;
+    background-color: #f4f4f4;
+    border:0;
+    box-sizing: border-box;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color .25s cubic-bezier(0.0, 0.0, 0.2, 1);
+    min-width:70px;
+}
+.btn:hover {
+    background-color: rgba(0,0,0,.1);
+}

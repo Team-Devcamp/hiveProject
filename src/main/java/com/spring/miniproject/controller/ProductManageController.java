@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,8 +38,11 @@ public class ProductManageController {
     private ProductService productService;
 
     @Autowired
+    private ProductOptionDetailService productOptionDetailService;
+    @Autowired
     private ProductStockService productStockService;
 
+    // 상품관리 페이지로 이동하는 메서드
     @GetMapping("")
     public String productManagePage(Model m) {
         try {
@@ -106,7 +110,7 @@ public class ProductManageController {
     // 상품 상위옵션 삭제
     @PostMapping("/productoption/delete")
     @ResponseBody
-    public ResponseEntity<String> deleteProductOption(Integer option_id, Model m) {
+    public ResponseEntity<String> deleteProductOption(Integer option_id) {
         try {
             int rowCnt = productOptionService.deleteProductOption(option_id);
 
@@ -122,7 +126,7 @@ public class ProductManageController {
         }
     }
     // 상품 등록하기
-    @GetMapping("/registerproduct")
+    @GetMapping("/product/register")
     public String registerProduct(Model m) {
         try {
             List<CategoryDto> categoryList = categoryService.selectAllCategory();
@@ -138,22 +142,23 @@ public class ProductManageController {
     }
 
     // 상품을 DB에 등록
-    @PostMapping("/registerproduct")
-    public String registerProduct(ProductDto productDto, Model m) {
+    @PostMapping("/product/register")
+    public String registerProduct(ProductDto productDto, Model m, RedirectAttributes rattr) {
         try {
-            productDto.setProduct_thumb_nail("썸네일 임시 삽입");
-
+//            productDto.setProduct_thumb_nail("썸네일 임시 삽입");
+            System.out.println("productDto.getProduct_thumb_nail() = " + productDto.getProduct_thumb_nail());
             int rowCnt = productService.insertProduct(productDto);
 
             if(rowCnt != 1) {
                 throw new Exception("상품 등록에 실패했습니다.");
             }
-
+            rattr.addFlashAttribute("msg", "REG_OK");
             return "redirect:/productmanage";
 
         } catch (Exception e) {
             e.printStackTrace();
             m.addAttribute("productDto", productDto);
+            m.addAttribute("msg", "REG_ERR");
             return "productManage/registerProduct";
         }
 
@@ -215,6 +220,84 @@ public class ProductManageController {
 
             }
 
+        }
+    }
+    // 상품을 삭제하는 메서드
+    @PostMapping("/product/delete")
+    public String deleteProduct(Integer product_id, RedirectAttributes rattr) {
+        try {
+            int rowCnt = productService.deleteProduct(product_id);
+            if(rowCnt != 1) {
+                throw new Exception("상품 삭제에 실패했습니다.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            rattr.addFlashAttribute("msg", "DEL_ERR");
+        }
+        rattr.addFlashAttribute("msg", "DEL_OK");
+        return "redirect:/productmanage";
+    }
+    // 하위옵션 리스트를 보여주는 메서드
+    @GetMapping("/productoptiondetail")
+    @ResponseBody
+    public ResponseEntity<List<ProductOptionDetailDto>> getProductOptionDetailList(Integer product_id, Integer option_id) {
+        try {
+            List<ProductOptionDetailDto> productOptionDetailDtoList = productOptionDetailService.selectSpecificProductOptionDetail(product_id, option_id);
+
+            return new ResponseEntity<>(productOptionDetailDtoList, HttpStatus.OK);
+        } catch(Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+    // 하위옵션을 추가하는 메서드
+    @PostMapping("/productoptiondetail/add")
+    @ResponseBody
+    public ResponseEntity<String> addProductOptionDetail(@RequestBody ProductOptionDetailDto productOptionDetailDto) {
+        try {
+
+            int rowCnt = productOptionDetailService.insertProductOptionDetail(productOptionDetailDto);
+
+            if(rowCnt != 1) {
+                throw new Exception("하위 옵션 등록에 실패했습니다.");
+            }
+
+            return new ResponseEntity<>("PRODUCTOPTIONDETAIL ADD SUCCESS", HttpStatus.OK);
+        } catch(Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("PRODUCTOPTIONDETAIL ADD ERR", HttpStatus.BAD_REQUEST);
+        }
+    }
+    // 하위 옵션을 수정하는 메서드
+    @PostMapping("/productoptiondetail/modify")
+    @ResponseBody
+    public ResponseEntity<String> modifyProductOptionDetail(@RequestBody ProductOptionDetailDto productOptionDetailDto) {
+        try {
+            int rowCnt = productOptionDetailService.updateProductOptionDetail(productOptionDetailDto);
+            if(rowCnt != 1) {
+                throw new Exception("하위옵션 수정에 실패했습니다.");
+            }
+            return new ResponseEntity<>("PRODUCTOPTIONDETAIL MODIFY SUCCESS", HttpStatus.OK);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("PRODUCTOPTIONDETAIL MODIFY ERR", HttpStatus.BAD_REQUEST);
+        }
+    }
+    // 하위옵션을 삭제하는 메서드
+    @PostMapping("/productoptiondetail/delete")
+    @ResponseBody
+    public ResponseEntity<String> deleteProductOptionDetail(Integer option_detail_id) {
+        try {
+            int rowCnt = productOptionDetailService.deleteProductOptionDetail(option_detail_id);
+            if(rowCnt != 1) {
+                throw new Exception("하위옵션 삭제에 실패했습니다.");
+            }
+            return new ResponseEntity<>("PRODUCTOPTIONDETAIL DELETE SUCCESS", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("PRODUCTOPTIONDETAIL DELETE ERR", HttpStatus.BAD_REQUEST);
         }
     }
 

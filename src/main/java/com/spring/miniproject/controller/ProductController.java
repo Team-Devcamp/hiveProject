@@ -72,12 +72,15 @@ public class ProductController {
             for(int i=0; i<productOptionList.size(); i++){
                 String option_name = productOptionList.get(i).getOption_name();
                 Integer option_id = productOptionList.get(i).getOption_id();
-//                System.out.println("넘어오나?"+option_name+" "+option_id);
+                System.out.println("넘어오나?"+option_name+" "+option_id);
 
                 List<ProductOptionDetailDto> productOptionDetailList =
                         productOptionDetailService.selectSpecificProductOptionDetail(product_id,option_id);
                 optionMap.put(option_name, productOptionDetailList);
+
+                System.out.println(productOptionDetailList);
             }
+
             m.addAttribute("productDto", productDto);
             m.addAttribute("product_id",product_id);
             m.addAttribute("optionMap",optionMap);

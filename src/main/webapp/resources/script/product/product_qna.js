@@ -1,10 +1,4 @@
 
-/* 옵션 활성화 아직 미완성*/
-$(document).on('change', '#option1 > select', function(){
-    alert("창활성화시켜");
-});
-
-
 /*url에서 product_id parameter 넘겨받기*/
 let product_id = new URLSearchParams(location.search).get('product_id');
 

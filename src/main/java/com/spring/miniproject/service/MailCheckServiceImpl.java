@@ -25,7 +25,7 @@ public class MailCheckServiceImpl implements MailCheckService {
         try {
             MimeMessage mail = mailSender.createMimeMessage();
             MimeMessageHelper mailHelper = new MimeMessageHelper(mail, true, "UTF-8");
-
+            System.out.println("111");
             mailHelper.setFrom(from);
             mailHelper.setTo(to);
             mailHelper.setSubject(title);
@@ -33,7 +33,6 @@ public class MailCheckServiceImpl implements MailCheckService {
 
             mailSender.send(mail);
             num = Integer.toString(ranNum);
-
         } catch(Exception e) {
             num = "error";
         }

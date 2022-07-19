@@ -31,7 +31,7 @@ a {text-decoration: none; color:inherit;}
 .wrap .content .menu .profile-info .login-profile .line-login{content: ""; background: rgb(207, 210, 215); width: 600px; height: 1px;
                                                                 margin-top: 20px;}
 .wrap .content .menu .profile-info .login-profile .password{color:rgb(207, 210, 215); margin-top: 30px;}
-.wrap .content .menu .profile-info #look-pwd{border:none; font-size: 25px;}
+.wrap .content .menu .profile-info #look-pwd{border:none; font-size: 25px; outline: none}
 .wrap .content .menu .profile-info .login-profile .line-login-end{content: ""; background: rgb(207, 210, 215); 
                                                                         width: 600px; height: 1px; margin-top: 10px;}
 .wrap .content .menu .profile-info .user-info p{font-size: 20px; margin-top: 80px;}
@@ -43,6 +43,6 @@ a {text-decoration: none; color:inherit;}
 .wrap .content .menu .profile-info .user-info #user-phone-num{margin-top: 10px;}
 .wrap .content .menu .profile-info .user-info .info-end-line{content:""; background: rgb(207, 210, 215); width: 600px; 
     margin-top: 20px; height: 1px;}
-.wrap .content .menu .profile-info .out-of-join{margin-top: 100px;}
+.wrap .content .menu .profile-info .out-of-join{margin-top: 30px;}
 .wrap .content .menu .profile-info .out-of-join a{color:rgb(207, 210, 215); text-decoration: underline;}
 

@@ -275,7 +275,7 @@ input[type="number"] {
 .form-size > label {
     margin-bottom: 16px;
 }
-                                           ㅔ
+
 .combo-box {
     display: flex;
 }
@@ -459,7 +459,27 @@ input[type="number"] {
 .stats-likes i{
     padding:15px;
     color: red;
+}
 
+.total-price-wrap{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 5px;
+    margin-bottom: 10px;
+}
+.total-price-text{
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 18px;
+
+}
+.total-price{
+    font-size: 18px;
+    line-height: 18px;
+}
+#total_price{
+    color: #c9974d;
+    font-size: 18px;
 }
 /*
 .stats-likes i:hover{

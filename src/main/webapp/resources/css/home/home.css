@@ -1,11 +1,4 @@
-.header-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 32px 20px;
-}
 
-.nav .nav-inner a,
 .todaylank .tab-container > ul > li a,
 .btn-lank a,
 .event-wrap a {
@@ -15,6 +8,7 @@
 
 .banner {
     margin-bottom: 70px;
+    z-index: 0;
 }
 
 .banner-wrap {

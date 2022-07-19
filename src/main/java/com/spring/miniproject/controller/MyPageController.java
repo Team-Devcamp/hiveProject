@@ -100,4 +100,17 @@ public class MyPageController {
             return "fail";
         }
     }
+
+    @RequestMapping("mypage/purchase")
+    public String myPurchase(){
+
+        return "mypage_purchase.tiles";
+    }
+
+    @GetMapping("mypage/purchase/review")
+    public String myPurchaseReview(){
+        return "review_upload";
+    }
 }
+
+

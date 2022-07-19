@@ -25,7 +25,6 @@ public class QnaController {
     @ResponseBody
     public ResponseEntity<String> insertQna(@RequestBody QnaDto qnaDto, @RequestParam int product_id, HttpSession session){
 //      String writer = (String)session.getAttribute("id");
-
         qnaDto.setProduct_id(product_id);
         qnaDto.setWriter("asdf@gmail.com");
 
@@ -35,7 +34,6 @@ public class QnaController {
             if(rowCnt != 1) {
                 throw new Exception("글 등록에 실패했습니다.");
             }
-
             return new ResponseEntity<>("빠른 답변 드리겠습니다!", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
@@ -81,8 +79,6 @@ public class QnaController {
     @GetMapping("/count")
     @ResponseBody
     public int countQna(@RequestParam Integer product_id) throws Exception{
-        System.out.println("카운트??"+qnaService.countQna(product_id));
-
         return qnaService.countQna(product_id);
     }
 

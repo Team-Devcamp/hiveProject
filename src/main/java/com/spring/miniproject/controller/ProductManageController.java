@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -125,13 +126,13 @@ public class ProductManageController {
 
         }
     }
-    // 상품 등록하기
+    // 상품 등록하는 form으로 이동
     @GetMapping("/product/register")
     public String registerProduct(Model m) {
         try {
             List<CategoryDto> categoryList = categoryService.selectAllCategory();
             List<SubCategoryDto> subCategoryList = subCategoryService.selectAllSubCategory();
-
+            m.addAttribute("mode", "new");
             m.addAttribute("categoryList", categoryList);
             m.addAttribute("subCategoryList", subCategoryList);
 
@@ -145,8 +146,8 @@ public class ProductManageController {
     @PostMapping("/product/register")
     public String registerProduct(ProductDto productDto, Model m, RedirectAttributes rattr) {
         try {
-//            productDto.setProduct_thumb_nail("썸네일 임시 삽입");
-            System.out.println("productDto.getProduct_thumb_nail() = " + productDto.getProduct_thumb_nail());
+
+//            System.out.println("productDto.getProduct_thumb_nail() = " + productDto.getProduct_thumb_nail());
             int rowCnt = productService.insertProduct(productDto);
 
             if(rowCnt != 1) {
@@ -238,6 +239,45 @@ public class ProductManageController {
         rattr.addFlashAttribute("msg", "DEL_OK");
         return "redirect:/productmanage";
     }
+
+    // 상품 수정하는 form을 보여주는 메서드
+    @PostMapping("/product/modify")
+    public String modifyProduct(Integer product_id, Model m) {
+        try {
+            ProductDto productDto = productService.selectProduct(product_id);
+            m.addAttribute("productDto", productDto);
+
+            List<CategoryDto> categoryList = categoryService.selectAllCategory();
+            List<SubCategoryDto> subCategoryList = subCategoryService.selectAllSubCategory();
+
+            m.addAttribute("categoryList", categoryList);
+            m.addAttribute("subCategoryList", subCategoryList);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "productManage/registerProduct";
+    }
+
+    // 상품 수정form을 제출하는 메서드
+    @PostMapping("/product/submitmod")
+    public String submitModifyProduct(ProductDto productDto, Model m, RedirectAttributes rattr) {
+        try {
+
+            int rowCnt = productService.updateProduct(productDto);
+            if(rowCnt != 1) {
+                throw new Exception("상품 수정에 실패했습니다.");
+            }
+            rattr.addFlashAttribute("msg", "MOD_OK");
+            return "redirect:/productmanage";
+        } catch (Exception e) {
+            e.printStackTrace();
+            m.addAttribute("productDto", productDto);
+            m.addAttribute("msg", "MOD_ERR");
+            return "productManage/registerProduct";
+        }
+    }
+
     // 하위옵션 리스트를 보여주는 메서드
     @GetMapping("/productoptiondetail")
     @ResponseBody

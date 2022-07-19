@@ -21,73 +21,70 @@
     if(msg=="REG_ERR")  alert("상품 등록에 실패했습니다.");
     if(msg=="DEL_OK")   alert("상품이 삭제되었습니다.");
     if(msg=="REG_OK")   alert("상품이 등록되었습니다.");
+    if(msg=="MOD_OK")   alert("상품이 수정되었습니다.");
 </script>
 <div class="wrap">
-
-    <div class="main">
-        <div class="product-list">
-            <c:forEach var="productDto" items="${productList}">
-                <form class="product-wrap" data-product-id="${productDto.product_id}">
-                    <div class="product">
-                        <div class="product-id" data-product-id="${productDto.product_id}"><p>상품 번호 : ${productDto.product_id} </p></div>
-                        <div class="product-name"><p>상품 이름 : ${productDto.product_name} </p></div>
-                        <div class="product-title"><p>상품 타이틀 : ${productDto.product_title} </p></div>
-                        <div class="product-price"><p>상품 가격 : ${productDto.product_price} </p></div>
-                        <div class="category-id"><p>상위 카테고리 : ${productDto.category_id} </p></div>
-                        <div class="sub-category-id"><p>하위 카테고리 : ${productDto.sub_category_id} </p></div>
-                    </div>
-                    <button class="modify-product-btn">상품 수정</button>
-                    <button class="delete-product-btn">상품 삭제</button>
-                </form>
-            </c:forEach>
-        </div>
-        <div class="product-options">
-
-            <div id="product-option-form">
-                <div class="product-option-list"></div>
-                <div class="add-option">
-                    <label for="product-id">상품번호</label>
-                    <input id="product-id" name="product_id" type="text" placeholder="상품 번호를 입력하세요.">
-                    <label for="option-name">상위옵션</label>
-                    <input id="option-name" name="option_name" type="text" placeholder="상위옵션을 입력하세요">
-                    <button id="add-option-btn" type="button">등록</button>
+    <div class="product-list">
+        <button id="product-register" type="button">상품 등록</button>
+        <c:forEach var="productDto" items="${productList}">
+            <form class="product-wrap" data-product-id="${productDto.product_id}">
+                <div class="product">
+                    <div class="product-id" data-product-id="${productDto.product_id}"><p>상품 번호 : ${productDto.product_id} </p></div>
+                    <div class="product-name"><p>상품 이름 : ${productDto.product_name} </p></div>
+                    <div class="product-title"><p>상품 타이틀 : ${productDto.product_title} </p></div>
+                    <div class="product-price"><p>상품 가격 : ${productDto.product_price} </p></div>
+                    <div class="category-id"><p>상위 카테고리 : ${productDto.category_id} </p></div>
+                    <div class="sub-category-id"><p>하위 카테고리 : ${productDto.sub_category_id} </p></div>
                 </div>
-                <div id="product-option-modify-form" style="display: none;">
-                    <label for="modify-product-id">상품번호</label>
-                    <input id="modify-product-id" name="product_id" type="text" readonly>
-                    <label for="modify-option-id">상위옵션 번호</label>
-                    <input id="modify-option-id" name="option_id" type="text" readonly>
-                    <label for="modify-option-name">상위 옵션</label>
-                    <input id="modify-option-name" name="option_name" type="text">
-                    <button id="submit-modify-option-btn" type="button">수정 완료</button>
-                </div>
+                <button class="modify-product-btn">상품 수정</button>
+                <button class="delete-product-btn">상품 삭제</button>
+            </form>
+        </c:forEach>
+    </div>
+    <div class="product-options">
+        <div id="product-option-form">
+            <div class="product-option-list"></div>
+            <div class="add-option">
+                <label for="product-id">상품번호</label>
+                <input id="product-id" name="product_id" type="text" placeholder="상품 번호를 입력하세요.">
+                <label for="option-name">상위옵션</label>
+                <input id="option-name" name="option_name" type="text" placeholder="상위옵션을 입력하세요">
+                <button id="add-option-btn" type="button">등록</button>
             </div>
-            <div id="product-option-detail-form">
-                <div class="product-option-detail-list"></div>
-                <div class="add-detail-option">
-                    <label for="">상품번호</label>
-                    <input class="product-id" name="product_id" type="text" placeholder="상품 번호를 입력하세요.">
-                    <label for="">상위옵션 번호</label>
-                    <input class="option-id" name="option_id" type="text" placeholder="상위옵션 번호를 입력하세요">
-                    <label for="">하위옵션</label>
-                    <input class="option-detail-name" name="option_detail_name" type="text" placeholder="하위옵션을 입력하세요">
-                    <button id="add-option-detail-btn" type="button">등록</button>
-                </div>
-                <div id="product-option-detail-modify-form" style="display: none;">
-                    <label for="">상품번호</label>
-                    <input class="modify-product-id" name="product_id" type="text" readonly>
-                    <label for="">상위옵션 번호</label>
-                    <input class="modify-option-id" name="option_id" type="text" readonly>
-                    <label for="">하위옵션 번호</label>
-                    <input class="modify-option-detail-id" name="option_detail_id" type="text" readonly>
-                    <label for="">하위옵션</label>
-                    <input class="modify-option-detail-name" name="option_detail_name" type="text" placeholder="하위옵션을 입력하세요">
-                    <button id="submit-modify-option-detail-btn" type="button">수정 완료</button>
-                </div>
+            <div id="product-option-modify-form" style="display: none;">
+                <label for="modify-product-id">상품번호</label>
+                <input id="modify-product-id" name="product_id" type="text" readonly>
+                <label for="modify-option-id">상위옵션 번호</label>
+                <input id="modify-option-id" name="option_id" type="text" readonly>
+                <label for="modify-option-name">상위 옵션</label>
+                <input id="modify-option-name" name="option_name" type="text">
+                <button id="submit-modify-option-btn" type="button">수정 완료</button>
+            </div>
+        </div>
+        <div id="product-option-detail-form">
+            <div class="product-option-detail-list"></div>
+            <div class="add-detail-option">
+                <label for="">상품번호</label>
+                <input class="product-id" name="product_id" type="text" placeholder="상품 번호를 입력하세요.">
+                <label for="">상위옵션 번호</label>
+                <input class="option-id" name="option_id" type="text" placeholder="상위옵션 번호를 입력하세요">
+                <label for="">하위옵션</label>
+                <input class="option-detail-name" name="option_detail_name" type="text" placeholder="하위옵션을 입력하세요">
+                <button id="add-option-detail-btn" type="button">등록</button>
+            </div>
+            <div id="product-option-detail-modify-form" style="display: none;">
+                <label for="">상품번호</label>
+                <input class="modify-product-id" name="product_id" type="text" readonly>
+                <label for="">상위옵션 번호</label>
+                <input class="modify-option-id" name="option_id" type="text" readonly>
+                <label for="">하위옵션 번호</label>
+                <input class="modify-option-detail-id" name="option_detail_id" type="text" readonly>
+                <label for="">하위옵션</label>
+                <input class="modify-option-detail-name" name="option_detail_name" type="text" placeholder="하위옵션을 입력하세요">
+                <button id="submit-modify-option-detail-btn" type="button">수정 완료</button>
             </div>
         </div>
     </div>
-
 </div>
 <script>
     // list에 담긴 option객체들을 하나씩 꺼내서 html 태그에 담는 메서드(담기만 함)
@@ -183,6 +180,11 @@
             }
         })
     }
+    // 상품 등록 버튼 클릭했을 때
+    $("#product-register").on("click", function(){
+        location.href="<c:url value='/productmanage/product/register'/>";
+    });
+
     // 상품 삭제 버튼 클릭했을 때
     $(".delete-product-btn").click(function(){
         let product_id = $(this).parent().attr("data-product-id");
@@ -192,7 +194,17 @@
         form.attr("action", "/productmanage/product/delete?product_id=" + product_id);
         form.attr("method", "post");
         form.submit();
-    })
+    });
+
+    // 상품 수정 버튼 클릭했을 때
+    $(".modify-product-btn").click(function(){
+        let product_id = $(this).parent().attr("data-product-id");
+
+        let form = $(".product-wrap");
+        form.attr("action", '/productmanage/product/modify?product_id=' + product_id);
+        form.attr("method", "post");
+        form.submit();
+    });
 
     // 상위옵션 추가 버튼 클릭했을 때
     $("#add-option-btn").click(function(){
@@ -419,8 +431,6 @@
             }
         });
     });
-
-
 
 
    // 특정 상품 클릭했을 때 등록된 상위옵션을 보여주는 이벤트

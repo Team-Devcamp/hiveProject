@@ -1,7 +1,7 @@
 @charset "utf-8";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
-/* reset */
-* {
+ /*reset*/
+    * {
     margin: 0;
     padding: 0;
 }
@@ -18,7 +18,7 @@ a {
     width: 100%;
     position: relative;
 }
-/* layout */
+ /*layout*/
 body {
     font-family: 'Noto Sans KR', sans-serif;
 }
@@ -133,4 +133,3 @@ body {
     margin-left: 0;
     margin-right: 10px;
 }
-

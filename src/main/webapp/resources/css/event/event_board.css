@@ -1,0 +1,65 @@
+.event-board-wrap {
+    width: 70%;
+    margin: 100px auto;
+}
+
+.event-board {
+    width: 100%;
+}
+.board-header {
+    border-bottom: 1px solid #ccc;
+}
+
+.board-title {
+    font-size: 50px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.header-info {
+    margin-bottom: 15px;
+}
+
+.header-info span {
+    font-size: 13px;
+    color: #7e8383;
+}
+
+.header-info span:first-child {
+    margin-right: 10px;
+}
+
+
+.header-info span:last-child::before {
+    content: '|';
+    margin-right: 10px;
+}
+
+.board-content {
+    padding: 50px 0;
+    min-height: 500px;
+    border-bottom: 1px solid #ccc;
+}
+
+.board-footer {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.hidden-form button {
+    display: inline-block;
+    background-color: #fff;
+    width: 200px;
+    padding: 10px 0;
+    font-size: 15px;
+    color: #000;
+    border: 1px solid #000;
+    cursor: pointer;
+    transition: background-color .2s ease-in-out, color .2s ease-in-out;
+}
+
+.hidden-form button:hover {
+    background-color: #000;
+    color: #fff;
+}

@@ -34,24 +34,17 @@ $(function (){
 
     option2.attr('disabled',true);
 
-    /* 상위옵션 선택시 하위옵션 활성화 */
     option1.change(function(){
         option2.attr('disabled',false);
     });
 
-    /* 하위옵션 선택시 선택상품 정보보기 & 옵션 초기화 */
     option2.change(function(){
         showSelectedOption();
 
         option1.children().prop('selected',false);
-        // option2.attr('selected','option:first');
         option2.attr('disabled',true);
     });
 });
-/* 동적요소 처리시 & 고정영역으로잡기
-$('.form-select-wrap').on('click',function(){
-        $(this).children().next().attr('disabled',true);
-});*/
 
 /* 선택상품 정보 보여주기*/
 function showSelectedOption(){
@@ -70,6 +63,7 @@ function showSelectedOption(){
 
 /* 상품 원가 */
 let price = Number($('.product-detail-form').children().children().last().children().last().children('#cost').html());
+let totalPrice = $('#total_price').html(0);
 
 /* 주문 수량 변화 */
 $('.product-detail-list-container').on('click','#minus-button',function (){
@@ -82,7 +76,9 @@ $('.product-detail-list-container').on('click','#minus-button',function (){
 
         qty = Number($(this).next().val());
         subTotalPrice = qty * price;
+        totalPrice = totalPrice - subTotalPrice;
         $(this).parent().parent().parent().parent().last().parent().children().last().children().last().children('#cost').html(subTotalPrice);
+        $('#total_price').html(totalPrice);
     }
     else{
         return;
@@ -99,10 +95,11 @@ $('.product-detail-list-container').on('click','#plus-button',function (){
         $('#plus-button').attr('disabled',false);
         $(this).prev().val(qty+1);
 
-        //증가된 수량값 다시 읽어오기
         qty = Number($(this).prev().val());
         subTotalPrice = qty * price;
+        totalPrice = totalPrice + subTotalPrice;
         $(this).parent().parent().parent().parent().last().parent().children().last().children().last().children('#cost').html(subTotalPrice);
+        $('#total_price').html(totalPrice);
     }
     else{
         alert("한번에 최대 구매수량은 5개 입니다.");
@@ -110,7 +107,6 @@ $('.product-detail-list-container').on('click','#plus-button',function (){
     }
 });
 
-/* 주문페이지로 이동 */
 $('#orderBtn').on('click',function(){
     location.href='/purchase/page';
 });

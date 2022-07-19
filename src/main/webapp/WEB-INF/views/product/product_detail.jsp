@@ -36,7 +36,7 @@
                             srcset="/image/product/product_detail/thumb.png 1x, /image/product/product_detail/thumb.png 2x"
                             alt=""
                     />
-                    ${productDto.product_thumb_nail}
+                    <%--${productDto.product_thumb_nail}--%>
                 </div>
                 <ul class="view-list">
                     <li class="view-item selected">
@@ -121,16 +121,8 @@
                             </select>
                         </c:forEach>
 
-                        <%--<select class="form-select" aria-label="Default select example">
-                            <option selected>사이즈를 선책해 주세요</option>
-                            <option value="1">95</option>
-                            <option value="2">100</option>
-                            <option value="3">105</option>
-                        </select>--%>
-
                         <div class="stats-likes" id="stats_likes">
                             <dt>
-                                sadfsf
                                 <i class="fa fa-heart-o" aria-hidden="true"></i>
                                 <%--<i class="fa fa-heart" aria-hidden="true"></i>--%>
                             </dt>
@@ -238,8 +230,14 @@
                 </div>
 
                 <div>
-                    <span>총 금액</span>
-                    <p><strong></strong>원</p>
+                    <dl class="total-price-wrap">
+                        <dt class="total-price-text">
+                            결제 총 금액
+                        </dt>
+                        <dd class="total-price">
+                            <strong id="total_price"></strong>원
+                        </dd>
+                    </dl>
                 </div>
                 <div>
                     <button type="button" class="form-submit">
@@ -316,7 +314,7 @@
                                 <em id="qnaCount"><span id="qna_count"></span> Questions</em>
                                 <p>상품에 대해서 궁금한 점이 있으시면 문의하여 주세요.<br>신속하고 정확하게 답변드리도록 하겠습니다.</p>
                             </div>
-                            <a href="#none" id="regQnaBtn">상품 문의</a><
+                            <a href="#none" id="regQnaBtn">상품 문의</a>
                         </div>
                     </div>
 

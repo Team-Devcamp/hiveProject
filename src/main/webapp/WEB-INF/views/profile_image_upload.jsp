@@ -75,7 +75,7 @@
                     <h2>프로필 이미지 등록</h2>
                 </div>
             </header>
-            <form action="<c:url value='/mypage/image/upload'/>" class="email-chk-form" method="post" enctype="multipart/form-data">
+            <form action="<c:url value='/mypage/image/upload'/>" class="image-upload-form" method="post" enctype="multipart/form-data">
                 <div class="input-box-id">
                     <label class="txt">등록할 이미지</label><br>
                     <input type="file" class="profile-img" id="profile-img" name="file">

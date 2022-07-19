@@ -5,18 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="<c:url value='/css/user/profile_image_upload_style.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/user/review_upload_style.css'/>">
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script>
 
         $(document).ready(function (){
-            var image_path = opener.$("#user_profile").attr("src");
-            if(!image_path || image_path != "/image/user/profile_unknown.png"){
-                alert("이미지가 이미 등록되어 있습니다.\n변경을 원하실 경우 삭제 후 등록하여 주시기 바랍니다.");
-                window.close();
-                return;
-            }
-
 
             var user_email = "${sessionScope.user_email}";
             $('#profile-img').change(function(){
@@ -72,16 +65,19 @@
         <div class="navigator">
             <header class="nav">
                 <div class="tit">
-                    <h2>프로필 이미지 등록</h2>
+                    <h2>리뷰 작성</h2>
                 </div>
             </header>
-            <form action="<c:url value='/mypage/image/upload'/>" class="image-upload-form" method="post" enctype="multipart/form-data">
+            <form action="<c:url value='/mypage/purchase/review'/>" class="review-upload-form" method="post" enctype="multipart/form-data">
                 <div class="input-box-id">
+                    <label class="txt">상품 이름</label><br>
+                    <label class="txt">리뷰 내용</label><br>
+                    <input type="text" name="review_content" id="review-content">
                     <label class="txt">등록할 이미지</label><br>
                     <input type="file" class="profile-img" id="profile-img" name="file">
                     <input type="hidden" readonly="readonly" value="${sessionScope.user_email}" name="user_email">
                     <div class="preview">
-                        <img src="" id="preview-img" width="500px" height="300px">
+                        <img src="" id="preview-img" width="500px" height="400px">
                     </div>
                     <input type="button" class="submit-btn" id="submit-btn" value="등록">
                 </div>

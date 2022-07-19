@@ -12,12 +12,13 @@ a {text-decoration: none; color:inherit;}
 
 .wrap .arrow .tit { margin-left: 250px; font-weight: bold; position:absolute; top: 0px; left: -16px;}
 .wrap .txt {margin-top: 60px; font-size: 18px;}
-.image-upload-form .input-box-id {position: relative;}
+.review-upload-form .input-box-id {position: relative;}
 
 
-.image-upload-form .input-box-id .txt {margin-top: 20px; display: block;}
-.image-upload-form input::placeholder{padding-left: 10px;}
-.image-upload-form #submit-btn {border-radius: 10px; width: 510px; height: 48px;
-    position: absolute; top: 400px; background: black; margin-left: 10px; border:none; left: -16px;}
-.image-upload-form #submit-btn[value="등록"]{font-size: 16px; color: white;}
+.review-upload-form .input-box-id .txt {margin-top: 20px; display: block;}
+.review-upload-form .input-box-id #review-content{width:500px; height:200px;}
+.review-upload-form input::placeholder{padding-left: 10px;}
+.review-upload-form #submit-btn {border-radius: 10px; width: 510px; height: 48px;
+    position: absolute; top: 780px; background: black; margin-left: 10px; border:none; left: -16px;}
+.review-upload-form #submit-btn[value="등록"]{font-size: 16px; color: white;}
 .input-box {margin: 0 auto;}

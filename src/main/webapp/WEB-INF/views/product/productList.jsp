@@ -23,13 +23,12 @@
                 <ul>
                     <p>${entry.key}</p>
                     <c:forEach items="${entry.value}" var="subCategoryDto">
-                        <li>${subCategoryDto.sub_category_name}</li>
+                        <li><a href="/product/list?sub_category_id=${subCategoryDto.sub_category_id}">${subCategoryDto.sub_category_name}</a></li>
                     </c:forEach>
                 </ul>
             </c:forEach>
         </div>
         <div class="contents">
-            <h3 class="selected-category">선택된 카테고리</h3>
 
             <ul class="classification">
                 <li>최신순</li>
@@ -53,15 +52,6 @@
                         </div>
                     </li>
                 </c:forEach>
-
-                <li class="product">
-                    <a href="#"><img src="img/01.jpg" alt="상품 이미지"></a>
-                    <p>남자 여름 무지 라운드 스판 레이어드 반팔 티셔츠</p>
-                    <div class="detail-price">
-                        <strong class="current-price">10,000원</strong>
-                        <span class="discount-rate">50%</span>
-                    </div>
-                </li>
             </div>
         </div>
     </div>

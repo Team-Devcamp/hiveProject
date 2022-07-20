@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,14 +28,19 @@ public class ProductController {
 
     // 상품 리스트 보여주기
     @GetMapping("/list")
-    public String getProductList(Model m) {
-
+    public String getProductList(Integer sub_category_id, Model m) {
+        List<ProductDto> productList = null;
         try {
-            List<ProductDto> productList = productService.selectAllProduct();
-            List<CategoryDto> categoryList = categoryService.selectAllCategory();
+            if(sub_category_id == null) {
+                productList = productService.selectAllProduct();
+            } else {
+                productList = productService.selectProductBySubCategory(sub_category_id);
+            }
 
-            // 큰 카테고리와 서브 카테고리 목록을 map으로 저장하여 view에 전달함
-            Map<String, List<SubCategoryDto>> categoryMap = new HashMap<>();
+            List<CategoryDto> categoryList = categoryService.selectAllCategory();
+            // 카테고리와 서브 카테고리 목록을 map으로 저장하여 view에 전달함.
+            // view에서 카테고리를 하나씩 꺼낼 때 저장 순서를 유지하기 위해 LinkedHashMap을 사용함.
+            Map<String, List<SubCategoryDto>> categoryMap = new LinkedHashMap<>();
 
             // 상위 카테고리를 하나씩 꺼내서 반복문 실행
             for (int i=0; i < categoryList.size(); i++) {
@@ -49,7 +55,6 @@ public class ProductController {
             }
 
             m.addAttribute("productList", productList);
-//            m.addAttribute("categoryList", categoryList);
             m.addAttribute("categoryMap", categoryMap);
 
         } catch(Exception e) {

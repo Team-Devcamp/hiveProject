@@ -3,14 +3,12 @@ package com.spring.miniproject.controller;
 import com.spring.miniproject.domain.NoticeDto;
 import com.spring.miniproject.domain.PageHandler;
 import com.spring.miniproject.service.NoticeService;
-import org.apache.tiles.request.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

@@ -23,9 +23,24 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       <div class="nav-mine">
         <a class="btn-cart" href="#">
           <i class="fa-solid fa-cart-shopping"></i>
+
         </a>
         <a class="btn-mypage" href="/mypage">
           <i class="fa-regular fa-user"></i>
+          <c:choose>
+            <c:when test="${empty sessionScope.user_email}">
+              <span class="status-badge">OFF</span>
+            </c:when>
+            <c:when test="${sessionScope.user_email == 'admin@hive.co.kr'}">
+              <span class="status-badge">ADMIN</span>
+            </c:when>
+            <c:when test="${!empty sessionScope.user_email}">
+              <span class="status-badge">ON</span>
+            </c:when>
+          </c:choose>
+
+
+
         </a>
       </div>
     </div>

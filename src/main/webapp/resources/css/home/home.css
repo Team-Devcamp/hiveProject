@@ -58,8 +58,8 @@
 }
 
 .item a img {
-    width: 250px;
-    height: 250px;
+    width: 280px;
+    height: 280px;
 }
 
 .btn-lank {
@@ -86,4 +86,28 @@
     width: 500px;
     height: 400px;
     margin-bottom: 20px;
+}
+
+.btn-lank a {
+    text-align: center;
+    display: inline-block;
+    background-color: #1c1c1c;
+    width: 200px;
+    padding: 10px 0;
+    font-size: 15px;
+    color: #fff;
+    cursor: pointer;
+    transition: opacity 250ms ease-in;
+    border-radius: 6px;
+}
+
+.btn-lank a:hover {
+    opacity: 0.75;
+    color:black;
+    font-weight: bold;
+    background-color: rgb(244, 168, 27);
+}
+
+.btn-lank a span{
+    margin-right: 7px;
 }

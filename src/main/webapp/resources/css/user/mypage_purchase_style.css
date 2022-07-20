@@ -20,8 +20,12 @@ a {text-decoration: none; color:inherit;}
 .wrap .content .menu .profile-info p #user-address {font-size: 18px; font-weight: normal; position:relative;}
 .wrap .content .menu .profile-info p #add-address{margin-left: 700px; width: 150px; height: 40px; border-radius: 10px; position: absolute;
                                                         top:-9px; background: white; border-width: 0.7px;}
+.wrap .content .menu .profile-info p #write-btn{margin-left: 80px; width: 100px; height: 35px; border-radius: 10px; background: white; border-style: solid;
+                                                 border-width: 1px;  border-color: rgb(207, 210, 215); position: absolute; top:-30px; left:740px;}
 .wrap .content .menu .profile-info p #modify-btn{margin-left: 80px; width: 100px; height: 35px; border-radius: 10px; background: white; border-style: solid;
-                                                 border-width: 1px;  border-color: rgb(207, 210, 215);; position: absolute; top:20px; left:740px;}
+    border-width: 1px;  border-color: rgb(207, 210, 215); position: absolute; top:15px; left:740px;}
+.wrap .content .menu .profile-info p #delete-btn{margin-left: 80px; width: 100px; height: 35px; border-radius: 10px; background: white; border-style: solid;
+    border-width: 1px;  border-color: rgb(207, 210, 215); position: absolute; top:60px; left:740px;}
 .wrap .content .menu .profile-info #end-line{content:""; background: black; width: 935px; height: 2px; margin-top: 40px;}
 .wrap .content .menu .profile-info .paging ul{padding-top:20px; text-align: center;}
 .wrap .content .menu .profile-info .paging ul li{font-weight: bold; display: inline-block; margin-left :7px;}

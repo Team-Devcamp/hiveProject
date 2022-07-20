@@ -1,8 +1,8 @@
 package com.spring.miniproject.service;
 
 import com.spring.miniproject.dao.ProductDao;
-import com.spring.miniproject.domain.ProductReviewDto;
 import com.spring.miniproject.domain.ProductDto;
+import com.spring.miniproject.domain.ProductSearchCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
-    ProductDao productDao;
+    private ProductDao productDao;
 
     @Override
     public int insertProduct(ProductDto productDto) throws Exception {
@@ -27,6 +27,21 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductDto> selectAllProduct() throws Exception {
         return productDao.selectAllProduct();
+    }
+
+    @Override
+    public List<ProductDto> selectSearchProduct(ProductSearchCondition psc) throws Exception {
+        return productDao.selectSearchProduct(psc);
+    }
+
+    @Override
+    public Integer selectSearchProductCnt(ProductSearchCondition psc) throws Exception {
+        return productDao.selectSearchProductCnt(psc);
+    }
+
+    @Override
+    public List<ProductDto> selectProductBySubCategory(Integer sub_category_id) throws Exception {
+        return productDao.selectProductBySubCategory(sub_category_id);
     }
 
     @Override

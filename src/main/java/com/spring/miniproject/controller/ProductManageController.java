@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.util.List;
 import java.util.UUID;
@@ -45,9 +46,19 @@ public class ProductManageController {
 
     // 상품관리 페이지로 이동하는 메서드
     @GetMapping("")
-    public String productManagePage(Model m) {
+    public String productManagePage(ProductSearchCondition psc, Model m, HttpServletRequest request) {
+        if(!adminCheck(request)) {
+            return "redirect:/login";
+        }
+
         try {
-            List<ProductDto> productList = productService.selectAllProduct();
+            Integer totalCnt = productService.selectSearchProductCnt(psc);
+            m.addAttribute("totalCnt", totalCnt);
+
+            ProductPageHandler productPageHandler = new ProductPageHandler(totalCnt, psc);
+            m.addAttribute("pph", productPageHandler);
+
+            List<ProductDto> productList = productService.selectSearchProduct(psc);
             m.addAttribute("productList", productList);
         } catch (Exception e) {
             e.printStackTrace();
@@ -353,6 +364,13 @@ public class ProductManageController {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+    }
+
+    private boolean adminCheck(HttpServletRequest request) {
+        // 1. 세션을 얻어서
+        HttpSession session = request.getSession();
+        // 2. 세션에 id가 관리자 id와 일치하는지 확인, 일치하면 true를 반환
+        return ("admin@hive.co.kr").equals(session.getAttribute("user_email"));
     }
 
 }

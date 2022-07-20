@@ -1,13 +1,76 @@
 @charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+}
 
 .wrap {
     width: 100%;
 }
+
 h2 {
     font-size: 25px;
     font-weight: bold;
     text-align: center;
     margin : 30px;
+}
+
+button {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* search-container */
+.search-container {
+    width: 90%;
+    min-width: 1200px;
+    margin-bottom: 20px;
+}
+.search-container .search-form {
+    width: 100%;
+    height: 40px;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.search-container .search-form .search-option {
+    height: 100%;
+    border: 1px solid black;
+    box-sizing: border-box;
+    margin-right: 20px;
+    font-family: 'Noto Sans KR';
+    width: 120px;
+    text-align: center;
+}
+
+.search-container .search-form .search-input {
+    height: 100%;
+    box-sizing: border-box;
+    border: 1px solid black;
+    padding: 0;
+    width: 600px;
+    margin-right: 20px;
+    padding: 5px 8px;
+}
+.search-container .search-form .search-button {
+    height: 100%;
+    width: 60px;
+    text-align: center;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
 /* product-list */
@@ -102,16 +165,45 @@ h2 {
     width: 20%;
 }
 
-.modify-product-btn, .delete-product-btn{
+.modify-product-btn, .delete-product-btn {
     float: left;
     margin-top: 6px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
 }
 
 .modify-product-btn {
     margin-right: 5px;
 }
+/* paging-container */
+.paging-container {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
 
-    /* product-options */
+.paging-container .paging {
+    width: 600px;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.paging-container .paging .page {
+    padding: 6px;
+    margin-right: 10px;
+}
+
+.paging-active {
+    background-color: black;
+    border-radius: 5px;
+    color: white;
+}
+
+/* product-options */
+
 .product-options {
     width: 100%;
     overflow: hidden;
@@ -167,6 +259,9 @@ h2 {
 }
 .product-options #product-option-form .product-option-list .option-wrap > button {
     margin-bottom: 10px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
 }
 .product-options #product-option-form .product-option-list .option-wrap .modify-option-btn {
     margin-right: 5px;
@@ -188,15 +283,20 @@ h2 {
     width: 33%;
 }
 
-.product-options #product-option-form .add-option {
-
+.product-options #product-option-form .add-option div {
+    padding: 5px;
 }
 
 .product-options #product-option-form #product-option-modify-form {
     margin: 10px;
+    display: flex;
+    align-items: center;
+}
+.product-options #product-option-form #product-option-modify-form div {
+    padding: 5px;
 }
 
-    /* product-option-detail */
+/* product-option-detail */
 
 .product-options #product-option-detail-form {
     float: left;
@@ -260,6 +360,9 @@ h2 {
 
 .product-options #product-option-detail-form .product-option-detail-list .option-detail-wrap > button {
     margin-bottom: 10px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
 }
 .product-options #product-option-detail-form .product-option-detail-list .option-detail-wrap .modify-option-detail-btn {
     margin-right: 5px;
@@ -271,9 +374,22 @@ h2 {
 
 .product-options #product-option-detail-form #product-option-detail-modify-form {
     margin: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.product-options #product-option-detail-form #product-option-detail-modify-form div {
+    padding: 5px;
 }
 
 /* add-detail-option */
+.add-detail-option {
+    margin: 10px;
+}
+.add-detail-option div {
+    padding: 5px;
+}
+
 .add-detail-option .option-id {
     width: 180px;
 }
@@ -321,16 +437,25 @@ h2 {
     width: 34.5%;
     text-align: center;
 }
+.category .category-wrap .category-list ul .category-info .modify-category-btn {
+    margin: 0 10px 0 10px;
+}
 
 .category .category-wrap .input-category-form {
     padding: 10px;
 }
-
+.category .category-wrap .input-category-form #add-category-btn {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
 
 .category #modify-category-form {
     margin: 10px 10px 0 10px;
 }
-
+.category #modify-category-form div {
+    padding: 5px;
+}
 
 /* sub-category-wrap */
 .category .sub-category-wrap {
@@ -379,9 +504,15 @@ h2 {
     width: 24.5%;
     text-align: center;
 }
+.category .sub-category-wrap .sub-category-list ul .sub-category-info .modify-sub-category-btn {
+    margin: 0 10px 0 20px;
+}
 .category .sub-category-wrap .input-sub-category-form {
     padding: 10px;
 }
 .category #modify-sub-category-form {
     margin: 10px 10px 0 10px;
+}
+.category #modify-sub-category-form div {
+    padding: 5px;
 }

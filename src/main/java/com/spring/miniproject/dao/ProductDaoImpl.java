@@ -1,7 +1,7 @@
 package com.spring.miniproject.dao;
 
-import com.spring.miniproject.domain.ProductReviewDto;
 import com.spring.miniproject.domain.ProductDto;
+import com.spring.miniproject.domain.ProductSearchCondition;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -31,6 +31,19 @@ public class ProductDaoImpl implements ProductDao {
         return session.selectList(namespace + "selectAllProduct");
     }
 
+    @Override
+    public List<ProductDto> selectSearchProduct(ProductSearchCondition psc) throws Exception {
+        return session.selectList(namespace + "selectSearchProduct", psc);
+    }
+
+    @Override
+    public Integer selectSearchProductCnt(ProductSearchCondition psc) throws Exception {
+        return session.selectOne(namespace + "selectSearchProductCnt", psc);
+    }
+    @Override
+    public List<ProductDto> selectProductBySubCategory(Integer sub_category_id) throws Exception {
+        return session.selectList(namespace + "selectProductBySubCategory", sub_category_id);
+    }
     @Override
     public int updateProduct(ProductDto productDto) throws Exception {
         return session.update(namespace + "updateProduct", productDto);

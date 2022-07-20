@@ -16,6 +16,7 @@
 
 .board-header_title {
     margin-bottom: 35px;
+    padding-top: 70px;
 }
 
 .board-header_title input {
@@ -79,19 +80,22 @@
 .board-btn input,
 .board-btn button {
     display: inline-block;
-    background-color: #fff;
     width: 200px;
     padding: 10px 0;
     font-size: 15px;
-    color: #000;
-    border: 1px solid #000;
+    border: none;
     cursor: pointer;
-    transition: background-color .2s ease-in-out, color .2s ease-in-out;
+    color: #fff;
+    border-radius: 6px;
+    background-color: #1c1c1c;
+    transition: opacity 250ms ease-in;
 }
 
 .board-btn input:hover {
-    background-color: #000;
-    color: #fff;
+    opacity: 0.75;
+    color:black;
+    font-weight: bold;
+    background-color: rgb(244, 168, 27);
 }
 
 .ck-content {

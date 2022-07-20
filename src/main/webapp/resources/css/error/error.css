@@ -1,0 +1,27 @@
+.access-error-msg {
+    padding-top: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.access-error-msg p {
+    margin-bottom: 50px;
+}
+
+.access-error-msg a {
+    text-align: center;
+    text-underline: none;
+    display: inline-block;
+    background-color: #fff;
+    width: 200px;
+    padding: 10px 0;
+    font-size: 15px;
+    color: #000;
+    border: 1px solid #000;
+    cursor: pointer;
+}
+
+.access-error-msg a:hover {
+    color: #000;
+}

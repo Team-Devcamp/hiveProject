@@ -35,3 +35,8 @@ a {
     color: black;
     text-decoration-line: none;
 }
+
+.no-event {
+    display: flex;
+    justify-content: center;
+}

@@ -161,6 +161,7 @@
 
 		<!-- 앞으로 추가할 Dependency는 여기 아래에 작성해주세요! -->
 
+		<!-- ck에디터에서 상품 등록시 이미지 파일을 텍스트 안으로 넣기 위한 dependency -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>

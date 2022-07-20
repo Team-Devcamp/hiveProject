@@ -19,7 +19,7 @@ public class UserImageController {
     private UserService userService;
 
 
-    private String uploadPath = "C:\\Users\\ch457\\Documents\\hiveProject_NEW\\src\\main\\webapp\\resources\\image\\user\\profile";
+    private String uploadPath = "C:\\Users\\ch457\\IdeaProjects\\hiveProject\\src\\main\\webapp\\resources\\image\\user\\profile";
 
 
     @RequestMapping("/mypage/image/add")

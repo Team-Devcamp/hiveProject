@@ -1,16 +1,17 @@
 package com.spring.miniproject.controller;
 
-import com.spring.miniproject.domain.PageHandlerDto;
-import com.spring.miniproject.domain.UserAddressDto;
-import com.spring.miniproject.domain.UserDto;
+import com.spring.miniproject.domain.*;
 import com.spring.miniproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.nio.file.Files;
 import java.util.List;
 
 @Controller
@@ -18,6 +19,8 @@ public class MyPageController {
 
     @Autowired
     UserService userService;
+
+    private String uploadPath = "C:\\Users\\ch457\\Documents\\hiveProject_NEW\\src\\main\\webapp\\resources\\image\\user\\product_review";
 
     @RequestMapping("/mypage")
     public String myPage(HttpSession session, Model model){
@@ -102,14 +105,64 @@ public class MyPageController {
     }
 
     @RequestMapping("mypage/purchase")
-    public String myPurchase(){
-
+    public String myPurchase(HttpSession session,Model model,@RequestParam(defaultValue = "1") int page){
+        String user_email = (String)session.getAttribute("user_email");
+        Integer user_id = userService.selectUserId(user_email);
+        Integer purchaseCnt = userService.selectUserPurchaseCnt(user_id);
+        PageHandlerDto pageHandlerDto = new PageHandlerDto(purchaseCnt,page,user_id,4,4);
+        List<UserPurchaseDto> purchaseList = userService.selectUserPurchase(pageHandlerDto);
+        model.addAttribute("purchase_list",purchaseList);
+        model.addAttribute("paging",pageHandlerDto);
         return "mypage_purchase.tiles";
     }
 
-    @GetMapping("mypage/purchase/review")
+    @ResponseBody
+    @PostMapping ("mypage/purchase/review/insert")
+    public String myPurchaseReview(MultipartFile file, String user_email, Integer user_id, Integer product_id, Integer purchase_id,String review_content) throws Exception{
+        // 원본 파일이 이미지 파일이 맞는지 확장자를 확인
+        File checkFile = new File(file.getOriginalFilename());
+        String type = Files.probeContentType(checkFile.toPath());
+        // 이미지 파일이 아닐경우 실패
+        if(!type.startsWith("image")){
+            return "fail";
+        }else{
+            int random = (int)(Math.random()*200)+1;
+            String fileName = user_email.substring(0,6)+ random + "_product_review.jpg";
+            File uploadFile = new File(uploadPath, fileName);
+            file.transferTo(uploadFile);
+            String finalPath = "/image/user/product_review/"+fileName;
+            ProductReviewDto productReviewDto = new ProductReviewDto(purchase_id,user_id,product_id,user_email,review_content,finalPath);
+            int result = userService.insertUserProductReview(productReviewDto);
+            if(result==1){
+                return "success";
+            }else {
+                return "fail";
+            }
+
+        }
+    }
+
+    @GetMapping("mypage/purchase/review/insert")
     public String myPurchaseReview(){
         return "review_upload";
+    }
+
+    @GetMapping("mypage/purchase/review/modify")
+    public String myPurchaseReviewModify(){
+        return "review_modify";
+    }
+
+    @RequestMapping("mypage/purchase/review/delete")
+    public String myPurchaseReviewDelete(RedirectAttributes redirectAttributes, Integer user_id, Integer purchase_id,Integer product_id){
+        ProductReviewDto productReviewDto = new ProductReviewDto(purchase_id,user_id,product_id);
+        int result = userService.deleteUserProductReview(productReviewDto);
+        if(result==1){
+            redirectAttributes.addFlashAttribute("success_msg","삭제에 성공했습니다.");
+            return "redirect:/mypage/purchase";
+        }else{
+            redirectAttributes.addFlashAttribute("error_msg","삭제에 실패했습니다.");
+            return "redirect:/mypage/purchase";
+        }
     }
 }
 

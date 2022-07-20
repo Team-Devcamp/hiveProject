@@ -26,6 +26,21 @@ public class PageHandlerDto {
         this.user_id = user_id;
     }
 
+    public PageHandlerDto(int totalCnt, int page,int user_id,int pageSize,int naviSize){
+        this.pageSize = pageSize;
+        this.totalCnt = totalCnt;
+        this.page = page;
+        this.startList = (page - 1) * pageSize;
+        totalPage = (int)Math.ceil((double)totalCnt/pageSize);
+        beginPage = (page-1)/naviSize * naviSize + 1;
+        endPage = Math.min((((page-1)/naviSize + 1) * naviSize),totalPage);
+
+        preView = beginPage != 1;
+        nextView = endPage != totalPage;
+        this.user_id = user_id;
+        this.naviSize = naviSize;
+    }
+
     public boolean isPreView() {
         return preView;
     }
@@ -97,3 +112,4 @@ public class PageHandlerDto {
                 '}';
     }
 }
+

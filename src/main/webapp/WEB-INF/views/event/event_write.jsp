@@ -22,8 +22,7 @@
         <div class="board-header">
             <input type="hidden" name="event_id" value="${eventDto.event_id}">
             <c:if test="${eventDto.event_id==null}">
-<%--            <input type="hidden" name="writer" value="${sessionScope.user.user_id }" >--%>
-            <input type="hidden" name="writer" value="admin" >
+            <input type="hidden" name="writer" value="${sessionScope.user.user_id }" >
             </c:if>
             <div class="board-header_title">
                 <h3 class="label">제목</h3>

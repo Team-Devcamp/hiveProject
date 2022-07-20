@@ -14,7 +14,9 @@
 
         <c:choose>
             <c:when test="${empty list}">
-                <span class="no-list">현재 진행중인 이벤트가 없습니다.</span>
+                <div class="no-event">
+                    <span class="no-list">현재 진행중인 이벤트가 없습니다.</span>
+                </div>
             </c:when>
             <c:when test="${!empty list}">
                 <div class="grid-event">

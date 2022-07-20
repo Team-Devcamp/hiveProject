@@ -30,9 +30,6 @@ public class EventController {
 
     @PostMapping("/modify")
     public String modifyEvent(Integer page, Integer pageSize, EventDto eventDto, Model m, HttpSession session, RedirectAttributes rattr) {
-//        String writer = (String) session.getAttribute("id");
-        String writer = "admin";
-        eventDto.setWriter(writer);
 
         try {
             int rowCnt = eventService.modifyEvent(eventDto);
@@ -54,7 +51,12 @@ public class EventController {
     }
 
     @PostMapping("/remove")
-    public String removeEvent(Integer event_id, Integer page, Integer pageSize, RedirectAttributes rattr) {
+    public String removeEvent(Integer event_id, Integer page, Integer pageSize, HttpSession session, RedirectAttributes rattr) {
+
+        if (session.getAttribute("user_email")==null || !adminCheck(session)) {
+            return "error/error";
+        }
+
         try {
             rattr.addAttribute("page", page);
             rattr.addAttribute("pageSize", pageSize);
@@ -103,10 +105,11 @@ public class EventController {
     }
 
     @GetMapping("/write")
-    public String writeEvent(Integer page, Integer pageSize, Integer event_id, Model m, HttpServletRequest request, RedirectAttributes rattr) {
-//        if(!adminLoginCheck(request)) {
-//            return "redirect:/login/login?toURL="+request.getRequestURL();
-//        }
+    public String writeEvent(Integer page, Integer pageSize, Integer event_id, Model m, HttpSession session, RedirectAttributes rattr) {
+
+        if (session.getAttribute("user_email")==null || !adminCheck(session)) {
+            return "error/error";
+        }
 
         if (event_id == null) {
             return "event/event_write.tiles";
@@ -124,6 +127,7 @@ public class EventController {
             return "redirect:/event/list";
         }
     }
+
 
 
     @GetMapping("/list")
@@ -150,9 +154,10 @@ public class EventController {
         return "event/event_list.tiles";
     }
 
-//    private boolean adminLoginCheck(HttpServletRequest request) {
-//        HttpSession session = request.getSession();
-//        return session.getAttribute("id").equals("admin@hive.com");
-//    }
+    private boolean adminCheck(HttpSession session) {
+        String admin = (String)session.getAttribute("user_email");
+        System.out.println("admin = " + admin);
+        return admin.equals("admin@hive.co.kr");
+    }
 
 }

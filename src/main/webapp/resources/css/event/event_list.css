@@ -1,0 +1,42 @@
+.main-event {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.event-list {
+    min-height: 390px;
+}
+
+.grid-event {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.event-link {
+    height: 210px;
+    width: 550px;
+    margin: 20px auto;
+    border: 1px black solid;
+}
+
+.page-nav {
+    margin-top: 30px;
+    align-self: center;
+}
+
+.no-list {
+    margin-top: 70px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+a {
+    color: black;
+    text-decoration-line: none;
+}
+
+.no-event {
+    display: flex;
+    justify-content: center;
+}

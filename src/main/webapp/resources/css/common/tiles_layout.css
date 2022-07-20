@@ -1,16 +1,11 @@
 @charset "UTF-8";
-
-/*tiles_layout*/
 @import "reset.css";
-@import "header.css";
-@import "footer.css";
-
-/* screens */
-@import "../home/home.css";
-@import "../event/event.css";
-
 
 /* tiles_layout */
+@import "footer.css";
+@import "header.css";
+
+
 
 .warp {
 	width: 100%;
@@ -23,8 +18,9 @@
 	position: fixed;
 	top: 0;
 	background-color: white;
+	border-bottom: 1px solid #ebeef2;
 	box-sizing: border-box;
-	z-index: 1;
+	z-index: 999;
 }
 
 .header{
@@ -34,6 +30,7 @@
 }
 
 .content-wrap{
+	min-height: 45vh;
 	margin-top: 200px;
 	width: 100%;
 }
@@ -46,6 +43,9 @@
 
 .footer-warp{
 	width: 100%;
+	border-top: 1px solid #ebeef2;
+	margin-top: 80px;
+	background-color: hsla(0,0%,96%,.6);
 }
 
 .footer{
@@ -53,3 +53,4 @@
 	width: 1200px;
 	margin: 0 auto;
 }
+

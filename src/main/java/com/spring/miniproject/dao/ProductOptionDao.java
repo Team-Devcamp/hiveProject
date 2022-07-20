@@ -9,7 +9,7 @@ public interface ProductOptionDao {
 
     ProductOptionDto selectProductOption(Integer option_id) throws Exception;
 
-    List<ProductOptionDto> selectAllProductOption() throws Exception;
+    List<ProductOptionDto> selectAllProductOption(Integer product_id) throws Exception;
 
     int countProductOption() throws Exception;
 

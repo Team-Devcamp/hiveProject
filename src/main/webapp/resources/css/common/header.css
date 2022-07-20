@@ -5,11 +5,17 @@ input::-webkit-search-results-decoration {
     display: none;
 }
 
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
 .header-inner {
     display: flex;
+    align-content: center;
     justify-content: space-between;
     align-items: center;
     padding: 32px 20px;
+    box-sizing: border-box;
 }
 
 .header-inner a,
@@ -18,8 +24,14 @@ input::-webkit-search-results-decoration {
     text-decoration-line: none;
 }
 
+.header-inner a:hover,
+.nav .nav-inner a:hover {
+    color: black;
+    text-decoration-line: none;
+}
+
 .header-inner .site-name {
-    font-size: 50px;
+    font-size: 60px;
     font-weight: bolder;
 }
 
@@ -28,12 +40,14 @@ input::-webkit-search-results-decoration {
     flex: 1 1 auto;
     padding: 0 12px;
     justify-content: flex-end;
+    box-sizing: border-box;
 }
 
 .header-inner .form-search > div {
     display: flex;
     border-bottom: 2px black solid;
     padding: 5px 0;
+    box-sizing: border-box;
 }
 
 .header-inner .form-search .search-input {
@@ -74,4 +88,27 @@ input::-webkit-search-results-decoration {
     font-size: 17px;
     line-height: 24px;
     font-weight: 700;
+}
+
+.nav .nav-inner a:hover {
+    color: red;
+}
+
+.btn-mypage {
+    position: relative;
+}
+
+.status-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding: 2px 2px;
+    background-color: red;
+    font-size: 8px;
+    font-weight: 700;
+    color: white;
+    border-radius: 30%;
+    top: 1px;
+    left: 13px;
 }

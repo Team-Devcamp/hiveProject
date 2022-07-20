@@ -1,12 +1,7 @@
 package com.spring.miniproject.controller;
 
-import com.spring.miniproject.domain.ProductReviewDto;
-import com.spring.miniproject.domain.CategoryDto;
-import com.spring.miniproject.domain.ProductDto;
-import com.spring.miniproject.domain.SubCategoryDto;
-import com.spring.miniproject.service.CategoryService;
-import com.spring.miniproject.service.ProductService;
-import com.spring.miniproject.service.SubCategoryService;
+import com.spring.miniproject.domain.*;
+import com.spring.miniproject.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,18 +16,14 @@ import java.util.Map;
 public class ProductController {
     @Autowired
     private ProductService productService;
-
     @Autowired
     private CategoryService categoryService;
-
     @Autowired
     private SubCategoryService subCategoryService;
-
-    @GetMapping("/detail")
-    public String ProductDetailPage() { // product_id로 select문
-
-        return "product/product_detail.tiles";
-    }
+    @Autowired
+    private ProductOptionService productOptionService;
+    @Autowired
+    private ProductOptionDetailService productOptionDetailService;
 
     // 상품 리스트 보여주기
     @GetMapping("/list")
@@ -67,6 +58,37 @@ public class ProductController {
         return "product/productList.tiles";
     }
 
+    // 상품 상세페이지로 이동
+    @GetMapping("/detail")
+    public String ProductDetailPage(@RequestParam Integer product_id, Model m) {
+
+        try {
+            ProductDto productDto = productService.selectProduct(product_id);
+            List<ProductOptionDto> productOptionList = productOptionService.
+                                                            selectAllProductOption(product_id);
+
+            Map<String, List<ProductOptionDetailDto>> optionMap = new HashMap<>();
+
+            for(int i=0; i<productOptionList.size(); i++){
+                String option_name = productOptionList.get(i).getOption_name();
+                Integer option_id = productOptionList.get(i).getOption_id();
+                System.out.println("넘어오나?"+option_name+" "+option_id);
+
+                List<ProductOptionDetailDto> productOptionDetailList =
+                        productOptionDetailService.selectSpecificProductOptionDetail(product_id,option_id);
+                optionMap.put(option_name, productOptionDetailList);
+
+                System.out.println(productOptionDetailList);
+            }
+
+            m.addAttribute("productDto", productDto);
+            m.addAttribute("product_id",product_id);
+            m.addAttribute("optionMap",optionMap);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "product/product_detail.tiles";
+    }
 
 
 

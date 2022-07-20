@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
         
-<mapper namespace="com.spring.miniproject.dao.CategoryMapper">
+<mapper namespace="com.spring.miniproject.dao.ProductOptionMapper">
 	<insert id="insertProductOption" parameterType="ProductOptionDto">
 		INSERT
 		INTO product_option (product_id, option_name)
@@ -15,9 +15,10 @@
 		WHERE option_id = #{option_id}
 	</select>
 
-	<select id="selectAllProductOption" resultType="ProductOptionDto">
+	<select id="selectAllProductOption" parameterType="int" resultType="ProductOptionDto">
 		SELECT option_id, product_id, option_name
 		FROM product_option
+		WHERE product_id = #{product_id}
 	</select>
 
 	<select id="countProductOption" resultType="int">
@@ -36,6 +37,6 @@
 	</delete>
 
 	<delete id="deleteAllProductOption">
-		DELETE FROM category
+		DELETE FROM product_option
 	</delete>
 </mapper>

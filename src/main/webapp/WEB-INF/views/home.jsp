@@ -4,15 +4,51 @@
 
 <html>
 <head>
+		<link
+				href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+				rel="stylesheet"
+				integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+				crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" href="/css/home/home.css" />
 	<title>Home</title>
 </head>
 <body>
 
 <div class="banner">
 	<div class="banner-wrap">
-		<img src="https://image.brandi.me/home/banner/bannerImage_16_1657294537.jpg">
+		<div id="carouselExampleIndicators" class="carousel carousel-dark slide" data-bs-ride="carousel">
+			<div class="carousel-indicators">
+				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+			</div>
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img src="<c:url value='/image/home/banner1.jpg'/>" class="d-block w-100" >
+				</div>
+				<div class="carousel-item">
+					<img src="<c:url value='/image/home/banner2.jpg'/>" class="d-block w-100" >
+				</div>
+				<div class="carousel-item">
+					<img src="<c:url value='/image/home/banner3.jpg'/>" class="d-block w-100" >
+				</div>
+			</div>
+			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+		</div>
 	</div>
 </div>
+
+
+
+
 
 <main class="main">
 	<div class="main-wrap">
@@ -38,7 +74,7 @@
 
 			</div>
 			<div class="btn-lank">
-				<a href="">랭킹 더보기</a>
+				<a href=""><span>랭킹 더보기</span><i class="fa-solid fa-chevron-right"></i></a>
 			</div>
 		</div>
 
@@ -57,22 +93,22 @@
 				<c:forEach begin="0" end="7">
 					<div class="item">
 						<a href="#">
-							<img src="<c:url value="/image/home/sample.jpg"/> ">
+							<img src="<c:url value='/image/home/sample.jpg'/> ">
 						</a>
 					</div>
 				</c:forEach>
 			</div>
 
 			<div class="btn-lank">
-				<a href="">신상 더보기</a>
+				<a href=""><span>신상 더보기</span><i class="fa-solid fa-chevron-right"></i></a>
 			</div>
 		</div>
 
 		<div class="event">
 			<div class="event-wrap">
 				<div class="event-link">
-					<a href="#">
-						<img src="https://image.brandi.me/home/banner/bannerImage_7_1657264214.jpg">
+					<a href="/event/list">
+						<img src="<c:url value='/image/home/event_link.gif'/> ">
 						<div>
 							<h3>이벤트 바로가기</h3>
 						</div>

@@ -4,12 +4,14 @@ import java.util.Date;
 
 public class ProductReviewDto {
     private int review_id;
+    private int purchase_id;
     private int user_id;
     private int product_id;
     private String user_email;
     private String review_content;
     private Date write_date;
     private String upload_file;
+
 
 
     public ProductReviewDto(int review_id, int user_id, int product_id, String user_email, String review_content, Date write_date, String upload_file) {
@@ -20,6 +22,29 @@ public class ProductReviewDto {
         this.review_content = review_content;
         this.write_date = write_date;
         this.upload_file = upload_file;
+    }
+
+    public ProductReviewDto(int purchase_id, int user_id, int product_id, String user_email, String review_content,String upload_file) {
+        this.user_id = user_id;
+        this.product_id = product_id;
+        this.user_email = user_email;
+        this.review_content = review_content;
+        this.upload_file = upload_file;
+        this.purchase_id = purchase_id;
+    }
+
+    public ProductReviewDto(int purchase_id, int user_id, int product_id) {
+        this.user_id = user_id;
+        this.product_id = product_id;
+        this.purchase_id = purchase_id;
+    }
+
+    public int getPurchase_id() {
+        return purchase_id;
+    }
+
+    public void setPurchase_id(int purchase_id) {
+        this.purchase_id = purchase_id;
     }
 
     public int getReview_id() {

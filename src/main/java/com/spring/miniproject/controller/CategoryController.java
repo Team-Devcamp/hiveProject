@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
-@RequestMapping("/category")
+@RequestMapping("/categorymanage")
 public class CategoryController {
 
     @Autowired
@@ -30,7 +30,7 @@ public class CategoryController {
         return "category/categoryList.tiles";
     }
 
-    // 등록된 카테고리 대분류 목록 보여주기
+    // 등록된 카테고리 목록 보여주기
     @GetMapping("/categorylist")
     @ResponseBody
     public List<CategoryDto> getAllCategoryList() {
@@ -45,14 +45,7 @@ public class CategoryController {
         return categoryList;
     }
 
-    // 카테고리 추가하는 form 보여주기
-    @GetMapping("/add")
-    public String addCategory(Model m) {
-        m.addAttribute("mode", "new");
-        return "category/addCategory.tiles";
-    }
-
-    // 작성한 form을 DB에 추가하기
+    // 카테고리 DB에 추가
     @PostMapping("/add")
     @ResponseBody
     public ResponseEntity<String> addCategory(@RequestBody CategoryDto categoryDto) {
@@ -111,11 +104,10 @@ public class CategoryController {
 
 
     /*
-    하위 카테고리 등록, 수정, 삭제
+    서브 카테고리 등록, 수정, 삭제
     ex) 상의 - 셔츠, 반팔티, 맨투맨
         하의 - 청바지, 반바지
     */
-
 
     // 서브카테고리 목록 보여주기
     @GetMapping("/subcategorylist")
@@ -172,6 +164,7 @@ public class CategoryController {
 
     }
 
+    // 서브카테고리 삭제
     @PostMapping("/deletesub")
     @ResponseBody
     public ResponseEntity<String> deleteSubCategory(@RequestBody Integer sub_category_id) {

@@ -1,0 +1,387 @@
+@charset "utf-8";
+
+.wrap {
+    width: 100%;
+}
+h2 {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    margin : 30px;
+}
+
+/* product-list */
+
+.product-list {
+    width: 90%;
+    min-width: 1200px;
+}
+
+#product-register {
+    margin: 10px;
+}
+
+.head {
+    display: block;
+    border-top: 2px solid red;
+    border-bottom: 2px solid red;
+    overflow: hidden;
+    width: 100%;
+}
+.head div {
+    padding: 12px 12px;
+    box-sizing: border-box;
+    text-align: center;
+    float: left;
+    width: 10%;
+}
+.head .product-id {
+    width: 10%;
+}
+.head .product-price {
+    width: 6%;
+}
+.head .product-title {
+    width: 30%;
+}
+.head .category-id {
+    width: 15%;
+}
+.head .sub-category-id {
+    width: 15%;
+}
+
+.product-wrap {
+    border-bottom: 1px solid black;
+    overflow: hidden;
+    width: 100%;
+}
+
+.product {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    float: left;
+    width: 87%;
+    box-sizing: border-box;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    cursor : pointer;
+}
+.product > div {
+    text-align: center;
+}
+
+.product .product-id {
+    float: left;
+    width: 11%;
+}
+
+.product .product-name {
+    float: left;
+    width: 12.5%;
+}
+
+.product .product-title {
+    float: left;
+    width: 33.5%;
+}
+
+.product .product-price {
+    float: left;
+    width: 8%;
+}
+
+.product .category-id {
+    float: left;
+    width: 15%;
+}
+
+.product .sub-category-id {
+    float: left;
+    width: 20%;
+}
+
+.modify-product-btn, .delete-product-btn{
+    float: left;
+    margin-top: 6px;
+}
+
+.modify-product-btn {
+    margin-right: 5px;
+}
+
+    /* product-options */
+.product-options {
+    width: 100%;
+    overflow: hidden;
+    margin-top : 30px;
+}
+.product-options #product-option-form {
+    float: left;
+    width: 33.33%;
+    margin-right: 10px;
+}
+.product-options #product-option-form .option-head {
+    overflow: hidden;
+    width: 100%;
+    border-top: 2px solid green;
+    border-bottom: 2px solid green;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.product-options #product-option-form .option-head div {
+    float: left;
+    text-align: center;
+}
+.product-options #product-option-form .option-head .product-id {
+    width: 19%;
+}
+.product-options #product-option-form .option-head .option-id {
+    width: 28%;
+}
+.product-options #product-option-form .option-head .option-name {
+    width: 22%;
+}
+
+
+.product-options #product-option-form .product-option-list {
+    overflow: hidden;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.product-options #product-option-form .product-option-list .option-wrap {
+    overflow: hidden;
+    margin-bottom: 7px;
+    border-bottom: 1px solid black;
+}
+
+.product-options #product-option-form .product-option-list .option-wrap .option {
+    width: 75%;
+    text-align: center;
+    overflow: hidden;
+    float: left;
+    margin-top: 4px;
+}
+.product-options #product-option-form .product-option-list .option-wrap > button {
+    margin-bottom: 10px;
+}
+.product-options #product-option-form .product-option-list .option-wrap .modify-option-btn {
+    margin-right: 5px;
+}
+.product-options #product-option-form .product-option-list .option-wrap .option {
+    cursor: pointer;
+}
+.product-options #product-option-form .product-option-list .option-wrap .option div {
+    text-align: center;
+    float: left;
+}
+.product-options #product-option-form .product-option-list .option-wrap .option .product-id {
+    width: 25%;
+}
+.product-options #product-option-form .product-option-list .option-wrap .option .option-id {
+    width: 35%;
+}
+.product-options #product-option-form .product-option-list .option-wrap .option .option-name {
+    width: 33%;
+}
+
+.product-options #product-option-form .add-option {
+
+}
+
+.product-options #product-option-form #product-option-modify-form {
+    margin: 10px;
+}
+
+    /* product-option-detail */
+
+.product-options #product-option-detail-form {
+    float: left;
+    width: 45%;
+}
+.product-options #product-option-detail-form .option-detail-head {
+    overflow: hidden;
+    width: 100%;
+    border-top: 2px solid blue;
+    border-bottom: 2px solid blue;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.product-options #product-option-detail-form .option-detail-head div {
+    float: left;
+    text-align: center;
+}
+.product-options #product-option-detail-form .option-detail-head .product-id {
+    width: 16%;
+}
+.product-options #product-option-detail-form .option-detail-head .option-id {
+    width: 26%;
+}
+.product-options #product-option-detail-form .option-detail-head .option-detail-id {
+    width: 20%;
+}
+.product-options #product-option-detail-form .option-detail-head .option-detail-name {
+    width: 20%;
+}
+
+/* product-option-detail-list */
+.product-options #product-option-detail-form .product-option-detail-list .option-detail-wrap {
+    border-bottom: 1px solid black;
+    margin-bottom: 7px;
+}
+.product-options #product-option-detail-form .product-option-detail-list .option-detail-wrap .option-detail {
+    overflow: hidden;
+    width: 82%;
+    float: left;
+    margin-top: 4px;
+}
+.product-options #product-option-detail-form .product-option-detail-list .option-detail-wrap .option-detail div {
+    float: left;
+    text-align: center;
+}
+
+.product-options #product-option-detail-form .product-option-detail-list .option-detail-wrap .option-detail .product-id {
+    width: 19%;
+}
+.product-options #product-option-detail-form .product-option-detail-list .option-detail-wrap .option-detail .option-id {
+    width: 31%;
+}
+.product-options #product-option-detail-form .product-option-detail-list .option-detail-wrap .option-detail .option-detail-id {
+    width: 26%;
+}
+.product-options #product-option-detail-form .product-option-detail-list .option-detail-wrap .option-detail .option-detail-name {
+    width: 23.5%;
+}
+
+.product-options #product-option-detail-form .product-option-detail-list .option-detail-wrap > button {
+    margin-bottom: 10px;
+}
+.product-options #product-option-detail-form .product-option-detail-list .option-detail-wrap .modify-option-detail-btn {
+    margin-right: 5px;
+}
+
+.product-options #product-option-detail-form .add-detail-option {
+
+}
+
+.product-options #product-option-detail-form #product-option-detail-modify-form {
+    margin: 10px;
+}
+
+/* add-detail-option */
+.add-detail-option .option-id {
+    width: 180px;
+}
+
+
+
+/* category */
+.category {
+    width: 100%;
+    overflow: hidden;
+}
+.category .category-wrap {
+    width: 40%;
+    float: left;
+    border-bottom: 2px solid green;
+}
+
+.category .category-wrap .category-head {
+    overflow: hidden;
+    border-top: 2px solid green;
+    border-bottom: 2px solid green;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.category .category-wrap .category-head .category-id {
+    float: left;
+    width: 35%;
+}
+.category .category-wrap .category-head .category-name {
+    float: left;
+    width: 35%;
+}
+.category .category-wrap .category-list ul .category-info {
+    padding: 10px 0;
+    border-bottom: 1px solid black;
+}
+.category .category-wrap .category-list ul .category-info .category-id {
+    display: inline-block;
+    width: 34%;
+    text-align: center;
+}
+.category .category-wrap .category-list ul .category-info .category-name {
+    display: inline-block;
+    width: 34.5%;
+    text-align: center;
+}
+
+.category .category-wrap .input-category-form {
+    padding: 10px;
+}
+
+
+.category #modify-category-form {
+    margin: 10px 10px 0 10px;
+}
+
+
+/* sub-category-wrap */
+.category .sub-category-wrap {
+    width: 54%;
+    float: right;
+    margin-left: 15px;
+    border-bottom: 2px solid blue;
+}
+
+.category .sub-category-wrap .sub-category-head {
+    overflow: hidden;
+    border-top: 2px solid blue;
+    border-bottom: 2px solid blue;
+    padding: 10px 0;
+    text-align: center;
+}
+.category .sub-category-wrap .sub-category-head .category-id {
+    float: left;
+    width: 25%;
+}
+.category .sub-category-wrap .sub-category-head .sub-category-id {
+    float: left;
+    width: 25%;
+}
+.category .sub-category-wrap .sub-category-head .sub-category-name {
+    float: left;
+    width: 25%;
+}
+.category .sub-category-wrap .sub-category-list ul .sub-category-info {
+    padding: 10px 0;
+    border-bottom: 1px solid black;
+}
+
+.category .sub-category-wrap .sub-category-list ul .sub-category-info .category-id {
+    display: inline-block;
+    width: 24%;
+    text-align: center;
+}
+.category .sub-category-wrap .sub-category-list ul .sub-category-info .sub-category-id {
+    display: inline-block;
+    width: 24%;
+    text-align: center;
+}
+.category .sub-category-wrap .sub-category-list ul .sub-category-info .sub-category-name {
+    display: inline-block;
+    width: 24.5%;
+    text-align: center;
+}
+.category .sub-category-wrap .input-sub-category-form {
+    padding: 10px;
+}
+.category #modify-sub-category-form {
+    margin: 10px 10px 0 10px;
+}

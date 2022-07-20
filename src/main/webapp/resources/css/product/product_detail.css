@@ -405,7 +405,7 @@ input[type="number"] {
 }
 
 .cont_area{
-    text-align:center;
+    /*text-align:center;*/
     margin-top: 70px;
 }
 
@@ -421,7 +421,21 @@ input[type="number"] {
     height:1000px;
     line-height:100px;
 }
-
+.review-wrap{
+    display: flex;
+    justify-content: center;
+    margin-top: 150px;
+}
+#tab1, #tab4>p{
+    display: flex;
+    justify-content: center;
+}
+#tab4 p{
+    margin-top: 150px;
+}
+.qna-paging{
+    text-align: center;
+}
 
 .tab_menu .list li.is_on{
     border-bottom: 2px solid #444;

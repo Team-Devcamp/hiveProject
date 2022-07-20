@@ -60,7 +60,7 @@ function qnaList(){
                 s+='<tr class="tit hidden" >';
                 s+='<td colSpan="6">';
                 s+='<div class="qna-answer">';
-                s+='<div class="q">';
+                s+='<div class="q" style="padding-top:12px;">';
                 s+='<em>'+items.qna_content+'</em></div>';
                 s+='<div class="a">';
                 s+='<em>답변</em>';

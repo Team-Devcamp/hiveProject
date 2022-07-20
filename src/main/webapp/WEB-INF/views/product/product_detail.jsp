@@ -282,25 +282,27 @@
 
             <%--탭2 상품리뷰--%>
             <div id="tab2" class="cont">
-                <%--리뷰샘플css작업해놓은것--%>
-                <div class="profile clearfix">
-                    <img src="/image/product/product_detail/profile_image.png" alt="profile-image" class="profile-user" />
-                    <div class="profile-content">
-                        <h1>User Email ***</h1>
-                        <strong>
-                            option / color / size
-                        </strong>
-                        <p>
-                            오버핏인게 너무 이뻐요! 회색도 추가구매 해야될 것 같아요. 무난해서 평상시에 입기 좋을것같네요.
-                        </p>
+
+                <div class="review-wrap">
+                    <%--리뷰샘플css작업해놓은것--%>
+                    <div class="profile clearfix">
+                        <img src="/image/product/product_detail/profile_image.png" alt="profile-image" class="profile-user" />
+                        <div class="profile-content">
+                            <h1>User Email ***</h1>
+                            <strong>
+                                option / color / size
+                            </strong>
+                            <p>
+                                오버핏인게 너무 이뻐요! 회색도 추가구매 해야될 것 같아요. 무난해서 평상시에 입기 좋을것같네요.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!--동적 리뷰 리스트 -->
+                    <div class="product-review" id="product-review">
                     </div>
                 </div>
-
-                <!--동적 리뷰 리스트 -->
-                <div class="product-review" id="product-review">
-                </div>
             </div>
-
 
             <%--탭3 qna 게시판--%>
             <div id="tab3" class="cont">
@@ -355,7 +357,7 @@
                                 <th>공개여부</th>
                                 <th>작성자</th>
                                 <th>등록일</th>
-                                <th>문의상태</th>
+                                <th>답변상태</th>
                             </tr>
 
                             </tbody>

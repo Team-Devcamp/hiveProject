@@ -39,7 +39,7 @@
 
     <div class="button">
         <c:if test="${sessionScope.user_email == 'admin@hive.co.kr'}">
-            <button class="btn btn_update" onclick="location.href='/notice/update?notice_id=${data.notice_id}'">수정하기
+            <button class="btn btn_update" onclick="location.href='/notice/updateView?notice_id=${data.notice_id}'">수정하기
             </button>
             <button class="btn btn_delete">삭제하기</button>
         </c:if>
@@ -56,7 +56,7 @@
                 if (result) {
                     location.replace("/notice/delete?notice_id=${data.notice_id}");
                 } else {
-
+                    return;
                 }
             })
         });

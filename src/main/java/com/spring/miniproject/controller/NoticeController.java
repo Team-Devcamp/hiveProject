@@ -66,15 +66,15 @@ public class NoticeController {
         return "redirect:/notice/list";
     }
 
-    // 공지사항 게시글 수정
-    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    // 공지사항 수정 화면
+    @RequestMapping(value = "/updateView", method = RequestMethod.GET)
     public String noticeUpdate(int notice_id, Model m) throws Exception {
         NoticeDto data = noticeService.selectDetail(notice_id);
         m.addAttribute("data", data);
         return "noticeUpdate.tiles";
     }
 
-    // 공지사항 게시글 POST
+    // 공지사항 수정 POST
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String updateNotice(NoticeDto noticeDto) throws Exception {
         noticeService.updateNotice(noticeDto);

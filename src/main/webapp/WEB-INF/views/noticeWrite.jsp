@@ -47,15 +47,11 @@
 <script type="text/javascript">
     $(function () {
         $(".btn_insert").click(function () {
+            if (!confirm('정말 등록하시겠습니까?')) return false;
             let form = $("#form");
-            let result = confirm('정말 등록하시겠습니까?');
-            if (result) {
-                form.attr("action", "<c:url value='/notice/insert'/>");
-                form.submit();
-            } else {
-                return;
-            }
-        })
+            form.attr("action", "<c:url value='/notice/insert'/>");
+            form.submit();
+        });
     });
 </script>
 

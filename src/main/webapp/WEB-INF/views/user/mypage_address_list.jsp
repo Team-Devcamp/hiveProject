@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>주소록</title>
-    <link rel="stylesheet" href="<c:url value='/css/user/mypage_purchase_style.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/user/mypage_address_list_style.css'/>">
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script>
         $(document).ready(function (){
@@ -19,6 +18,9 @@
             $("#user-profile-info").mouseover(function (){$(this).css({"color":"black","font-weight":"bold"})});
             $("#user-profile-info").mouseout(function (){$(this).css("color","rgb(207, 210, 215)")});
 
+            $("#add-address").on("click",function (){
+                var popup = window.open('/mypage/address/insert', '배송지 입력', 'width=700px,height=800px,scrollbars=yes');
+            }) ;
 
             var success_msg = "${success_msg}";
             var error_msg = "${error_msg}";
@@ -45,8 +47,8 @@
             <div class="menu-list">
                 <p>쇼핑 정보</p>
                 <ul>
-                    <a href="#"><li id="pur-history">구매 내역</li></a>
-                    <a href="#"><li id="inter-items">관심 상품</li></a>
+                    <a href="<c:url value='/mypage/purchase'/>"><li id="pur-history">구매 내역</li></a>
+                    <a href="#" onclick="alert('준비중입니다.')"><li id="inter-items">관심 상품</li></a>
                 </ul>
                 <p>내 정보</p>
                 <ul>
@@ -55,42 +57,33 @@
                 </ul>
             </div>
             <div class="profile-info">
-                <p>작성 가능한 리뷰</p><hr>
-                <c:forEach var="list" items="${purchase_list}" varStatus="status">
+                <p>주소록<input type="button" id="add-address" value="+새 배송지 추가"></p>
                 <div class="deliver-contents">
-                        <div id="product-img"><p><img src="<c:url value='${list.product_thumb_nail}'/>" width="100px;" height="100px"></p>
-                    <div id="purchase-detail">
-                    <p>
-                        <span id="pur-confirm">구입일 <fmt:formatDate value="${list.payment_end_date}" pattern="yyyy-MM-dd hh:mm"/></span><br>
-                        <span id="pur-detail">${list.product_title}</span><br>
-                            <a href="#" onclick="window.open('<c:url value='/mypage/purchase/review/insert?purchase_id=${list.purchase_id}&user_id=${list.user_id}&product_id=${list.product_id}'/>','리뷰 등록', 'width=700px,height=1200px,scrollbars=yes');">
-                                <input type="button" id="write-btn" value="리뷰작성"></a>
-                        <a href="#" onclick="window.open('<c:url value='/mypage/purchase/review/modify?purchase_id=${list.purchase_id}&user_id=${list.user_id}&product_id=${list.product_id}'/>','리뷰 수정', 'width=700px,height=1200px,scrollbars=yes');">
-                            <input type="button" id="modify-btn" value="리뷰수정"></a>
-                        <a href="<c:url value='/mypage/purchase/review/delete?purchase_id=${list.purchase_id}&user_id=${list.user_id}&product_id=${list.product_id}'/>" onclick="return confirm('삭제하시면 복구가 불가능합니다. 삭제 하시겠습니까?')">
-                            <input type="button" id="delete-btn" value="리뷰삭제"></a>
-                        <h6 id="end-line"></h6>
+                    <c:forEach items="${address_list}" var="list">
+                        <p><span id="user-name">${list.receiver_name}</span><br>
+                            <span id="user-phone">${list.receiver_phone}</span><br>
+                            <span id="user-address">(${list.zipcode})${list.address} ${list.address_detail}</span>
+                            <a href="#" onclick="window.open('<c:url value='/mypage/address/modify?address_id=${list.address_id}'/>', '배송지 수정', 'width=700px,height=800px,scrollbars=yes');">
+                                <input type="button" id="modify-btn" value="수정"></a>
+                            <a href="<c:url value='/mypage/address/delete?address_id=${list.address_id}'/>" onclick="return confirm('주소를 삭제하시겠습니까? 삭제 후 복구가 불가능합니다.')">
+                                <input type="button" id="delete-btn" value="삭제"><br></a>
+                        <h6 class="end-line"></h6>
                         </p>
-                    </div>
-                    </div>
-                    </div>
-                </c:forEach>
+                    </c:forEach>
+                </div>
                 <div class="paging">
                     <ul>
                         <c:if test="${paging.preView eq 'true'}">
-                            <a href="<c:url value="/mypage/purchase?page=${paging.beginPage-1}"/>">&lt;</a>
+                            <a href="<c:url value="/mypage/address/list?page=${paging.beginPage-1}"/>">&lt;</a>
                         </c:if>
                         <c:forEach var="i" begin="${paging.beginPage}" end="${paging.endPage}">
-                            <a href="<c:url value='/mypage/purchase?page=${i}'/>"><li>${i}</li></a>
+                            <a href="<c:url value='/mypage/address/list?page=${i}'/>"><li>${i}</li></a>
                         </c:forEach>
                         <c:if test="${paging.nextView eq 'true'}">
-                            <a href="<c:url value="/mypage/purchase?page=${paging.endPage+1}"/>">&gt;</a>
+                            <a href="<c:url value="/mypage/address/list?page=${paging.endPage+1}"/>">&gt;</a>
                         </c:if>
                     </ul>
                 </div>
-                </div>
-
-
             </div>
         </div>
         <footer></footer>

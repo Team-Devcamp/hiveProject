@@ -36,6 +36,8 @@
             if(error_msg_social != null && error_msg_social != ""){
                 alert(error_msg_social);
             }
+
+
         });
     </script>
 </head>
@@ -58,7 +60,7 @@
                 </form>
             </div>
             <div class="menu">
-                <p><span><a href="#">아이디 찾기</a></span><span><a href="<c:url value='/register/findPassword'/>">비밀번호 찾기</a></span><span><a href="<c:url value='/register'/>">회원가입</a></span></p>
+                <p><span><a href="<c:url value='/register/findId'/>">아이디 찾기</a></span><span><a href="<c:url value='/register/findPassword'/>">비밀번호 찾기</a></span><span><a href="<c:url value='/register'/>">회원가입</a></span></p>
             </div>
             <div class="social">
                 <span>SNS 계정으로 로그인</span>

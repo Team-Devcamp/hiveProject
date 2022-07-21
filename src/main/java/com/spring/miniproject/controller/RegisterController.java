@@ -5,21 +5,16 @@ import com.spring.miniproject.service.FindPasswordService;
 import com.spring.miniproject.service.MailCheckService;
 import com.spring.miniproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @Controller
@@ -36,9 +31,10 @@ public class RegisterController {
     @GetMapping("/register")
     public String registerUser(Model model){
         model.addAttribute("userDto",new UserDto());
-        return "register_form.tiles";
+        return "user/register_form.tiles";
     }
 
+    // 회원 가입 메서드(유효성 검사 및, 비밀번호 암호화 기능 포함(BCryptPasswordEncoder 사용)
     @PostMapping("/register")
     public String registerUser(@Valid UserDto userDto, BindingResult bindingResult,String check_email,Model model){
 
@@ -46,7 +42,7 @@ public class RegisterController {
             model.addAttribute("email_check",check_email);
         }
         if(bindingResult.hasErrors()){
-            return "register_form.tiles";
+            return "user/register_form.tiles";
         }else{
             // 비밀번호 암호화 인코딩
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -58,6 +54,7 @@ public class RegisterController {
         return "redirect:/";
     }
 
+    // 회원 탈퇴 메서드
     @ResponseBody
     @RequestMapping("/register/delete")
     public String deleteUser(String user_email,HttpSession session){
@@ -72,10 +69,11 @@ public class RegisterController {
 
     @RequestMapping("register/mailCheckPop")
     public String mailCheckPop(){
-        return "email_check_form";
+        return "user/email_check_form";
     }
 
-    @RequestMapping(value = "register/emailCheck", method = RequestMethod.GET)
+    // 이메일 인증 메서드
+    @GetMapping( "register/emailCheck")
     @ResponseBody
     public String mailCheck(String user_email) throws Exception{
         UserDto userDto = userService.selectOneUser(user_email);
@@ -87,10 +85,11 @@ public class RegisterController {
 
     @RequestMapping ("register/findPassword")
     public String findPassword(){
-        return "find_pwd_form";
+        return "user/find_pwd_form";
     }
 
-    @RequestMapping(value = "register/findPassword/check", method = RequestMethod.GET)
+    // 비밀번호 찾기 메서드(이메일로 user를 조회 후 해당하는 회원이 있을때만 통과시킨다)
+    @GetMapping("register/findPassword/check")
     @ResponseBody
     public String findPassword(String user_email) throws Exception{
         UserDto userDto = userService.selectOneUser(user_email);
@@ -102,6 +101,28 @@ public class RegisterController {
 
     }
 
+    @RequestMapping("/register/findId")
+    public String findId(){
+        return "/user/find_id_form";
+    }
+
+    @ResponseBody
+    @PostMapping("/register/findId/save")
+    public String findIdSave(String user_name,String user_phone){
+        System.out.println(user_name + " " + user_phone);
+        Map map = new HashMap();
+        map.put("user_name",user_name);
+        map.put("user_phone",user_phone);
+        String user_email = userService.selectUserEmail(map);
+        if(user_email != null && user_email != ""){
+            return user_email;
+        }else{
+            return "fail";
+        }
+    }
+
+
+    // 비밀번호 찾기 메서드(이메일 인증을 통과하면 임시비밀번호를 발급해준다)
     @RequestMapping("register/findPassword/save")
     @ResponseBody
     public String findPasswordSave(String user_email) throws Exception{

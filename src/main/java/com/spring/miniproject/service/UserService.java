@@ -26,4 +26,7 @@ public interface UserService {
 	public Integer selectUserPurchaseCnt(Integer user_id);
 	public int insertUserProductReview(ProductReviewDto productReviewDto);
 	public int deleteUserProductReview(ProductReviewDto productReviewDto);
+	public List<ProductReviewDto> selectUserProductReview(PageHandlerDto pageHandlerDto);
+	public int updateUserProductReview(ProductReviewDto productReviewDto);
+	public String selectUserReviewImage(Map map);
 }

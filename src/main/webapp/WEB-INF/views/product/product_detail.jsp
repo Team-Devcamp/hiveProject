@@ -110,9 +110,6 @@ contentType="text/html;charset=UTF-8" language="java" %> <%--<!DOCTYPE html>
               ${productDto.product_name}
             </p>
 
-
-
-
               <div class="form-options">
                 <div class="form-select-wrap">
                   <%--옵션번호도 받아올지 고민--%>
@@ -147,7 +144,6 @@ contentType="text/html;charset=UTF-8" language="java" %> <%--<!DOCTYPE html>
                   </dt>
                   <dd class="hidden">찜</dd>
               </div>
-
 
               <div class="product-detail-form">
                 <dl class="product-detail">
@@ -196,37 +192,32 @@ contentType="text/html;charset=UTF-8" language="java" %> <%--<!DOCTYPE html>
                     </dd>
                   </div>
                 </dl>
-
               </div>
 
 
               <%-- 선택한상품 리스트--%>
-          <form action="/purchase/page" method="POST" class="product-form" id="product_form">
-
-              <div class="product-detail-list-container"></div>
-
-              <div>
-                <dl class="total-price-wrap">
-                  <dt class="total-price-text">결제 총 금액</dt>
-                  <dd class="total-price">
-                    <strong id="total_price">0</strong>원
-                  </dd>
-                </dl>
-              </div>
-              <div>
-                <button type="button" class="form-submit">장바구니</button>
-                <br />
-                <button type="button" id="orderBtn" class="form-submit">
-                  주문하기
-                </button>
-              </div>
-
-          </form>
-
-
+              <form action="/purchase/page" method="POST" class="product-form" id="product_form">
+                  <div class="product-detail-list-container"></div>
+                      <div>
+                        <dl class="total-price-wrap">
+                          <dt class="total-price-text">결제 총 금액</dt>
+                          <dd class="total-price">
+                            <strong id="total_price">0</strong>원
+                          </dd>
+                        </dl>
+                      </div>
+                      <div>
+                        <button type="button" class="form-submit">장바구니</button>
+                        <br />
+                        <button type="button" id="orderBtn" class="form-submit">
+                          주문하기
+                        </button>
+                      </div>
+              </form>
           </div>
         </section>
       </div>
+
 
       <%--탭--%>
       <div class="tab_menu">

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Renee
@@ -29,11 +30,26 @@
 
         <h2>주문 상품 정보</h2>
         <div class="product-info">
-            주문상품 정보들 보여주기
-            이미지 상품명 옵션1 옵션2 수량 가격
+
+            <c:forEach items="${list}" var="items">
+            <div class="product-item">
+                <ul>
+                    <li><img src="/product/product_detail/profile_image.png"></li>
+                    <li>
+                        <span>${product_title}</span>
+                        <span>${items.option_color}/${items.option_size}</span>
+                        <span>${items.qty}개</span>
+                    </li>
+                    <li><span>${items.sub_total_price}</span>원</li>
+                </ul>
+            </div>
+
+            </c:forEach>
+
+
+
         </div>
 
-        !!!!!!!!!!!<br><br>
 
         <%--주문자정보관련div--%>
         <div class="product-buyer-wrap">
@@ -52,12 +68,11 @@
                             <input type="text" name="user_phone" id="b_tel1">-
                             <input type="text" name="user_phone" id="b_tel2">-
                             <input type="text" name="user_phone" id="b_tel3">
-                            <input type="tel" required>
                         </dd>
                     </dl>
                     <dt>이메일</dt>
                     <dd>
-                        <input type="email" required>
+                        <input type="text" id="user_email" required>
                     </dd>
                 </div>
 
@@ -73,7 +88,6 @@
                             <input type="text" name="user_phone" id="d_tel1" placeholder="010">-
                             <input type="text" name="user_phone" id="d_tel2" >-
                             <input type="text" name="user_phone" id="d_tel3">
-                            <input type="tel" required>
                         </dd>
                         <dt>배송주소</dt>
                         <dd>
@@ -84,12 +98,12 @@
                         </dd>
                         <dt>배송메모</dt>
                         <dd>
-                            <input type="text" placeholder="배송시 요청사항을 선택해주세요">
+                            <input type="text" id="request_message" placeholder="배송시 요청사항을 선택해주세요">
                         </dd>
                     </dl>
 
                 </div>
-                <button type="submit">구매</button>
+
             </form>
         </div>
 
@@ -100,17 +114,17 @@
                 <div class="total-price">
                     <dl>
                         <dt>총 상품금액</dt>
-                        <dd>원</dd>
+                        <dd><span>${total_price}원</span></dd>
                         <dt>배송비</dt>
-                        <dd>원</dd>
+                        <dd><span>0</span>원</dd>
                         <dt>총 결제예상 금액</dt>
-                        <dd>원</dd>
+                        <dd><span>${total_price}</span>원</dd>
                     </dl>
                 </div>
 
                 <h2>결제수단</h2>
                 <div class="payment-method">
-                    <input type="radio" checked value="카카오페이">
+                    <input type="radio" checked id="pay-method" value="카카오페이">&nbsp카카오페이</input>
                 </div>
             </div>
 
@@ -119,29 +133,39 @@
                 <div class="agreement">
                     <div class="agreement-text">
                         <dl>
+                            <div>
                             <dt>하이버 약관 동의</dt>
                             <dd>
                                 <button type="button">내용보기</button>
                             </dd>
+                            </div>
+                            <div>
                             <dt>개인정보수집 및 이용에 대한 안내</dt>
                             <dd>
                                 <button type="button">내용보기</button>
                             </dd>
+                            </div>
+                            <div>
                             <dt>구매조건 및 개인정보 제3자 제공</dt>
                             <dd>
                                 <button type="button">내용보기</button>
                             </dd>
+                            </div>
                         </dl>
                     </div>
                     <strong>
-                        위 상품의 구매조건을 확인하였으며, 결제 및 개인 정보 제 3자 제공에 모두 동의합니다.
+                        - 위 상품의 구매조건을 확인하였으며, 결제 및 개인 정보 제 3자 제공에 모두 동의합니다.
                     </strong>
                 </div>
             </div>
 
         </div>
 
-    </div>
+        <div class="purchase-btn">
+            <button type="submit" id="purchaseBtn">주문하기</button>
+        </div>
+
+</div>
 
 
 

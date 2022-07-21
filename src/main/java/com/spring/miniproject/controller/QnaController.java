@@ -22,11 +22,10 @@ public class QnaController {
     private QnaService qnaService;
 
     @PostMapping("/write")
-    @ResponseBody
     public ResponseEntity<String> insertQna(@RequestBody QnaDto qnaDto, @RequestParam int product_id, HttpSession session){
-//      String writer = (String)session.getAttribute("id");
+      String writer = (String)session.getAttribute("user_email");
         qnaDto.setProduct_id(product_id);
-        qnaDto.setWriter("asdf@gmail.com");
+        qnaDto.setWriter(writer);
 
         try {
             int rowCnt = qnaService.insertQna(qnaDto);

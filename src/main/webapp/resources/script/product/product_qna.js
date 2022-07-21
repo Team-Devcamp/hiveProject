@@ -149,6 +149,7 @@ function qnaPaging(pg) {
 
 /* qna 등록 토글*/
 $(".qna .qna-info #regQnaBtn").click(function(){
+
     $('#qna_container').toggleClass("hidden");
 });
 
@@ -171,7 +172,6 @@ $('#regQnaBtn').on('click',function(){
 /* qna 등록 */
 $('#qnaSubmitBtn').click(function(){
 
-    $('#qna_container').toggleClass("hidden");
 
     if(!$('#qna_form #qna_title').val()){
         alert("제목을 입력하세요");
@@ -198,6 +198,7 @@ $('#qnaSubmitBtn').click(function(){
                 "qna_content":qna_content
             }),
             success: function(data){
+                alert("빠른 답변 드리겠습니다.");
                 qnaList();
             },
             error:function(err){
@@ -205,6 +206,7 @@ $('#qnaSubmitBtn').click(function(){
             }
         });
 
+        $('#qna_container').toggleClass("hidden");
     }
 });
 

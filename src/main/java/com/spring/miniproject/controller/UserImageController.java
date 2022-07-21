@@ -18,16 +18,17 @@ public class UserImageController {
     @Autowired
     private UserService userService;
 
-
+    //이미지 업로드 경로
     private String uploadPath = "C:\\Users\\ch457\\IdeaProjects\\hiveProject\\src\\main\\webapp\\resources\\image\\user\\profile";
 
 
     @RequestMapping("/mypage/image/add")
     public String addUserImage(){
-        return "profile_image_upload";
+        return "user/profile_image_upload";
     }
 
 
+    // 마이페이지 프로필 이미지 업로드 메서드
     @ResponseBody
     @PostMapping("/mypage/image/upload")
     public String uploadImage(MultipartFile file, String user_email)throws Exception{
@@ -51,6 +52,7 @@ public class UserImageController {
 
     }
 
+    // 마이페이지 이미지 삭제 메서드
     @ResponseBody
     @PostMapping("/mypage/image/delete")
     public String deleteImage(String user_email){

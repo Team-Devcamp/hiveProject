@@ -2,24 +2,101 @@
 @import "../common/reset.css";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
-body {font-family: 'Noto Sans KR', sans-serif;}
-a {text-decoration: none; color:inherit;}
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+}
 
-.wrap{width: 100%; height:100%; overflow: hidden; margin: 0 auto;}
-.wrap .content {margin: 0 auto; width: 620px; height: 600px;}
-.wrap .nav {overflow: hidden;  font-size: 25px; margin-top: 30px;}
+a {
+    text-decoration: none;
+    color:inherit;
+}
 
-.wrap .arrow {display: flex;}
-.wrap .tit { margin-left: 232px; font-weight: bold; position: relative;}
-.wrap .txt {margin-top: 60px; font-size: 18px;}
+.wrap{
+    width: 100%;
+    height:100%;
+    margin-top: 20px;
+    overflow: hidden;
+    margin: 0 auto;
+}
 
+.wrap .content {
+    margin: 0 auto;
+    width: 620px;
+    height: 600px;
+}
 
-.find-id-form input {border-radius: 10px; width: 500px; height: 42px; margin-top: 15px; 
-                        position: relative; border: 1px solid rgb(228, 230, 233);}
-.find-id-form input::placeholder{padding-left: 10px;}
-.find-id-form .id-check-btn {border-radius: 10px; width: 102px; height: 44px;
-                                position: absolute; top: 131px; background: rgb(207, 210, 215); margin-left: 10px; border:none;}
-.find-id-form .id-check-btn[value="인증 요청"]{font-size: 16px; color: white;}
-.input-box {margin: 0 auto;}
-.submit-btn {margin-top: 60px; width: 620px; height: 55px; border-radius: 10px;}
-.submit-btn[value="아이디 확인"]{font-size: 16px; color: white; background: rgb(207, 210, 215); border:none}
+.wrap .nav {
+    overflow: hidden;
+    font-size: 25px;
+    margin-top: 30px;
+}
+
+.wrap .arrow{
+    position: relative;
+}
+
+.wrap .arrow .tit {
+    margin-left: 260px;
+    font-weight: bold;
+    position:absolute;
+    top: 0px;
+    left: -20px;
+}
+
+.wrap .txt {
+    margin-top: 60px;
+    font-size: 18px;
+}
+
+.wrap .text {
+    position: relative;
+}
+
+.email-chk-form .input-box-id #user-phone {
+    border-radius: 10px;
+    width: 615px;
+    height: 42px;
+    margin-top: 10px;
+    border: 1px solid rgb(228, 230, 233);
+}
+
+.email-chk-form .input-box-id #user-name {
+    border-radius: 10px;
+    width: 615px;
+    height: 42px;
+    margin-top: 10px;
+    position: relative;
+    border: 1px solid rgb(228, 230, 233);
+}
+
+.email-chk-form .input-box-id .txt {
+    margin-top: 20px;
+    display: block;
+}
+
+.email-chk-form input::placeholder{
+    padding-left: 10px;
+}
+
+.input-box {
+    margin: 0 auto;
+}
+
+#submit-btn {
+    margin-top: 50px;
+    width: 620px;
+    height: 55px;
+    border-radius: 10px;
+}
+
+#submit-btn[value="아이디 찾기"]{
+    font-size: 16px;
+    color: white;
+    background: black;
+    border:none
+}
+
+#result{
+    font-weight: bold;
+    margin-top: 20px;
+}

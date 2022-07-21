@@ -23,9 +23,24 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       <div class="nav-mine">
         <a class="btn-cart" href="#">
           <i class="fa-solid fa-cart-shopping"></i>
+
         </a>
-        <a class="btn-mypage" href="#">
+        <a class="btn-mypage" href="/mypage">
           <i class="fa-regular fa-user"></i>
+          <c:choose>
+            <c:when test="${empty sessionScope.user_email}">
+              <span class="status-badge">OFF</span>
+            </c:when>
+            <c:when test="${sessionScope.user_email == 'admin@hive.co.kr'}">
+              <span class="status-badge">ADMIN</span>
+            </c:when>
+            <c:when test="${!empty sessionScope.user_email}">
+              <span class="status-badge">ON</span>
+            </c:when>
+          </c:choose>
+
+
+
         </a>
       </div>
     </div>
@@ -34,9 +49,11 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <a href="/">홈</a>
         <a href="/product/list">스토어</a>
         <a href="/event/list">이벤트</a>
-        <a href="#">공지사항</a>
-        <a href="#">상품등록</a>
-        <a href="/event/write">이벤트등록</a>
+        <a href="/notice/list">공지사항</a>
+        <c:if test="${sessionScope.user_email == 'admin@hive.co.kr'}">
+          <a href="/productmanage/product/register">상품등록</a>
+          <a href="/event/write">이벤트등록</a>
+        </c:if>
       </div>
     </nav>
   </body>

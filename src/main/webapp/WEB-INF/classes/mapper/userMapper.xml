@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-        
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.spring.miniproject.dao.UserMapper">
 
 
 	<insert id="insertUser" parameterType="UserDto">
 		INSERT INTO user(user_email,user_password,user_name,user_birth,user_phone)
-						VALUES(#{user_email},#{user_password},#{user_name},
-						       #{user_birth},#{user_phone})
+		VALUES(#{user_email},#{user_password},#{user_name},
+			   #{user_birth},#{user_phone})
 	</insert>
 
 	<select id="selectOneUser" resultType="UserDto" parameterType="String">
@@ -26,7 +26,7 @@
 	<update id="updateProfileImage" parameterType="UserProfileDto">
 		UPDATE user SET profile_image = #{profile_image} WHERE user_email = #{user_email}
 	</update>
-	
+
 	<update id="updateImageOrigin" parameterType="String">
 		UPDATE user SET profile_image = "/image/user/profile_unknown.png" WHERE user_email = #{user_email}
 	</update>
@@ -48,12 +48,45 @@
 		SELECT * FROM  user_address WHERE user_id = #{user_id}
 	</select>
 
+	<select id="selectAddressList" parameterType="PageHandlerDto" resultType="UserAddressDto">
+		SELECT * FROM user_address WHERE user_id = ${user_id} ORDER BY address_id DESC LIMIT #{pageSize} OFFSET #{startList};
+	</select>
+
 	<delete id="deleteUserAddress" parameterType="Integer">
 		DELETE FROM user_address WHERE address_id = #{address_id}
 	</delete>
 
 	<update id="updateUserAddress" parameterType="UserAddressDto">
 		UPDATE user_address set user_id=#{user_id}, receiver_name=#{receiver_name},receiver_phone=#{receiver_phone}, address=#{address},
-				address_detail=#{address_detail}, zipcode=#{zipcode}
+								address_detail=#{address_detail}, zipcode=#{zipcode} WHERE address_id = #{address_id}
 	</update>
+
+	<select id="selectUserEmail" parameterType="Map" resultType="String">
+		SELECT user_email FROM user WHERE user_name = #{user_name} AND user_phone = #{user_phone}
+	</select>
+
+	<select id="selectUserPurchase" parameterType="PageHandlerDto" resultType="UserPurChaseDto">
+		SELECT c.purchase_id,c.product_id,c.user_id,c.purchase_date,c.total_price,
+			   c.payment_end_date,c.delivery_date,p.product_thumb_nail,p.product_title
+		FROM product AS p
+				 JOIN purchase AS c
+					  ON p.product_id = c.product_id
+		WHERE user_id = #{user_id}
+		ORDER BY c.purchase_id DESC
+			LIMIT #{pageSize} OFFSET #{startList}
+	</select>
+
+	<select id="selectUserPurchaseCnt" parameterType="Integer" resultType="Integer">
+		SELECT COUNT(*) FROM purchase where user_id = #{user_id}
+	</select>
+
+	<insert id="insertUserProductReview" parameterType="ProductReviewDto">
+		INSERT INTO product_review(purchase_id,user_id,product_id,user_email,review_content,write_date,upload_file)
+		VALUES(#{purchase_id},#{user_id},#{product_id},#{user_email},#{review_content},now(),#{upload_file})
+	</insert>
+
+	<delete id="deleteUserProductReview" parameterType="ProductReviewDto">
+		DELETE FROM product_review WHERE user_id = #{user_id} AND purchase_id = #{purchase_id} AND product_id = #{product_id}
+	</delete>
+
 </mapper>

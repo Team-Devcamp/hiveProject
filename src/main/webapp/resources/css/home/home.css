@@ -1,11 +1,4 @@
-.header-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 32px 20px;
-}
 
-.nav .nav-inner a,
 .todaylank .tab-container > ul > li a,
 .btn-lank a,
 .event-wrap a {
@@ -15,6 +8,7 @@
 
 .banner {
     margin-bottom: 70px;
+    z-index: 0;
 }
 
 .banner-wrap {
@@ -64,8 +58,8 @@
 }
 
 .item a img {
-    width: 250px;
-    height: 250px;
+    width: 280px;
+    height: 280px;
 }
 
 .btn-lank {
@@ -92,4 +86,28 @@
     width: 500px;
     height: 400px;
     margin-bottom: 20px;
+}
+
+.btn-lank a {
+    text-align: center;
+    display: inline-block;
+    background-color: #1c1c1c;
+    width: 200px;
+    padding: 10px 0;
+    font-size: 15px;
+    color: #fff;
+    cursor: pointer;
+    transition: opacity 250ms ease-in;
+    border-radius: 6px;
+}
+
+.btn-lank a:hover {
+    opacity: 0.75;
+    color:black;
+    font-weight: bold;
+    background-color: rgb(244, 168, 27);
+}
+
+.btn-lank a span{
+    margin-right: 7px;
 }

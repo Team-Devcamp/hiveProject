@@ -27,8 +27,10 @@
                     <input type="hidden" name="writer" value="${eventDto.writer}" readonly>
                     <textarea name="content" cols="10" rows="10" readonly hidden>${eventDto.event_content}</textarea>
                     <button type="button" id="listBtn" class="list-btn">목록으로 돌아가기</button>
-                    <button type="button" id="modifyBtn" class="modify-btn">수정</button>
-                    <button type="button" id="removeBtn" class="remove-btn">삭제</button>
+                    <c:if test="${sessionScope.user_email == 'admin@hive.co.kr'}">
+                        <button type="button" id="modifyBtn" class="modify-btn">수정</button>
+                        <button type="button" id="removeBtn" class="remove-btn">삭제</button>
+                    </c:if>
                 </form>
             </div>
         </div>

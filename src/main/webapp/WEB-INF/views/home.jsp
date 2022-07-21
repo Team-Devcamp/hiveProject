@@ -4,12 +4,12 @@
 
 <html>
 <head>
-	<link
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-			rel="stylesheet"
-			integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-			crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+		<link
+				href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+				rel="stylesheet"
+				integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+				crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" href="/css/home/home.css" />
 	<title>Home</title>
 </head>
@@ -74,7 +74,7 @@
 
 			</div>
 			<div class="btn-lank">
-				<a href="">랭킹 더보기</a>
+				<a href=""><span>랭킹 더보기</span><i class="fa-solid fa-chevron-right"></i></a>
 			</div>
 		</div>
 
@@ -100,7 +100,7 @@
 			</div>
 
 			<div class="btn-lank">
-				<a href="">신상 더보기</a>
+				<a href=""><span>신상 더보기</span><i class="fa-solid fa-chevron-right"></i></a>
 			</div>
 		</div>
 

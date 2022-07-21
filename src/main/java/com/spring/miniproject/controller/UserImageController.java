@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.nio.file.Files;
 
@@ -21,7 +19,7 @@ public class UserImageController {
     private UserService userService;
 
 
-    private String uploadPath = "C:\\Users\\ch457\\Documents\\hiveProject_NEW\\src\\main\\webapp\\resources\\image\\user\\profile";
+    private String uploadPath = "C:\\Users\\ch457\\IdeaProjects\\hiveProject\\src\\main\\webapp\\resources\\image\\user\\profile";
 
 
     @RequestMapping("/mypage/image/add")

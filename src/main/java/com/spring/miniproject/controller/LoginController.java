@@ -76,7 +76,7 @@ public class LoginController {
 	@GetMapping("/logout")
 	public String logout(HttpSession session){
 		session.invalidate();
-		return "user/login_form.tiles";
+		return "redirect:/";
 	}
 
 	// 카카오 소셜 로그인 메서드(이메일 수집 동의를 하지 않을 경우, 로그인 화면으로 다시 redirect 한다.

@@ -105,5 +105,20 @@ public class UserDaoImpl implements UserDao {
 		return sqlSession.delete(namespace+"deleteUserProductReview",productReviewDto);
 	}
 
+	@Override
+	public List<ProductReviewDto> selectUserProductReview(PageHandlerDto pageHandlerDto) {
+		return sqlSession.selectList(namespace+"selectUserProductReview",pageHandlerDto);
+	}
+
+	@Override
+	public int updateUserProductReview(ProductReviewDto productReviewDto) {
+		return sqlSession.update(namespace+"updateUserProductReview",productReviewDto);
+	}
+
+	@Override
+	public String selectUserReviewImage(Map map) {
+		return sqlSession.selectOne(namespace+"selectUserReviewImage",map);
+	}
+
 
 }

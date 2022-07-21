@@ -34,12 +34,6 @@ public class PurchaseController {
                 list.add(dto);
         }
 
-//        m.addAttribute("qty",qty);
-//        m.addAttribute("option_color",option_color);
-//        m.addAttribute("option_size",option_size);
-//        m.addAttribute("sub_total_price",subTotalPrice);
-
-        System.out.println("listSize= "+list.size());
         m.addAttribute("list",list);
         m.addAttribute("total_price",total_price);
         m.addAttribute("product_title",product_title);

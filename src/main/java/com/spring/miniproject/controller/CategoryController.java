@@ -44,7 +44,7 @@ public class CategoryController {
         }
 
     }
-
+    
     // 카테고리 DB에 추가
     @PostMapping("/add")
     @ResponseBody

@@ -2,10 +2,59 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
-.faq {width: 80%; margin: 50px 200px;}
-.faq-content {margin-bottom: 50px;}
-.faq-title {width: 100%; border-bottom: 1px solid black; font-family: 'Noto Serif KR', serif;}
-.faq-content ul li {border-bottom: 1px solid gray; padding: 10px; font-family: 'Noto Sans KR', sans-serif;}
-.faq-content a {text-decoration: none; color: black;}
-.ul-div {cursor: pointer;}
-.li-div {display: none; height: 200px; width: 1000px; margin: 10px; padding: 30px; background-color: #f1f1f1;}
+section.faq {
+    padding: 80px 0;
+}
+.page-title {margin-bottom: 60px; background-color: #f3f3f3;}
+.page-title h3 {
+    font-size: 28px;
+    color: #333333;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Noto Serif KR';
+    padding: 5px;
+}
+.small-page-title {
+    font-size: 13px;
+    color: #5e5e5e;
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 50px;
+    padding-bottom: 10px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.faq {margin-right: 50px; margin-left: 50px}
+.faq .faq-content {margin-bottom: 50px;}
+.faq .faq-content .faq-title {
+    width: 100%;
+    border-bottom: 1px solid black;
+    font-family: 'Noto Serif KR', serif;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.faq .faq-content ul li {
+    padding: 10px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.faq .faq-content a {text-decoration: none; color: black;}
+.ul-div {
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid gray;
+}
+.li-div {
+    display: none;
+    font-size: 13px;
+    height: 200px;
+    width: 1000px;
+    margin: 10px;
+    padding: 20px;
+    background-color: #f1f1f1;}
+
+.fa-solid {
+    font-size: 0.625em;
+    margin-right: 10px;
+}

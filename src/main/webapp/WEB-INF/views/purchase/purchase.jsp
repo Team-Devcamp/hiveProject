@@ -30,20 +30,22 @@
 
         <h2>주문 상품 정보</h2>
         <div class="product-info">
-
             <c:forEach items="${list}" var="items">
             <div class="product-item">
                 <ul>
-                    <li><img src="/product/product_detail/profile_image.png"></li>
                     <li>
-                        <span>${product_title}</span>
-                        <span>${items.option_color}/${items.option_size}</span>
-                        <span>${items.qty}개</span>
+                        <div class="p-img">
+                            <img src="/image/product/product_detail/profile_image.png">
+                        </div>
+                    </li>
+                    <li>
+                        <span>${product_title}</span><br>
+                        <span>${items.option_color}/${items.option_size}</span><br>
+                        <span>수량 : ${items.qty}개</span>
                     </li>
                     <li><span>${items.sub_total_price}</span>원</li>
                 </ul>
             </div>
-
             </c:forEach>
 
 
@@ -114,7 +116,7 @@
                 <div class="total-price">
                     <dl>
                         <dt>총 상품금액</dt>
-                        <dd><span>${total_price}원</span></dd>
+                        <dd><span>${total_price}</span>원</dd>
                         <dt>배송비</dt>
                         <dd><span>0</span>원</dd>
                         <dt>총 결제예상 금액</dt>

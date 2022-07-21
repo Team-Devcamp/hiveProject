@@ -132,6 +132,15 @@ input[type="number"] {
     width: 500px;
     padding-top: 40px;
     margin-bottom: 80px;
+    position: relative;
+}
+
+.stats-likes{
+    position: absolute;
+    top:120px;
+    right:100px;
+    border: 1px solid gainsboro;
+    border-radius: 5px;
 }
 
 .product-title {
@@ -205,6 +214,19 @@ input[type="number"] {
     font-size: 15px;
     line-height: 1.4666666667;
     overflow: hidden;
+    position: relative;
+}
+
+.del-selected-btn{
+    background-color: white;
+    color: black;
+    border-radius: 50%;
+    border: 2px solid white;
+    font-weight: bold;
+    font-size: 15px;
+    position: absolute;
+    right: 18px;
+    top: 18px;
 }
 
 .product-detail div {
@@ -241,15 +263,15 @@ input[type="number"] {
 
 /*select box*/
 .form-select {
-    width: 320px; /* 원하는 너비설정 */
+    width: 320px; 
     height:52px;
-    padding: .8em .7em; /* 여백으로 높이 설정 */
-    font-family: inherit;  /* 폰트 상속 */
-    background: url("/image/product/product_detail/assets/angle-down-solid.svg") no-repeat 94% 50%; /* 네이티브 화살표 대체 */
+    padding: .8em .7em;
+    font-family: inherit; 
+    background: url("/image/product/product_detail/assets/angle-down-solid.svg") no-repeat 94% 50%; 
     background-size : 12px;
     border: 1px solid #e4e4e4;
     border-radius: 5px;
-    -webkit-appearance: none; /* 네이티브 외형 감추기 */
+    -webkit-appearance: none; 
     -moz-appearance: none;
     appearance: none;
     margin-bottom: 15px;
@@ -458,20 +480,10 @@ input[type="number"] {
 
 }
 
-
-.form-select-wrap{
-    position: relative;
-}
 .stats-likes{
-    position: absolute;
-    top:38px;
-    right:65px;
-    border: 1px solid gainsboro;
-    border-radius: 5px;
-}
-
-.stats-likes i{
     padding:15px;
+}
+.stats-likes i{
     color: red;
 }
 
@@ -493,19 +505,17 @@ input[type="number"] {
 }
 #total_price{
     color: #c9974d;
-    font-size: 18px;
+    font-size: 24px;
+    padding-right: 8px;
 }
+
+
 /*
 .stats-likes i:hover{
     cursor: pointer;
     background: black;
     border-radius: 5px;
 }*/
-
-
-/*<i class="fa fa-heart-o" aria-hidden="true"></i>
-<i class="fa fa-heart" aria-hidden="true"></i>*/
-
 
 
 

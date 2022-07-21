@@ -60,4 +60,5 @@
 		UPDATE user_address set user_id=#{user_id}, receiver_name=#{receiver_name},receiver_phone=#{receiver_phone}, address=#{address},
 				address_detail=#{address_detail}, zipcode=#{zipcode} WHERE address_id = #{address_id}
 	</update>
+
 </mapper>

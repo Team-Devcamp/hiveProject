@@ -1,284 +1,259 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Renee
-  Date: 2022-07-12
-  Time: 오후 12:59
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> <%-- Created by
+IntelliJ IDEA. User: Renee Date: 2022-07-12 Time: 오후 12:59 To change this
+template use File | Settings | File Templates. --%> <%@ page
+contentType="text/html;charset=UTF-8" language="java" %> <%--<!DOCTYPE html>
 <html lang="en">
-<head>--%>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    --%>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/css/common/reset.css">
-    <link rel="stylesheet" href="/css/product/product_detail.css">
-    <link rel="stylesheet" href="/css/product/product_review.css">
-    <link rel="stylesheet" href="/css/product/product_qna.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
-<%--
-</head>
-<body>--%>
+    <link rel="stylesheet" href="/css/common/reset.css" />
+    <link rel="stylesheet" href="/css/product/product_detail.css" />
+    <link rel="stylesheet" href="/css/product/product_review.css" />
+    <link rel="stylesheet" href="/css/product/product_qna.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    />
+    <%--
+  </head>
+  <body>
+    --%>
 
-
-<div class="product-container-wrap">
-
-    <!--Product Container-->
-    <div class="container">
+    <div class="product-container-wrap">
+      <!--Product Container-->
+      <div class="container">
         <section class="product">
-            <div class="product-image-viewer">
-                <div class="main-image">
-                    <img
-                            src="/image/product/product_detail/thumb.png"
-                            srcset="/image/product/product_detail/thumb.png 1x, /image/product/product_detail/thumb.png 2x"
-                            alt=""
-                    />
-                    <%--${productDto.product_thumb_nail}--%>
-                </div>
-                <ul class="view-list">
-                    <li class="view-item selected">
-                        <button type="button">
-                            <img
-                                    src="/image/product/product_detail/thumb.png"
-                                    srcset="/image/product/product_detail/thumb.png 1x, /image/product/product_detail/thumb.png 2x"
-                                    alt=""
-                            />
-                        </button>
-                    </li>
-                    <li class="view-item">
-                        <button type="button">
-                            <img
-                                    src="/image/product/product_detail/thumb.png"
-                                    srcset="/image/product/product_detail/thumb.png 1x, /image/product/product_detail/thumb.png 2x"
-                                    alt=""
-                            />
-                        </button>
-                    </li>
-                    <li class="view-item">
-                        <button type="button">
-                            <img
-                                    src="/image/product/product_detail/thumb.png"
-                                    srcset="/image/product/product_detail/thumb.png 1x, /image/product/product_detail/thumb.png 2x"
-                                    alt=""
-                            />
-                        </button>
-                    </li>
-                </ul>
+          <div class="product-image-viewer">
+            <div class="main-image">
+              <img
+                src="/image/product/product_detail/thumb.png"
+                srcset="
+                  /image/product/product_detail/thumb.png 1x,
+                  /image/product/product_detail/thumb.png 2x
+                "
+                alt=""
+              />
+              <%--${productDto.product_thumb_nail}--%>
             </div>
+            <ul class="view-list">
+              <li class="view-item selected">
+                <button type="button">
+                  <img
+                    src="/image/product/product_detail/thumb.png"
+                    srcset="
+                      /image/product/product_detail/thumb.png 1x,
+                      /image/product/product_detail/thumb.png 2x
+                    "
+                    alt=""
+                  />
+                </button>
+              </li>
+              <li class="view-item">
+                <button type="button">
+                  <img
+                    src="/image/product/product_detail/thumb.png"
+                    srcset="
+                      /image/product/product_detail/thumb.png 1x,
+                      /image/product/product_detail/thumb.png 2x
+                    "
+                    alt=""
+                  />
+                </button>
+              </li>
+              <li class="view-item">
+                <button type="button">
+                  <img
+                    src="/image/product/product_detail/thumb.png"
+                    srcset="
+                      /image/product/product_detail/thumb.png 1x,
+                      /image/product/product_detail/thumb.png 2x
+                    "
+                    alt=""
+                  />
+                </button>
+              </li>
+            </ul>
+          </div>
 
-            <div class="product-content">
-                <header class="product-header">
-                    <h1 class="product-title">
-                        ${productDto.product_title}
-                    </h1>
-                    <dl class="product-misc">
-                        <div class="rate">
-                            <dt aria-label="Rated 4 out of 5">
-                                <span aria-hidden class="icon-star-active"></span>
-                                <span aria-hidden class="icon-star-active"></span>
-                                <span aria-hidden class="icon-star-active"></span>
-                                <span aria-hidden class="icon-star-active"></span>
-                                <span aria-hidden class="icon-star-inactive"></span>
-                            </dt>
-                            <dd>
-                                132 reviews
-                            </dd>
-                        </div>
-                        <div class="orders">
-                            <dt aria-hidden>
-                                <span class="icon-cart"></span>
-                            </dt>
-                            <dd>
-                                154 orders
-                            </dd>
-                        </div>
-                    </dl>
-                </header>
-
-                <strong class="product-price">
-                    ${productDto.product_price} 원
-                </strong>
-
-                <p class="product-desc">
-                    판매수량 최다 상품! <br>미니 하이버는 모든 상품 무료배송!<br>
-                    ${productDto.product_name}
-                </p>
-
-
-<%--                <form action="" method="POST" class="product-form">--%>
-                <div class="form-options">
-                    <div class="form-select-wrap">
-                        <%--옵션번호도 받아올지 고민--%>
-                        <c:forEach items="${optionMap}" var="firstOption">
-                            <select class="form-select" aria-label="Default select example">
-                                <option value="${firstOption.key}" selected>${firstOption.key} 선택</option>
-                                    <c:forEach items="${firstOption.value}" var="secondOption">
-                                        <option value="${secondOption.option_detail_name}" id="${secondOption.option_detail_id}">${secondOption.option_detail_name}</option>
-                                    </c:forEach>
-                            </select>
-                        </c:forEach>
-
-                        <div class="stats-likes" id="stats_likes">
-                            <dt>
-                                <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                <%--<i class="fa fa-heart" aria-hidden="true"></i>--%>
-                            </dt>
-                            <dd class="hidden">
-                                찜
-                            </dd>
-                        </div>
-                    </div>
+          <div class="product-content">
+            <header class="product-header">
+              <h1 class="product-title">${productDto.product_title}</h1>
+              <dl class="product-misc">
+                <div class="rate">
+                  <dt aria-label="Rated 4 out of 5">
+                    <span aria-hidden class="icon-star-active"></span>
+                    <span aria-hidden class="icon-star-active"></span>
+                    <span aria-hidden class="icon-star-active"></span>
+                    <span aria-hidden class="icon-star-active"></span>
+                    <span aria-hidden class="icon-star-inactive"></span>
+                  </dt>
+                  <dd>132 reviews</dd>
                 </div>
+                <div class="orders">
+                  <dt aria-hidden>
+                    <span class="icon-cart"></span>
+                  </dt>
+                  <dd>154 orders</dd>
+                </div>
+              </dl>
+            </header>
 
-                <%--  선택한상품 + 수량선택콤보박스 + 금액 보여줘야할 곳--%>
-                <%-- form <dl class="product-detail" style="display: none">
-                      <div>
-                          <dt>
-                            주문수량
-                          </dt>
-                          <dd>
-                              <div class="form-group form-quantity">
-                                  &lt;%&ndash;<label for="quantity">
-                                      주문수량
-                                  </label>&ndash;%&gt;
-                                  <div class="combo-box">
-                                      <button type="button" id="minus-button" aria-label="Add"></button>
-                                      <input type="number" name="quantity" id="quantity" min="0" max="10" value="1" />
-                                      <button type="button" id="plus-button" aria-label="Remove"></button>
-                                  </div>
-                              </div>
-                          </dd>
+            <strong class="product-price">
+              ${productDto.product_price} 원
+            </strong>
+
+            <p class="product-desc">
+              판매수량 최다 상품! <br />미니 하이버는 모든 상품 무료배송!<br />
+              ${productDto.product_name}
+            </p>
+
+
+
+
+              <div class="form-options">
+                <div class="form-select-wrap">
+                  <%--옵션번호도 받아올지 고민--%>
+                  <c:forEach items="${optionMap}" var="firstOption">
+                    <select
+                      class="form-select"
+                      aria-label="Default select example"
+                    >
+                      <option value="${firstOption.key}" selected>
+                        ${firstOption.key} 선택
+                      </option>
+                      <c:forEach
+                        items="${firstOption.value}"
+                        var="secondOption"
+                      >
+                        <option
+                          value="${secondOption.option_detail_name}"
+                          id="${secondOption.option_detail_id}"
+                        >
+                          ${secondOption.option_detail_name}
+                        </option>
+                      </c:forEach>
+                    </select>
+                  </c:forEach>
+                </div>
+              </div>
+
+              <div class="stats-likes" id="stats_likes">
+                  <dt>
+                      <%--<i class="fa fa-heart-o" aria-hidden="true"></i>--%>
+                      <i class="fa fa-heart" aria-hidden="true"></i>
+                  </dt>
+                  <dd class="hidden">찜</dd>
+              </div>
+
+
+              <div class="product-detail-form">
+                <dl class="product-detail">
+                  <div>
+                    <dt>주문수량</dt>
+                    <dd>
+                      <div class="form-group form-quantity">
+                        <%--<label for="quantity"> 주문수량 </label>--%>
+                        <div class="combo-box">
+                          <button
+                            type="button"
+                            id="minus-button"
+                            aria-label="Decrease"
+                          ></button>
+                          <input
+                            type="number"
+                            name="quantity"
+                            id="quantity"
+                            min="0"
+                            max="10"
+                            value="1"
+                          />
+                          <button
+                            type="button"
+                            id="plus-button"
+                            aria-label="Increase"
+                          ></button>
+                        </div>
                       </div>
-                      <div>
-                          <dt >
-                            색상
-                          </dt>
-                          <dd id="datail_option1">
-                            네이비
-                          </dd>
-                      </div>
-                      <div >
-                          <dt>
-                            사이즈
-                          </dt>
-                          <dd id="datail_option2">
-                            L(100)
-                          </dd>
-                      </div>
-                      <div >
-                          <dt>
-                              금액
-                          </dt>
-                          <dd id="sum_price">
-                              <span id="cost">${productDto.product_price}</span>
-                          </dd>
-                      </div>
+                    </dd>
+                      <button type="button" id="delProBtn" class="del-selected-btn">x</button>
+                  </div>
 
-                  </dl>--%>
-                <div class="product-detail-form" >
-                    <dl class="product-detail" >
-                        <div>
-                            <dt>
-                                주문수량
-                            </dt>
-                            <dd>
-                                <div class="form-group form-quantity">
-                                    <%--<label for="quantity">
-                                        주문수량
-                                    </label>--%>
-                                    <div class="combo-box">
-                                        <button type="button" id="minus-button" aria-label="Decrease"></button>
-                                        <input type="number" name="quantity" id="quantity" min="0" max="10" value="1" />
-                                        <button type="button" id="plus-button" aria-label="Increase" ></button>
-                                    </div>
-                                </div>
-                            </dd>
-                        </div>
-                        <div>
-                            <dt >
-                                색상
-                            </dt>
-                            <dd id="datail_option1">
-                                네이비
-                            </dd>
-                        </div>
-                        <div >
-                            <dt>
-                                사이즈
-                            </dt>
-                            <dd id="datail_option2">
-                                L(100)
-                            </dd>
-                        </div>
-                        <div >
-                            <dt>
-                                금액
-                            </dt>
-                            <dd id="sum_price">
-                                <span id="cost">${productDto.product_price}</span>
-                            </dd>
-                        </div>
+                  <div>
+                    <dt>색상</dt>
+                    <dd id="detail_option1" name="detail_option1">네이비</dd>
+                  </div>
+                  <div>
+                    <dt>사이즈</dt>
+                    <dd id="detail_option2" name="detail_option2">L(100)</dd>
+                  </div>
+                  <div>
+                    <dt>금액</dt>
+                    <dd id="sum_price">
+                      <span id="cost" name="cost">${productDto.product_price}</span>
+                    </dd>
+                  </div>
+                </dl>
 
-                    </dl>
-                </div>
+              </div>
 
-                <%--  선택한상품 + 수량선택콤보박스 + 금액 보여줘야할 곳--%>
-                <div class="product-detail-list-container">
-                </div>
 
-                <div>
-                    <dl class="total-price-wrap">
-                        <dt class="total-price-text">
-                            결제 총 금액
-                        </dt>
-                        <dd class="total-price">
-                            <strong id="total_price"></strong>원
-                        </dd>
-                    </dl>
-                </div>
-                <div>
-                    <button type="button" class="form-submit">
-                        장바구니
-                    </button>
-                    <br>
-                    <button type="button" id="orderBtn" class="form-submit">
-                        주문하기
-                    </button>
-                </div>
+              <%-- 선택한상품 리스트--%>
+          <form action="/purchase/page" method="POST" class="product-form" id="product_form">
 
-<%--                </form>--%>
+              <div class="product-detail-list-container"></div>
 
-            </div>
+              <div>
+                <dl class="total-price-wrap">
+                  <dt class="total-price-text">결제 총 금액</dt>
+                  <dd class="total-price">
+                    <strong id="total_price">0</strong>원
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <button type="button" class="form-submit">장바구니</button>
+                <br />
+                <button type="button" id="orderBtn" class="form-submit">
+                  주문하기
+                </button>
+              </div>
+
+          </form>
+
+
+          </div>
         </section>
-    </div>
+      </div>
 
-
-    <%--탭--%>
-    <div class="tab_menu">
+      <%--탭--%>
+      <div class="tab_menu">
         <ul class="list">
-            <li class="is_on">
-                <a href="#tab1" id="detailBtn" class="btn">상품정보</a>
-            </li>
-            <li>
-                <a href="#tab2" id="reviewBtn" class="btn">리뷰</a>
-            </li>
-            <li>
-                <a href="#tab3" id="qnaBtn" class="btn">Q&A</a>
-            </li>
-            <li>
-                <a href="#tab4" class="btn">환불&교환정책</a>
-            </li>
+          <li class="is_on">
+            <a href="#tab1" id="detailBtn" class="btn">상품정보</a>
+          </li>
+          <li>
+            <a href="#tab2" id="reviewBtn" class="btn">리뷰</a>
+          </li>
+          <li>
+            <a href="#tab3" id="qnaBtn" class="btn">Q&A</a>
+          </li>
+          <li>
+            <a href="#tab4" class="btn">환불&교환정책</a>
+          </li>
         </ul>
 
         <%--탭 내용 영역--%>
         <div class="cont_area">
-            <%--탭1 상품정보--%>
-            <div id="tab1" class="cont">
-                <img src="/image/product/product_detail/tab1_detail_sample.jpg" alt="tab1-image" />
-            </div>
+          <%--탭1 상품정보--%>
+          <div id="tab1" class="cont">
+            <img
+              src="/image/product/product_detail/tab1_detail_sample.jpg"
+              alt="tab1-image"
+            />
+          </div>
 
             <%--탭2 상품리뷰--%>
             <div id="tab2" class="cont">
@@ -316,7 +291,14 @@
                                 <em id="qnaCount"><span id="qna_count"></span> Questions</em>
                                 <p>상품에 대해서 궁금한 점이 있으시면 문의하여 주세요.<br>신속하고 정확하게 답변드리도록 하겠습니다.</p>
                             </div>
+                            <c:if test="${sessionScope.user_email == null}">
+                                <br><br>
+                                <a href="#none" id="goToLogin">상품 문의</a>
+                                <br><br><br>
+                            </c:if>
+                            <c:if test="${sessionScope.user_email != null }">
                             <a href="#none" id="regQnaBtn">상품 문의</a>
+                            </c:if>
                         </div>
                     </div>
 
@@ -379,35 +361,49 @@
 
 
             <div id="tab4" class="cont">
-                <p>
-                    <img src="/image/product/product_detail/tab4_refund_sample.jpg" alt="tab1-image" />
-                </p>
-            </div>
+            <p>
+              <img
+                src="/image/product/product_detail/tab4_refund_sample.jpg"
+                alt="tab1-image"
+              />
+            </p>
+          </div>
         </div>
-
+      </div>
     </div>
-</div>
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="/script/product/product_detail.js"></script>
-<script type="text/javascript" src="/script/product/product_qna.js"></script>
-<%--</body>--%>
-<%--</html>--%>
+    <script
+      type="text/javascript"
+      src="http://code.jquery.com/jquery-3.6.0.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/script/product/product_detail.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/script/product/product_qna.js"
+    ></script>
+    <%--
+  </body>
+  --%> <%--
+</html>
+--%>
 <script type="text/javascript">
-    //review
-    // $(document).ready(function() {
-    $('#reviewBtn').click(function () {
-        $.ajax({
-            type: 'get',
-            url: '/product/review',
-            data: 'product_id='+1,
-            success: function (data) {
-                alert(JSON.stringify(data));
-            },
-            error: function (err) {
-                console.log(err);
-            }
-        });
+  //review
+  // $(document).ready(function() {
+  $("#reviewBtn").click(function () {
+    $.ajax({
+      type: "get",
+      url: "/product/review",
+      data: "product_id=" + 1,
+      success: function (data) {
+        alert(JSON.stringify(data));
+      },
+      error: function (err) {
+        console.log(err);
+      },
     });
-    // });
+  });
+  // });
 </script>

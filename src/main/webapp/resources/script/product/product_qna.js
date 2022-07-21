@@ -148,9 +148,19 @@ function qnaPaging(pg) {
 
 
 /* qna 등록 토글*/
-$(".qna .qna-info>a").click(function(){
+$(".qna .qna-info #regQnaBtn").click(function(){
     $('#qna_container').toggleClass("hidden");
 });
+
+$(".qna .qna-info #goToLogin").click(function(){
+    let on = confirm("로그인이 필요한 서비스입니다.로그인 하시겠습니까?");
+    if(on){
+        location.replace("/login");
+    }
+    else{
+        return;
+    }
+})
 
 /* qna 등록창 초기화 */
 $('#regQnaBtn').on('click',function(){

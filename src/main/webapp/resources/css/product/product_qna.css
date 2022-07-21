@@ -72,7 +72,7 @@
 .lNone div {width:100%;height:84px;margin:0 auto; text-align:center}
 
 .qna .qna-info .ea p {margin-top:12px;font-size:12px;line-height:20px;letter-spacing:-0.3px}
-.qna .qna-info a {
+.qna .qna-info #regQnaBtn {
     display:inline-block;
     width:114px;height:32px;margin:23px 0;
     padding:10px 0;border:1px solid #ccc;
@@ -83,6 +83,11 @@
     text-decoration: none;
 }
 
+
+#goToLogin{
+    border: 1px solid gray;
+    padding: 5px 12px;
+}
 
 .qna{
     padding: 0;

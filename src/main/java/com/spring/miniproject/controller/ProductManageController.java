@@ -3,22 +3,33 @@ package com.spring.miniproject.controller;
 import com.google.gson.JsonObject;
 import com.spring.miniproject.domain.*;
 import com.spring.miniproject.service.*;
+import net.coobird.thumbnailator.Thumbnails;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.awt.image.BufferedImage;
 import java.io.*;
+import java.net.URLDecoder;
+import java.nio.file.Files;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -201,14 +212,14 @@ public class ProductManageController {
                             uploadFile.mkdir();
                         }
                         String fileName2 = UUID.randomUUID().toString();
-                        uploadPath = uploadPath + "/" + fileName2 +fileName;
+                        uploadPath = uploadPath + "/" + fileName2 + "_" + fileName;
                         System.out.println("uploadPath = " + uploadPath);
 
                         out = new FileOutputStream(new File(uploadPath));
                         out.write(bytes);
 
                         printWriter = resp.getWriter();
-                        String fileUrl = req.getContextPath() + "/image/product/productInfo/" +fileName2 +fileName; //url경로
+                        String fileUrl = req.getContextPath() + "/image/product/productInfo/" +fileName2 + "_" + fileName; //url경로
 
                         System.out.println("fileUrl = " + fileUrl);
                         JsonObject json = new JsonObject();
@@ -234,6 +245,144 @@ public class ProductManageController {
 
         }
     }
+    // 썸네일 업로드하는 메서드
+    @PostMapping(value="/uploadThumbnail", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<List<AttachImageDto>> uploadAjaxActionPOST(MultipartFile[] uploadFile) {
+
+        /* 이미지 파일 체크 */
+        for(MultipartFile multipartFile: uploadFile) {
+
+            File checkfile = new File(multipartFile.getOriginalFilename());
+            String type = null;
+
+            try {
+                type = Files.probeContentType(checkfile.toPath());
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            if(!type.startsWith("image")) {
+
+                List<AttachImageDto> list = null;
+                return new ResponseEntity<>(list, HttpStatus.BAD_REQUEST);
+
+            }
+
+        }// for
+        
+        String uploadFolder = "C:\\hive\\target\\miniproject-1.0.0-BUILD-SNAPSHOT\\resources\\image\\product\\thumbnail";
+
+//        // 날짜 가져오기
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        Date date = new Date();
+//        String str = sdf.format(date);
+//        String datePath = str.replace("-", File.separator);
+
+        /* 폴더 생성 */
+        File uploadPath = new File(uploadFolder);
+
+        if(uploadPath.exists() == false) {
+            uploadPath.mkdirs();
+        }
+
+        List<AttachImageDto> list = new ArrayList<>();
+
+        for(MultipartFile multipartFile : uploadFile) {
+            /* 이미지 정보 객체 생성 */
+            AttachImageDto dto = new AttachImageDto();
+
+            /* 파일 이름 */
+            String uploadFileName = multipartFile.getOriginalFilename();
+            dto.setFileName(uploadFileName);
+//            dto.setUploadPath(datePath);
+
+            /* uuid 적용 파일 이름 */
+            String uuid = UUID.randomUUID().toString();
+            uploadFileName = uuid + "_" + uploadFileName;
+            dto.setUuid(uuid);
+
+            /* 파일 위치, 파일 이름을 합친 File 객체 */
+            File saveFile = new File(uploadPath, uploadFileName);
+
+            /* 파일 저장 */
+            try {
+                multipartFile.transferTo(saveFile);
+
+                File thumbnailFile = new File(uploadPath, "thumb_" + uploadFileName);
+
+                BufferedImage bo_image = ImageIO.read(saveFile);
+
+                //비율
+                double ratio = 3;
+                //넓이 높이
+                int width = (int) (bo_image.getWidth() / ratio);
+                int height = (int) (bo_image.getHeight() / ratio);
+
+
+                Thumbnails.of(saveFile)
+                        .size(width, height)
+                        .toFile(thumbnailFile);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            list.add(dto);
+        }
+
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
+    // 썸네일을
+    @GetMapping("/displayThumbnail")
+    public ResponseEntity<byte[]> getImage(String fileName){
+        File file = new File("C:\\hive\\target\\miniproject-1.0.0-BUILD-SNAPSHOT\\resources\\image\\product\\thumbnail\\" + fileName);
+
+        ResponseEntity<byte[]> result = null;
+
+        try {
+
+            HttpHeaders header = new HttpHeaders();
+
+            header.add("Content-type", Files.probeContentType(file.toPath()));
+
+            result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+
+    }
+    /* 썸네일 파일 삭제(원본, 축소본) */
+    @PostMapping("/deleteThumbnail")
+    public ResponseEntity<String> deleteFile(String fileName){
+        File file = null;
+
+        try {
+            // 썸네일 파일 삭제
+            file = new File("C:\\hive\\target\\miniproject-1.0.0-BUILD-SNAPSHOT\\resources\\image\\product\\thumbnail\\" + URLDecoder.decode(fileName, "UTF-8"));
+
+            file.delete();
+
+            // 원본 파일 삭제
+            String originFileName = file.getAbsolutePath().replace("thumb_", "");
+
+            file = new File(originFileName);
+
+            file.delete();
+        } catch(Exception e) {
+
+            e.printStackTrace();
+
+            return new ResponseEntity<String>("fail", HttpStatus.NOT_IMPLEMENTED);
+
+        }
+        return new ResponseEntity<>("success", HttpStatus.OK);
+    }
+
+
     // 상품을 삭제하는 메서드
     @PostMapping("/product/delete")
     public String deleteProduct(Integer product_id, RedirectAttributes rattr) {

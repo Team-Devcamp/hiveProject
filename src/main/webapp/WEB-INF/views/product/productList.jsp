@@ -41,7 +41,7 @@
                 <c:forEach var="productDto" items="${productList}">
                     <li class="product">
                         <a href="/product/detail?product_id=${productDto.product_id}">
-                            <img src="" alt="상품 이미지">
+                            <img src="/image/product/thumbnail/${productDto.product_thumb_nail}" alt="상품 이미지">
                         </a>
                         <a href="/product/detail?product_id=${productDto.product_id}">
                             <p>${productDto.product_title} </p>

@@ -11,7 +11,36 @@
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+    <style type="text/css">
+        #result_card img{
+            max-width: 100%;
+            height: auto;
+            display: block;
+            padding: 5px;
+            margin-top: 10px;
+            margin: auto;
+        }
+        #result_card {
+            position: relative;
+        }
+        .imgDeleteBtn{
+            position: absolute;
+            top: 0;
+            right: 5%;
+            background-color: #ef7d7d;
+            color: wheat;
+            font-weight: 900;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            line-height: 26px;
+            text-align: center;
+            border: none;
+            display: block;
+            cursor: pointer;
+        }
 
+    </style>
 </head>
 <body>
     <script>
@@ -38,9 +67,11 @@
                 <option value="${subCategoryDto.sub_category_id}" ${subCategoryDto.sub_category_id == productDto.sub_category_id ? "selected" : ""}>${subCategoryDto.sub_category_name}</option>
             </c:forEach>
         </select>
-        <label for="">썸네일</label>
-        <input type="file" name="product_thumb_nail" accept="image/*">
         <textarea name="product_info" id="product-info" rows="20" cols="100">${productDto.product_info}</textarea>
+        <label for="">썸네일</label>
+        <input type="file" id="fileItem" name="" accept="image/*" multiple>
+        <div id="uploadResult">
+        </div>
         <button id="submit-btn" ${mode=="new" ? "" : 'style="display: none;"'}>상품 등록</button>
         <button id="modify-btn" ${mode!="new" ? "" : 'style="display: none;"'}>상품 수정</button>
     </form>
@@ -52,6 +83,119 @@
             width:'100%',
             height:'400px',
             filebrowserUploadUrl:  "/productmanage/uploadimage"
+        });
+
+        /* 이미지 업로드 */
+        $("input[type='file']").on("change", function(e){
+
+            /* 이미지 존재시 삭제 */
+            if($(".imgDeleteBtn").length > 0){
+                deleteFile();
+            }
+
+            let formData = new FormData();
+            let fileInput = $('input[id="fileItem"]');
+            let fileList = fileInput[0].files;
+            let fileObj = fileList[0];
+
+            if(!fileCheck(fileObj.name, fileObj.size)){
+                return false;
+            }
+
+            for(let i = 0; i < fileList.length; i++){
+                formData.append("uploadFile", fileList[i]);
+            }
+
+            $.ajax({
+                url: '/productmanage/uploadThumbnail',
+                processData : false,
+                contentType : false,
+                data : formData,
+                type : 'POST',
+                dataType : 'json',
+                success : function (result) {
+                    console.log(result);
+                    showUploadImage(result);
+                },
+                error : function(result) {
+                    alert("이미지 파일이 아닙니다.");
+                }
+            });
+        });
+
+        let regex = new RegExp("(.*?)\.(jpg|png|JPG|PNG)$");
+        let maxSize = 1048576; //1MB
+
+        function fileCheck(fileName, fileSize){
+
+            if(fileSize >= maxSize){
+                alert("파일 사이즈 초과");
+                return false;
+            }
+
+            if(!regex.test(fileName)){
+                alert("해당 종류의 파일은 업로드할 수 없습니다.");
+                return false;
+            }
+
+            return true;
+
+        }
+
+        /* 이미지 출력 */
+        function showUploadImage(uploadResultArr){
+
+            /* 전달받은 데이터 검증 */
+            if(!uploadResultArr || uploadResultArr.length == 0){return}
+
+            let uploadResult = $("#uploadResult");
+
+            let obj = uploadResultArr[0];
+
+            let str = "";
+            // obj.uploadPath.replace(/\\/g, '/') +
+            let fileCallPath = ("thumb_" + obj.uuid + "_" + obj.fileName);
+
+            str += "<div id='result_card'>";
+            str += "<img src='/productmanage/displayThumbnail?fileName=" + fileCallPath +"'>";
+            str += "<div class='imgDeleteBtn' data-file='" + fileCallPath + "'>x</div>";
+            str += "<input type='hidden' name='product_thumb_nail' value='"+ fileCallPath +"'>";
+
+            str += "</div>";
+
+            uploadResult.append(str);
+
+        }
+
+        /* 파일 삭제 메서드 */
+        function deleteFile(){
+
+            let targetFile = $(".imgDeleteBtn").data("file");
+
+            let targetDiv = $("#result_card");
+
+            $.ajax({
+                url: '/productmanage/deleteThumbnail',
+                data : {fileName : targetFile},
+                dataType : 'text',
+                type : 'POST',
+                success : function(result){
+                    console.log(result);
+                    targetDiv.remove();
+                    $("input[type='file']").val("");
+                },
+                error : function(result){
+                    console.log(result);
+                    alert("파일을 삭제하지 못하였습니다.");
+                }
+            });
+
+        }
+        /* 이미지 삭제 버튼 클릭했을 때 */
+        $("#uploadResult").on("click", ".imgDeleteBtn", function(e){
+
+            deleteFile();
+
         });
 
         // 상품 등록 버튼 클릭했을 때

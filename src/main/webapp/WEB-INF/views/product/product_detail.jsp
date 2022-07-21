@@ -158,7 +158,7 @@ contentType="text/html;charset=UTF-8" language="java" %> <%--<!DOCTYPE html>
                             id="minus-button"
                             aria-label="Decrease"
                           ></button>
-                          <input
+                          <input readonly
                             type="number"
                             name="quantity"
                             id="quantity"

@@ -131,6 +131,7 @@ $('#orderBtn').on('click',function(){
     let colorArr = new Array(cnt);;
     let sizeArr = new Array(cnt);;
     let subTotalPriceArr = new Array(cnt);;
+    let product_title = $('.product-title').html();
 
     for(var i=0; i<cnt.length; i++){
         qtyArr[i] = $('.pro input[name=quantity]').eq(i).val();
@@ -141,16 +142,20 @@ $('#orderBtn').on('click',function(){
         subTotalPriceArr[i] = subTotalPrice[i].innerHTML;
     }//for
 
-    var form = $('<form></form>');
-    form.attr('action','/purchase/page')
-    form.attr('method','post')
-    form.appendTo('body');
-    form.append($('<input type="hidden" value="'+qtyArr+'" name=qty>'));
-    form.append($('<input type="hidden" value="'+colorArr+'" name=option_color>'));
-    form.append($('<input type="hidden" value="'+sizeArr+'" name=option_size>'));
-    form.append($('<input type="hidden" value="'+subTotalPriceArr+'" name=subTotalPrice>'));
-    form.append($('<input type="hidden" value="'+totalPrice+'" name=total_price>'));
-    form.submit();
-
+    if($('#total_price').html()!=0){
+        var form = $('<form></form>');
+        form.attr('action','/purchase/page')
+        form.attr('method','post')
+        form.appendTo('body');
+        form.append($('<input type="hidden" value="'+qtyArr+'" name=qty>'));
+        form.append($('<input type="hidden" value="'+colorArr+'" name=option_color>'));
+        form.append($('<input type="hidden" value="'+sizeArr+'" name=option_size>'));
+        form.append($('<input type="hidden" value="'+subTotalPriceArr+'" name=subTotalPrice>'));
+        form.append($('<input type="hidden" value="'+totalPrice+'" name=total_price>'));
+        form.append($('<input type="hidden" value="'+product_title+'" name=product_title>'));
+        form.submit();
+    }else{
+        alert("상품을 선택해주세요.");
+    }
 
 });

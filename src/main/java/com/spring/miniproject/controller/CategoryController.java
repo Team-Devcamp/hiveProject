@@ -33,16 +33,16 @@ public class CategoryController {
     // 등록된 카테고리 목록 보여주기
     @GetMapping("/categorylist")
     @ResponseBody
-    public List<CategoryDto> getAllCategoryList() {
+    public ResponseEntity<List<CategoryDto>> getAllCategoryList() {
         List<CategoryDto> categoryList = null;
         try {
             categoryList = categoryService.selectAllCategory();
-
+            return new ResponseEntity<>(categoryList, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        return categoryList;
     }
 
     // 카테고리 DB에 추가

@@ -293,6 +293,7 @@
             type:'GET',       // 요청 메서드
             url: '/productmanage/productoption/list?product_id=' + product_id,  // 요청 URI
             success : function(result){
+                console.log(result);
                 $('.product-option-list').html(optionToHtml(result)); // 서버로부터 응답이 도착하면 호출될 함수
             },
             error   : function(){ alert("상품 상위옵션 불러오기 실패") } // 에러가 발생했을 때, 호출될 함수
@@ -615,6 +616,7 @@
             type:'GET',       // 요청 메서드
             url: '/categorymanage/categorylist',  // 요청 URI
             success : function(result){
+                console.log(result)
                 $('.category-list').html(CategorytoHtml(result)); // 서버로부터 응답이 도착하면 호출될 함수
             },
             error   : function(){ alert("카테고리 리스트 불러오기 실패") } // 에러가 발생했을 때, 호출될 함수

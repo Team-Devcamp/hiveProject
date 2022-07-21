@@ -37,7 +37,7 @@ public class CategoryController {
         List<CategoryDto> categoryList = null;
         try {
             categoryList = categoryService.selectAllCategory();
-//
+
         } catch (Exception e) {
             e.printStackTrace();
         }

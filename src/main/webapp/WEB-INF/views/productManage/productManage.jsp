@@ -29,7 +29,7 @@
     <div class="search-container">
         <form action="<c:url value="/productmanage"/>" class="search-form" method="get">
             <select class="search-option" name="option">
-                <option value="A" ${pph.psc.option=='A' || ph.sc.option=='' ? "selected" : ""}>제목+상품 이름</option>
+                <option value="A" ${pph.psc.option=='A' || pph.psc.option=='' ? "selected" : ""}>제목+상품 이름</option>
                 <option value="T" ${pph.psc.option=='T' ? "selected" : ""}>제목</option>
                 <option value="N" ${pph.psc.option=='W' ? "selected" : ""}>상품 이름</option>
             </select>
@@ -229,14 +229,14 @@
             tmp += ' data-option-id=' + option.option_id
             tmp += ' data-option-name=' + option.option_name + '>'
 
-            tmp += ' <div class="product-id"><p>' + option.product_id + '</p></div>'
-            tmp += ' <div class="option-id"><p>' + option.option_id + '</p></div>'
-            tmp += ' <div class="option-name"><p>' + option.option_name + '</p></div>'
+            tmp += '<div class="product-id"><p>' + option.product_id + '</p></div>'
+            tmp += '<div class="option-id"><p>' + option.option_id + '</p></div>'
+            tmp += '<div class="option-name"><p>' + option.option_name + '</p></div>'
             tmp += '</div>'
             tmp += '<button class="modify-option-btn">수정</button>'
             tmp += '<button class="delete-option-btn">삭제</button>'
             tmp += '</div>'
-        })
+        });
 
         return tmp;
     }
@@ -259,33 +259,33 @@
             tmp += '<button class="modify-option-detail-btn">수정</button>'
             tmp += '<button class="delete-option-detail-btn">삭제</button>'
             tmp += '</div>'
-        })
+        });
 
         return tmp;
-    }
+    };
 
+    // //
+    // let productStockToHtml = function(options) {
+    //     let tmp = '';
+    //     options.forEach(function(option) {
+    //         tmp += '<div class="product-stock-wrap"> '
+    //         tmp += '<div class="product-stock" data-product-id=' + option.product_id
+    //         tmp += ' data-option-id=' + option.option_id
+    //         tmp += ' data-option-detail-id=' + option.option_detail_id
+    //         tmp += ' data-option-detail-name=' + option.option_detail_name + '>'
     //
-    let productStockToHtml = function(options) {
-        let tmp = '';
-        options.forEach(function(option) {
-            tmp += '<div class="product-stock-wrap"> '
-            tmp += '<div class="product-stok" data-product-id=' + option.product_id
-            tmp += ' data-option-id=' + option.option_id
-            tmp += ' data-option-detail-id=' + option.option_detail_id
-            tmp += ' data-option-detail-name=' + option.option_detail_name + '>'
-
-            tmp += ' <div class="product-id"><p>상품 번호 ' + option.product_id + '</p></div>'
-            tmp += ' <div class="option-id"><p>상위옵션 번호 ' + option.option_id + '</p></div>'
-            tmp += ' <div class="option-detail-id"><p>하위옵션 번호 ' + option.option_detail_id + '</p></div>'
-            tmp += ' <div class="option-detail-name"><p>하위옵션 이름 ' + option.option_detail_name + '</p></div>'
-            tmp += '</div>'
-            tmp += '<button class="modify-option-detail-btn">수정</button>'
-            tmp += '<button class="delete-option-detail-btn">삭제</button>'
-            tmp += '</div>'
-        })
-
-        return tmp;
-    }
+    //         tmp += ' <div class="product-id"><p>상품 번호 ' + option.product_id + '</p></div>'
+    //         tmp += ' <div class="option-id"><p>상위옵션 번호 ' + option.option_id + '</p></div>'
+    //         tmp += ' <div class="option-detail-id"><p>하위옵션 번호 ' + option.option_detail_id + '</p></div>'
+    //         tmp += ' <div class="option-detail-name"><p>하위옵션 이름 ' + option.option_detail_name + '</p></div>'
+    //         tmp += '</div>'
+    //         tmp += '<button class="modify-option-detail-btn">수정</button>'
+    //         tmp += '<button class="delete-option-detail-btn">삭제</button>'
+    //         tmp += '</div>'
+    //     });
+    //
+    //     return tmp;
+    // }
 
     // 서버에서 상품 상위옵션 리스트를 가져와서 태그에 담아 화면에 나타내는 메서드
     let showProductOptionList = function(product_id) {
@@ -579,13 +579,13 @@
         showProductOptionDetailList(product_id, option_id);
     });
 
-    // 특정 하위옵션 클릭했을 때 등록된 재고를 보여주는 이벤트
-    $(".product-option-detail-list").on("click", ".option-detail", function() {
-        let product_id = $(this).attr("data-product-id");
-        let option_id = $(this).attr("data-option-id");
-
-        showProductStock(product_id, option_id);
-    });
+    // // 특정 하위옵션 클릭했을 때 등록된 재고를 보여주는 이벤트
+    // $(".product-option-detail-list").on("click", ".option-detail", function() {
+    //     let product_id = $(this).attr("data-product-id");
+    //     let option_id = $(this).attr("data-option-id");
+    //
+    //     showProductStock(product_id, option_id);
+    // });
 
 
     /* 카테고리 관련 script */
@@ -653,7 +653,6 @@
         }); // $.ajax()
     }
 
-    /* 카테고리 */
     // 카테고리 추가 버튼 눌렀을 때
     $("#add-category-btn").click(function() {
         let category_name = $("input[name=category_name]").val();

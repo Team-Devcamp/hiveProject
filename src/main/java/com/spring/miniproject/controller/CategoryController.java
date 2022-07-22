@@ -37,7 +37,9 @@ public class CategoryController {
         List<CategoryDto> categoryList = null;
         try {
             categoryList = categoryService.selectAllCategory();
+
             return new ResponseEntity<>(categoryList, HttpStatus.OK);
+
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

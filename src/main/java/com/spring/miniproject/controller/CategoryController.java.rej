@@ -1,0 +1,18 @@
+diff a/src/main/java/com/spring/miniproject/controller/CategoryController.java b/src/main/java/com/spring/miniproject/controller/CategoryController.java	(rejected hunks)
+@@ -37,14 +37,16 @@
+          List<CategoryDto> categoryList = null;
+          try {
+              categoryList = categoryService.selectAllCategory();
+ -//
+++
+ +            return new ResponseEntity<>(categoryList, HttpStatus.OK);
+++
+          } catch (Exception e) {
+              e.printStackTrace();
+ +            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+          }
+  
+ -        return categoryList;
+      }
+  
+      // 카테고리 DB에 추가

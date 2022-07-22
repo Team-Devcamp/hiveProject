@@ -9,25 +9,27 @@
     <link rel="stylesheet" href="<c:url value='/css/user/login_page.css'/>">
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script>
+        function submit(){
+            let user_email = $("input[name=user_email]").val();
+            let user_pwd = $("input[name=user_password]").val();
+
+            if(user_email==null || user_email==""){
+                alert("이메일을 입력해주세요.");
+                return;
+            }
+
+            if(user_pwd == null || user_pwd == ""){
+                alert("비밀번호를 입력해주세요.");
+                return;
+            }
+
+            $("form").submit();
+        }
         $(document).ready(function (){
             let error_msg = "${error_msg}";
             let error_msg_social = "${error_msg_social}";
             $(".login-btn").on("click",function (){
-               let user_email = $("input[name=user_email]").val();
-               let user_pwd = $("input[name=user_password]").val();
-
-               if(user_email==null || user_email==""){
-                   alert("이메일을 입력해주세요.");
-                   return;
-               }
-
-               if(user_pwd == null || user_pwd == ""){
-                   alert("비밀번호를 입력해주세요.");
-                   return;
-               }
-
-               $("form").submit();
-
+               submit();
             });
             if(error_msg != null && error_msg != ""){
                 alert(error_msg);
@@ -39,20 +41,7 @@
 
             $("input[name=user_email],input[name=user_password]").on("keypress",function (e){
                if(e.keyCode === 13){
-                   let user_email = $("input[name=user_email]").val();
-                   let user_pwd = $("input[name=user_password]").val();
-
-                   if(user_email==null || user_email==""){
-                       alert("이메일을 입력해주세요.");
-                       return;
-                   }
-
-                   if(user_pwd == null || user_pwd == ""){
-                       alert("비밀번호를 입력해주세요.");
-                       return;
-                   }
-
-                   $("form").submit();
+                   submit();
                }
             });
 

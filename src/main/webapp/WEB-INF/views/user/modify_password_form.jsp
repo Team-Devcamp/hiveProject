@@ -8,107 +8,65 @@
     <script src="https://kit.fontawesome.com/4c299e10dd.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script>
+        function submit(){
+            var present_pwd = $("#present-pwd").val();
+            var modify_pwd = $("#modify-pwd").val();
+            var modify_pwd_chk = $("#modify-pwd-check").val();
+            var formData = $(".pwd-modify-form").serialize();
+            var regexPwd = /^(?=.*[a-zA-Z])(?=.*[!@#$%^~*+=-])(?=.*[0-9]).{8,16}$/;;
+
+            if(present_pwd == null || present_pwd == ""){
+                alert("현재 비밀번호를 입력해주세요.");
+                return;
+            }
+
+            if(modify_pwd == null || modify_pwd == ""){
+                alert("변경할 비밀번호를 입력해주세요.");
+                return;
+            }
+
+            if(modify_pwd_chk == null || modify_pwd_chk == ""){
+                alert("변경할 비밀번호 확인을 입력해주세요.");
+                return;
+            }
+
+            if(modify_pwd != modify_pwd_chk){
+                alert("변경할 비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+                return;
+            }
+
+            if(!regexPwd.test(modify_pwd)){
+                alert("비밀번호는 8-16자리의 문자,숫자,특수문자를 모두 포함해서 입력해주시기 바랍니다.");
+                return;
+            }
+
+            $.ajax({
+                type: "POST",
+                url : "/mypage/modify/password/save",
+                data: formData,
+                success : function (data){
+                    if(data=="success"){
+                        alert("비밀번호가 변경되었습니다.");
+                        window.opener.location.href = "/";
+                        window.close();
+                        return;
+                    }else{
+                        alert("비밀번호 변경에 실패하였습니다. 비밀번호가 틀렸거나, \n기존 비밀번호와 변경하려는 비밀번호가 같은지 확인 후 다시 시도 바랍니다.");
+                        return;
+                    }
+                }
+
+            });
+        }
         $(document).ready(function (){
 
            $("#submit-btn").on("click",function (){
-               var present_pwd = $("#present-pwd").val();
-               var modify_pwd = $("#modify-pwd").val();
-               var modify_pwd_chk = $("#modify-pwd-check").val();
-               var formData = $(".pwd-modify-form").serialize();
-               var regexPwd = /^(?=.*[a-zA-Z])(?=.*[!@#$%^~*+=-])(?=.*[0-9]).{8,16}$/;;
-
-               if(present_pwd == null || present_pwd == ""){
-                   alert("현재 비밀번호를 입력해주세요.");
-                   return;
-               }
-
-               if(modify_pwd == null || modify_pwd == ""){
-                   alert("변경할 비밀번호를 입력해주세요.");
-                   return;
-               }
-
-               if(modify_pwd_chk == null || modify_pwd_chk == ""){
-                   alert("변경할 비밀번호 확인을 입력해주세요.");
-                   return;
-               }
-
-               if(modify_pwd != modify_pwd_chk){
-                   alert("변경할 비밀번호와 비밀번호 확인이 일치하지 않습니다.");
-                   return;
-               }
-
-               if(!regexPwd.test(modify_pwd)){
-                   alert("비밀번호는 8-16자리의 문자,숫자,특수문자를 모두 포함해서 입력해주시기 바랍니다.");
-                   return;
-               }
-
-               $.ajax({
-                  type: "POST",
-                   url : "/mypage/modify/password/save",
-                  data: formData,
-                   success : function (data){
-                      if(data=="success"){
-                          alert("비밀번호가 변경되었습니다.");
-                          return;
-                      }else{
-                          alert("비밀번호 변경에 실패하였습니다. 비밀번호가 틀렸거나, \n기존 비밀번호와 변경하려는 비밀번호가 같은지 확인 후 다시 시도 바랍니다.");
-                          return;
-                      }
-                   }
-
-               });
+               submit();
            });
 
            $("#present-pwd,#modify-pwd,#modify-pwd-check").on("keypress",function (e){
                if(e.keyCode === 13){
-                   var present_pwd = $("#present-pwd").val();
-                   var modify_pwd = $("#modify-pwd").val();
-                   var modify_pwd_chk = $("#modify-pwd-check").val();
-                   var formData = $(".pwd-modify-form").serialize();
-                   var regexPwd = /^(?=.*[a-zA-Z])(?=.*[!@#$%^~*+=-])(?=.*[0-9]).{8,16}$/;;
-
-                   if(present_pwd == null || present_pwd == ""){
-                       alert("현재 비밀번호를 입력해주세요.");
-                       return;
-                   }
-
-                   if(modify_pwd == null || modify_pwd == ""){
-                       alert("변경할 비밀번호를 입력해주세요.");
-                       return;
-                   }
-
-                   if(modify_pwd_chk == null || modify_pwd_chk == ""){
-                       alert("변경할 비밀번호 확인을 입력해주세요.");
-                       return;
-                   }
-
-                   if(modify_pwd != modify_pwd_chk){
-                       alert("변경할 비밀번호와 비밀번호 확인이 일치하지 않습니다.");
-                       return;
-                   }
-
-                   if(!regexPwd.test(modify_pwd)){
-                       alert("비밀번호는 8-16자리의 문자,숫자,특수문자를 모두 포함해서 입력해주시기 바랍니다.");
-                       return;
-                   }
-
-                   $.ajax({
-                       type: "POST",
-                       url : "/mypage/modify/password/save",
-                       data: formData,
-                       success : function (data){
-                           if(data=="success"){
-                               alert("비밀번호가 변경되었습니다. 새로운 비밀번호로 로그인 해 주시기 바랍니다.");
-                               window.opener.location.href = "/";
-                               window.close();
-                               return;
-                           }else{
-                               alert("비밀번호 변경에 실패하였습니다. 비밀번호가 틀렸거나, \n기존 비밀번호와 변경하려는 비밀번호가 같은지 확인 후 다시 시도 바랍니다.");
-                               return;
-                           }
-                       }
-
-                   });
+                   submit();
                }
            })
         });

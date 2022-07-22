@@ -23,7 +23,7 @@
             <p><a href="/product/list">전체</a></p>
             <c:forEach items="${categoryMap}" var="entry">
                 <ul>
-                    <div class="category-wrap"><p class="category">${entry.key}</p><div class="drop-down">∨</div></div>
+                    <div class="category-wrap"><p class="category">${entry.key}</p><div class="drop-down">Ｖ</div></div>
                     <c:forEach items="${entry.value}" var="subCategoryDto">
                         <li class="sub-category"><a href="/product/list?sub_category_id=${subCategoryDto.sub_category_id}">${subCategoryDto.sub_category_name}</a></li>
                     </c:forEach>

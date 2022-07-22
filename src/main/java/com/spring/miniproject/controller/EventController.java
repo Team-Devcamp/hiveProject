@@ -1,8 +1,10 @@
 package com.spring.miniproject.controller;
 
+import com.google.gson.JsonObject;
 import com.spring.miniproject.domain.EventDto;
 import com.spring.miniproject.domain.EventPageHandler;
 import com.spring.miniproject.service.EventService;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +13,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.*;
+import java.security.spec.ECField;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/event")
@@ -159,5 +168,61 @@ public class EventController {
         System.out.println("admin = " + admin);
         return admin.equals("admin@hive.co.kr");
     }
+
+    // 파일업로드
+    @ResponseBody
+    @RequestMapping(value = "/uploadImage")
+    public void communityImageUpload(HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile) throws Exception{
+        JsonObject jsonObject = new JsonObject();
+        PrintWriter printWriter = null;
+        OutputStream out = null;
+        MultipartFile file = multiFile.getFile("upload");
+
+        if(file != null) {
+            if(file.getSize() >0 && StringUtils.isNotBlank(file.getName())) {
+                if(file.getContentType().toLowerCase().startsWith("image/")) {
+                    try{
+                        String fileName = file.getOriginalFilename();
+                        byte[] bytes = file.getBytes();
+                        String uploadPath = req.getSession().getServletContext().getRealPath("/resources/image/event/upload_files");
+
+                        File uploadFile = new File(uploadPath);
+                        if(!uploadFile.exists()) {
+                            uploadFile.mkdir();
+                        }
+                        fileName = UUID.randomUUID().toString();
+                        uploadPath = uploadPath + "/" + fileName;
+
+                        out = new FileOutputStream(new File(uploadPath));
+                        out.write(bytes);
+
+                        printWriter = resp.getWriter();
+                        String fileUrl = req.getContextPath() + "/image/event/upload_files/" + fileName;
+
+                        JsonObject json = new JsonObject();
+                        json.addProperty("uploaded", 1);
+                        json.addProperty("fileName", fileName);
+                        json.addProperty("url", fileUrl);
+                        printWriter.print(json);
+
+                    }catch(IOException e){
+                        e.printStackTrace();
+                    } finally {
+                        if (out != null) {
+                            out.close();
+                        }
+                        if (printWriter != null) {
+                            printWriter.close();
+                        }
+                    }
+                }
+
+            }
+
+        }
+    }
+
+    // 썸네일 파일 업로드
+
 
 }

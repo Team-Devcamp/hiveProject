@@ -4,7 +4,7 @@
 <html>
 <head>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+    <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
     <link rel="stylesheet" href="/css/event/event_write.css" />
     <title>Title</title>
 </head>
@@ -35,7 +35,10 @@
         </div>
         <div class="board-attach">
             <label for="attach-file">이곳을 클릭해 파일을 업로드 하세요.</label>
-            <input id="attach-file" type="file" >
+            <ul class="hidden-preview">
+                <li><input id="attach-file" type="file" ></li>
+            </ul>
+
         </div>
         <div class="board-btn">
             <c:choose>
@@ -51,36 +54,44 @@
 </form>
 
 <script>
+    CKEDITOR.replace( 'event_content', {
+        width:1200,
+        height:500,
+        filebrowserUploadUrl:  "/event/uploadImage"
+    });
 
     $(document).ready(function () {
         $("#save-btn").click(function(){
             const title = document.formWrite.event_title.value;
-            // const editorData = editor.getData();
-            if(title==""){
+
+            if(title=="" || title.length == 0){
                 alert("제목을 입력하세요")
                 document.formWrite.event_title.focus();
                 return;
             }
-            // if(content==""){
-            //     alert("내용을 입력하세요");
-            //     // document.formWrite.event_content.focus();
-            //     return;
-            // }
 
-
+            if(CKEDITOR.instances.event_content.getData()==''
+                || CKEDITOR.instances.event_content.getData().length ==0){
+                alert("내용을 입력해주세요.");
+                $(CKEDITOR.instances.event_content).focus();
+                return false;
+            }
             document.formWrite.submit();
         })
     });
 
+    $("input[type='file']").on("change", function(e){
+        let fileInput = $('input[name="uploadFile"]');
+        let fileList = fileInput[0].files;
+
+
+        console.log("fileList : " + fileList)
+    });
+
+
     let msg = "${msg}"
     if (msg=="Write Error") alert("이벤트 등록에 실패했습니다. 다시 시도해 주세요.");
     if (msg=="Modify Error") alert("이벤트 수정에 실패했습니다. 다시 시도해 주세요.");
-
-    ClassicEditor
-        .create( document.querySelector( '.editor' ) )
-        .catch( error => {
-            console.error( error );
-        } );
 </script>
 
 </body>

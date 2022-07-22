@@ -1,4 +1,3 @@
-
 .todaylank .tab-container > ul > li a,
 .btn-lank a,
 .event-wrap a {
@@ -6,18 +5,41 @@
     text-decoration-line: none;
 }
 
-.banner {
-    margin-bottom: 70px;
-    z-index: 0;
+#slider {
+    padding-top: 100px;
+    position: relative;
+    width: -moz-min-content;
+    box-sizing: border-box;
 }
 
-.banner-wrap {
+.slider__item {
+    width: 100%;
+    height: 500px;
     display: flex;
     justify-content: center;
+    align-items: center;
+    color: white;
+    position: absolute;
+    top: 0;
+    z-index: 0;
+    opacity: 0;
+    transition: all 0.7s ease-in-out;
+    transform: scale(0.9);
+}
+
+.showing {
+    z-index: 1;
+    opacity: 1;
+    transform: none;
+}
+
+.main-home {
+    padding-top: 550px;
 }
 
 .todaylank {
     margin-bottom: 100px;
+
 }
 
 .todaylank .title-wrap {
@@ -34,32 +56,46 @@
     font-weight: 700;
 }
 
-.todaylank .tab-container > ul {
-    display: flex;
-    justify-content: space-between;
-}
-
-.todaylank .tab-container > ul > li {
-    margin-right: 20px;
-    font-size: 20px;
-}
-
 .todaylank-items-wrap {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    justify-items: center;
+    row-gap: 50px;
     margin-bottom: 30px;
 }
 
 .item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 3px;
+    box-sizing: border-box;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 40px;
+    transition: transform .15s ease-in-out;
 }
 
-.item a img {
-    width: 280px;
-    height: 280px;
+.item:hover {
+    transform: scale(1.02);
+}
+
+.item a div {
+    box-sizing: border-box;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.item .thumb-nail {
+    border: 1px solid black;
+    width: 220px;
+    height: 220px;
+    margin-bottom: 7px;
+    overflow: hidden;
+}
+
+.item .item-info span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .btn-lank {
@@ -110,4 +146,25 @@
 
 .btn-lank a span{
     margin-right: 7px;
+}
+
+.info-nav {
+    width: 500px;
+    height: 400px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-items: center;
+    align-content: center;
+    row-gap: 100px;
+}
+
+.info-nav a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info-nav i {
+    font-size: 100px;
+    margin-bottom: 10px;
 }

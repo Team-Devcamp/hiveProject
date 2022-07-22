@@ -149,6 +149,9 @@ button {
 .product .product-title {
     float: left;
     width: 33.5%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .product .product-price {
@@ -463,13 +466,13 @@ button {
     width: 54%;
     float: right;
     margin-left: 15px;
-    border-bottom: 2px solid blue;
+    border-bottom: 2px solid black;
 }
 
 .category .sub-category-wrap .sub-category-head {
     overflow: hidden;
-    border-top: 2px solid blue;
-    border-bottom: 2px solid blue;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
     padding: 10px 0;
     text-align: center;
 }

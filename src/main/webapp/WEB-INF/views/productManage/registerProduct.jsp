@@ -20,7 +20,8 @@
         let msg = "${msg}";
         if(msg=="MOD_ERR")  alert("상품 수정에 실패했습니다. 다시 시도해주세요.");
     </script>
-    <h2>상품 등록</h2>
+    <h2>상품 ${mode == "new" ? "등록" : "수정"}</h2>
+
     <form id="register-form" action='' method="POST">
 
         <div id="input-wrap">
@@ -51,6 +52,10 @@
             <input type="file" id="fileItem" name="" accept="image/*" multiple>
         </div>
         <div id="uploadResult">
+            <c:if test="${productDto.product_thumb_nail ne null}">
+                <img src="/image/product/thumbnail/${productDto.product_thumb_nail}">
+                <input type="hidden" name="product_thumb_nail" value="${productDto.product_thumb_nail}">
+            </c:if>
         </div>
         <button id="submit-btn" ${mode=="new" ? "" : 'style="display: none;"'}>상품 등록</button>
         <button id="modify-btn" ${mode!="new" ? "" : 'style="display: none;"'}>상품 수정</button>
@@ -141,7 +146,7 @@
 
             str += "</div>";
 
-            uploadResult.append(str);
+            uploadResult.html(str);
 
         }
 

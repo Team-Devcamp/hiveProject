@@ -23,9 +23,9 @@
             <p><a href="/product/list">전체</a></p>
             <c:forEach items="${categoryMap}" var="entry">
                 <ul>
-                    <p>${entry.key}</p>
+                    <div class="category-wrap"><p class="category">${entry.key}</p><div class="drop-down">Ｖ</div></div>
                     <c:forEach items="${entry.value}" var="subCategoryDto">
-                        <li><a href="/product/list?sub_category_id=${subCategoryDto.sub_category_id}">${subCategoryDto.sub_category_name}</a></li>
+                        <li class="sub-category"><a href="/product/list?sub_category_id=${subCategoryDto.sub_category_id}">${subCategoryDto.sub_category_name}</a></li>
                     </c:forEach>
                 </ul>
             </c:forEach>
@@ -59,12 +59,13 @@
             <input type="hidden" name="product_num" value="${product_num}">
             <input type="hidden" name="productCnt" value="${productCnt}">
             <input type="hidden" name="sub_category_id" value="${sub_category_id}">
-            <div class="show-more-btn">더 보기</div>
+            <div class="show-more-btn" style="display: ${productCnt <= offset + product_num ? "none" : ""};">더 보기</div>
         </div>
     </div>
 
 </div>
     <script>
+
         // 더 보기 버튼 클릭했을 때
         $(".show-more-btn").on("click", function() {
             let product_num = parseInt($("input[name=product_num]").val());
@@ -104,6 +105,15 @@
             if (productCnt <= (offset + product_num)) {
                 $('.show-more-btn').css("display", "none");
             }
+        });
+
+        $(".category-wrap").on("click", function() {
+            let $sub_category = $(this).parent().children('li.sub-category');
+            if ($sub_category.css("display") == "block") {
+                $sub_category.css("display", "none");
+                return;
+            }
+            $sub_category.css("display", "block");
         })
     </script>
 </body>

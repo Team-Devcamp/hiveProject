@@ -56,7 +56,10 @@ button {
 }
 
 /* 썸네일 표시 부분 */
-
+#uploadResult {
+    display: flex;
+    justify-content: center;
+}
 #result_card img {
     max-width: 100%;
     height: auto;
@@ -72,7 +75,7 @@ button {
 .imgDeleteBtn{
     position: absolute;
     top: 0;
-    right: 14%;
+    right: -80%;
     background-color: #ef7d7d;
     color: wheat;
     font-weight: 900;

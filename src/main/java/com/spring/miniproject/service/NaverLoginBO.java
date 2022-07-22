@@ -16,7 +16,7 @@ import java.security.SecureRandom;
 public class NaverLoginBO{
     private final static String CLIENT_ID = "siyGBmbQBhnKc99yudd2";
     private final static String CLIENT_SECRET = "nNaaEHEaA1";
-    private final static String REDIRECT_URI = "http://localhost:9000/login/naver";
+    private final static String REDIRECT_URI = "http://13.125.217.234:8080/login/naver";
 
     //프로필 조회 URL
     private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me";

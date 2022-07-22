@@ -44,7 +44,7 @@ public class QnaController {
     @PostMapping("/delete")
     public ResponseEntity<String> deleteQna(@RequestParam int qna_id, int product_id, HttpSession session){
         System.out.println("product_id = " + qna_id+"  product_id = "+ product_id);
-        String writer = "asdf@gmail.com";
+        String writer = (String)session.getAttribute("user_email");
 
         try {
             int rowCnt = qnaService.deleteQna(product_id, qna_id, writer);

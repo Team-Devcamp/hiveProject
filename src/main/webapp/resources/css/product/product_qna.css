@@ -162,3 +162,10 @@
 #qna_title:hover{
     cursor: pointer;
 }
+
+#qnaDelBtn{
+    background: white;
+    border:none;
+    color: red;
+    font-weight: bold;
+}

@@ -23,9 +23,9 @@
             <p><a href="/product/list">전체</a></p>
             <c:forEach items="${categoryMap}" var="entry">
                 <ul>
-                    <p>${entry.key}</p>
+                    <div class="category-wrap"><p class="category">${entry.key}</p><div class="drop-down">Ｖ</div></div>
                     <c:forEach items="${entry.value}" var="subCategoryDto">
-                        <li><a href="/product/list?sub_category_id=${subCategoryDto.sub_category_id}">${subCategoryDto.sub_category_name}</a></li>
+                        <li class="sub-category"><a href="/product/list?sub_category_id=${subCategoryDto.sub_category_id}">${subCategoryDto.sub_category_name}</a></li>
                     </c:forEach>
                 </ul>
             </c:forEach>
@@ -105,6 +105,15 @@
             if (productCnt <= (offset + product_num)) {
                 $('.show-more-btn').css("display", "none");
             }
+        });
+
+        $(".category-wrap").on("click", function() {
+            let $sub_category = $(this).parent().children('li.sub-category');
+            if ($sub_category.css("display") == "block") {
+                $sub_category.css("display", "none");
+                return;
+            }
+            $sub_category.css("display", "block");
         })
     </script>
 </body>

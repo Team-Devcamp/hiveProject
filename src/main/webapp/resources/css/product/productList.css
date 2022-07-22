@@ -56,13 +56,27 @@ body {
     padding-top: 20px;
     padding-bottom: 20px;
 }
+.main .categories ul .category-wrap {
+    overflow: hidden;
+    cursor: pointer;
+}
 .main .categories ul p {
     font-size: 1.2em;
-    padding-bottom: 20px;
+    padding-bottom: 5px;
+    font-weight: normal;
+    float: left;
 }
+.main .categories ul .category-wrap .drop-down {
+    float: right;
+    text-align: right;
+}
+
 .main .categories ul li {
     font-size: 0.9em;
     padding-left: 5px;
+    display: none;
+    margin: 15px 0;
+    color: #4f4f4f;
 }
 
 /* main contents */
@@ -107,7 +121,7 @@ body {
 }
 .main .contents .product-list .product {
     width: 25%;
-    height: 250px;
+    height: 350px;
     padding-top: 20px;
     float: left;
     padding: 10px;
@@ -115,6 +129,11 @@ body {
 }
 .main .contents .product-list .product a {
     display: block;
+}
+.main .contents .product-list .product a:nth-child(1) {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 10px;
 }
 .main .contents .product-list .product a img {
     width: 100%;
@@ -124,6 +143,9 @@ body {
 .main .contents .product-list .product p {
     font-size: 15px;
     margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .main .contents .product-list .product .detail-price {
     overflow: hidden;

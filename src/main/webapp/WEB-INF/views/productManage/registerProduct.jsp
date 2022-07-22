@@ -11,11 +11,8 @@
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
-<<<<<<< HEAD
     <link rel="stylesheet" href="/css/common/reset.css">
     <link rel="stylesheet" href="/css/product_manage/registerProduct.css">
-=======
->>>>>>> parent of 3e26390 ([Feature] 상품 등록시 썸네일 업로드 구현, 스토어에서 상품 썸네일 이미지 출력되도록 url설정)
 
 </head>
 <body>
@@ -88,7 +85,7 @@
             }
 
             $.ajax({
-                url: '/productmanage/upload_thumbnail',
+                url: '/upload_thumbnail',
                 processData : false,
                 contentType : false,
                 data : formData,
@@ -138,7 +135,7 @@
             let fileCallPath = ("thumb_" + obj.uuid + "_" + obj.fileName);
 
             str += "<div id='result_card'>";
-            str += "<img src='/productmanage/display_thumbnail?fileName=" + fileCallPath +"'>";
+            str += "<img src='/display_thumbnail?fileName=" + fileCallPath +"'>";
             str += "<div class='imgDeleteBtn' data-file='" + fileCallPath + "'>x</div>";
             str += "<input type='hidden' name='product_thumb_nail' value='"+ fileCallPath +"'>";
 

@@ -266,7 +266,8 @@ public class ProductManageController {
             }
 
         }// for
-        
+
+        // 파일 저장 경로 (서버 환경에 따라 경로 변경이 필요함)
         String uploadFolder = "C:\\hive\\target\\miniproject-1.0.0-BUILD-SNAPSHOT\\resources\\image\\product\\thumbnail";
 
 //        // 날짜 가져오기

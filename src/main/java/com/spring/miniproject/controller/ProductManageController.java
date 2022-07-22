@@ -27,9 +27,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URLDecoder;
 import java.nio.file.Files;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -209,14 +207,14 @@ public class ProductManageController {
                             uploadFile.mkdir();
                         }
                         String fileName2 = UUID.randomUUID().toString();
-                        uploadPath = uploadPath + "/" + fileName2 + "_" + fileName;
+                        uploadPath = uploadPath + "/" + fileName2 +fileName;
                         System.out.println("uploadPath = " + uploadPath);
 
                         out = new FileOutputStream(new File(uploadPath));
                         out.write(bytes);
 
                         printWriter = resp.getWriter();
-                        String fileUrl = req.getContextPath() + "/image/product/productInfo/" +fileName2 + "_" + fileName; //url경로
+                        String fileUrl = req.getContextPath() + "/image/product/productInfo/" +fileName2 +fileName; //url경로
 
                         System.out.println("fileUrl = " + fileUrl);
                         JsonObject json = new JsonObject();
@@ -242,6 +240,7 @@ public class ProductManageController {
 
         }
     }
+
     // 썸네일 업로드하는 메서드
     @PostMapping(value="/upload_thumbnail", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<List<AttachImageDto>> uploadAjaxActionPOST(MultipartFile[] uploadFile) {
@@ -378,7 +377,6 @@ public class ProductManageController {
         }
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
-
 
     // 상품을 삭제하는 메서드
     @PostMapping("/productmanage/delete")

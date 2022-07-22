@@ -11,8 +11,11 @@
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+<<<<<<< HEAD
     <link rel="stylesheet" href="/css/common/reset.css">
     <link rel="stylesheet" href="/css/product_manage/registerProduct.css">
+=======
+>>>>>>> parent of 3e26390 ([Feature] 상품 등록시 썸네일 업로드 구현, 스토어에서 상품 썸네일 이미지 출력되도록 url설정)
 
 </head>
 <body>
@@ -22,6 +25,7 @@
     </script>
     <h2>상품 등록</h2>
     <form id="register-form" action='' method="POST">
+
         <div id="input-wrap">
             <input id="product-id" name="product_id" type="hidden" value="${productDto.product_id}">
             <label for="product-name">상품 이름</label>
@@ -54,8 +58,6 @@
         <button id="submit-btn" ${mode=="new" ? "" : 'style="display: none;"'}>상품 등록</button>
         <button id="modify-btn" ${mode!="new" ? "" : 'style="display: none;"'}>상품 수정</button>
     </form>
-
-
 
     <script>
         CKEDITOR.replace( 'product-info', {//해당 이름으로 된 textarea에 에디터를 적용

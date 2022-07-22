@@ -168,6 +168,7 @@
 			<artifactId>thumbnailator</artifactId>
 			<version>0.4.13</version>
 		</dependency>
+
 		<!-- ck에디터에서 상품 등록시 이미지 파일을 텍스트 안으로 넣기 위한 dependency -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>

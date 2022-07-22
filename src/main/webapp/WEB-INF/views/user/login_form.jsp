@@ -37,6 +37,24 @@
                 alert(error_msg_social);
             }
 
+            $("input[name=user_email],input[name=user_password]").on("keypress",function (e){
+               if(e.keyCode === 13){
+                   let user_email = $("input[name=user_email]").val();
+                   let user_pwd = $("input[name=user_password]").val();
+
+                   if(user_email==null || user_email==""){
+                       alert("이메일을 입력해주세요.");
+                       return;
+                   }
+
+                   if(user_pwd == null || user_pwd == ""){
+                       alert("비밀번호를 입력해주세요.");
+                       return;
+                   }
+
+                   $("form").submit();
+               }
+            });
 
         });
     </script>

@@ -20,11 +20,26 @@
             $("#inter-items").mouseout(function (){$(this).css("color","rgb(207, 210, 215)")});
             $("#user-profile-info").mouseover(function (){$(this).css({"color":"black","font-weight":"bold"})});
             $("#user-profile-info").mouseout(function (){$(this).css("color","rgb(207, 210, 215)")});
+            $("#add-img").mouseover(function (){$(this).css({"color":"black","font-weight":"bold"})});
+            $("#add-img").mouseout(function (){$(this).css("font-weight","normal")});
+            $("#del-img").mouseover(function (){$(this).css({"color":"black","font-weight":"bold"})});
+            $("#del-img").mouseout(function (){$(this).css("font-weight","normal")});
+            $("#change-pwd").mouseover(function (){$(this).css({"color":"black","font-weight":"bold"})});
+            $("#change-pwd").mouseout(function (){$(this).css("font-weight","normal")});
+            $("#join-out").mouseover(function (){$(this).css({"color":"black","font-weight":"bold"})});
+            $("#join-out").mouseout(function (){$(this).css({"color":"rgb(207, 210, 215)","font-weight":"normal"})});
+            $("#logout-btn").mouseover(function (){$(this).css({"color":"black","font-weight":"bold"})});
+            $("#logout-btn").mouseout(function (){$(this).css({"color":"rgb(207, 210, 215)","font-weight":"normal"})});
+
+            $("#change-pwd").on("click",function (){
+                var popup = window.open('/mypage/modify/password', '비밀번호 변경', 'width=700px,height=800px,scrollbars=yes');
+            });
 
             $("#logout-btn").on("click",function (){
                var question = confirm("로그아웃 하시겠습니까?")
                if(question){
                    location.href = "/logout";
+                   alert("로그아웃 되었습니다.");
                }
             });
 
@@ -116,7 +131,7 @@
                         <h6 class="line-login"></h6>
                     </ul>
                     <h6 class="password">비밀번호</h6>
-                    <input type="password" id="look-pwd" value="**********">
+                    <input type="password" id="look-pwd" value="**********"><input type="button" value="비밀번호 변경" id="change-pwd">
                     <h6 class="line-login-end"></h6>
                 </div>
                 <div class="user-info">

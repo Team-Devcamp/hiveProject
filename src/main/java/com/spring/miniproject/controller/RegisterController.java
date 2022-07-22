@@ -126,8 +126,10 @@ public class RegisterController {
     @RequestMapping("register/findPassword/save")
     @ResponseBody
     public String findPasswordSave(String user_email) throws Exception{
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String tempPassword = findPasswordService.tempPassword();
-        UserDto userDto = new UserDto(user_email,tempPassword);
+        String securePassword = encoder.encode(tempPassword);
+        UserDto userDto = new UserDto(user_email,securePassword);
         int rowCnt = userService.updateUserPassword(userDto);
         if(rowCnt==1){
             findPasswordService.sendNewPassword(user_email,tempPassword);

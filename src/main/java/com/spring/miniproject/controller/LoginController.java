@@ -43,7 +43,7 @@ public class LoginController {
 	}
 
 	/*
-	* 로그인 메서드(로그인 기능을 하면서, 임시 비밀번호를 발급받은 경우, 임시 비밀번호가 기존 암호화 비밀번호 보다 짧으므로, 비밀번호가 50자리 미만인 비밀번호는 암호화 후 로그인을 진행한다)
+	* 로그인 메서드(로그인 기능)
 	* */
 	@PostMapping("/login")
 	public String login(String user_email, String user_password, HttpServletRequest request, RedirectAttributes redirectAttributes) {
@@ -56,12 +56,6 @@ public class LoginController {
 			return "redirect:/login";
 		} else {
 
-			if(userDto.getUser_password().length()<50){
-				String newPassword =  encoder.encode(userDto.getUser_password());
-				UserDto updateUserDto = new UserDto(user_email,newPassword);
-				userService.updateUserPassword(updateUserDto);
-				userDto = userService.selectOneUser(user_email);
-			}
 
 				if (encoder.matches(user_password, userDto.getUser_password())) {
 					session = request.getSession();

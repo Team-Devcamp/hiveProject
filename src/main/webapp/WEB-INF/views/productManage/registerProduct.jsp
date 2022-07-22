@@ -11,65 +11,44 @@
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
-    <style type="text/css">
-        #result_card img{
-            max-width: 100%;
-            height: auto;
-            display: block;
-            padding: 5px;
-            margin-top: 10px;
-            margin: auto;
-        }
-        #result_card {
-            position: relative;
-        }
-        .imgDeleteBtn{
-            position: absolute;
-            top: 0;
-            right: 5%;
-            background-color: #ef7d7d;
-            color: wheat;
-            font-weight: 900;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            line-height: 26px;
-            text-align: center;
-            border: none;
-            display: block;
-            cursor: pointer;
-        }
+    <link rel="stylesheet" href="/css/common/reset.css">
+    <link rel="stylesheet" href="/css/product_manage/registerProduct.css">
 
-    </style>
 </head>
 <body>
     <script>
         let msg = "${msg}";
         if(msg=="MOD_ERR")  alert("상품 수정에 실패했습니다. 다시 시도해주세요.");
     </script>
+    <h2>상품 등록</h2>
     <form id="register-form" action='' method="POST">
-        <input id="product-id" name="product_id" type="hidden" value="${productDto.product_id}">
-        <label for="product-name">상품 이름</label>
-        <input id="product-name" name="product_name" type="text" value="${productDto.product_name}">
-        <label for="product-title">상품 제목</label>
-        <input id="product-title" name="product_title" type="text" value="${productDto.product_title}">
-        <label for="product-price">가격</label>
-        <input id="product-price" name="product_price" type="text" value="${productDto.product_price}">
-        <label for="category-id">카테고리</label>
-        <select id="category-id" name="category_id">
-            <c:forEach var="categoryDto" items="${categoryList}">
-                <option value="${categoryDto.category_id}" ${categoryDto.category_id == productDto.category_id ? "selected" : ""}>${categoryDto.category_name}</option>
-            </c:forEach>
-        </select>
-        <label for="sub-category-id">서브카테고리</label>
-        <select id="sub-category-id" name="sub_category_id">
-            <c:forEach var="subCategoryDto" items="${subCategoryList}">
-                <option value="${subCategoryDto.sub_category_id}" ${subCategoryDto.sub_category_id == productDto.sub_category_id ? "selected" : ""}>${subCategoryDto.sub_category_name}</option>
-            </c:forEach>
-        </select>
+        <div id="input-wrap">
+            <input id="product-id" name="product_id" type="hidden" value="${productDto.product_id}">
+            <label for="product-name">상품 이름</label>
+            <input id="product-name" name="product_name" type="text" value="${productDto.product_name}">
+            <label for="product-title">상품 제목</label>
+            <input id="product-title" name="product_title" type="text" value="${productDto.product_title}">
+            <label for="product-price">가격</label>
+            <input id="product-price" name="product_price" type="text" value="${productDto.product_price}">
+            <label for="category-id">카테고리</label>
+            <select id="category-id" name="category_id">
+                <c:forEach var="categoryDto" items="${categoryList}">
+                    <option value="${categoryDto.category_id}" ${categoryDto.category_id == productDto.category_id ? "selected" : ""}>${categoryDto.category_name}</option>
+                </c:forEach>
+            </select>
+            <label for="sub-category-id">서브카테고리</label>
+            <select id="sub-category-id" name="sub_category_id">
+                <c:forEach var="subCategoryDto" items="${subCategoryList}">
+                    <option value="${subCategoryDto.sub_category_id}" ${subCategoryDto.sub_category_id == productDto.sub_category_id ? "selected" : ""}>${subCategoryDto.sub_category_name}</option>
+                </c:forEach>
+            </select>
+        </div>
+
         <textarea name="product_info" id="product-info" rows="20" cols="100">${productDto.product_info}</textarea>
-        <label for="">썸네일</label>
-        <input type="file" id="fileItem" name="" accept="image/*" multiple>
+        <div id="thumbnail-wrap">
+            <label for="">썸네일</label>
+            <input type="file" id="fileItem" name="" accept="image/*" multiple>
+        </div>
         <div id="uploadResult">
         </div>
         <button id="submit-btn" ${mode=="new" ? "" : 'style="display: none;"'}>상품 등록</button>
@@ -80,8 +59,8 @@
 
     <script>
         CKEDITOR.replace( 'product-info', {//해당 이름으로 된 textarea에 에디터를 적용
-            width:'100%',
-            height:'400px',
+            width:'85%',
+            height:'600px',
             filebrowserUploadUrl:  "/productmanage/uploadimage"
         });
 

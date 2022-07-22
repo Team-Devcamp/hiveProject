@@ -1,0 +1,83 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+h2 {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin : 50px 30px;
+}
+
+/* form */
+#register-form {
+
+}
+#input-wrap {
+    width: 90%;
+    min-width: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#input-wrap input {
+    margin: 0 10px;
+}
+
+#input-wrap select {
+    margin: 0 10px;
+}
+
+#cke_product-info {
+    margin: 0 auto;
+}
+
+#thumbnail-wrap {
+    margin: 20px 0 20px 0;
+    padding-left: 90px;
+}
+
+button {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top : 20px;
+    margin-left: 90px;
+}
+
+/* 썸네일 표시 부분 */
+
+#result_card img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    padding: 5px;
+    margin-top: 10px;
+    margin: auto;
+}
+
+#result_card {
+    position: relative;
+}
+.imgDeleteBtn{
+    position: absolute;
+    top: 0;
+    right: 14%;
+    background-color: #ef7d7d;
+    color: wheat;
+    font-weight: 900;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    line-height: 26px;
+    text-align: center;
+    border: none;
+    display: block;
+    cursor: pointer;
+}

@@ -49,7 +49,7 @@
                             <p>${productDto.product_title} </p>
                         </a>
                         <div class="detail-price">
-                            <strong class="current-price">${productDto.product_price}</strong>
+                            <strong class="current-price">${productDto.product_price}원</strong>
                             <span class="discount-rate">50%</span>
                         </div>
                     </li>
@@ -87,7 +87,7 @@
                         tmp += ' <a href="/product/detail?product_id=' + product.product_id + '">'
                         tmp += ' <p>' + product.product_title + '</p></a>'
                         tmp += ' <div class="detail-price">'
-                        tmp += ' <strong class="current-price">' + product.product_price + '</strong>'
+                        tmp += ' <strong class="current-price">' + product.product_price + '원</strong>'
                         tmp += ' <span class="discount-rate">50%</span>'
                         tmp += ' </div>'
                         tmp += ' </li>'

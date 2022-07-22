@@ -41,9 +41,9 @@ public class ProductController {
                 // 등록된 총 상품의 갯수
                 productCnt = productService.selectAllProductCnt();
 
-            // 카테고리를 클릭했을 때
+            // 특정 서브카테고리를 클릭했을 때
             } else {
-                // 0개 건너뛰고, 상품을 1개씩 가져오기
+                // offset과 product_num(한 번에 보여줄 상품의 갯수)를 설정하여 상품목록을 가져온다.
                 productList = productService.selectProductBySubCategory(0, 20, sub_category_id);
                 // 서브 카테고리 번호를 model에 저장
                 m.addAttribute("sub_category_id", sub_category_id);

@@ -53,6 +53,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <c:if test="${sessionScope.user_email == 'admin@hive.co.kr'}">
           <a href="/productmanage/register">상품등록</a>
           <a href="/event/write">이벤트등록</a>
+          <a href="/productmanage">관리자</a>
         </c:if>
       </div>
     </nav>

@@ -104,6 +104,17 @@ a {
     border-width: 0.3px;
 }
 
+.wrap .content .menu .profile-info #change-pwd{
+    width: 105px;
+    height: 40px;
+    background: white;
+    border-color:rgb(207, 210, 215);
+    border-style: solid;
+    border-radius: 8px;
+    border-width: 0.3px;
+    margin-left: 207px;
+}
+
 .wrap .content .menu .profile-info p{
     font-size: 28px;
     font-weight: bold;

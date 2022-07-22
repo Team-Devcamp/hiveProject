@@ -12,34 +12,32 @@
             var code = "";
             var user_email = opener.$("#user_email").val();
             $("#user-email").val(user_email);
-
             $("#user-email").on("propertychange change keyup paste input",function (){
                 user_email = $(this).val();
             });
 
-            $("#email-chk-btn").on("click",function(){
-                    $.ajax({
-                        type:"GET",
-                        url:"/register/emailCheck",
-                        data: {user_email:user_email},
-                        cache : false,
-                        success:function(data){
-                            if(data == "error"){
-                                alert("이메일 주소가 올바르지 않습니다. 유효한 이메일 주소를 입력해주세요.");
-                                $("#user-email").attr("autofocus",true);
-                                return;
-                            }else if(data=="overlap"){
-                                alert("이미 가입된 이메일 입니다. 로그인 해주세요.");
-                                return;
-                            } else{
-                                alert("인증번호 발송이 완료되었습니다.");
-                                code = data;
-                            }
+            function emailChk(){
+                $.ajax({
+                    type:"GET",
+                    url:"/register/emailCheck",
+                    data: {user_email:user_email},
+                    cache : false,
+                    success:function(data){
+                        if(data == "error"){
+                            alert("이메일 주소가 올바르지 않습니다. 유효한 이메일 주소를 입력해주세요.");
+                            $("#user-email").attr("autofocus",true);
+                            return;
+                        }else if(data=="overlap"){
+                            alert("이미 가입된 이메일 입니다. 로그인 해주세요.");
+                            return;
+                        } else{
+                            alert("인증번호 발송이 완료되었습니다.");
+                            code = data;
                         }
+                    }
                 });
-            });
-
-            $(".submit-btn").on("click",function (){
+            }
+            function submit(){
                 var resultCode = $(".mail-id").val();
                 if(code!=resultCode){
                     alert("인증번호가 다릅니다.");
@@ -51,6 +49,25 @@
                     $(opener.document).find("#user_email").attr("readonly",true);
                     window.close();
                 }
+            }
+
+            $("#email-chk-btn").on("click",function(){
+                    emailChk();
+            });
+
+            $("#user-email").on("keypress",function (e){
+                if(e.keyCode === 13){
+                    emailChk();
+                }
+            });
+
+            $(".submit-btn").on("click",function (){
+                submit();
+            });
+            $(".mail-id").on("keypress",function (e){
+               if(e.keyCode === 13){
+                   submit();
+               }
             });
         });
     </script>

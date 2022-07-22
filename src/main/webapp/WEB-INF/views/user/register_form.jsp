@@ -12,6 +12,58 @@
     <link rel="stylesheet" href="<c:url value='/css/user/register_form_style.css'/>">
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script>
+        function submit(){
+            let register_form = $("#register-form").val();
+            let user_email = $("input[name=user_email]").val();
+            let user_pwd = $("input[name=user_password]").val();
+            let user_pwd_chk = $("input[name=user_pwd_check]").val();
+            let user_name = $("input[name=user_name]").val();
+            let user_birth = $("input[name=user_birth]").val();
+            let user_phone = $("input[name=user_phone]").val();
+            let check_email = $("input[name=check_email]").val();
+
+            if(user_email=="" || user_email == null){
+                alert("이메일을 입력해주세요");
+                return;
+            }
+
+            if(user_pwd=="" || user_pwd == null){
+                alert("비밀번호를 입력해주세요");
+                return;
+            }
+
+            if(user_pwd_chk=="" || user_pwd_chk == null){
+                alert("비밀번호 확인을 입력해주세요");
+                return;
+            }
+
+            if(user_name=="" || user_name == null){
+                alert("이름을 입력해주세요");
+                return;
+            }
+
+            if(user_birth =="" || user_birth == null){
+                alert("생일을 입력해주세요");
+                return;
+            }
+
+            if(user_phone =="" || user_phone == null){
+                alert("휴대폰번호를 입력해주세요");
+                return;
+            }
+
+            if(user_pwd != user_pwd_chk){
+                alert("비밀번호와 비밀번호확인이 다릅니다.");
+                return;
+            }
+
+            if(check_email=="false"){
+                alert("이메일 인증을 진행해주세요!");
+                return;
+            }
+
+            $("form").submit();
+        }
         $(document).ready(function(){
             var auth_check = "${param.email_check}".trim();
             var email_check = "${email_check}".trim();
@@ -22,57 +74,15 @@
                 $("#check_email").val("true");
             }
             $("#register-btn-join").on("click",function (){
-                let register_form = $("#register-form").val();
-                let user_email = $("input[name=user_email]").val();
-                let user_pwd = $("input[name=user_password]").val();
-                let user_pwd_chk = $("input[name=user_pwd_check]").val();
-                let user_name = $("input[name=user_name]").val();
-                let user_birth = $("input[name=user_birth]").val();
-                let user_phone = $("input[name=user_phone]").val();
-                let check_email = $("input[name=check_email]").val();
-
-                if(user_email=="" || user_email == null){
-                    alert("이메일을 입력해주세요");
-                    return;
-                }
-
-                if(user_pwd=="" || user_pwd == null){
-                    alert("비밀번호를 입력해주세요");
-                    return;
-                }
-
-                if(user_pwd_chk=="" || user_pwd_chk == null){
-                    alert("비밀번호 확인을 입력해주세요");
-                    return;
-                }
-
-                if(user_name=="" || user_name == null){
-                    alert("이름을 입력해주세요");
-                    return;
-                }
-
-                if(user_birth =="" || user_birth == null){
-                    alert("생일을 입력해주세요");
-                    return;
-                }
-
-                if(user_phone =="" || user_phone == null){
-                    alert("휴대폰번호를 입력해주세요");
-                    return;
-                }
-
-                if(user_pwd != user_pwd_chk){
-                    alert("비밀번호와 비밀번호확인이 다릅니다.");
-                    return;
-                }
-
-                if(check_email=="false"){
-                    alert("이메일 인증을 진행해주세요!");
-                    return;
-                }
-
-                $("form").submit();
+                submit();
             });
+
+            $("input[name=user_email],input[name=user_password],input[name=user_name],input[name=user_birth],input[name=user_phone]")
+                .on("keypress",function (e){
+                   if(e.keyCode === 13){
+                       submit();
+                   }
+                });
 
             $(".email-check-btn").on("click", function (){
                 let user_email = $("input[name=user_email]").val();

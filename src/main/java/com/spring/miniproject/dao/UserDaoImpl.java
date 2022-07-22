@@ -120,5 +120,9 @@ public class UserDaoImpl implements UserDao {
 		return sqlSession.selectOne(namespace+"selectUserReviewImage",map);
 	}
 
+	@Override
+	public int updateNewPassword(Map map) {
+		return sqlSession.update(namespace+"updateNewPassword",map);
+	}
 
 }

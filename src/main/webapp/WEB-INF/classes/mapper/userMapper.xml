@@ -106,4 +106,8 @@
 		SELECT upload_file FROM product_review WHERE user_id = #{user_id} AND purchase_id = #{purchase_id}
 	</select>
 
+	<update id="updateNewPassword" parameterType="Map">
+		UPDATE user SET user_password = #{modify_password} WHERE user_email = #{user_email} AND user_password = #{user_password}
+	</update>
+
 </mapper>

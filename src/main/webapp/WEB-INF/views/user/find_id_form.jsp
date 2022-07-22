@@ -8,43 +8,51 @@
     <script src="https://kit.fontawesome.com/4c299e10dd.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script>
+        function submit(){
+            var user_name = $("#user-name").val();
+            var user_phone = $("#user-phone").val();
+            var formData = $(".email-chk-form").serialize();
+            var regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+
+            if(user_name == null || user_name == ""){
+                alert("이름을 입력해주세요.");
+                return;
+            }
+
+            if(user_phone == null || user_phone == ""){
+                alert("휴대폰 번호를 입력해주세요.");
+                return;
+            }
+
+            if(!regPhone.test(user_phone)){
+                alert("잘못된 휴대폰 번호 형식입니다 010-8888-8888과 같이 입력해주세요.");
+                return;
+            }
+
+            $.ajax({
+                type: "POST",
+                url : "/register/findId/save",
+                data: formData,
+                success : function (data){
+                    if(data=="fail"){
+                        alert("존재하지 않는 회원입니다. 확인 후 다시 시도하여 주시기 바랍니다.");
+                        return;
+                    }else{
+                        $("#result").text("회원님의 이메일은 " + data + " 입니다.");
+                    }
+                }
+
+            });
+        }
         $(document).ready(function (){
-
            $("#submit-btn").on("click",function (){
-               var user_name = $("#user-name").val();
-               var user_phone = $("#user-phone").val();
-               var formData = $(".email-chk-form").serialize();
-               var regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+               submit();
+           });
 
-               if(user_name == null || user_name == ""){
-                   alert("이름을 입력해주세요.");
-                   return;
-               }
-
-               if(user_phone == null || user_phone == ""){
-                   alert("휴대폰 번호를 입력해주세요.");
-                   return;
-               }
-
-               if(!regPhone.test(user_phone)){
-                   alert("잘못된 휴대폰 번호 형식입니다 010-8888-8888과 같이 입력해주세요.");
-                   return;
-               }
-
-               $.ajax({
-                  type: "POST",
-                   url : "/register/findId/save",
-                  data: formData,
-                   success : function (data){
-                      if(data=="fail"){
-                          alert("존재하지 않는 회원입니다. 확인 후 다시 시도하여 주시기 바랍니다.");
-                          return;
-                      }else{
-                          $("#result").text("회원님의 이메일은 " + data + " 입니다.");
-                      }
-                   }
-
-               });
+           $("#user-name,#user-phone").on("keypress",function (e){
+              if(e.keyCode === 13){
+                  submit();
+              }
            });
 
         });

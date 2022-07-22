@@ -16,7 +16,7 @@ public interface UserService {
 	public int updateImageOrigin(String user_email);
 	public int selectUserAddressCnt(int user_id);
 	public int selectUserId(String user_email);
-	public int insertUserAddress(UserAddressDto userAdressDto);
+	public int insertUserAddress(UserAddressDto userAddressDto);
 	public List<UserAddressDto> selectUserAddress(int user_id);
 	public int deleteUserAddress(Integer address_id);
 	public int updateUserAddress(UserAddressDto userAddressDto);
@@ -29,4 +29,5 @@ public interface UserService {
 	public List<ProductReviewDto> selectUserProductReview(PageHandlerDto pageHandlerDto);
 	public int updateUserProductReview(ProductReviewDto productReviewDto);
 	public String selectUserReviewImage(Map map);
+	public int updateNewPassword(Map map);
 }

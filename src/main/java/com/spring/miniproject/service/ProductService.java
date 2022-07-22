@@ -11,13 +11,17 @@ public interface ProductService {
 
     ProductDto selectProduct(Integer product_id) throws Exception;
 
-    List<ProductDto> selectAllProduct() throws Exception;
+    List<ProductDto> selectAllProduct(Integer offset, Integer product_num) throws Exception;
+
+    Integer selectAllProductCnt() throws Exception;
 
     List<ProductDto> selectSearchProduct(ProductSearchCondition psc) throws Exception;
 
     Integer selectSearchProductCnt(ProductSearchCondition psc) throws Exception;
 
-    List<ProductDto> selectProductBySubCategory(Integer sub_category_id) throws Exception;
+    List<ProductDto> selectProductBySubCategory(Integer offset, Integer product_num, Integer sub_category_id) throws Exception;
+
+    Integer selectProductBySubCategoryCnt(Integer sub_category_id) throws Exception;
 
     int updateProduct(ProductDto productDto) throws Exception;
 

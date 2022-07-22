@@ -47,7 +47,7 @@
 
         <textarea name="product_info" id="product-info" rows="20" cols="100">${productDto.product_info}</textarea>
         <div id="thumbnail-wrap">
-            <label for="">썸네일</label>
+            <label for="fileItem">썸네일</label>
             <input type="file" id="fileItem" name="" accept="image/*" multiple>
         </div>
         <div id="uploadResult">

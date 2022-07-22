@@ -16,15 +16,28 @@
 		WHERE product_id = #{product_id}
 	</select>
 
-	<select id="selectAllProduct" resultType="ProductDto">
+	<select id="selectAllProduct" parameterType="map" resultType="ProductDto">
 		SELECT product_id, product_name, product_title, product_info,
 			   product_thumb_nail, product_price, category_id, sub_category_id
 		FROM product
+		LIMIT #{offset}, #{product_num}
 	</select>
 
-	<select id="selectProductBySubCategory" parameterType="int" resultType="ProductDto">
+	<select id="selectAllProductCnt" resultType="int">
+		SELECT count(*)
+		FROM product
+	</select>
+
+	<select id="selectProductBySubCategory" parameterType="map" resultType="ProductDto">
 		SELECT product_id, product_name, product_title, product_info,
 			   product_thumb_nail, product_price, category_id, sub_category_id
+		FROM product
+		WHERE sub_category_id = #{sub_category_id}
+		LIMIT #{offset}, ${product_num}
+	</select>
+
+	<select id="selectProductBySubCategoryCnt" parameterType="int" resultType="int">
+		SELECT count(*)
 		FROM product
 		WHERE sub_category_id = #{sub_category_id}
 	</select>

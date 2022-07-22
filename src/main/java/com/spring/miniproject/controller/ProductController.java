@@ -3,6 +3,8 @@ package com.spring.miniproject.controller;
 import com.spring.miniproject.domain.*;
 import com.spring.miniproject.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,16 +28,33 @@ public class ProductController {
     @Autowired
     private ProductOptionDetailService productOptionDetailService;
 
-    // 상품 리스트 보여주기
+    // 전체 상품 리스트 보여주기
     @GetMapping("/list")
     public String getProductList(Integer sub_category_id, Model m) {
         List<ProductDto> productList = null;
+        Integer productCnt = null;
         try {
+            // 전체보기 눌렀을 때
             if(sub_category_id == null) {
-                productList = productService.selectAllProduct();
+                // offset과 product_num(한 번에 보여줄 상품의 갯수)를 설정하여 상품목록을 가져온다.
+                productList = productService.selectAllProduct(0, 20);
+                // 등록된 총 상품의 갯수
+                productCnt = productService.selectAllProductCnt();
+
+            // 카테고리를 클릭했을 때
             } else {
-                productList = productService.selectProductBySubCategory(sub_category_id);
+                // 0개 건너뛰고, 상품을 1개씩 가져오기
+                productList = productService.selectProductBySubCategory(0, 20, sub_category_id);
+                // 서브 카테고리 번호를 model에 저장
+                m.addAttribute("sub_category_id", sub_category_id);
+                // 상품 총 갯수
+                productCnt = productService.selectProductBySubCategoryCnt(sub_category_id);
             }
+            // 처음에 설정한 offset과 한 번에 보여줄 product의 갯수를 model에 저장한다.
+            m.addAttribute("offset", 0);
+            m.addAttribute("product_num", 20);
+            // 등록된 총 상품의 갯수를 model에 저장한다.
+            m.addAttribute("productCnt", productCnt);
 
             List<CategoryDto> categoryList = categoryService.selectAllCategory();
             // 카테고리와 서브 카테고리 목록을 map으로 저장하여 view에 전달함.
@@ -61,6 +80,23 @@ public class ProductController {
             e.printStackTrace();
         }
         return "product/productList.tiles";
+    }
+    // 상품 더 보기 버튼 눌렀을 때 Ajax로 상품 List를 정해진 개수씩 더 보여주기
+    @GetMapping("/morelist")
+    public ResponseEntity<List<ProductDto>> getMoreList(Integer offset, Integer product_num, Integer sub_category_id) {
+        List<ProductDto> productList = null;
+        try {
+            if(sub_category_id == null) {
+                productList = productService.selectAllProduct(offset, product_num);
+            } else {
+                productList = productService.selectProductBySubCategory(offset, product_num, sub_category_id);
+            }
+
+            return new ResponseEntity<>(productList, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     // 상품 상세페이지로 이동

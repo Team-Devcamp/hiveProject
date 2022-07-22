@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class ProductDaoImpl implements ProductDao {
@@ -27,8 +28,13 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public List<ProductDto> selectAllProduct() throws Exception {
-        return session.selectList(namespace + "selectAllProduct");
+    public Integer selectAllProductCnt() throws Exception {
+        return session.selectOne(namespace + "selectAllProductCnt");
+    }
+
+    @Override
+    public List<ProductDto> selectAllProduct(Map<String, Integer> map) throws Exception {
+        return session.selectList(namespace + "selectAllProduct", map);
     }
 
     @Override
@@ -41,8 +47,13 @@ public class ProductDaoImpl implements ProductDao {
         return session.selectOne(namespace + "selectSearchProductCnt", psc);
     }
     @Override
-    public List<ProductDto> selectProductBySubCategory(Integer sub_category_id) throws Exception {
-        return session.selectList(namespace + "selectProductBySubCategory", sub_category_id);
+    public List<ProductDto> selectProductBySubCategory(Map<String, Integer> map) throws Exception {
+        return session.selectList(namespace + "selectProductBySubCategory", map);
+    }
+
+    @Override
+    public Integer selectProductBySubCategoryCnt(Integer sub_category_id) throws Exception {
+        return session.selectOne(namespace + "selectProductBySubCategoryCnt", sub_category_id);
     }
     @Override
     public int updateProduct(ProductDto productDto) throws Exception {

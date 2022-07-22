@@ -86,8 +86,8 @@ button {
 
 .head {
     display: block;
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
+    border-top: 2px solid red;
+    border-bottom: 2px solid red;
     overflow: hidden;
     width: 100%;
 }
@@ -217,8 +217,8 @@ button {
 .product-options #product-option-form .option-head {
     overflow: hidden;
     width: 100%;
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
+    border-top: 2px solid green;
+    border-bottom: 2px solid green;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -305,8 +305,8 @@ button {
 .product-options #product-option-detail-form .option-detail-head {
     overflow: hidden;
     width: 100%;
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
+    border-top: 2px solid blue;
+    border-bottom: 2px solid blue;
     padding-top: 10px;
     padding-bottom: 10px;
     margin-bottom: 10px;
@@ -404,13 +404,13 @@ button {
 .category .category-wrap {
     width: 40%;
     float: left;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid green;
 }
 
 .category .category-wrap .category-head {
     overflow: hidden;
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
+    border-top: 2px solid green;
+    border-bottom: 2px solid green;
     padding: 10px 0;
     text-align: center;
 }
@@ -462,13 +462,13 @@ button {
     width: 54%;
     float: right;
     margin-left: 15px;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid blue;
 }
 
 .category .sub-category-wrap .sub-category-head {
     overflow: hidden;
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
+    border-top: 2px solid blue;
+    border-bottom: 2px solid blue;
     padding: 10px 0;
     text-align: center;
 }

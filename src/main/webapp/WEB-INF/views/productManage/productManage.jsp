@@ -29,9 +29,9 @@
     <div class="search-container">
         <form action="<c:url value="/productmanage"/>" class="search-form" method="get">
             <select class="search-option" name="option">
-                <option value="A" ${pph.psc.option=='A' || ph.sc.option=='' ? "selected" : ""}>제목+상품 이름</option>
+                <option value="A" ${pph.psc.option=='A' || pph.psc.option=='' ? "selected" : ""}>제목+상품 이름</option>
                 <option value="T" ${pph.psc.option=='T' ? "selected" : ""}>제목</option>
-                <option value="N" ${pph.psc.option=='W' ? "selected" : ""}>상품 이름</option>
+                <option value="N" ${pph.psc.option=='N' ? "selected" : ""}>상품 이름</option>
             </select>
 
             <input type="text" name="keyword" class="search-input" type="text" value="${pph.psc.keyword}" placeholder="검색어를 입력하세요">
@@ -291,7 +291,7 @@
     let showProductOptionList = function(product_id) {
         $.ajax({
             type:'GET',       // 요청 메서드
-            url: '/productmanage/productoption/list?product_id=' + product_id,  // 요청 URI
+            url: '/productoption/list?product_id=' + product_id,  // 요청 URI
             success : function(result){
                 console.log(result);
                 $('.product-option-list').html(optionToHtml(result)); // 서버로부터 응답이 도착하면 호출될 함수
@@ -304,7 +304,7 @@
     let showProductOptionDetailList = function (product_id, option_id) {
         $.ajax({
             type: 'GET',
-            url: '/productmanage/productoptiondetail?product_id=' + product_id + '&option_id=' + option_id,
+            url: '/productoptiondetail?product_id=' + product_id + '&option_id=' + option_id,
             success : function (result) {
                 $('.product-option-detail-list').html(optionDetailToHtml(result));
             },
@@ -315,7 +315,7 @@
     }
     // 상품 등록 버튼 클릭했을 때
     $("#product-register").on("click", function(){
-        location.href="<c:url value='/productmanage/product/register'/>";
+        location.href="<c:url value='/productmanage/register'/>";
     });
 
     // 상품 삭제 버튼 클릭했을 때
@@ -324,7 +324,7 @@
 
         if(!confirm("정말로 삭제하시겠습니까?")) return;
         let form = $(".product-wrap");
-        form.attr("action", "/productmanage/product/delete?product_id=" + product_id);
+        form.attr("action", "/productmanage/delete?product_id=" + product_id);
         form.attr("method", "post");
         form.submit();
     });
@@ -334,7 +334,7 @@
         let product_id = $(this).parent().attr("data-product-id");
 
         let form = $(".product-wrap");
-        form.attr("action", '/productmanage/product/modify?product_id=' + product_id);
+        form.attr("action", '/productmanage/modify?product_id=' + product_id);
         form.attr("method", "post");
         form.submit();
     });
@@ -352,7 +352,7 @@
 
         $.ajax({
             type:'POST',       // 요청 메서드
-            url: '/productmanage/productoption/add',
+            url: '/productoption/add',
             headers : { "content-type": "application/json"}, // 요청 헤더
             data : JSON.stringify({product_id:product_id, option_name:option_name}),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
             success : function(result){
@@ -360,7 +360,7 @@
                 $("input[name=option_name]").val('');
                 $("input[name=product_id]").val('');
                 showProductOptionList(product_id);
-                alert(result);
+                alert('상위옵션을 등록하였습니다.');
 
             },
             error   : function() {
@@ -415,11 +415,11 @@
 
         $.ajax({
             type:'POST',
-            url: '/productmanage/productoption/modify',
+            url: '/productoption/modify',
             headers: {"content-type" : "application/json"}, // 요청 헤더
             data : JSON.stringify({option_id:option_id, option_name:option_name}), // 서버로 전송할 데이터, stringify()로 직렬화 필요.
             success : function(result) {
-                alert(result);
+                alert('상위옵션을 수정하였습니다.');
                 showProductOptionList(product_id);
             },
             error : function() {
@@ -440,9 +440,9 @@
 
         $.ajax({
             type:'POST',       // 요청 메서드
-            url: '/productmanage/productoption/delete?option_id='+ option_id,  // 요청 URI
+            url: '/productoption/delete?option_id='+ option_id,  // 요청 URI
             success : function(result){
-                alert(result);
+                alert('상위옵션을 삭제하였습니다.');
                 showProductOptionList(product_id);
             },
             error   : function(){ alert("상품 상위옵션 삭제 에러") } // 에러가 발생했을 때, 호출될 함수
@@ -463,7 +463,7 @@
 
         $.ajax({
             type:'POST',       // 요청 메서드
-            url: '/productmanage/productoptiondetail/add',
+            url: '/productoptiondetail/add',
             headers : { "content-type": "application/json"}, // 요청 헤더
             data : JSON.stringify({product_id:product_id, option_id:option_id, option_detail_name:option_detail_name}),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
             success : function(result){
@@ -472,7 +472,7 @@
                 $("input[class=product-id]").val('');
                 $("input[class=option-detail-name]").val('');
                 showProductOptionDetailList(product_id, option_id);
-                alert(result);
+                alert('하위옵션을 등록하였습니다.');
 
             },
             error   : function() {
@@ -527,12 +527,12 @@
 
         $.ajax({
             type:'POST',
-            url: '/productmanage/productoptiondetail/modify',
+            url: '/productoptiondetail/modify',
             headers: {"content-type" : "application/json"}, // 요청 헤더
             data : JSON.stringify({
                 option_detail_id:option_detail_id, option_detail_name:option_detail_name}), // 서버로 전송할 데이터, stringify()로 직렬화 필요.
             success : function(result) {
-                alert(result);
+                alert('하위옵션을 수정하였습니다.');
                 showProductOptionDetailList(product_id, option_id);
             },
             error : function() {
@@ -553,10 +553,10 @@
 
         $.ajax({
             type: 'POST',
-            url: '/productmanage/productoptiondetail/delete?option_detail_id=' + option_detail_id,
+            url: '/productoptiondetail/delete?option_detail_id=' + option_detail_id,
             headers: {"content-type" : "application/json"}, // 요청 헤더
             success : function (result) {
-                alert(result);
+                alert('하위옵션을 삭제하였습니다.');
                 showProductOptionDetailList(product_id, option_id);
             },
             error : function () {
@@ -583,9 +583,7 @@
     // 특정 하위옵션 클릭했을 때 등록된 재고를 보여주는 이벤트
     $(".product-option-detail-list").on("click", ".option-detail", function() {
         let product_id = $(this).attr("data-product-id");
-        let option_id = $(this).attr("data-option-id");
 
-        showProductStock(product_id, option_id);
     });
 
 
@@ -672,7 +670,7 @@
             headers: {"content-type": "application/json"}, // 요청 헤더
             data: JSON.stringify({category_name:category_name}), // 전송할 데이터(직렬화)
             success: function(result) {
-                alert(result);
+                alert('카테고리를 추가하였습니다.');
                 $("input[name=category_name]").val('');
 
                 showCategoryList();
@@ -710,7 +708,7 @@
 
     });
 
-    // 수정 완료 버튼 눌렀을 때
+    // 카테고리 수정 완료 버튼 눌렀을 때
     $("#submit-modify-category-btn").on("click", function () {
         let category_id = $(this).attr("data-category-id");
         let category_name = $("input[id=modify-category-name]").val();
@@ -727,7 +725,7 @@
             headers: {"content-type" : "application/json"}, // 요청 헤더
             data: JSON.stringify({category_id:category_id, category_name:category_name}),
             success: function(result) {
-                alert("카테고리 수정 완료");
+                alert("카테고리를 수정하였습니다.");
                 showCategoryList();
             },
             error: function() {
@@ -749,7 +747,7 @@
             headers: {"content-type" : "application/json"}, // 요청 헤더
             data: category_id,
             success: function(result) {
-                alert("카테고리 삭제 완료");
+                alert("카테고리를 삭제하였습니다.");
                 showCategoryList();
             },
             error: function() {
@@ -778,9 +776,9 @@
             headers: {"content-type": "application/json"}, // 요청 헤더
             data: JSON.stringify({category_id:category_id, sub_category_name:sub_category_name}), // 전송할 데이터(직렬화)
             success: function(result) {
-                alert(result);
+                alert('서브 카테고리를 추가하였습니다.');
                 $("input[name=sub_category_name]").val('');
-
+                $("input[name=category_id]").val('');
                 showSubCategoryList();
             },
             error: function() {
@@ -835,7 +833,7 @@
             headers: {"content-type" : "application/json"}, // 요청 헤더
             data: JSON.stringify({sub_category_id:sub_category_id, sub_category_name:sub_category_name}),
             success: function(result) {
-                alert("서브카테고리 수정 완료");
+                alert("서브카테고리를 수정하였습니다.");
                 showSubCategoryList();
             },
             error: function() {
@@ -847,7 +845,7 @@
         $("#modify-sub-category-form").appendTo("body");
     });
 
-    // 카테고리 삭제 버튼 눌렀을 때
+    // 서브카테고리 삭제 버튼 눌렀을 때
     $(".sub-category-list").on("click", ".delete-sub-category-btn", function() {
         let sub_category_id = $(this).parent().attr("data-sub-category-id");
         let sub_category_name = $(this).parent().attr("data-sub-category-name");
@@ -859,7 +857,7 @@
             headers: {"content-type" : "application/json"}, // 요청 헤더
             data: sub_category_id,
             success: function(result) {
-                alert("카테고리 삭제 완료");
+                alert("서브카테고리를 삭제하였습니다.");
                 showSubCategoryList();
             },
             error: function() {

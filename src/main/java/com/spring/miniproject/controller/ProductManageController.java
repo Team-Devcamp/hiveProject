@@ -35,7 +35,6 @@ import java.util.UUID;
 
 
 @Controller
-@RequestMapping("/productmanage")
 public class ProductManageController {
 
     @Autowired
@@ -52,11 +51,9 @@ public class ProductManageController {
 
     @Autowired
     private ProductOptionDetailService productOptionDetailService;
-    @Autowired
-    private ProductStockService productStockService;
 
     // 상품관리 페이지로 이동하는 메서드
-    @GetMapping("")
+    @GetMapping("/productmanage")
     public String productManagePage(ProductSearchCondition psc, Model m, HttpServletRequest request) {
         if(!adminCheck(request)) {
             return "redirect:/login";
@@ -149,7 +146,7 @@ public class ProductManageController {
         }
     }
     // 상품 등록하는 form으로 이동
-    @GetMapping("/product/register")
+    @GetMapping("/productmanage/register")
     public String registerProduct(Model m) {
         try {
             List<CategoryDto> categoryList = categoryService.selectAllCategory();
@@ -161,11 +158,11 @@ public class ProductManageController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return "productManage/registerProduct";
+        return "productManage/registerProduct.tiles";
     }
 
     // 상품을 DB에 등록
-    @PostMapping("/product/register")
+    @PostMapping("/productmanage/register")
     public String registerProduct(ProductDto productDto, Model m, RedirectAttributes rattr) {
         try {
 
@@ -189,7 +186,7 @@ public class ProductManageController {
 
     // 텍스트 편집기에 img 파일 업로드 하는 메서드
     @ResponseBody
-    @RequestMapping(value = "/uploadimage")
+    @RequestMapping(value = "/upload_image")
     public void communityImageUpload(HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile) throws Exception{
         JsonObject jsonObject = new JsonObject();
         PrintWriter printWriter = null;
@@ -246,7 +243,7 @@ public class ProductManageController {
         }
     }
     // 썸네일 업로드하는 메서드
-    @PostMapping(value="/uploadThumbnail", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value="/upload_thumbnail", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<List<AttachImageDto>> uploadAjaxActionPOST(MultipartFile[] uploadFile) {
 
         /* 이미지 파일 체크 */
@@ -333,8 +330,8 @@ public class ProductManageController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-    // 썸네일을
-    @GetMapping("/displayThumbnail")
+    // 썸네일 미리보기
+    @GetMapping("/display_thumbnail")
     public ResponseEntity<byte[]> getImage(String fileName){
         File file = new File("C:\\hive\\target\\miniproject-1.0.0-BUILD-SNAPSHOT\\resources\\image\\product\\thumbnail\\" + fileName);
 
@@ -356,7 +353,7 @@ public class ProductManageController {
 
     }
     /* 썸네일 파일 삭제(원본, 축소본) */
-    @PostMapping("/deleteThumbnail")
+    @PostMapping("/delete_thumbnail")
     public ResponseEntity<String> deleteFile(String fileName){
         File file = null;
 
@@ -384,7 +381,7 @@ public class ProductManageController {
 
 
     // 상품을 삭제하는 메서드
-    @PostMapping("/product/delete")
+    @PostMapping("/productmanage/delete")
     public String deleteProduct(Integer product_id, RedirectAttributes rattr) {
         try {
             int rowCnt = productService.deleteProduct(product_id);
@@ -401,7 +398,7 @@ public class ProductManageController {
     }
 
     // 상품 수정하는 form을 보여주는 메서드
-    @PostMapping("/product/modify")
+    @PostMapping("/productmanage/modify")
     public String modifyProduct(Integer product_id, Model m) {
         try {
             ProductDto productDto = productService.selectProduct(product_id);
@@ -416,11 +413,11 @@ public class ProductManageController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "productManage/registerProduct";
+        return "productManage/registerProduct.tiles";
     }
 
     // 상품 수정form을 제출하는 메서드
-    @PostMapping("/product/submitmod")
+    @PostMapping("/productmanage/submitmod")
     public String submitModifyProduct(ProductDto productDto, Model m, RedirectAttributes rattr) {
         try {
 
@@ -501,18 +498,161 @@ public class ProductManageController {
         }
     }
 
-    @GetMapping("/productstock")
-    @ResponseBody
-    public ResponseEntity<ProductStockDto> getProductStock(@RequestBody ProductStockDto productStockDto) {
-        try {
-            ProductStockDto productStock = productStockService.selectProductStock(productStockDto);
+    /* 카테고리 관리 */
 
-            return new ResponseEntity<>(productStock, HttpStatus.OK);
+    // 등록된 카테고리 목록 보여주기
+    @GetMapping("/categorymanage/categorylist")
+    @ResponseBody
+    public ResponseEntity<List<CategoryDto>> getAllCategoryList() {
+        List<CategoryDto> categoryList = null;
+        try {
+            categoryList = categoryService.selectAllCategory();
+
+            return new ResponseEntity<>(categoryList, HttpStatus.OK);
 
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+
+    }
+
+    // 카테고리 DB에 추가
+    @PostMapping("/categorymanage/add")
+    @ResponseBody
+    public ResponseEntity<String> addCategory(@RequestBody CategoryDto categoryDto) {
+        try {
+            int rowCnt = categoryService.insertCategory(categoryDto);
+
+            if(rowCnt != 1) {
+                throw new Exception("카테고리 추가에 실패했습니다.");
+            }
+            return new ResponseEntity<>("CATEGORY_ADD_SUCCESS", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("CATEGORY_ADD_ERR", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    // 카테고리 수정하기
+    @PostMapping("/categorymanage/modify")
+    @ResponseBody
+    public ResponseEntity<String> modifyCategory(@RequestBody CategoryDto categoryDto, Model m, HttpServletRequest request, RedirectAttributes rattr) {
+        try {
+//            HttpSession session = request.getSession();
+            int rowCnt = categoryService.updateCategory(categoryDto);
+
+            if(rowCnt != 1) {
+                throw new Exception("카테고리 수정에 실패했습니다.");
+            }
+
+            return new ResponseEntity<>("CATEGORY_MODIFY_SUCCESS", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            m.addAttribute("categoryDto", categoryDto);
+            return new ResponseEntity<>("CATEGORY_MODIFY_ERR", HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
+    // 카테고리 삭제
+    @PostMapping("/categorymanage/delete")
+    @ResponseBody
+    public ResponseEntity<String> deleteCategory(@RequestBody Integer category_id) {
+
+        try {
+            int rowCnt = categoryService.deleteCategory(category_id);
+
+            if(rowCnt != 1) {
+                throw new Exception("카테고리 삭제에 실패했습니다.");
+            }
+            return new ResponseEntity<>("CATEGORY_REMOVE_SUCCESS", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("CATEGORY_REMOVE_ERR", HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
+
+    /*
+    서브 카테고리 등록, 수정, 삭제
+    ex) 상의 - 셔츠, 반팔티, 맨투맨
+        하의 - 청바지, 반바지
+    */
+
+    // 서브카테고리 목록 보여주기
+    @GetMapping("/categorymanage/subcategorylist")
+    @ResponseBody
+    public List<SubCategoryDto> getAllSubCategoryList() {
+        List<SubCategoryDto> subCategoryList = null;
+        try {
+            subCategoryList = subCategoryService.selectAllSubCategory();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return subCategoryList;
+    }
+
+    // 서브카테고리 추가하기
+    @PostMapping("/categorymanage/addsub")
+    @ResponseBody
+    public ResponseEntity<String> addSubCategory(@RequestBody SubCategoryDto subCategoryDto) {
+
+        try {
+            int rowCnt = subCategoryService.insertSubCategory(subCategoryDto);
+
+            if(rowCnt != 1) {
+                throw new Exception("서브 카테고리 추가에 실패했습니다.");
+            }
+
+            return new ResponseEntity<>("SUBCATEGORY_ADD_SUCCESS", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("SUBCATEGORY_ADD_ERR", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    // 서브카테고리 수정하기
+    @PostMapping("/categorymanage/modifysub")
+    @ResponseBody
+    public ResponseEntity<String> modifySubCategory(@RequestBody SubCategoryDto subCategoryDto, Model m) {
+        try {
+//            HttpSession session = request.getSession();
+            int rowCnt = subCategoryService.updateSubCategory(subCategoryDto);
+
+            if(rowCnt != 1) {
+                throw new Exception("서브카테고리 수정에 실패했습니다.");
+            }
+
+            return new ResponseEntity<>("SUBCATEGORY_MODIFY_SUCCESS", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            m.addAttribute("subCategoryDto", subCategoryDto);
+            return new ResponseEntity<>("SUBCATEGORY_MODIFY_ERR", HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
+    // 서브카테고리 삭제
+    @PostMapping("/categorymanage/deletesub")
+    @ResponseBody
+    public ResponseEntity<String> deleteSubCategory(@RequestBody Integer sub_category_id) {
+
+        try {
+            int rowCnt = subCategoryService.deleteSubCategory(sub_category_id);
+
+            if(rowCnt != 1) {
+                throw new Exception("카테고리 삭제에 실패했습니다.");
+            }
+            return new ResponseEntity<>("SUBCATEGORY_REMOVE_SUCCESS", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("SUBCATEGORY_REMOVE_ERR", HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     private boolean adminCheck(HttpServletRequest request) {

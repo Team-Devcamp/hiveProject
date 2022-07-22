@@ -28,7 +28,7 @@ public class PaymentController {
             String parameter= "cid=TC0ONETIME" +
                     "&partner_order_id=partner_order_id" +
                     "&partner_user_id=partner_user_id" +
-                    "&item_name=의류" +
+                    "&item_name=초코파이" +
                     "&quantity=1" +
                     "&total_amount=2200" +
                     "&vat_amount=200" +
@@ -65,6 +65,8 @@ public class PaymentController {
 
     @GetMapping("/success")
     public String successKakaoPay(){
+
+
         return "/pay/success";
     }
 

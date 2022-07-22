@@ -32,7 +32,7 @@ $(function(){
             dataType: 'json',
             success:function(data){
                 // alert(data.tid);
-                var box=data.next_redirect_mobile_url;
+                var box=data.next_redirect_pc_url;
                 window.open(box, "_blank", "width=500,height=700");
             },
             error:function(err){

@@ -59,9 +59,9 @@
 
     <script>
         CKEDITOR.replace( 'product-info', {//해당 이름으로 된 textarea에 에디터를 적용
-            width:'85%',
+            width:'86%',
             height:'600px',
-            filebrowserUploadUrl:  "/productmanage/uploadimage"
+            filebrowserUploadUrl:  "/upload_image"
         });
 
         /* 이미지 업로드 */
@@ -86,7 +86,7 @@
             }
 
             $.ajax({
-                url: '/productmanage/uploadThumbnail',
+                url: '/productmanage/upload_thumbnail',
                 processData : false,
                 contentType : false,
                 data : formData,
@@ -136,7 +136,7 @@
             let fileCallPath = ("thumb_" + obj.uuid + "_" + obj.fileName);
 
             str += "<div id='result_card'>";
-            str += "<img src='/productmanage/displayThumbnail?fileName=" + fileCallPath +"'>";
+            str += "<img src='/productmanage/display_thumbnail?fileName=" + fileCallPath +"'>";
             str += "<div class='imgDeleteBtn' data-file='" + fileCallPath + "'>x</div>";
             str += "<input type='hidden' name='product_thumb_nail' value='"+ fileCallPath +"'>";
 
@@ -154,7 +154,7 @@
             let targetDiv = $("#result_card");
 
             $.ajax({
-                url: '/productmanage/deleteThumbnail',
+                url: '/delete_thumbnail',
                 data : {fileName : targetFile},
                 dataType : 'text',
                 type : 'POST',
@@ -180,14 +180,14 @@
         // 상품 등록 버튼 클릭했을 때
         $("#submit-btn").on("click", function(){
             let form = $("#register-form");
-            form.attr("action", "/productmanage/product/register");
+            form.attr("action", "/productmanage/register");
             form.submit();
         })
 
         // 상품 수정 버튼 클릭했을 때
         $("#modify-btn").on("click", function(){
             let form = $("#register-form");
-            form.attr("action", "/productmanage/product/submitmod");
+            form.attr("action", "/productmanage/submitmod");
             form.submit();
         })
 

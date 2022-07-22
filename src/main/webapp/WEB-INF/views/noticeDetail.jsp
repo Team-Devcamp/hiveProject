@@ -34,32 +34,32 @@
             </tr>
         </table>
     </div>
-    </section>
+</section>
 
 
-    <div class="button">
-        <c:if test="${sessionScope.user_email == 'admin@hive.co.kr'}">
-            <button class="btn btn_update" onclick="location.href='/notice/updateView?notice_id=${data.notice_id}'">수정하기
-            </button>
-            <button class="btn btn_delete">삭제하기</button>
-        </c:if>
-        <button class="btn" onclick="location.href='/notice/list'">돌아가기</button>
-    </div>
+<div class="button">
+    <c:if test="${sessionScope.user_email == 'admin@hive.co.kr'}">
+        <button class="btn btn_update" onclick="location.href='/notice/updateView?notice_id=${data.notice_id}'">수정하기
+        </button>
+        <button class="btn btn_delete">삭제하기</button>
+    </c:if>
+    <button class="btn" onclick="location.href='/notice/list'">돌아가기</button>
+</div>
 
 
-    <%-- Footer --%>
+<%-- Footer --%>
 
-    <script type="text/javascript">
-        $(function () {
-            $(".btn_delete").click(function () {
-                let result = confirm('정말 삭제하시겠습니까?');
-                if (result) {
-                    location.replace("/notice/delete?notice_id=${data.notice_id}");
-                } else {
-                    return;
-                }
-            })
-        });
-    </script>
+<script type="text/javascript">
+    $(function () {
+        $(".btn_delete").click(function () {
+            let result = confirm('정말 삭제하시겠습니까?');
+            if (result) {
+                location.replace("/notice/delete?notice_id=${data.notice_id}");
+            } else {
+                return;
+            }
+        })
+    });
+</script>
 </body>
 </html>

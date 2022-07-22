@@ -4,8 +4,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>공지사항</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="<c:url value='/css/notice/noticeWrite.css'/>" rel="stylesheet"/>
 </head>
 <body>
@@ -26,11 +26,11 @@
             <div class="input-title">제목</div>
             <div class="write-title">
                 <input type="hidden" name="writer" value="${sessionScope.user_email}">
-                <input type="text" name="notice_title" placeholder="제목을 입력하세요.">
+                <input type="text" id="notice_title" name="notice_title" placeholder="제목을 입력하세요.">
             </div>
             <div class="input-content">내용</div>
             <div class="write-detail">
-                <textarea name="notice_content" placeholder="내용을 입력하세요."></textarea>
+                <textarea id="notice_content" name="notice_content" placeholder="내용을 입력하세요."></textarea>
             </div>
         </div>
         <div class="button">
@@ -47,11 +47,21 @@
 <script type="text/javascript">
     $(function () {
         $(".btn_insert").click(function () {
+            if ($("#notice_title").val() == "") {
+                alert("제목을 입력해주세요.");
+                $("#notice_title").focus();
+                return false;
+            }
+            if ($("#notice_content").val() == "") {
+                alert("내용을 입력해주세요.");
+                $("#notice_content").focus();
+                return false;
+            }
             if (!confirm('정말 등록하시겠습니까?')) return false;
             let form = $("#form");
             form.attr("action", "<c:url value='/notice/insert'/>");
             form.submit();
-        });
+        })
     });
 </script>
 

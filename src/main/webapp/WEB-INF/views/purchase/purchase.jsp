@@ -48,7 +48,7 @@
             </div>
             </c:forEach>
 
-
+            <div class="tot">총 결제 금액 : <strong>${total_price}</strong> 원</div>
 
         </div>
 
@@ -56,20 +56,19 @@
         <%--주문자정보관련div--%>
         <div class="product-buyer-wrap">
             <form>
+                <input type="hidden" name="user_email" value="${user_email}" required>
                 <h2>주문자 정보</h2>
                 <div class="user-info">
                     <dl>
                         <dt>이름</dt>
                         <dd>
-                            <input type="text" name="user_name" id="user_name" required>
+                            <input type="text" name="user_name" id="user_name" >
                         </dd>
                     </dl>
                     <dl>
                         <dt>휴대폰</dt>
                         <dd>
-                            <input type="text" name="user_phone" id="b_tel1">-
-                            <input type="text" name="user_phone" id="b_tel2">-
-                            <input type="text" name="user_phone" id="b_tel3">
+                            <input type="tel" name="user_phone" id="b_tel">
                         </dd>
                     </dl>
                     <dt>이메일</dt>
@@ -100,7 +99,16 @@
                         </dd>
                         <dt>배송메모</dt>
                         <dd>
-                            <input type="text" id="request_message" placeholder="배송시 요청사항을 선택해주세요">
+<%--                            <input type="text" id="request_message" placeholder="배송시 요청메세지를 남겨주세요.">--%>
+                            <select id="request_message" placeholder="배송시 요청메세지를 선택해주세요">
+                                <option>배송시 요청메세지를 선택해주세요</option>
+                                <option>문 앞에 놓아 주세요.</option>
+                                <option>경비(관리)실에 맡겨 주세요.</option>
+                                <option>택배함에 넣어 주세요.</option>
+                                <option>직접 받겠습니다.</option>
+                                <option>직접 입력</option>
+                            </select>
+                            <div><input type="text" name="my_request_message" id="my_request_message" ></div>
                         </dd>
                     </dl>
 
@@ -126,7 +134,9 @@
 
                 <h2>결제수단</h2>
                 <div class="payment-method">
-                    <input type="radio" checked id="pay-method" value="카카오페이">&nbsp카카오페이</input>
+                    <input type="radio" checked id="pay-method">
+                        <button type="button" id="kakaoPayBtn">KakaoPay</button>
+                    </input>
                 </div>
             </div>
 
@@ -169,11 +179,11 @@
 
 </div>
 
-
-
 </div>
 
-
-
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="/script/purchase/purchase.js"></script>
+<script type="text/javascript" src="/script/purchase/kakaoPay.js"></script>
 </body>
 </html>

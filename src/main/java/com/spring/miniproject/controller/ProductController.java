@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,7 +61,9 @@ public class ProductController {
 
     // 상품 상세페이지로 이동
     @GetMapping("/detail")
-    public String ProductDetailPage(@RequestParam Integer product_id, Model m) {
+    public String ProductDetailPage(@RequestParam Integer product_id, Model m, HttpSession session) {
+
+        String user_email = (String)session.getAttribute("user_email");
 
         try {
             ProductDto productDto = productService.selectProduct(product_id);
@@ -82,6 +85,7 @@ public class ProductController {
             m.addAttribute("productDto", productDto);
             m.addAttribute("product_id",product_id);
             m.addAttribute("optionMap",optionMap);
+            m.addAttribute("user_email", user_email);
         } catch (Exception e) {
             e.printStackTrace();
         }

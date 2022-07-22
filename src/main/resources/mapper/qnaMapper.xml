@@ -20,7 +20,7 @@
 		from qna
 		WHERE product_id = #{product_id}
 		ORDER BY write_date DESC, qna_id DESC
-        LIMIT #{startNum}, #{endNum}
+        LIMIT #{startNum}, #{pageSize}
 	</select>
 
 	<select id="selectQna" parameterType="java.util.Map" resultType="QnaDto">

@@ -4,10 +4,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class QnaPaging {
-    private int currentPage;//현재페이지
-    private int pageBlock;//[이전][1][2][3][다음]
-    private int pageSize;//1페이지당 5개씩
-    private int countQna;//총글수
+    private int currentPage;
+    private int pageBlock;
+    private int pageSize;
+    private int countQna;
     private StringBuffer pagingHTML;
 
     public void makePagingHTML() {
@@ -34,11 +34,9 @@ public class QnaPaging {
 
         if(endPage < totalP)
             pagingHTML.append(" <span id='paging' onclick='qnaPaging(" + (endPage+1) + ")'>다음>></span> ");
-
     }
 
-    public QnaPaging() {
-    }
+    public QnaPaging() {}
 
     public int getCurrentPage() {
         return currentPage;

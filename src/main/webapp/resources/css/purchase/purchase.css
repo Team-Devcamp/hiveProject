@@ -12,12 +12,14 @@
     margin-bottom: 20px;
 }
 .purchase-container-wrap h2 {
-    font-weight: 400;
+    font-weight: 500;
     font-size: 1.1em;
-    border-bottom: 2px solid #000;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
+    border-left: 4px solid #000;
+    padding: 12px 12px;
+    margin-bottom: 30px;
     margin-top: 50px;
+    background-color: #f7f7f7;
+    color: #1c1c1c;
 }
 
 .purchase-container-wrap dt{
@@ -30,12 +32,158 @@
     border-bottom: 1px solid #ccc;
 }
 
-.product-info, .user-info, .delivery-info, .product-price-wrap{
-    margin-bottom: 70px;
+.product-info, .user-info dt, .delivery-info dt, .product-price-wrap dt{
+    margin-top: 15px;
 }
 
 .purchase-container-wrap input[type=text]{
     border: 1px solid #e4e6e9;
     color: #202429;
-    height: 33px;
+    height: 32px;
+    margin-bottom: 8px;
+    padding-left: 12px;
+}
+.purchase-container-wrap input[type=tel]{
+    border: 1px solid #e4e6e9;
+    color: #202429;
+    height: 32px;
+    margin-bottom: 8px;
+    padding-left: 12px;
+}
+.purchase-container-wrap select{
+    border: 1px solid #e4e6e9;
+    color: #202429;
+    height: 36px;
+    margin-bottom: 8px;
+    padding-left: 12px;
+}
+
+.agreement-text{
+    padding-bottom: 10px;
+}
+.agreement-text div{
+    display: flex;
+}
+
+.agreement-text dt{
+    display: flex;
+    align-content: center;
+}
+
+.agreement-text button{
+    background: whitesmoke;
+    border: 1px solid #e0e2e5;
+    cursor: pointer;
+}
+.agreement-text dd{
+    display: flex;
+    align-content: center;
+    border: none;
+}
+.agreement strong{
+    margin-top: 15px;
+}
+#request_message{
+    width: 800px;
+}
+#user_email{
+    width: 300px;
+}
+
+.product-buyer-wrap dt{
+    /*margin-left: 15px;*/
+}
+.total-price dd{
+    padding-right: 20px;
+    text-align: right;
+}
+.total-price span{
+    color: #c9974d;
+    font-size: 25px;
+    padding-right: 8px;
+    font-style: italic;
+}
+.purchase-btn{
+    display: flex;
+    justify-content: center;
+    margin-top: 80px
+}
+#purchaseBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 64px;
+    border: none;
+    border-radius: 3px;
+    font-size: 18px;
+    line-height: 1.3333333333;
+    letter-spacing: -0.02em;
+    color: #fff;
+    background-color: #1c1c1c;
+    transition: opacity 250ms ease-in;
+    cursor: pointer;
+}
+.product-item>div{
+
+}
+.product-item>ul{
+    overflow: hidden;
+    position: relative;
+    margin-left: 6px;
+    border-top: 1px solid #f7f7f7;
+    border-bottom: 1px solid #f7f7f7;
+    margin-bottom: 20px;
+}
+.product-item>ul>li{
+    float: left;
+}
+.product-item>ul>li:nth-child(2){
+    margin-left: 15px;
+    margin-top: 20px;
+}
+.product-item>ul>li:nth-child(2) span{
+    color: #3D3D3D;
+}
+.product-item>ul>li:nth-child(3){
+    position: absolute;
+    right: 30px;
+    top: 60px;
+}
+.product-item>ul>li:nth-child(3) span{
+    color: #c9974d;
+    font-size: 20px;
+    padding-right: 8px;
+    font-style: italic;
+}
+.p-img{
+    width:100px;
+}
+.p-img img{
+    width: 100%;
+}
+.product-info .tot{
+    text-align: right;
+    margin-right: 30px;
+}
+
+.product-info .tot>strong{
+    color: #c9974d;
+    font-size: 25px;
+    padding-right: 8px;
+    font-style: italic;
+}
+
+#my_request_message{
+    width: 785px;
+}
+
+#kakaoPayBtn{
+    margin-left: 4px;
+    border: 1px solid #e3c300;
+    padding: 6px 10px;
+    background: #e3c300;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 15px;
 }

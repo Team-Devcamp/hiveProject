@@ -1,16 +1,12 @@
-
 /*url에서 product_id parameter 넘겨받기*/
 let product_id = new URLSearchParams(location.search).get('product_id');
 
-
-/* 상품 qna count 보여주기 */
+/* 상품 qna count */
 $('#qnaBtn').click(function(){
-    /* qna count */
     $.ajax({
         type: 'get',
         url: '/qna/count?product_id='+product_id,
         success: function (data){
-            // alert("count?"+data);
             console.log('count='+data);
             $('#qna_count').html(data);
         },
@@ -24,7 +20,6 @@ $('#qnaBtn').click(function(){
 
 // qna 목록
 function qnaList(){
-
     $.ajax({
         type: 'get',
         url: '/qna/list/product',
@@ -32,7 +27,6 @@ function qnaList(){
         success: function(data){
             // alert(JSON.stringify(data));
             let s = '';
-
             s+="<table class=\"qna-table\">"
             $.each(data.list, function(index, items) {
                 let secret='';
@@ -50,7 +44,7 @@ function qnaList(){
                 s+='<tr class="tit tit_tr " style="border-bottom: #969696; font-family: "Helvetica Neue", "Noto Sans KR", sans-serif; font-weight: 400; padding: 18px 0;">';
                 s+='<td style="width:50px;">'+items.qna_id+'</td>';
                 s+='<td class="tal qna_title" style="width:*"><a href="#none"' +
-                    'style="text-decoration: none; color:inherit;">'+items.qna_title+'</a></td>';
+                    'style="text-decoration: none; color:inherit;">'+items.qna_title+'</a><!-- <button type="button" id="qnaDelBtn">X</button>--></td>';
                 s+='<td style="width:130px;"><span>'+secret+'</span></td>';
                 s+='<td style="width:100px;">'+items.writer+'</td>';
                 s+='<td style="width:122px;">'+items.write_date+'</td>';
@@ -60,14 +54,12 @@ function qnaList(){
                 s+='<tr class="tit hidden" >';
                 s+='<td colSpan="6">';
                 s+='<div class="qna-answer">';
-                s+='<div class="q">';
+                s+='<div class="q" style="padding-top:12px;">';
                 s+='<em>'+items.qna_content+'</em></div>';
                 s+='<div class="a">';
                 s+='<em>답변</em>';
                 s+='<p><br><br><br></p></div></div></td></tr>';
-
             });//each
-
             s+="</table>"
 
             console.log(s);
@@ -80,16 +72,14 @@ function qnaList(){
     });
 }
 
-
-/* 목록 내용 보여주는 이벤트 */
+/* 문의 내용 */
 $('#qnaShowList').on('click', ".qna_title", function(){
-    // alert($(this).text());
     console.log("click");
     $(this).parent().next().toggleClass("hidden");
 });
 
 
-//페이징처리한 qna 목록
+/* 페이징 qna 목록 */
 function qnaPaging(pg) {
     $.ajax({
         type: 'get',
@@ -131,26 +121,32 @@ function qnaPaging(pg) {
                 s+='<em>답변</em>';
                 s+='<p><br><br><br></p></div></div></td></tr>';
             });//each
-
             s+="</table>"
 
             console.log(s);
             $("#qnaShowList").html(s);
             $('#qnaPagingDiv').html(data.qnaPaging.pagingHTML);
-
         },
         error:function(err){
             console.log(err);
         }
-
     });
 }
 
-
 /* qna 등록 토글*/
-$(".qna .qna-info>a").click(function(){
+$(".qna .qna-info #regQnaBtn").click(function(){
     $('#qna_container').toggleClass("hidden");
 });
+
+$(".qna .qna-info #goToLogin").click(function(){
+    let on = confirm("로그인이 필요한 서비스입니다. 로그인 하시겠습니까?");
+    if(on){
+        location.replace("/login");
+    }
+    else{
+        return;
+    }
+})
 
 /* qna 등록창 초기화 */
 $('#regQnaBtn').on('click',function(){
@@ -160,8 +156,6 @@ $('#regQnaBtn').on('click',function(){
 
 /* qna 등록 */
 $('#qnaSubmitBtn').click(function(){
-
-    $('#qna_container').toggleClass("hidden");
 
     if(!$('#qna_form #qna_title').val()){
         alert("제목을 입력하세요");
@@ -188,6 +182,7 @@ $('#qnaSubmitBtn').click(function(){
                 "qna_content":qna_content
             }),
             success: function(data){
+                alert("빠른 답변 드리겠습니다.");
                 qnaList();
             },
             error:function(err){
@@ -195,7 +190,17 @@ $('#qnaSubmitBtn').click(function(){
             }
         });
 
+        $('#qna_container').toggleClass("hidden");
     }
 });
 
+
+/*$('.qna-list').on('click', $('#qnaDelBtn'), function(){
+    alert("'ㄴㅇㄹ?");
+    if(confirm("정말로 삭제하시겠습니까?")){
+        location.replace('/qna/delete');
+    }else{
+        return;
+    }
+});*/
 

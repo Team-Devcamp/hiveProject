@@ -12,9 +12,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       <h1 class="site-name">
         <a href="/">HIVE</a>
       </h1>
-      <form class="form-search" action="">
+      <form class="form-search" action="/search">
         <div>
-          <input class="search-input" type="search" />
+          <input class="search-input" name="keyword" type="search" />
           <button class="search-btn" type="submit">
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
@@ -51,7 +51,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <a href="/event/list">이벤트</a>
         <a href="/notice/list">공지사항</a>
         <c:if test="${sessionScope.user_email == 'admin@hive.co.kr'}">
-          <a href="/productmanage/product/register">상품등록</a>
+          <a href="/productmanage">상품등록</a>
           <a href="/event/write">이벤트등록</a>
         </c:if>
       </div>

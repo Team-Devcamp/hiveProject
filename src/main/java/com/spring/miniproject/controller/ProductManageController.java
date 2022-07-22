@@ -199,7 +199,8 @@ public class ProductManageController {
                         String fileName = file.getOriginalFilename();
                         byte[] bytes = file.getBytes();
 
-                        String uploadPath = req.getSession().getServletContext().getRealPath("/resources/image/product/productInfo"); //저장경로
+                        String root_path = req.getSession().getServletContext().getRealPath("/");
+                        String uploadPath = root_path + "\\resources\\image\\product\\productInfo"; //저장경로
                         System.out.println("uploadPath = " + uploadPath);
 
                         File uploadFile = new File(uploadPath);
@@ -207,14 +208,14 @@ public class ProductManageController {
                             uploadFile.mkdir();
                         }
                         String fileName2 = UUID.randomUUID().toString();
-                        uploadPath = uploadPath + "/" + fileName2 +fileName;
+                        uploadPath = uploadPath + "/" + fileName2 + "_" + fileName;
                         System.out.println("uploadPath = " + uploadPath);
 
                         out = new FileOutputStream(new File(uploadPath));
                         out.write(bytes);
 
                         printWriter = resp.getWriter();
-                        String fileUrl = req.getContextPath() + "/image/product/productInfo/" +fileName2 +fileName; //url경로
+                        String fileUrl = "/image/product/productInfo/" +fileName2 + "_" + fileName; //url경로
 
                         System.out.println("fileUrl = " + fileUrl);
                         JsonObject json = new JsonObject();
@@ -243,7 +244,7 @@ public class ProductManageController {
 
     // 썸네일 업로드하는 메서드
     @PostMapping(value="/upload_thumbnail", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<List<AttachImageDto>> uploadAjaxActionPOST(MultipartFile[] uploadFile) {
+    public ResponseEntity<List<AttachImageDto>> uploadAjaxActionPOST(MultipartFile[] uploadFile, HttpServletRequest request) {
 
         /* 이미지 파일 체크 */
         for(MultipartFile multipartFile: uploadFile) {
@@ -267,8 +268,13 @@ public class ProductManageController {
 
         }// for
 
+        // 프로젝트 root 경로에 이미지 경로 잡기
+        HttpSession session = request.getSession();
+        String root_path = session.getServletContext().getRealPath("/");
+
         // 파일 저장 경로 (서버 환경에 따라 경로 변경이 필요함)
-        String uploadFolder = "C:\\hive\\target\\miniproject-1.0.0-BUILD-SNAPSHOT\\resources\\image\\product\\thumbnail";
+        String uploadFolder = root_path+"\\resources\\image\\product\\thumbnail";
+//        String uploadFolder = "C:\\hive\\target\\miniproject-1.0.0-BUILD-SNAPSHOT\\resources\\image\\product\\thumbnail";
 
 //        // 날짜 가져오기
 //        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -332,8 +338,11 @@ public class ProductManageController {
 
     // 썸네일 미리보기
     @GetMapping("/display_thumbnail")
-    public ResponseEntity<byte[]> getImage(String fileName){
-        File file = new File("C:\\hive\\target\\miniproject-1.0.0-BUILD-SNAPSHOT\\resources\\image\\product\\thumbnail\\" + fileName);
+    public ResponseEntity<byte[]> getImage(String fileName, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        String root_path = session.getServletContext().getRealPath("/");
+
+        File file = new File(root_path + "\\resources\\image\\product\\thumbnail\\" + fileName);
 
         ResponseEntity<byte[]> result = null;
 
@@ -354,12 +363,15 @@ public class ProductManageController {
     }
     /* 썸네일 파일 삭제(원본, 축소본) */
     @PostMapping("/delete_thumbnail")
-    public ResponseEntity<String> deleteFile(String fileName){
+    public ResponseEntity<String> deleteFile(String fileName, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        String root_path = session.getServletContext().getRealPath("/");
+
         File file = null;
 
         try {
             // 썸네일 파일 삭제
-            file = new File("C:\\hive\\target\\miniproject-1.0.0-BUILD-SNAPSHOT\\resources\\image\\product\\thumbnail\\" + URLDecoder.decode(fileName, "UTF-8"));
+            file = new File(root_path + "\\resources\\image\\product\\thumbnail\\" + URLDecoder.decode(fileName, "UTF-8"));
 
             file.delete();
 

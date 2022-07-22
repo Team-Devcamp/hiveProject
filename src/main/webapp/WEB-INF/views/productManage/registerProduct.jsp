@@ -51,6 +51,8 @@
             <input type="file" id="fileItem" name="" accept="image/*" multiple>
         </div>
         <div id="uploadResult">
+            <img src="/image/product/thumbnail/${productDto.product_thumb_nail}">
+            <input type="hidden" name="product_thumb_nail" value="${productDto.product_thumb_nail}">
         </div>
         <button id="submit-btn" ${mode=="new" ? "" : 'style="display: none;"'}>상품 등록</button>
         <button id="modify-btn" ${mode!="new" ? "" : 'style="display: none;"'}>상품 수정</button>
@@ -141,7 +143,7 @@
 
             str += "</div>";
 
-            uploadResult.append(str);
+            uploadResult.html(str);
 
         }
 

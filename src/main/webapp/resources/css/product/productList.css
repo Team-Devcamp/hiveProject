@@ -39,10 +39,17 @@ body {
     padding: 80px;
 }
 .main .categories > p {
-    font-size: 1.8em;
+    font-size: 1.5em;
     font-weight: bold;
     padding-bottom: 20px;
     border-bottom: 1px solid rgb(200, 200, 200);
+    text-align: center;
+}
+
+.main .categories > p:nth-child(2) {
+    font-size: 1.2em;
+    padding-top: 20px;
+    text-align: left;
 }
 .main .categories ul {
     border-bottom: 1px solid rgb(200, 200, 200);
@@ -80,6 +87,7 @@ body {
 .main .contents .classification {
     float: right;
     overflow: hidden;
+    margin-bottom: 30px;
 }
 .main .contents .classification > li {
     float: left;
@@ -99,6 +107,7 @@ body {
 }
 .main .contents .product-list .product {
     width: 25%;
+    height: 250px;
     padding-top: 20px;
     float: left;
     padding: 10px;
@@ -132,4 +141,16 @@ body {
 .main .contents .product-list .product .admin-btn button {
     margin-left: 0;
     margin-right: 10px;
+}
+
+.show-more-btn {
+    cursor: pointer;
+    width: 250px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    margin: 20px auto;
+    border: 2px solid black;
+    text-align: center;
+
 }

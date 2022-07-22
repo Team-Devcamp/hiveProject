@@ -1,15 +1,13 @@
 package com.spring.miniproject.service;
 
-import com.spring.miniproject.domain.PageHandlerDto;
-import com.spring.miniproject.domain.UserAddressDto;
-import com.spring.miniproject.domain.UserDto;
-import com.spring.miniproject.domain.UserProfileDto;
+import com.spring.miniproject.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.miniproject.dao.UserDao;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -81,5 +79,51 @@ public class UserServiceImpl implements UserService {
 	public List<UserAddressDto> selectAddressList(PageHandlerDto pageHandlerDto) {
 		return userDao.selectAddressList(pageHandlerDto);
 	}
+
+	@Override
+	public String selectUserEmail(Map map) {
+		return userDao.selectUserEmail(map);
+	}
+
+	@Override
+	public List<UserPurchaseDto> selectUserPurchase(PageHandlerDto pageHandlerDto) {
+		return userDao.selectUserPurchase(pageHandlerDto);
+	}
+
+	@Override
+	public Integer selectUserPurchaseCnt(Integer user_id) {
+		return userDao.selectUserPurchaseCnt(user_id);
+	}
+
+	@Override
+	public int insertUserProductReview(ProductReviewDto productReviewDto) {
+		return userDao.insertUserProductReview(productReviewDto);
+	}
+
+	@Override
+	public int deleteUserProductReview(ProductReviewDto productReviewDto) {
+		return userDao.deleteUserProductReview(productReviewDto);
+	}
+
+	@Override
+	public List<ProductReviewDto> selectUserProductReview(PageHandlerDto pageHandlerDto) {
+		return userDao.selectUserProductReview(pageHandlerDto);
+	}
+
+	@Override
+	public int updateUserProductReview(ProductReviewDto productReviewDto) {
+		return userDao.updateUserProductReview(productReviewDto);
+	}
+
+	@Override
+	public String selectUserReviewImage(Map map) {
+		return userDao.selectUserReviewImage(map);
+	}
+
+	@Override
+	public int updateNewPassword(Map map) {
+		return userDao.updateNewPassword(map);
+	}
+
 }
 

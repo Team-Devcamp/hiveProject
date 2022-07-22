@@ -2,22 +2,82 @@
 @import "../common/reset.css";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
-body {font-family: 'Noto Sans KR', sans-serif;}
-a {text-decoration: none; color:inherit;}
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+}
 
-.wrap{width: 100%; height:100%; margin-top: 20px; overflow: hidden;}
-.wrap .content {margin: 0 auto; width: 620px; height: 600px;}
-.wrap .nav {overflow: hidden;  font-size: 25px; margin-top: 30px;}
+a {
+    text-decoration: none;
+    color:inherit;
+}
 
-.wrap .tit { margin-left: 220px; font-weight: bold; position: relative;}
+.wrap{
+    width: 100%;
+    height:100%;
+    margin-top: 20px;
+    overflow: hidden;
+}
 
+.wrap .content {
+    margin: 0 auto;
+    width: 620px;
+    height: 600px;
+}
 
-input {border-radius: 10px; width: 495px; height: 42px; margin-top: 15px;
-    position: relative; border: 1px solid rgb(228, 230, 233);}
-input::placeholder{padding-left: 10px;}
-.find-post {border-radius: 10px; width: 110px; height: 45px;
-    position: absolute; top: 203px; background: rgb(32, 36, 41); margin-left: 10px; border:none;}
-.find-post[value="우편번호 찾기"]{font-size: 16px; color: white;}
-.input-box {margin: 0 auto;}
-.submit-btn {margin-top: 60px; width: 620px; height: 55px; border-radius: 10px;}
-.submit-btn[value="배송지 등록"]{font-size: 16px; color: white; background: rgb(32, 36, 41); border:none}
+.wrap .nav {
+    overflow: hidden;
+    font-size: 25px;
+    margin-top: 30px;
+}
+
+.wrap .tit {
+    margin-left: 220px;
+    font-weight: bold;
+    position: relative;
+}
+
+input {
+    border-radius: 10px;
+    width: 495px;
+    height: 42px;
+    margin-top: 15px;
+    position: relative;
+    border: 1px solid rgb(228, 230, 233);
+}
+
+input::placeholder{
+    padding-left: 10px;
+}
+
+.find-post {
+    border-radius: 10px;
+    width: 110px;
+    height: 45px;
+    position: absolute;
+    top: 203px;
+    background: rgb(32, 36, 41);
+    margin-left: 10px; border:none;
+}
+
+.find-post[value="우편번호 찾기"]{
+    font-size: 16px;
+    color: white;
+}
+
+.input-box {
+    margin: 0 auto;
+}
+
+.submit-btn {
+    margin-top: 60px;
+    width: 620px;
+    height: 55px;
+    border-radius: 10px;
+}
+
+.submit-btn[value="배송지 등록"]{
+    font-size: 16px;
+    color: white;
+    background: rgb(32, 36, 41);
+    border:none
+}

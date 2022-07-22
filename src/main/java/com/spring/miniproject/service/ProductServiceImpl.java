@@ -1,18 +1,20 @@
 package com.spring.miniproject.service;
 
 import com.spring.miniproject.dao.ProductDao;
-import com.spring.miniproject.domain.ProductReviewDto;
 import com.spring.miniproject.domain.ProductDto;
+import com.spring.miniproject.domain.ProductSearchCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
-    ProductDao productDao;
+    private ProductDao productDao;
 
     @Override
     public int insertProduct(ProductDto productDto) throws Exception {
@@ -25,8 +27,40 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDto> selectAllProduct() throws Exception {
-        return productDao.selectAllProduct();
+    public List<ProductDto> selectAllProduct(Integer offset, Integer product_num) throws Exception {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("offset", offset);
+        map.put("product_num", product_num);
+        return productDao.selectAllProduct(map);
+    }
+
+    @Override
+    public Integer selectAllProductCnt() throws Exception {
+        return productDao.selectAllProductCnt();
+    }
+
+    @Override
+    public List<ProductDto> selectSearchProduct(ProductSearchCondition psc) throws Exception {
+        return productDao.selectSearchProduct(psc);
+    }
+
+    @Override
+    public Integer selectSearchProductCnt(ProductSearchCondition psc) throws Exception {
+        return productDao.selectSearchProductCnt(psc);
+    }
+
+    @Override
+    public List<ProductDto> selectProductBySubCategory(Integer offset, Integer product_num, Integer sub_category_id) throws Exception {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("offset", offset);
+        map.put("product_num", product_num);
+        map.put("sub_category_id", sub_category_id);
+        return productDao.selectProductBySubCategory(map);
+    }
+
+    @Override
+    public Integer selectProductBySubCategoryCnt(Integer sub_category_id) throws Exception {
+        return productDao.selectProductBySubCategoryCnt(sub_category_id);
     }
 
     @Override

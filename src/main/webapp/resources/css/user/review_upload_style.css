@@ -1,0 +1,88 @@
+@charset "utf-8";
+@import "../common/reset.css";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color:inherit;
+}
+
+.wrap{
+    width: 100%;
+    height:100%;
+    margin-top: 20px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.wrap .content {
+    margin: 0 auto;
+    width: 620px;
+    height: 600px;
+}
+
+.wrap .nav {
+    overflow: hidden;
+    font-size: 25px;
+    margin-top: 30px;
+}
+
+.wrap .arrow{
+    position: relative;
+}
+
+.wrap .arrow .tit {
+    margin-left: 250px;
+    font-weight: bold;
+    position:absolute;
+    top: 0px;
+    left: -16px;
+}
+
+.wrap .txt {
+    margin-top: 60px;
+    font-size: 18px;
+}
+
+.review-upload-form .input-box-id {
+    position: relative;
+}
+
+.review-upload-form .input-box-id .txt {
+    margin-top: 20px;
+    display: block;
+}
+
+.review-upload-form .input-box-id #review-content{
+    width:500px;
+    height:200px;
+}
+
+.review-upload-form input::placeholder{
+    padding-left: 10px;
+}
+
+.review-upload-form #submit-btn {
+    border-radius: 10px;
+    width: 510px;
+    height: 48px;
+    position: absolute;
+    top: 780px;
+    background: black;
+    margin-left: 10px;
+    border:none;
+    left: -16px;
+}
+
+.review-upload-form #submit-btn[value="등록"]{
+    font-size: 16px;
+    color: white;
+}
+
+.input-box {
+    margin: 0 auto;
+}

@@ -53,17 +53,27 @@ function showSelectedOption(){
     let option1 = $('.form-select-wrap').children().val();
     let option2 = $('.form-select-wrap').children().next().val();
 
+    //중복 추가X
+    for (let i = 0; i < $('.product-detail-list-container').children().length; i++) {
+        if (option1 == $('.pro dd[name=detail_option1]').eq(i).html() && option2 == $('.pro dd[name=detail_option2]').eq(i).html()) {
+            return;
+        }
+    }
+
     let pdlContainer = $('.product-detail-list-container');
     pdlContainer.append(selectedProduct);
     pdlContainer.children().addClass('pro');
 
-    $('.product-detail-list-container').children().last().children().next().children('dd#datail_option1').html(option1);
-    $('.product-detail-list-container').children().last().children().next().children('dd#datail_option2').html(option2);
+    $('.product-detail-list-container').children().last().children().next().children('dd#detail_option1').html(option1);
+    $('.product-detail-list-container').children().last().children().next().children('dd#detail_option2').html(option2);
+    totalPrice = totalPrice + price;
+    $('#total_price').html(totalPrice);
+
 }
 
 /* 상품 원가 */
 let price = Number($('.product-detail-form').children().children().last().children().last().children('#cost').html());
-let totalPrice = $('#total_price').html(0);
+let totalPrice = 0;
 
 /* 주문 수량 변화 */
 $('.product-detail-list-container').on('click','#minus-button',function (){
@@ -76,7 +86,8 @@ $('.product-detail-list-container').on('click','#minus-button',function (){
 
         qty = Number($(this).next().val());
         subTotalPrice = qty * price;
-        totalPrice = totalPrice - subTotalPrice;
+        totalPrice = totalPrice - price;
+
         $(this).parent().parent().parent().parent().last().parent().children().last().children().last().children('#cost').html(subTotalPrice);
         $('#total_price').html(totalPrice);
     }
@@ -97,7 +108,8 @@ $('.product-detail-list-container').on('click','#plus-button',function (){
 
         qty = Number($(this).prev().val());
         subTotalPrice = qty * price;
-        totalPrice = totalPrice + subTotalPrice;
+        totalPrice = totalPrice + price;
+
         $(this).parent().parent().parent().parent().last().parent().children().last().children().last().children('#cost').html(subTotalPrice);
         $('#total_price').html(totalPrice);
     }
@@ -105,8 +117,53 @@ $('.product-detail-list-container').on('click','#plus-button',function (){
         alert("한번에 최대 구매수량은 5개 입니다.");
         return;
     }
+
+});
+
+$('.product-detail-list-container').on('click','#delProBtn',function () {
+    $(this).parent().parent().remove();
+    totalPrice = totalPrice - Number($(this).parent().parent().children().last().children().last().children('#cost').html());
+    $('#total_price').html(totalPrice);
 });
 
 $('#orderBtn').on('click',function(){
-    location.href='/purchase/page';
+    let cnt = $('.pro').get();
+
+    let qty = $('.pro input[name=quantity]').length;
+    var qtyArr = new Array(qty);
+
+    let option_color = $('.pro dd[name=detail_option1]').get();
+    let option_size = $('.pro dd[name=detail_option2]').get();
+    let subTotalPrice = $('.pro span[name=cost]').get();
+
+    let colorArr = new Array(cnt);;
+    let sizeArr = new Array(cnt);;
+    let subTotalPriceArr = new Array(cnt);;
+    let product_title = $('.product-title').html();
+
+    for(var i=0; i<cnt.length; i++){
+        qtyArr[i] = $('.pro input[name=quantity]').eq(i).val();
+        console.log(qtyArr[i]+' '+ option_color[i].innerHTML+' '+option_size[i].innerHTML+' '+subTotalPrice[i].innerHTML);
+        console.log();
+        colorArr[i] = option_color[i].innerHTML;
+        sizeArr[i] = option_size[i].innerHTML;
+        subTotalPriceArr[i] = subTotalPrice[i].innerHTML;
+    }//for
+
+    if($('#total_price').html()!=0){
+        var form = $('<form></form>');
+        form.attr('action','/purchase/page')
+        form.attr('method','post')
+        form.appendTo('body');
+        form.append($('<input type="hidden" value="'+qtyArr+'" name=qty>'));
+        form.append($('<input type="hidden" value="'+colorArr+'" name=option_color>'));
+        form.append($('<input type="hidden" value="'+sizeArr+'" name=option_size>'));
+        form.append($('<input type="hidden" value="'+subTotalPriceArr+'" name=subTotalPrice>'));
+        form.append($('<input type="hidden" value="'+totalPrice+'" name=total_price>'));
+        form.append($('<input type="hidden" value="'+product_title+'" name=product_title>'));
+        form.submit();
+    }else{
+        alert("상품을 선택해주세요.");
+    }
+
 });

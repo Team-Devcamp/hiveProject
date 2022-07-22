@@ -68,7 +68,7 @@ public class FindPasswordServiceImpl implements FindPasswordService {
     public String sendNewPassword(String user_email, String password) {
         String to = user_email;
         String title = "임시 비밀번호 발급 안내입니다.";
-        String content = "고객님의 임시 비밀번호는" + password + " 입니다. <br/><br/> 로그인 하신 후 보안을 위해 비밀번호 변경을 하시기 바랍니다.";
+        String content = "고객님의 임시 비밀번호는 " + password + " 입니다. <br/><br/> 로그인 하신 후 보안을 위해 비밀번호 변경을 하시기 바랍니다.";
         String num = "";
         try {
             MimeMessage mail = mailSender.createMimeMessage();

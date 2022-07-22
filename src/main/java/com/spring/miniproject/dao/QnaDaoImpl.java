@@ -36,10 +36,6 @@ public class QnaDaoImpl implements QnaDao {
 
     @Override
     public int countQna(Integer product_id) throws Exception{
-
-        System.out.println();
-        System.out.println("%n다오product_id = " + product_id);
-
         return sqlSession.selectOne(namespace + "countQna",product_id);
     }
 

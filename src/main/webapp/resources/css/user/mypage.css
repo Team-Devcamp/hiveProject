@@ -2,47 +2,229 @@
 @import "../common/reset.css";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
-a {text-decoration: none; color:inherit;}
-.wrap{ width: 100%; height: 100%; overflow: hidden;}
-.wrap .content{ width: 1500px; height: 1000px; margin: 0 auto; position: relative;}
-.wrap .content .menu {width: 300px; height: 700px; }
-.wrap .content .menu h2{margin-top:100px; font-size: 28px; font-weight: bold;
-                        padding-left: 50px; margin-bottom: 30px;}
-.wrap .content .menu .menu-list {width: 200px; height: 300px; background: white;}
-.wrap .content .menu .menu-list p{font-size: 20px; font-weight: bold; padding-left: 50px;}
-.wrap .content .menu .menu-list ul li{margin-top: 15px; padding-left: 50px; color:rgb(207, 210, 215);}
-.wrap .content .menu .menu-list p{margin-top: 40px;}
-.wrap .content .menu .profile-info { width: 1100px; height: 800px; position: absolute;
-                                    top:17px; left:300px}
-.wrap .content .menu .profile-info img{border-radius: 50%; position: relative; width: 135px; height: 135px;}
-.wrap .content .menu .profile-info #profile-id{font-size:25px; font-weight:bold; position: absolute; top:120px; left:150px;} 
-.wrap .content .menu .profile-info #add-img {position: absolute; background: white; border-color:rgb(207, 210, 215);
-                                                border-style: solid; border-radius: 8px; height: 40px; width: 105px; top:170px; left:150px; border-width: 0.3px;}
-.wrap .content .menu .profile-info #del-img {position: absolute; background: white; border-color:rgb(207, 210, 215);
-                                                 border-style: solid; border-radius: 8px; height: 40px; width: 105px; top:170px; left:260px; border-width: 0.3px;}
-.wrap .content .menu .profile-info p{font-size: 28px; font-weight: bold;}
-.wrap .content .menu .profile-info .line{content: ""; border: 2px solid black; width: 1000px; margin-top: 15px; margin-bottom: 50px;}
-.wrap .content .menu .profile-info .line-id{content: ""; content: ""; background: rgb(207, 210, 215); width: 1000px; height: 1px; 
-                                            margin-bottom: 30px; margin-top: 50px;}
-.wrap .content .menu .profile-info .login-profile p{font-size: 20px; margin-top: 40px; margin-bottom: 20px;}
-.wrap .content .menu .profile-info .login-profile ul li:nth-child(1){margin-bottom: 10px; color:rgb(207, 210, 215);}
-.wrap .content .menu .profile-info .login-profile ul li:nth-child(2){color:rgb(207, 210, 215);}
+a {
+    text-decoration: none;
+    color:inherit;
+}
 
-.wrap .content .menu .profile-info .login-profile .line-login{content: ""; background: rgb(207, 210, 215); width: 600px; height: 1px;
-                                                                margin-top: 20px;}
-.wrap .content .menu .profile-info .login-profile .password{color:rgb(207, 210, 215); margin-top: 30px;}
-.wrap .content .menu .profile-info #look-pwd{border:none; font-size: 25px; outline: none}
-.wrap .content .menu .profile-info .login-profile .line-login-end{content: ""; background: rgb(207, 210, 215); 
-                                                                        width: 600px; height: 1px; margin-top: 10px;}
-.wrap .content .menu .profile-info .user-info p{font-size: 20px; margin-top: 80px;}
-.wrap .content .menu .profile-info .user-info #user-name{color:rgb(207, 210, 215); margin-top: 30px;}
-.wrap .content .menu .profile-info .user-info #user-id{margin-top: 10px;}
-.wrap .content .menu .profile-info .user-info .info-line{content:""; background: rgb(207, 210, 215); width: 600px; 
-                                                                margin-top: 20px; height: 1px;}
-.wrap .content .menu .profile-info .user-info #user-phone{color:rgb(207, 210, 215); margin-top: 30px;}
-.wrap .content .menu .profile-info .user-info #user-phone-num{margin-top: 10px;}
-.wrap .content .menu .profile-info .user-info .info-end-line{content:""; background: rgb(207, 210, 215); width: 600px; 
-    margin-top: 20px; height: 1px;}
-.wrap .content .menu .profile-info .out-of-join{margin-top: 30px;}
-.wrap .content .menu .profile-info .out-of-join a{color:rgb(207, 210, 215); text-decoration: underline;}
+.wrap{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.wrap .content{
+    width: 1500px;
+    height: 1000px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.wrap .content .menu {
+    width: 300px;
+    height: 700px;
+}
+
+.wrap .content .menu h2{
+    margin-top:100px;
+    font-size: 28px;
+    font-weight: bold;
+    padding-left: 50px;
+    margin-bottom: 30px;
+}
+
+.wrap .content .menu .menu-list {
+    width: 200px;
+    height: 300px;
+    background: white;
+}
+
+.wrap .content .menu .menu-list p{
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 50px;
+}
+
+.wrap .content .menu .menu-list ul li{
+    margin-top: 15px;
+    padding-left: 50px;
+    color:rgb(207, 210, 215);
+}
+
+.wrap .content .menu .menu-list p{
+    margin-top: 40px;
+}
+
+.wrap .content .menu .profile-info {
+    width: 1100px;
+    height: 800px;
+    position: absolute;
+    top:17px;
+    left:300px
+}
+
+.wrap .content .menu .profile-info img{
+    border-radius: 50%;
+    position: relative;
+    width: 135px;
+    height: 135px;
+}
+
+.wrap .content .menu .profile-info #profile-id{
+    font-size:25px;
+    font-weight:bold;
+    position: absolute;
+    top:120px;
+    left:150px;
+}
+
+.wrap .content .menu .profile-info #add-img {
+    position: absolute;
+    background: white;
+    border-color:rgb(207, 210, 215);
+    border-style: solid;
+    border-radius: 8px;
+    height: 40px;
+    width: 105px;
+    top:170px;
+    left:150px;
+    border-width: 0.3px;
+}
+
+.wrap .content .menu .profile-info #del-img {
+    position: absolute;
+    background: white;
+    border-color:rgb(207, 210, 215);
+    border-style: solid;
+    border-radius: 8px;
+    height: 40px;
+    width: 105px;
+    top:170px;
+    left:260px;
+    border-width: 0.3px;
+}
+
+.wrap .content .menu .profile-info #change-pwd{
+    width: 105px;
+    height: 40px;
+    background: white;
+    border-color:rgb(207, 210, 215);
+    border-style: solid;
+    border-radius: 8px;
+    border-width: 0.3px;
+    margin-left: 207px;
+}
+
+.wrap .content .menu .profile-info p{
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.wrap .content .menu .profile-info .line{
+    content: "";
+    border: 1px solid black;
+    width: 1000px;
+    margin-top: 15px;
+    margin-bottom: 50px;
+}
+
+.wrap .content .menu .profile-info .line-id{
+    content: "";
+    content: "";
+    background: rgb(207, 210, 215);
+    width: 1000px;
+    height: 1px;
+    margin-bottom: 30px;
+    margin-top: 50px;
+}
+
+.wrap .content .menu .profile-info .login-profile p{
+    font-size: 20px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.wrap .content .menu .profile-info .login-profile ul li:nth-child(1){
+    margin-bottom: 10px;
+    color:rgb(207, 210, 215);
+}
+
+.wrap .content .menu .profile-info .login-profile ul li:nth-child(2){
+    color:rgb(207, 210, 215);
+}
+
+.wrap .content .menu .profile-info .login-profile .line-login{
+    content: "";
+    background: rgb(207, 210, 215);
+    width: 600px;
+    height: 1px;
+    margin-top: 20px;
+}
+
+.wrap .content .menu .profile-info .login-profile .password{
+    color:rgb(207, 210, 215);
+    margin-top: 30px;
+}
+
+.wrap .content .menu .profile-info #look-pwd{
+    border:none;
+    font-size: 25px;
+    outline: none
+}
+
+.wrap .content .menu .profile-info .login-profile .line-login-end{
+    content: "";
+    background: rgb(207, 210, 215);
+    width: 600px;
+    height: 1px;
+    margin-top: 10px;
+}
+
+.wrap .content .menu .profile-info .user-info p{
+    font-size: 20px;
+    margin-top: 80px;
+}
+
+.wrap .content .menu .profile-info .user-info #user-name{
+    color:rgb(207, 210, 215);
+    margin-top: 30px;
+}
+
+.wrap .content .menu .profile-info .user-info #user-id{
+    margin-top: 10px;
+}
+
+.wrap .content .menu .profile-info .user-info .info-line{
+    content:"";
+    background: rgb(207, 210, 215);
+    width: 600px;
+    margin-top: 20px;
+    height: 1px;
+}
+
+.wrap .content .menu .profile-info .user-info #user-phone{
+    color:rgb(207, 210, 215);
+    margin-top: 30px;
+}
+
+.wrap .content .menu .profile-info .user-info #user-phone-num{
+    margin-top: 10px;
+}
+
+.wrap .content .menu .profile-info .user-info .info-end-line{
+    content:"";
+    background: rgb(207, 210, 215);
+    width: 600px;
+    margin-top: 20px;
+    height: 1px;
+}
+
+.wrap .content .menu .profile-info .out-of-join{
+    margin-top: 30px;
+}
+
+.wrap .content .menu .profile-info .out-of-join a{
+    color:rgb(207, 210, 215);
+    text-decoration: underline;
+}
 

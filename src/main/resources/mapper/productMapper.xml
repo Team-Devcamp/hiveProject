@@ -16,16 +16,69 @@
 		WHERE product_id = #{product_id}
 	</select>
 
-	<select id="selectAllProduct" resultType="ProductDto">
+	<select id="selectAllProduct" parameterType="map" resultType="ProductDto">
 		SELECT product_id, product_name, product_title, product_info,
 			   product_thumb_nail, product_price, category_id, sub_category_id
 		FROM product
+		LIMIT #{offset}, #{product_num}
+	</select>
+
+	<select id="selectAllProductCnt" resultType="int">
+		SELECT count(*)
+		FROM product
+	</select>
+
+	<select id="selectProductBySubCategory" parameterType="map" resultType="ProductDto">
+		SELECT product_id, product_name, product_title, product_info,
+			   product_thumb_nail, product_price, category_id, sub_category_id
+		FROM product
+		WHERE sub_category_id = #{sub_category_id}
+		LIMIT #{offset}, ${product_num}
+	</select>
+
+	<select id="selectProductBySubCategoryCnt" parameterType="int" resultType="int">
+		SELECT count(*)
+		FROM product
+		WHERE sub_category_id = #{sub_category_id}
+	</select>
+
+	<sql id="productSearchCondition">
+		<choose>
+			<when test='option=="N"'>
+				AND product_name LIKE concat('%', #{keyword}, '%')
+			</when>
+			<when test='option=="T"'>
+				AND product_title LIKE concat('%', #{keyword}, '%')
+			</when>
+			<otherwise>
+				AND (product_name LIKE concat('%', #{keyword}, '%')
+				OR product_title LIKE concat('%', #{keyword}, '%'))
+			</otherwise>
+		</choose>
+	</sql>
+
+	<select id="selectSearchProduct" parameterType="ProductSearchCondition" resultType="ProductDto">
+		SELECT product_id, product_name, product_title, product_info,
+		product_thumb_nail, product_price, category_id, sub_category_id
+		FROM product
+		WHERE true
+		<include refid="productSearchCondition"/>
+		ORDER BY product_id DESC
+		LIMIT #{offset}, #{pageSize}
+	</select>
+
+	<select id="selectSearchProductCnt" parameterType="ProductSearchCondition" resultType="int">
+		SELECT count(*)
+		FROM product
+		WHERE true
+		<include refid="productSearchCondition"/>
 	</select>
 
 	<update id="updateProduct" parameterType="ProductDto">
 		UPDATE product
 		SET product_title = #{product_title}, product_info = #{product_info},
-		    product_thumb_nail = #{product_thumb_nail}, product_price = #{product_price}
+		    product_thumb_nail = #{product_thumb_nail}, product_price = #{product_price},
+			category_id = #{category_id}, sub_category_id = #{sub_category_id}
 		WHERE product_id = #{product_id}
 	</update>
 

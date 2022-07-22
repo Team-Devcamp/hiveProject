@@ -9,6 +9,7 @@
         <typeAlias alias="EventDto" type="com.spring.miniproject.domain.EventDto"/>
         <typeAlias alias="UploadFileDto" type="com.spring.miniproject.domain.UploadFileDto"/>
         <typeAlias alias="UserProfileDto" type="com.spring.miniproject.domain.UserProfileDto"/>
+        <typeAlias alias="UserPurchaseDto" type="com.spring.miniproject.domain.UserPurchaseDto"/>
         <typeAlias alias="PageHandlerDto" type="com.spring.miniproject.domain.PageHandlerDto"/>
         <typeAlias alias="UserAddressDto" type="com.spring.miniproject.domain.UserAddressDto"/>
         <typeAlias alias="NoticeDto" type="com.spring.miniproject.domain.NoticeDto"/>
@@ -20,5 +21,6 @@
         <typeAlias alias="ProductStockDto" type="com.spring.miniproject.domain.ProductStockDto"/>
         <typeAlias alias="ProductOptionDetailDto" type="com.spring.miniproject.domain.ProductOptionDetailDto"/>
         <typeAlias alias="QnaPaging" type="com.spring.miniproject.domain.QnaPaging"/>
+        <typeAlias alias="ProductSearchCondition" type="com.spring.miniproject.domain.ProductSearchCondition"/>
     </typeAliases>
 </configuration>

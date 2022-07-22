@@ -12,9 +12,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       <h1 class="site-name">
         <a href="/">HIVE</a>
       </h1>
-      <form class="form-search" action="">
+      <form class="form-search" action="/search">
         <div>
-          <input class="search-input" type="search" />
+          <input class="search-input" name="keyword" type="search" />
           <button class="search-btn" type="submit">
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>

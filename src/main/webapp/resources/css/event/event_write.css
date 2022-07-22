@@ -67,6 +67,7 @@
 .board-attach label {
     cursor: pointer;
     padding: 3px 0;
+    width: 100%;
     border: 1px black solid;
     display: flex;
     justify-content: center;
@@ -96,8 +97,4 @@
     color:black;
     font-weight: bold;
     background-color: rgb(244, 168, 27);
-}
-
-.ck-content {
-    height: 300px;
 }

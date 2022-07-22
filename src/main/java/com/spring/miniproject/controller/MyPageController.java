@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.nio.file.Files;
@@ -24,11 +25,6 @@ public class MyPageController {
     @Autowired
     UserService userService;
 
-    // 사진이 업로드되는 경로
-    private String uploadPath = "C:\\Users\\ch457\\IdeaProjects\\hiveProject\\src\\main\\webapp\\resources\\image\\user\\product_review";
-
-    // 사진 삭제 기본 경로
-    private String deletePath = "C:\\Users\\ch457\\IdeaProjects\\hiveProject\\src\\main\\webapp\\resources";
 
     // 마이 페이지 이동 메서드
     @RequestMapping("/mypage")
@@ -135,7 +131,7 @@ public class MyPageController {
     // 구매 리뷰를 작성하는 메서드
     @ResponseBody
     @PostMapping ("mypage/purchase/review/insert")
-    public String myPurchaseReview(MultipartFile file, String user_email, Integer user_id, Integer product_id, Integer purchase_id,String review_content) throws Exception{
+    public String myPurchaseReview(MultipartFile file, String user_email, Integer user_id, Integer product_id, Integer purchase_id,String review_content,HttpServletRequest request) throws Exception{
         // 원본 파일이 이미지 파일이 맞는지 확장자를 확인
         File checkFile = new File(file.getOriginalFilename());
         String type = Files.probeContentType(checkFile.toPath());
@@ -145,6 +141,9 @@ public class MyPageController {
         }else{
             int random = (int)(Math.random()*200)+1;
             String fileName = user_email.substring(0,6)+ random + "_product_review.jpg";
+            HttpSession session = request.getSession();
+            String root_path = session.getServletContext().getRealPath("/");
+            String uploadPath = root_path + "resources\\image\\user\\product_review";
             File uploadFile = new File(uploadPath, fileName);
             file.transferTo(uploadFile);
             String finalPath = "/image/user/product_review/"+fileName;
@@ -162,11 +161,16 @@ public class MyPageController {
     // 구매 리뷰를 수정하는 메서드
     @ResponseBody
     @PostMapping ("mypage/purchase/review/modify")
-    public String reviewModify(MultipartFile file, Integer user_id,Integer purchase_id,String review_content,int product_id,String user_email) throws Exception{
+    public String reviewModify(MultipartFile file, Integer user_id, Integer purchase_id, String review_content, int product_id, String user_email, HttpServletRequest request) throws Exception{
         Map map = new HashMap();
         map.put("user_id",user_id);
         map.put("purchase_id",purchase_id);
         String upload_file = userService.selectUserReviewImage(map);
+        // root 경로 조회(프로젝트 기준)
+        HttpSession session = request.getSession();
+        String root_path = session.getServletContext().getRealPath("/");
+        String uploadPath = root_path+"resources\\image\\user\\product_review";
+        String deletePath = root_path+"resources";
         upload_file = upload_file.replaceAll("/","\\\\");
         String path = deletePath+upload_file;
         File pastFile = new File(path);
@@ -206,13 +210,16 @@ public class MyPageController {
 
     // 구매리뷰를 삭제하는 메서드
     @RequestMapping("mypage/purchase/review/delete")
-    public String myPurchaseReviewDelete(RedirectAttributes redirectAttributes, Integer user_id, Integer purchase_id,Integer product_id){
+    public String myPurchaseReviewDelete(RedirectAttributes redirectAttributes, Integer user_id, Integer purchase_id,Integer product_id,HttpServletRequest request){
         ProductReviewDto productReviewDto = new ProductReviewDto(user_id,purchase_id,product_id);
         Map map = new HashMap();
         map.put("user_id",user_id);
         map.put("purchase_id",purchase_id);
         String upload_file = userService.selectUserReviewImage(map);
         upload_file = upload_file.replaceAll("/","\\\\");
+        HttpSession session = request.getSession();
+        String root_path = session.getServletContext().getRealPath("/");
+        String deletePath = root_path+"resources";
         String path = deletePath+upload_file;
         File pastFile = new File(path);
         pastFile.delete();

@@ -1,14 +1,12 @@
 package com.spring.miniproject.dao;
 
-import com.spring.miniproject.domain.PageHandlerDto;
-import com.spring.miniproject.domain.UserAddressDto;
-import com.spring.miniproject.domain.UserDto;
-import com.spring.miniproject.domain.UserProfileDto;
+import com.spring.miniproject.domain.*;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -80,6 +78,51 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public List<UserAddressDto> selectAddressList(PageHandlerDto pageHandlerDto) {
 		return sqlSession.selectList(namespace+"selectAddressList",pageHandlerDto);
+	}
+
+	@Override
+	public String selectUserEmail(Map map) {
+		return sqlSession.selectOne(namespace+"selectUserEmail",map);
+	}
+
+	@Override
+	public List<UserPurchaseDto> selectUserPurchase(PageHandlerDto pageHandlerDto) {
+		return sqlSession.selectList(namespace+"selectUserPurchase",pageHandlerDto);
+	}
+
+	@Override
+	public Integer selectUserPurchaseCnt(Integer user_id) {
+		return sqlSession.selectOne(namespace+"selectUserPurchaseCnt",user_id);
+	}
+
+	@Override
+	public int insertUserProductReview(ProductReviewDto productReviewDto) {
+		return sqlSession.insert(namespace+"insertUserProductReview",productReviewDto);
+	}
+
+	@Override
+	public int deleteUserProductReview(ProductReviewDto productReviewDto) {
+		return sqlSession.delete(namespace+"deleteUserProductReview",productReviewDto);
+	}
+
+	@Override
+	public List<ProductReviewDto> selectUserProductReview(PageHandlerDto pageHandlerDto) {
+		return sqlSession.selectList(namespace+"selectUserProductReview",pageHandlerDto);
+	}
+
+	@Override
+	public int updateUserProductReview(ProductReviewDto productReviewDto) {
+		return sqlSession.update(namespace+"updateUserProductReview",productReviewDto);
+	}
+
+	@Override
+	public String selectUserReviewImage(Map map) {
+		return sqlSession.selectOne(namespace+"selectUserReviewImage",map);
+	}
+
+	@Override
+	public int updateNewPassword(Map map) {
+		return sqlSession.update(namespace+"updateNewPassword",map);
 	}
 
 }

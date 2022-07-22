@@ -46,8 +46,8 @@
             <div class="menu-list">
                 <p>쇼핑 정보</p>
                 <ul>
-                    <a href="#"><li id="pur-history">구매 내역</li></a>
-                    <a href="#"><li id="inter-items">관심 상품</li></a>
+                    <a href="<c:url value='/mypage/purchase'/>"><li id="pur-history">구매 내역</li></a>
+                    <a href="#" onclick="alert('준비중입니다.')"><li id="inter-items">관심 상품</li></a>
                 </ul>
                 <p>내 정보</p>
                 <ul>

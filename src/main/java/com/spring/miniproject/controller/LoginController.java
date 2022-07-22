@@ -39,9 +39,12 @@ public class LoginController {
 		//초기 페이지 로딩시, 네이버 로그인버튼에 인증 url을 담아서 login_form에 전송
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 		model.addAttribute("naver_url", naverAuthUrl);
-		return "login_form.tiles";
+		return "user/login_form.tiles";
 	}
 
+	/*
+	* 로그인 메서드(로그인 기능)
+	* */
 	@PostMapping("/login")
 	public String login(String user_email, String user_password, HttpServletRequest request, RedirectAttributes redirectAttributes) {
 		UserDto userDto = userService.selectOneUser(user_email);
@@ -53,12 +56,6 @@ public class LoginController {
 			return "redirect:/login";
 		} else {
 
-			if(userDto.getUser_password().length()<50){
-				String newPassword =  encoder.encode(userDto.getUser_password());
-				UserDto updateUserDto = new UserDto(user_email,newPassword);
-				userService.updateUserPassword(updateUserDto);
-				userDto = userService.selectOneUser(user_email);
-			}
 
 				if (encoder.matches(user_password, userDto.getUser_password())) {
 					session = request.getSession();
@@ -73,9 +70,10 @@ public class LoginController {
 	@GetMapping("/logout")
 	public String logout(HttpSession session){
 		session.invalidate();
-		return "login_form.tiles";
+		return "redirect:/";
 	}
 
+	// 카카오 소셜 로그인 메서드(이메일 수집 동의를 하지 않을 경우, 로그인 화면으로 다시 redirect 한다.
 	@GetMapping ("/login/kakao")
 	public String kakaoLogin(@RequestParam String code, Model model, HttpServletRequest request, RedirectAttributes redirectAttributes) throws Exception{
 		String token = oAuthService.getKakaoAccessToken(code);
@@ -98,6 +96,7 @@ public class LoginController {
 
 	}
 
+	// 네이버 소셜 로그인 메서드
 	@RequestMapping("login/naver")
 	public String naverLogin(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws IOException {
 		OAuth2AccessToken oauthToken = naverLoginBO.getAccessToken(session, code, state);

@@ -9,25 +9,27 @@
     <link rel="stylesheet" href="<c:url value='/css/user/login_page.css'/>">
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script>
+        function submit(){
+            let user_email = $("input[name=user_email]").val();
+            let user_pwd = $("input[name=user_password]").val();
+
+            if(user_email==null || user_email==""){
+                alert("이메일을 입력해주세요.");
+                return;
+            }
+
+            if(user_pwd == null || user_pwd == ""){
+                alert("비밀번호를 입력해주세요.");
+                return;
+            }
+
+            $("form").submit();
+        }
         $(document).ready(function (){
             let error_msg = "${error_msg}";
             let error_msg_social = "${error_msg_social}";
             $(".login-btn").on("click",function (){
-               let user_email = $("input[name=user_email]").val();
-               let user_pwd = $("input[name=user_password]").val();
-
-               if(user_email==null || user_email==""){
-                   alert("이메일을 입력해주세요.");
-                   return;
-               }
-
-               if(user_pwd == null || user_pwd == ""){
-                   alert("비밀번호를 입력해주세요.");
-                   return;
-               }
-
-               $("form").submit();
-
+               submit();
             });
             if(error_msg != null && error_msg != ""){
                 alert(error_msg);
@@ -36,6 +38,13 @@
             if(error_msg_social != null && error_msg_social != ""){
                 alert(error_msg_social);
             }
+
+            $("input[name=user_email],input[name=user_password]").on("keypress",function (e){
+               if(e.keyCode === 13){
+                   submit();
+               }
+            });
+
         });
     </script>
 </head>
@@ -58,7 +67,7 @@
                 </form>
             </div>
             <div class="menu">
-                <p><span><a href="#">아이디 찾기</a></span><span><a href="<c:url value='/register/findPassword'/>">비밀번호 찾기</a></span><span><a href="<c:url value='/register'/>">회원가입</a></span></p>
+                <p><span><a href="<c:url value='/register/findId'/>">아이디 찾기</a></span><span><a href="<c:url value='/register/findPassword'/>">비밀번호 찾기</a></span><span><a href="<c:url value='/register'/>">회원가입</a></span></p>
             </div>
             <div class="social">
                 <span>SNS 계정으로 로그인</span>

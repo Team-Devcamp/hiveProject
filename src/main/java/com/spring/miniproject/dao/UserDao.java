@@ -1,11 +1,9 @@
 package com.spring.miniproject.dao;
 
-import com.spring.miniproject.domain.PageHandlerDto;
-import com.spring.miniproject.domain.UserAddressDto;
-import com.spring.miniproject.domain.UserDto;
-import com.spring.miniproject.domain.UserProfileDto;
+import com.spring.miniproject.domain.*;
 
 import java.util.List;
+import java.util.Map;
 
 
 public interface UserDao {
@@ -23,4 +21,13 @@ public interface UserDao {
 	public int deleteUserAddress(Integer address_id);
 	public int updateUserAddress(UserAddressDto userAddressDto);
 	public List<UserAddressDto> selectAddressList(PageHandlerDto pageHandlerDto);
+	public String selectUserEmail(Map map);
+	public List<UserPurchaseDto> selectUserPurchase(PageHandlerDto pageHandlerDto);
+	public Integer selectUserPurchaseCnt(Integer user_id);
+	public int insertUserProductReview(ProductReviewDto productReviewDto);
+	public int deleteUserProductReview(ProductReviewDto productReviewDto);
+	public List<ProductReviewDto> selectUserProductReview(PageHandlerDto pageHandlerDto);
+	public int updateUserProductReview(ProductReviewDto productReviewDto);
+	public String selectUserReviewImage(Map map);
+	public int updateNewPassword(Map map);
 }

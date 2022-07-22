@@ -8,62 +8,71 @@
     <link rel="stylesheet" href="<c:url value='/css/user/insert_address_style.css'/>">
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script>
+        function submit(){
+            var user_phone = $("#user-phone").val();
+            var user_name = $("#user-name").val();
+            var address = $("#address").val();
+            var address_detail = $("#detail-address").val();
+            var post_number = $("#post-number").val();
+            var phone_pattern = /01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}/;
+            var formValues = $("form[name=user-address-form]").serialize();
+
+
+            if(user_name == null || user_name == ""){
+                alert("이름을 입력해주시기 바랍니다.");
+                return;
+            }
+
+            if(user_phone == null || user_phone == ""){
+                alert("휴대폰 번호를 입력해 주시기 바랍니다.");
+                return;
+            }
+
+            if(!phone_pattern.test(user_phone)){
+                alert("올바른 휴대폰 번호 형식이 아닙니다.");
+                return;
+            }
+
+            if(post_number == null || post_number == ""){
+                alert("우편번호를 입력해주시기 바랍니다.");
+                return;
+            }
+
+            if(address == null || address == ""){
+                alert("주소를 입력해주시기 바랍니다.");
+                return;
+            }
+
+            if(address_detail == null || address_detail == ""){
+                alert("상세주소를 입력해주시기 바랍니다.");
+                return;
+            }
+
+            $.ajax({
+                url : '/mypage/address/modify/save',
+                type : 'POST',
+                data : formValues,
+                datatype : 'json',
+                success: function (data){
+                    if(data=='success'){
+                        alert('변경에 성공했습니다.');
+                        window.close();
+                        opener.location.href = '/mypage/address/list';
+                    }else{
+                        alert('변경에 실패했습니다.');
+                    }
+                }
+            });
+        }
         $(document).ready(function (){
             $("#submit-btn").click(function (){
-                var user_phone = $("#user-phone").val();
-                var user_name = $("#user-name").val();
-                var address = $("#address").val();
-                var address_detail = $("#detail-address").val();
-                var post_number = $("#post-number").val();
-                var phone_pattern = /01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}/;
-                var formValues = $("form[name=user-address-form]").serialize();
+                submit();
+            });
 
-
-                if(user_name == null || user_name == ""){
-                    alert("이름을 입력해주시기 바랍니다.");
-                    return;
+            $("#user-name,#user-phone,#post-number,#address,#detail-address").on("keypress",function (e){
+                if(e.keyCode === 13){
+                    submit();
                 }
-
-                if(user_phone == null || user_phone == ""){
-                    alert("휴대폰 번호를 입력해 주시기 바랍니다.");
-                    return;
-                }
-
-                if(!phone_pattern.test(user_phone)){
-                    alert("올바른 휴대폰 번호 형식이 아닙니다.");
-                    return;
-                }
-
-                if(post_number == null || post_number == ""){
-                    alert("우편번호를 입력해주시기 바랍니다.");
-                    return;
-                }
-
-                if(address == null || address == ""){
-                    alert("주소를 입력해주시기 바랍니다.");
-                    return;
-                }
-
-                if(address_detail == null || address_detail == ""){
-                    alert("상세주소를 입력해주시기 바랍니다.");
-                    return;
-                }
-
-                $.ajax({
-                    url : '/mypage/address/modify/save',
-                    type : 'POST',
-                    data : formValues,
-                    datatype : 'json',
-                    success: function (data){
-                        if(data=='success'){
-                            alert('변경에 성공했습니다.');
-                            window.close();
-                            opener.location.href = '/mypage/address/list';
-                        }else{
-                            alert('변경에 실패했습니다.');
-                        }
-                    }
-                });
             });
 
         });

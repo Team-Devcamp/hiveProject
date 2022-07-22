@@ -3,14 +3,12 @@ package com.spring.miniproject.controller;
 import com.spring.miniproject.domain.NoticeDto;
 import com.spring.miniproject.domain.PageHandler;
 import com.spring.miniproject.service.NoticeService;
-import org.apache.tiles.request.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,15 +66,15 @@ public class NoticeController {
         return "redirect:/notice/list";
     }
 
-    // 공지사항 게시글 수정
-    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    // 공지사항 수정 화면
+    @RequestMapping(value = "/updateView", method = RequestMethod.GET)
     public String noticeUpdate(int notice_id, Model m) throws Exception {
         NoticeDto data = noticeService.selectDetail(notice_id);
         m.addAttribute("data", data);
         return "noticeUpdate.tiles";
     }
 
-    // 공지사항 게시글 POST
+    // 공지사항 수정 POST
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String updateNotice(NoticeDto noticeDto) throws Exception {
         noticeService.updateNotice(noticeDto);

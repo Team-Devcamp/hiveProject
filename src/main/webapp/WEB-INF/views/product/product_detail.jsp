@@ -110,6 +110,9 @@ contentType="text/html;charset=UTF-8" language="java" %> <%--<!DOCTYPE html>
               ${productDto.product_name}
             </p>
 
+            <%--
+            <form action="" method="POST" class="product-form">
+              --%>
               <div class="form-options">
                 <div class="form-select-wrap">
                   <%--옵션번호도 받아올지 고민--%>
@@ -145,6 +148,56 @@ contentType="text/html;charset=UTF-8" language="java" %> <%--<!DOCTYPE html>
                   <dd class="hidden">찜</dd>
               </div>
 
+
+
+              <%-- 선택한상품 + 수량선택콤보박스 + 금액 보여줘야할 곳--%> <%--
+              form
+              <dl class="product-detail" style="display: none">
+                <div>
+                  <dt>주문수량</dt>
+                  <dd>
+                    <div class="form-group form-quantity">
+                      &lt;%&ndash;<label for="quantity"> 주문수량 </label
+                      >&ndash;%&gt;
+                      <div class="combo-box">
+                        <button
+                          type="button"
+                          id="minus-button"
+                          aria-label="Add"
+                        ></button>
+                        <input
+                          type="number"
+                          name="quantity"
+                          id="quantity"
+                          min="0"
+                          max="10"
+                          value="1"
+                        />
+                        <button
+                          type="button"
+                          id="plus-button"
+                          aria-label="Remove"
+                        ></button>
+                      </div>
+                    </div>
+                  </dd>
+                </div>
+                <div>
+                  <dt>색상</dt>
+                  <dd id="datail_option1">네이비</dd>
+                </div>
+                <div>
+                  <dt>사이즈</dt>
+                  <dd id="datail_option2">L(100)</dd>
+                </div>
+                <div>
+                  <dt>금액</dt>
+                  <dd id="sum_price">
+                    <span id="cost">${productDto.product_price}</span>
+                  </dd>
+                </div>
+              </dl>
+              --%>
               <div class="product-detail-form">
                 <dl class="product-detail">
                   <div>
@@ -184,16 +237,17 @@ contentType="text/html;charset=UTF-8" language="java" %> <%--<!DOCTYPE html>
                   <div>
                     <dt>사이즈</dt>
                     <dd id="detail_option2" name="detail_option2">L(100)</dd>
+
                   </div>
                   <div>
                     <dt>금액</dt>
                     <dd id="sum_price">
                       <span id="cost" name="cost">${productDto.product_price}</span>
+
                     </dd>
                   </div>
                 </dl>
               </div>
-
 
               <%-- 선택한상품 리스트--%>
               <form action="/purchase/page" method="POST" class="product-form" id="product_form">
@@ -218,7 +272,10 @@ contentType="text/html;charset=UTF-8" language="java" %> <%--<!DOCTYPE html>
         </section>
       </div>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> a5f17579ef7fa05d6442ceeb57a7b5d53d7b68b4
       <%--탭--%>
       <div class="tab_menu">
         <ul class="list">
@@ -246,6 +303,7 @@ contentType="text/html;charset=UTF-8" language="java" %> <%--<!DOCTYPE html>
             />
           </div>
 
+<<<<<<< HEAD
             <%--탭2 상품리뷰--%>
             <div id="tab2" class="cont">
 
@@ -352,6 +410,115 @@ contentType="text/html;charset=UTF-8" language="java" %> <%--<!DOCTYPE html>
 
 
             <div id="tab4" class="cont">
+=======
+          <%--탭2 상품리뷰--%>
+          <div id="tab2" class="cont">
+            <%--리뷰샘플css작업해놓은것--%>
+            <div class="profile clearfix">
+              <img
+                src="/image/product/product_detail/profile_image.png"
+                alt="profile-image"
+                class="profile-user"
+              />
+              <div class="profile-content">
+                <h1>User Email ***</h1>
+                <strong> option / color / size </strong>
+                <p>
+                  오버핏인게 너무 이뻐요! 회색도 추가구매 해야될 것 같아요.
+                  무난해서 평상시에 입기 좋을것같네요.
+                </p>
+              </div>
+            </div>
+
+            <!--동적 리뷰 리스트 -->
+            <div class="product-review" id="product-review"></div>
+          </div>
+
+          <%--탭3 qna 게시판--%>
+          <div id="tab3" class="cont">
+            <div class="qna-container">
+              <%-- qna안내 이미지 --%>
+              <div class="qna">
+                <div class="qna-info" id="qna-info">
+                  <em class="qnaTit">Q&amp;A</em>
+                  <div class="ea">
+                    <em id="qnaCount"
+                      ><span id="qna_count"></span> Questions</em
+                    >
+                    <p>
+                      상품에 대해서 궁금한 점이 있으시면 문의하여 주세요.<br />신속하고
+                      정확하게 답변드리도록 하겠습니다.
+                    </p>
+                  </div>
+                  <a href="#none" id="regQnaBtn">상품 문의</a>
+                </div>
+              </div>
+
+              <%--질문등록Form--%>
+              <div id="qna_container" class="hidden">
+                <div id="qna_write">
+                  <form id="qna_form">
+                    <div>
+                      <label for="qna_title">제목</label>
+                      <input
+                        type="text"
+                        name="qna_title"
+                        id="qna_title"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label for="qna_content">내용</label>
+                      <textarea
+                        name="qna_content"
+                        id="qna_content"
+                        required
+                      ></textarea>
+                    </div>
+                    <div class="qnaSubmitBtn">
+                      <button id="qnaSubmitBtn" type="button">등록하기</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <%--qna header--%>
+              <div class="qna-list">
+                <table class="qna-table">
+                  <colgroup>
+                    <col width="50px" />
+                    <col width="*" />
+                    <col width="130px" />
+                    <col width="100px" />
+                    <col width="122px" />
+                    <col width="102px" />
+                  </colgroup>
+                  <tbody>
+                    <tr class="tit">
+                      <th>번호</th>
+                      <th>제목</th>
+                      <th>공개여부</th>
+                      <th>작성자</th>
+                      <th>등록일</th>
+                      <th>문의상태</th>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <%--qna List--%>
+                <table class="qna-table">
+                  <div id="qnaShowList"></div>
+
+                  <div class="qna-paging">
+                    <div id="qnaPagingDiv"></div>
+                  </div>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div id="tab4" class="cont">
+>>>>>>> a5f17579ef7fa05d6442ceeb57a7b5d53d7b68b4
             <p>
               <img
                 src="/image/product/product_detail/tab4_refund_sample.jpg"

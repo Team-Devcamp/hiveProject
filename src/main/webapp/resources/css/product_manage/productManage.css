@@ -149,6 +149,9 @@ button {
 .product .product-title {
     float: left;
     width: 33.5%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .product .product-price {

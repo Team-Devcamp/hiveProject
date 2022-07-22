@@ -322,7 +322,6 @@ public class ProductManageController {
                 int width = (int) (bo_image.getWidth() / ratio);
                 int height = (int) (bo_image.getHeight() / ratio);
 
-
                 Thumbnails.of(saveFile)
                         .size(width, height)
                         .toFile(thumbnailFile);
@@ -440,9 +439,19 @@ public class ProductManageController {
             return "redirect:/productmanage";
         } catch (Exception e) {
             e.printStackTrace();
+            try {
+                List<CategoryDto> categoryList = categoryService.selectAllCategory();
+                List<SubCategoryDto> subCategoryList = subCategoryService.selectAllSubCategory();
+
+                m.addAttribute("categoryList", categoryList);
+                m.addAttribute("subCategoryList", subCategoryList);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
             m.addAttribute("productDto", productDto);
             m.addAttribute("msg", "MOD_ERR");
-            return "productManage/registerProduct";
+
+            return "productManage/registerProduct.tiles";
         }
     }
 

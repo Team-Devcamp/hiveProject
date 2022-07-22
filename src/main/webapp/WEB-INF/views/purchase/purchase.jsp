@@ -27,7 +27,7 @@
 
     <%--구매전체정보--%>
     <div class="purchase-container-wrap">
-
+        <input type="hidden" id="orderList" value="${list}">
         <h2>주문 상품 정보</h2>
         <div class="product-info">
             <c:forEach items="${list}" var="items">
@@ -77,7 +77,7 @@
                     </dd>
                 </div>
 
-                <h2>배송지 정보</h2>
+                <h2>배송지 정보</h2><span id="changeAddr">배송지 변경</span>
                 <div class="delivery-info">
                     <dl>
                         <dt>수령인</dt>
@@ -86,14 +86,12 @@
                         </dd>
                         <dt>휴대폰</dt>
                         <dd>
-                            <input type="text" name="user_phone" id="d_tel1" placeholder="010">-
-                            <input type="text" name="user_phone" id="d_tel2" >-
-                            <input type="text" name="user_phone" id="d_tel3">
+                            <input type="text" name="receiver_phone" id="receiver_phone" placeholder="010-0000-0000">
                         </dd>
                         <dt>배송주소</dt>
                         <dd>
-                            <input type="text" name="zipcode" id="zipcode" readonly>
-                            <input type="button" value="우편번호검색" onclick="checkPost()"><br>
+                            <input type="text" name="zipcode" id="zipcode" readonly placeholder="12345">
+                            <input type="button" value="우편번호검색"  onclick="checkPost()"><br>
                             <input type="text" name="address" id="address" placeholder="주소" size="50" readonly><br>
                             <input type="text" name="address_detail" id="address_detail" placeholder="상세주소" size="50">
                         </dd>

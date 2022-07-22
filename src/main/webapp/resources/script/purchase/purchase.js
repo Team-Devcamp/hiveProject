@@ -54,3 +54,7 @@ function checkPost() {
       }
    }).open();
 }
+
+$('#changeAddr').on('click',function(){
+   // window.open('/mypage/address/list', "_blank", "width=500,height=700");
+});

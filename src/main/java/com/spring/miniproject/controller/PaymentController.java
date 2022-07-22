@@ -25,7 +25,17 @@ public class PaymentController {
             conn.setRequestProperty("Authorization","KakaoAK b0b44fa551e1c216344468e83da400d4");
             conn.setRequestProperty("Content-type","application/x-www-form-urlencoded;charset=utf-8");
             conn.setDoOutput(true);
-            String parameter= "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=초코파이&quantity=1&total_amount=2200&vat_amount=200&tax_free_amount=0&approval_url=http://localhost:9000/pay/success&fail_url=http://localhost:9000/pay/fail&cancel_url=http://localhost:9000/pay/cancel";
+            String parameter= "cid=TC0ONETIME" +
+                    "&partner_order_id=partner_order_id" +
+                    "&partner_user_id=partner_user_id" +
+                    "&item_name=초코파이" +
+                    "&quantity=1" +
+                    "&total_amount=2200" +
+                    "&vat_amount=200" +
+                    "&tax_free_amount=0" +
+                    "&approval_url=http://localhost:9000/pay/success" +
+                    "&fail_url=http://localhost:9000/pay/fail" +
+                    "&cancel_url=http://localhost:9000/pay/cancel";
             OutputStream outputStream = conn.getOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
             dataOutputStream.writeBytes(parameter);
@@ -55,6 +65,8 @@ public class PaymentController {
 
     @GetMapping("/success")
     public String successKakaoPay(){
+
+
         return "/pay/success";
     }
 

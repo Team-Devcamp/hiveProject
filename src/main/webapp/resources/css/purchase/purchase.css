@@ -187,3 +187,12 @@
     font-weight: bold;
     font-size: 15px;
 }
+#changeAddr{
+    display: flex;
+    justify-content: right;
+    margin-right: 30px;
+    font-weight: 500;
+    color: #0f74a8;
+    font-size: 18px;
+    cursor: pointer;
+}

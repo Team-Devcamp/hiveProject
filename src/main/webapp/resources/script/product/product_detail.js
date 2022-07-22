@@ -126,6 +126,8 @@ $('.product-detail-list-container').on('click','#delProBtn',function () {
     $('#total_price').html(totalPrice);
 });
 
+let product_id = new URLSearchParams(location.search).get('product_id');
+
 $('#orderBtn').on('click',function(){
     let cnt = $('.pro').get();
 
@@ -155,6 +157,7 @@ $('#orderBtn').on('click',function(){
         form.attr('action','/purchase/page')
         form.attr('method','post')
         form.appendTo('body');
+        form.append($('<input type="hidden" value="'+product_id+'" name=product_id>'));
         form.append($('<input type="hidden" value="'+qtyArr+'" name=qty>'));
         form.append($('<input type="hidden" value="'+colorArr+'" name=option_color>'));
         form.append($('<input type="hidden" value="'+sizeArr+'" name=option_size>'));

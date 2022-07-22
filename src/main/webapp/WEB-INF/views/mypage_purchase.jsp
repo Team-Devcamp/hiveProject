@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -56,19 +55,15 @@
             </div>
             <div class="profile-info">
                 <p>작성 가능한 리뷰</p><hr>
-                <c:forEach var="list" items="${purchase_list}" varStatus="status">
+                <c:forEach begin="1" end="4" step="1">
                 <div class="deliver-contents">
-                        <div id="product-img"><p><img src="<c:url value='${list.product_thumb_nail}'/>" width="100px;" height="100px"></p>
+                        <div id="product-img"><p><img src="<c:url value='/image/product/product_detail/profile_image.png'/>" width="100px;" height="100px"></p>
                     <div id="purchase-detail">
                     <p>
-                        <span id="pur-confirm">구입일 <fmt:formatDate value="${list.payment_end_date}" pattern="yyyy-MM-dd hh:mm"/></span><br>
-                        <span id="pur-detail">${list.product_title}</span><br>
-                            <a href="#" onclick="window.open('<c:url value='/mypage/purchase/review/insert?purchase_id=${list.purchase_id}&user_id=${list.user_id}&product_id=${list.product_id}'/>','리뷰 등록', 'width=700px,height=1200px,scrollbars=yes');">
-                                <input type="button" id="write-btn" value="리뷰작성"></a>
-                        <a href="#" onclick="window.open('<c:url value='/mypage/purchase/review/modify?purchase_id=${list.purchase_id}&user_id=${list.user_id}&product_id=${list.product_id}'/>','리뷰 수정', 'width=700px,height=1200px,scrollbars=yes');">
-                            <input type="button" id="modify-btn" value="리뷰수정"></a>
-                        <a href="<c:url value='/mypage/purchase/review/delete?purchase_id=${list.purchase_id}&user_id=${list.user_id}&product_id=${list.product_id}'/>" onclick="return confirm('삭제하시면 복구가 불가능합니다. 삭제 하시겠습니까?')">
-                            <input type="button" id="delete-btn" value="리뷰삭제"></a>
+                        <span id="pur-confirm">010-2222-2222</span><br>
+                        <span id="pur-detail">[호환] 테팔 TY6547KM 호환 에어포스360 고밀도 공기청정필터C [당일배송]</span><br>
+                            <a href="#" onclick="window.open('<c:url value='/mypage/purchase/review'/>', '리뷰 등록', 'width=700px,height=1200px,scrollbars=yes');">
+                                <input type="button" id="modify-btn" value="리뷰작성"></a>
                         <h6 id="end-line"></h6>
                         </p>
                     </div>
@@ -78,13 +73,13 @@
                 <div class="paging">
                     <ul>
                         <c:if test="${paging.preView eq 'true'}">
-                            <a href="<c:url value="/mypage/purchase?page=${paging.beginPage-1}"/>">&lt;</a>
+                            <a href="<c:url value="/mypage/address/list?page=${paging.beginPage-1}"/>">&lt;</a>
                         </c:if>
-                        <c:forEach var="i" begin="${paging.beginPage}" end="${paging.endPage}">
-                            <a href="<c:url value='/mypage/purchase?page=${i}'/>"><li>${i}</li></a>
+                        <c:forEach var="i" begin="1" end="5">
+                            <a href="#"><li>${i}</li></a>
                         </c:forEach>
                         <c:if test="${paging.nextView eq 'true'}">
-                            <a href="<c:url value="/mypage/purchase?page=${paging.endPage+1}"/>">&gt;</a>
+                            <a href="<c:url value="/mypage/address/list?page=${paging.endPage+1}"/>">&gt;</a>
                         </c:if>
                     </ul>
                 </div>

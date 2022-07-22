@@ -89,4 +89,25 @@
 		DELETE FROM product_review WHERE user_id = #{user_id} AND purchase_id = #{purchase_id} AND product_id = #{product_id}
 	</delete>
 
+	<select id="selectUserProductReview" parameterType="PageHandlerDto" resultType="ProductReviewDto">
+		SELECT r.review_id,p.purchase_id,p.product_id,p.user_id
+		FROM  product_review r RIGHT JOIN purchase AS p
+										  ON p.purchase_id = r.purchase_id
+										  ORDER BY p.purchase_id DESC
+										  LIMIT #{pageSize} OFFSET #{startList}
+	</select>
+
+	<update id="updateUserProductReview" parameterType="ProductReviewDto">
+		UPDATE product_review SET review_content = #{review_content}, upload_file = #{upload_file}
+		WHERE user_id = #{user_id} AND purchase_id = #{purchase_id} AND product_id = #{product_id}
+	</update>
+
+	<select id="selectUserReviewImage" parameterType="map" resultType="String">
+		SELECT upload_file FROM product_review WHERE user_id = #{user_id} AND purchase_id = #{purchase_id}
+	</select>
+
+	<update id="updateNewPassword" parameterType="Map">
+		UPDATE user SET user_password = #{modify_password} WHERE user_email = #{user_email} AND user_password = #{user_password}
+	</update>
+
 </mapper>

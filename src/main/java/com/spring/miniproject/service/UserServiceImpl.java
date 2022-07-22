@@ -104,5 +104,26 @@ public class UserServiceImpl implements UserService {
 	public int deleteUserProductReview(ProductReviewDto productReviewDto) {
 		return userDao.deleteUserProductReview(productReviewDto);
 	}
+
+	@Override
+	public List<ProductReviewDto> selectUserProductReview(PageHandlerDto pageHandlerDto) {
+		return userDao.selectUserProductReview(pageHandlerDto);
+	}
+
+	@Override
+	public int updateUserProductReview(ProductReviewDto productReviewDto) {
+		return userDao.updateUserProductReview(productReviewDto);
+	}
+
+	@Override
+	public String selectUserReviewImage(Map map) {
+		return userDao.selectUserReviewImage(map);
+	}
+
+	@Override
+	public int updateNewPassword(Map map) {
+		return userDao.updateNewPassword(map);
+	}
+
 }
 

@@ -1,18 +1,28 @@
 @charset "UTF-8";
-
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
 section.notice {
     padding: 80px 0;
 }
 .page-title {
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 }
 .page-title h3 {
-    font-size: 28px;
+    font-size: 25px;
     color: #333333;
     font-weight: 400;
-    text-align: center;
+    text-align: left;
+    margin-left: 260px;
+}
+.small-page-title {
+    font-size: 13px;
+    color: #5e5e5e;
+    text-align: left;
+    margin-left: 310px;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid black;
+    width: 600px;
 }
 
 /* 게시글 작성 영역 */
@@ -24,19 +34,28 @@ section.notice {
     height: 30px;
     margin-left: 20px;
     margin-bottom: 20px;
-    border-radius: 10px;
 }
 .write-detail textarea {
     width: 600px;
     height: 300px;
     margin-left: 20px;
-    border-radius: 10px;
     resize: none;
 }
 .write-detail .detail-name {
     vertical-align: middle;
 }
-
+.input-title {
+    margin-left: 310px;
+    margin-bottom: 10px;
+    text-align: left;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.input-content {
+    margin-left: 310px;
+    margin-bottom: 10px;
+    text-align: left;
+    font-family: 'Noto Sans KR', sans-serif;
+}
 
 /* reset */
 * {
@@ -72,9 +91,9 @@ section.notice {
     font-weight: bold;
     font-size:14px;
     line-height: 19px;
-    color:#1c242e;
+    color: #ffffff;
     text-align: center;
-    background-color: #f4f4f4;
+    background-color: #000000;
     border:0;
     box-sizing: border-box;
     border-radius: 4px;
@@ -83,5 +102,7 @@ section.notice {
     min-width:70px;
 }
 .btn:hover {
-    background-color: rgba(0,0,0,.1);
+    background-color: #6c6c6c;
+    border-color: #6c6c6c;
+    color: #fff;
 }

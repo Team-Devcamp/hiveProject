@@ -16,6 +16,7 @@
         <typeAlias alias="ProductReviewDto" type="com.spring.miniproject.domain.ProductReviewDto"/>
         <typeAlias alias="QnaDto" type="com.spring.miniproject.domain.QnaDto"/>
         <typeAlias alias="ProductDto" type="com.spring.miniproject.domain.ProductDto"/>
+        <typeAlias alias="ProductReviewDto" type="com.spring.miniproject.domain.ProductReviewDto"/>
         <typeAlias alias="ProductOptionDto" type="com.spring.miniproject.domain.ProductOptionDto"/>
         <typeAlias alias="SubCategoryDto" type="com.spring.miniproject.domain.SubCategoryDto"/>
         <typeAlias alias="ProductStockDto" type="com.spring.miniproject.domain.ProductStockDto"/>

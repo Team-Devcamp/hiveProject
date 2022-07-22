@@ -6,11 +6,9 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
-
 section.notice {
     padding: 80px 0;
 }
-
 .page-title {
     margin-bottom: 60px;
 }
@@ -23,7 +21,7 @@ section.notice {
 
 #board-search .search-window {
     padding: 15px 0;
-    background-color: #f9f7f9;
+    background-color: #f3f3f3;
 }
 #board-search .search-window .search-wrap {
     position: relative;
@@ -53,14 +51,12 @@ section.notice {
     padding: 0;
     font-size: 16px;
 }
-
 .board-table {
     font-size: 13px;
     width: 100%;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
 }
-
 .board-table a {
     color: #333;
     display: inline-block;
@@ -74,32 +70,26 @@ section.notice {
 .board-table th {
     text-align: center;
 }
-
 .board-table .th-num {
     width: 100px;
     text-align: center;
 }
-
 .board-table .th-date {
     width: 200px;
 }
-
 .board-table th, .board-table td {
     padding: 14px 0;
 }
-
 .board-table tbody td {
     border-top: 1px solid #e7e7e7;
     text-align: center;
 }
-
 .board-table tbody th {
     padding-left: 28px;
     padding-right: 14px;
     border-top: 1px solid #e7e7e7;
     text-align: left;
 }
-
 .board-table tbody th p{
     display: none;
 }
@@ -131,42 +121,23 @@ section.notice {
     -o-transition: all 0.3s;
     transition: all 0.3s;
 }
-
 .btn-dark {
-    background: #555;
+    background: #000000;
     color: #fff;
 }
-
 .btn-dark:hover, .btn-dark:focus {
-    background: #373737;
-    border-color: #373737;
-    color: #fff;
-}
-
-.btn-dark {
-    background: #555;
-    color: #fff;
-}
-
-.btn-dark:hover, .btn-dark:focus {
-    background: #373737;
-    border-color: #373737;
+    background: #6c6c6c;
+    border-color: #6c6c6c;
     color: #fff;
 }
 
 /* reset */
-
 * {
     list-style: none;
     text-decoration: none;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-}
-.clearfix:after {
-    content: '';
-    display: block;
-    clear: both;
 }
 .container {
     width: 1100px;
@@ -185,7 +156,6 @@ section.notice {
 .notice-write {
     text-align: center;
 }
-
 .write-btn {
     display: inline-flex;
     align-items: center;
@@ -196,9 +166,9 @@ section.notice {
     font-weight: bold;
     font-size:14px;
     line-height: 19px;
-    color:#1c242e;
+    color: #ffffff;
     text-align: center;
-    background-color: #f4f4f4;
+    background-color: #000000;
     border:0;
     box-sizing: border-box;
     border-radius: 4px;
@@ -207,10 +177,12 @@ section.notice {
     min-width:70px;
 }
 .write-btn:hover {
-    background-color: rgba(0,0,0,.1);
+    background-color: #6c6c6c;
+    border-color: #6c6c6c;
+    color: #fff;
 }
 
 /* 페이징 관련 */
 .paging {text-align: center; margin-top: 20px}
 .paging a {text-decoration: none; color: black; padding-right: 5px;}
-.paging a:hover {font-weight: bold; background-color: silver;}
+.paging a:hover {font-weight: bold; background-color: #eae8e8;}

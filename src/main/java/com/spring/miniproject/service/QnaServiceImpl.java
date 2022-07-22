@@ -38,18 +38,13 @@ public class QnaServiceImpl implements QnaService {
         //세션
         //String user_email = (String)session.getAttribute("user_email");
 
-        //페이징처리
-        int endNum = Integer.parseInt(pg) * 4;
-        int startNum = endNum - 4;
+        int endNum = (Integer.parseInt(pg) * 5);
+        int startNum = endNum - 5;
 
-        //상품에대한 리스트, 페이징 시작,끝 번호
         Map<String, Integer> listMap = new HashMap<String, Integer>();
         listMap.put("product_id",product_id);
         listMap.put("startNum", startNum);
         listMap.put("endNum", endNum);
-
-        //qna리스트
-        List<QnaDto> list = qnaDao.selectQnaList(listMap);
 
         //페이징처리
         int qnaCount = qnaDao.countQna(product_id);//총글수
@@ -58,6 +53,10 @@ public class QnaServiceImpl implements QnaService {
         qnaPaging.setPageSize(5);
         qnaPaging.setCountQna(qnaCount);
         qnaPaging.makePagingHTML();
+
+        int pageSize = qnaPaging.getPageSize();
+        listMap.put("pageSize", pageSize);
+        List<QnaDto> list = qnaDao.selectQnaList(listMap);
 
         Map<String, Object> map = new HashMap<>();
 

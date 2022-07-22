@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 <head>
@@ -10,29 +11,63 @@
 
 <main class="main-event">
 
-    <div class="event-list">
+<%--    <div class="event-list">--%>
 
-        <c:choose>
-            <c:when test="${empty list}">
-                <div class="no-event">
-                    <span class="no-list">현재 진행중인 이벤트가 없습니다.</span>
-                </div>
-            </c:when>
-            <c:when test="${!empty list}">
-                <div class="grid-event">
-                    <c:forEach var="eventDto" items="${list}">
-                        <a class="event-link" href="<c:url value='/event/read?event_id=${eventDto.event_id}&page=${page}&pageSize=${pageSize}'/> ">
-                                ${eventDto.event_id}
-                                ${eventDto.event_title}
-                                ${eventDto.writer}
-                                ${eventDto.view_cnt}
-                                ${eventDto.write_date}
-                            <div> Thumbnail </div>
-                        </a>
+<%--        <c:choose>--%>
+<%--            <c:when test="${empty list}">--%>
+<%--                <div class="no-event">--%>
+<%--                    <span class="no-list">현재 진행중인 이벤트가 없습니다.</span>--%>
+<%--                </div>--%>
+<%--            </c:when>--%>
+<%--            <c:when test="${!empty list}">--%>
+<%--                <div class="grid-event">--%>
+<%--                    <c:forEach var="eventDto" items="${list}">--%>
+<%--                        <a class="event-link" href="<c:url value='/event/read?event_id=${eventDto.event_id}&page=${page}&pageSize=${pageSize}'/> ">--%>
+<%--                                ${eventDto.event_id}--%>
+<%--                                ${eventDto.event_title}--%>
+<%--                                ${eventDto.writer}--%>
+<%--                                ${eventDto.view_cnt}--%>
+<%--                                ${eventDto.write_date}--%>
+<%--                            <div> Thumbnail </div>--%>
+<%--                        </a>--%>
+<%--                    </c:forEach>--%>
+<%--                </div>--%>
+<%--            </c:when>--%>
+<%--        </c:choose>--%>
+<%--    </div>--%>
+
+    <div>
+        <table class="event-table">
+            <tr class="event-table-header" >
+                <td>번호</td>
+                <td>제목</td>
+                <td>조회수</td>
+                <td>날짜</td>
+            </tr>
+            <c:choose>
+                <c:when test="${empty list}">
+                    <tr height="30">
+                        <td colspan="5">
+                            <p>
+                                <b><span style="font-size:30pt;">등록된 글이 없습니다.</span></b>
+                            </p>
+                        </td>
+                    </tr>
+                </c:when>
+                <c:when test="${!empty list}">
+                    <c:forEach	var="eventDto" items="${list}" varStatus="articleNum">
+
+                            <tr>
+                                <td>${eventDto.event_id}</td>
+                                <td><a href="<c:url value='/event/read?event_id=${eventDto.event_id}&page=${page}&pageSize=${pageSize}'/>">${eventDto.event_title}</a></td>
+                                <td>${eventDto.view_cnt}</td>
+                                <td><fmt:formatDate value="${eventDto.write_date}" pattern="yyyy-MM-dd" /></td>
+                            </tr>
+
                     </c:forEach>
-                </div>
-            </c:when>
-        </c:choose>
+                </c:when>
+            </c:choose>
+        </table>
     </div>
 
     <div class="page-nav">

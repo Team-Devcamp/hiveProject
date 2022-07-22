@@ -4,77 +4,46 @@
 
 <html>
 <head>
-		<link
-				href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-				rel="stylesheet"
-				integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-				crossorigin="anonymous">
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" href="/css/home/home.css" />
 	<title>Home</title>
 </head>
 <body>
 
-<div class="banner">
-	<div class="banner-wrap">
-		<div id="carouselExampleIndicators" class="carousel carousel-dark slide" data-bs-ride="carousel">
-			<div class="carousel-indicators">
-				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-			</div>
-			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<img src="<c:url value='/image/home/banner1.jpg'/>" class="d-block w-100" >
-				</div>
-				<div class="carousel-item">
-					<img src="<c:url value='/image/home/banner2.jpg'/>" class="d-block w-100" >
-				</div>
-				<div class="carousel-item">
-					<img src="<c:url value='/image/home/banner3.jpg'/>" class="d-block w-100" >
-				</div>
-			</div>
-			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Next</span>
-			</button>
-		</div>
-	</div>
+<div id="slider">
+	<img class="slider__item" src="<c:url value='/image/home/banner1.jpg'/>">
+	<img class="slider__item" src="<c:url value='/image/home/banner2.jpg'/>">
+	<img class="slider__item" src="<c:url value='/image/home/banner3.jpg'/>">
+	<img class="slider__item" src="<c:url value='/image/home/banner4.jpg'/>">
+	<img class="slider__item" src="<c:url value='/image/home/banner5.jpg'/>">
 </div>
 
 
-
-
-
-<main class="main">
+<main class="main-home">
 	<div class="main-wrap">
 		<div class="todaylank">
 			<div class="title-wrap">
-				<h2>TODAY 랭킹</h2>
+				<h2>인기 상품</h2>
 				<div class="tab-container">
-					<ul>
-						<li><a href="#">낮은가격순</a></li>
-						<li><a href="#">높은가격순</a></li>
-						<li><a href="#">할인률순</a></li>
-					</ul>
 				</div>
 			</div>
 			<div class="todaylank-items-wrap">
-				<c:forEach begin="0" end="7">
-				<div class="item">
-					<a href="#">
-						<img src="<c:url value="/image/home/sample.jpg"/> ">
-					</a>
-				</div>
+				<c:forEach begin="0" end="7" var="productDto" items="${popularlist}">
+					<div class="item">
+						<a href="/product/detail?product_id=${productDto.product_id}">
+							<div class="thumb-nail">
+									${productDto.product_thumb_nail}
+							</div>
+							<div class="item-info">
+								<span>${productDto.product_title}</span>
+								<span>${productDto.product_price}</span>
+							</div>
+						</a>
+					</div>
 				</c:forEach>
 
 			</div>
 			<div class="btn-lank">
-				<a href=""><span>랭킹 더보기</span><i class="fa-solid fa-chevron-right"></i></a>
+				<a href=""><span>인기상품 더보기</span><i class="fa-solid fa-chevron-right"></i></a>
 			</div>
 		</div>
 
@@ -82,18 +51,19 @@
 			<div class="title-wrap">
 				<h2>신상 모아보기</h2>
 				<div class="tab-container">
-					<ul>
-						<li><a href="#">낮은가격순</a></li>
-						<li><a href="#">높은가격순</a></li>
-						<li><a href="#">할인률순</a></li>
-					</ul>
 				</div>
 			</div>
 			<div class="todaylank-items-wrap">
-				<c:forEach begin="0" end="7">
+				<c:forEach begin="0" end="7" var="productDto" items="${latestlist}">
 					<div class="item">
-						<a href="#">
-							<img src="<c:url value='/image/home/sample.jpg'/> ">
+						<a href="/product/detail?product_id=${productDto.product_id}">
+							<div class="thumb-nail">
+								${productDto.product_thumb_nail}
+							</div>
+							<div class="item-info">
+								<span>${productDto.product_title}</span>
+								<span>${productDto.product_price}</span>
+							</div>
 						</a>
 					</div>
 				</c:forEach>
@@ -115,17 +85,18 @@
 					</a>
 				</div>
 				<div class="event-link">
-					<a href="#">
-						<img src="https://image.brandi.me/home/banner/bannerImage_8_1657264214.jpg">
-						<div>
-							<h3>공지사항 바로가기</h3>
-						</div>
-					</a>
+					<div class="info-nav">
+						<a href="#"><i class="fa-solid fa-cart-shopping"></i><span>장바구니 바로가기</span></a>
+						<a href="/notice/list"><i class="fa-solid fa-circle-exclamation"></i><span>공지사항 바로가기</span></a>
+						<a href="/faq"><i class="fa-solid fa-circle-info"></i><span>자주묻는 질문</span></a>
+						<a href="/product/list"><i class="fa-solid fa-store"></i><span>스토어 바로가기</span></a>
+					</div>
 				</div>
 
 			</div>
 
 		</div>
+		<script	type="text/javascript" src="/script/home/carousel.js"></script>
 </main>
 
 </body>

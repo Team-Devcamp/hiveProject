@@ -72,9 +72,11 @@
     </div>
 </section>
 
+<c:if test="${sessionScope.user_email == 'admin@hive.co.kr'}">
 <div class="notice-write">
     <button class="write-btn" onclick="location.href='/notice/write'">공지 등록하기</button>
 </div>
+</c:if>
 
 <%-- Footer --%>
 </body>

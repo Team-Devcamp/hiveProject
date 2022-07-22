@@ -29,4 +29,5 @@ public interface UserDao {
 	public List<ProductReviewDto> selectUserProductReview(PageHandlerDto pageHandlerDto);
 	public int updateUserProductReview(ProductReviewDto productReviewDto);
 	public String selectUserReviewImage(Map map);
+	public int updateNewPassword(Map map);
 }

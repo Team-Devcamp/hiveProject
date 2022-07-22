@@ -3,6 +3,8 @@ package com.spring.miniproject.controller;
 import com.spring.miniproject.domain.*;
 import com.spring.miniproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -226,6 +228,35 @@ public class MyPageController {
     }
 
 
+    @GetMapping("mypage/modify/password")
+    public String modifyPassword(){
+        return "user/modify_password_form";
+    }
+
+    // 비밀번호를 변경하는 메서드
+    @ResponseBody
+    @PostMapping("mypage/modify/password/save")
+    public String modifyPasswordSave(HttpSession session, String present_pwd, String modify_pwd){
+        String user_email = (String)session.getAttribute("user_email");
+        Map map = new HashMap();
+        UserDto userDto = userService.selectOneUser(user_email);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        if(encoder.matches(present_pwd,userDto.getUser_password())){
+            map.put("user_password",userDto.getUser_password());
+            map.put("user_email",user_email);
+            map.put("modify_password",encoder.encode(modify_pwd));
+            int result = userService.updateNewPassword(map);
+            if(result==1){
+                session.invalidate();
+                return "success";
+            }else{
+                return "fail";
+            }
+        }else{
+            return "fail";
+        }
+
+    }
 }
 
 

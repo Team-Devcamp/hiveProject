@@ -119,5 +119,11 @@ public class UserServiceImpl implements UserService {
 	public String selectUserReviewImage(Map map) {
 		return userDao.selectUserReviewImage(map);
 	}
+
+	@Override
+	public int updateNewPassword(Map map) {
+		return userDao.updateNewPassword(map);
+	}
+
 }
 

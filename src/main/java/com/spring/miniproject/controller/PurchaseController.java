@@ -18,7 +18,7 @@ public class PurchaseController {
     private UserService userService;
 
     @PostMapping("/page")
-    public String purchasePage(int product_id, int[] qty, String[] option_color, String[] option_size, String[] subTotalPrice, int total_price, String product_title, Model m, HttpSession session){
+    public String purchasePage(int[] qty, String[] option_color, String[] option_size, String[] subTotalPrice, int total_price, String product_title, Model m, HttpSession session){
         List list = new ArrayList();
         String user_email = (String)session.getAttribute("user_email");
 
@@ -35,7 +35,6 @@ public class PurchaseController {
 //                System.out.println("title = " + product_title);
 //                System.out.println("user_email = " + user_email);
 
-                dto.setProduct_id(product_id);
                 dto.setQty(qty[i]);
                 dto.setOption_color(option_color[i]);
                 dto.setOption_size(option_size[i]);

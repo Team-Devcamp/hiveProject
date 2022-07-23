@@ -110,9 +110,6 @@ template use File | Settings | File Templates. --%> <%@ page
                     ${productDto.product_name}
                 </p>
 
-
-
-
                 <div class="form-options">
                     <div class="form-select-wrap">
                         <%--옵션번호도 받아올지 고민--%>
@@ -148,7 +145,6 @@ template use File | Settings | File Templates. --%> <%@ page
                     <dd class="hidden">찜</dd>
                 </div>
 
-
                 <div class="product-detail-form">
                     <dl class="product-detail">
                         <div>
@@ -162,13 +158,13 @@ template use File | Settings | File Templates. --%> <%@ page
                                                 id="minus-button"
                                                 aria-label="Decrease"
                                         ></button>
-                                        <input
-                                                type="number"
-                                                name="quantity"
-                                                id="quantity"
-                                                min="0"
-                                                max="10"
-                                                value="1"
+                                        <input readonly
+                                               type="number"
+                                               name="quantity"
+                                               id="quantity"
+                                               min="0"
+                                               max="10"
+                                               value="1"
                                         />
                                         <button
                                                 type="button"
@@ -196,15 +192,12 @@ template use File | Settings | File Templates. --%> <%@ page
                             </dd>
                         </div>
                     </dl>
-
                 </div>
 
 
                 <%-- 선택한상품 리스트--%>
                 <form action="/purchase/page" method="POST" class="product-form" id="product_form">
-
                     <div class="product-detail-list-container"></div>
-
                     <div>
                         <dl class="total-price-wrap">
                             <dt class="total-price-text">결제 총 금액</dt>
@@ -220,13 +213,11 @@ template use File | Settings | File Templates. --%> <%@ page
                             주문하기
                         </button>
                     </div>
-
                 </form>
-
-
             </div>
         </section>
     </div>
+
 
     <%--탭--%>
     <div class="tab_menu">

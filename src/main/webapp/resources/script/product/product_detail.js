@@ -53,6 +53,13 @@ function showSelectedOption(){
     let option1 = $('.form-select-wrap').children().val();
     let option2 = $('.form-select-wrap').children().next().val();
 
+    //중복 추가X
+    for (let i = 0; i < $('.product-detail-list-container').children().length; i++) {
+        if (option1 == $('.pro dd[name=detail_option1]').eq(i).html() && option2 == $('.pro dd[name=detail_option2]').eq(i).html()) {
+            return;
+        }
+    }
+
     let pdlContainer = $('.product-detail-list-container');
     pdlContainer.append(selectedProduct);
     pdlContainer.children().addClass('pro');
@@ -61,6 +68,7 @@ function showSelectedOption(){
     $('.product-detail-list-container').children().last().children().next().children('dd#detail_option2').html(option2);
     totalPrice = totalPrice + price;
     $('#total_price').html(totalPrice);
+
 }
 
 /* 상품 원가 */

@@ -74,8 +74,8 @@ public class LoginController {
 	}
 
 	// 카카오 소셜 로그인 메서드(이메일 수집 동의를 하지 않을 경우, 로그인 화면으로 다시 redirect 한다.
-	@GetMapping ("/login/kakao")
-	public String kakaoLogin(@RequestParam String code, Model model, HttpServletRequest request, RedirectAttributes redirectAttributes) throws Exception{
+	@RequestMapping ("/login/kakao")
+	public String kakaoLogin(@RequestParam String code, Model model, RedirectAttributes redirectAttributes, HttpSession session) throws Exception{
 		String token = oAuthService.getKakaoAccessToken(code);
 		String email = oAuthService.createKaKaoUser(token);
 
@@ -83,7 +83,6 @@ public class LoginController {
 			redirectAttributes.addFlashAttribute("error_msg_social","이메일 수집 동의를 하지 않아, 서비스 이용이 어렵습니다. 이메일 수집 동의 후 다시 회원가입 신청바랍니다.");
 			return "redirect:/login";
 		}
-		HttpSession session = request.getSession();
 		UserDto userDto = userService.selectOneUser(email);
 		if(userDto!=null){
 			session.setAttribute("user_email",userDto.getUser_email());
@@ -91,7 +90,7 @@ public class LoginController {
 		}else{
 			model.addAttribute("user_email",email);
 			model.addAttribute("email_check","true");
-			return "redirect:/register";
+			return "redirect:/register?user_email="+email+"&email_check=true";
 		}
 
 	}

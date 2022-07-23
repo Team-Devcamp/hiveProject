@@ -39,7 +39,7 @@ public class UserImageController {
         // 프로젝트 root 경로 확인 -> 이미지 경로 잡기
         HttpSession session = request.getSession();
         String root_path = session.getServletContext().getRealPath("/");
-        String uploadPath = root_path+"\\resources\\image\\user\\profile";
+        String uploadPath = root_path+"resources\\image\\user\\profile";
         // 이미지 파일이 아닐경우 실패
         if(!type.startsWith("image")){
             return "fail";
@@ -67,7 +67,7 @@ public class UserImageController {
         // 프로젝트 root 경로 확인 -> 이미지 경로 잡기
         HttpSession session = request.getSession();
         String root_path = session.getServletContext().getRealPath("/");
-        String uploadPath = root_path+"\\resources\\image\\user\\profile";
+        String uploadPath = root_path+"resources\\image\\user\\profile";
         String path = uploadPath+"\\"+user_email.substring(0,6)+"_profile.jpg";
         if(result==1){
             // 이미지를 삭제

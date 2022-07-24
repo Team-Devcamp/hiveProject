@@ -20,6 +20,7 @@
 		SELECT product_id, product_name, product_title, product_info,
 			   product_thumb_nail, product_price, category_id, sub_category_id
 		FROM product
+		ORDER BY product_id DESC
 		LIMIT #{offset}, #{product_num}
 	</select>
 
@@ -33,6 +34,7 @@
 			   product_thumb_nail, product_price, category_id, sub_category_id
 		FROM product
 		WHERE sub_category_id = #{sub_category_id}
+		ORDER BY product_id DESC
 		LIMIT #{offset}, ${product_num}
 	</select>
 

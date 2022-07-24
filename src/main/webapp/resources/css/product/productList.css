@@ -34,7 +34,7 @@ body {
 .main .categories {
     float: left;
     width: 25%;
-    height: 100%;
+    height: 1200px;
     box-sizing: border-box;
     padding: 80px;
 }

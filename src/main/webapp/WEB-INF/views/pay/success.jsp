@@ -11,6 +11,14 @@
     <title>Title</title>
 </head>
 <body>
-SUCCESS
+
+<script>
+    alert("상품이 정상적으로<br/>주문되었습니다");
+    window.close();
+    opener.window.location.href="/mypage/purchase";
+
+</script>
+
+
 </body>
 </html>

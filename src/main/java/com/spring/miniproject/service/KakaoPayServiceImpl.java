@@ -1,16 +1,23 @@
 package com.spring.miniproject.service;
 
+import com.spring.miniproject.domain.PurchaseProductDetailDto;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 @Service
-public class PaymentServiceImpl implements PaymentService{
+public class KakaoPayServiceImpl implements KaKaoPayService {
 
-    public String paymentReady(){
+    public String kakaoPayReady(List<PurchaseProductDetailDto> list){
+
+        for(PurchaseProductDetailDto p : list){
+            System.out.println("p = " + p.toString());
+        }
+
         try{
             URL url = new URL("https://kapi.kakao.com/v1/payment/ready");
             HttpURLConnection conn = (HttpURLConnection)url.openConnection();

@@ -21,7 +21,6 @@ $(function(){
             alert("수령인 전화번호를 입력하세요");
         }
 
-
         if(!confirm("상품을 주문하시겠습니까?")){
             return;
         }

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Renee
@@ -12,11 +13,22 @@
 </head>
 <body>
 
-<script>
-    alert("상품이 정상적으로<br/>주문되었습니다");
-    window.close();
-    opener.window.location.href="/mypage/purchase";
 
+<script>
+    if(${not empty user_email}) {
+
+        if (confirm("상품이 정상적으로 주문되었습니다.\n주문 내역으로 이동하시겠습니까?")) {
+            window.close();
+            opener.window.location.href = "/mypage/purchase";
+        } else {
+            alert("구매해주셔서 감사합니다.");
+            window.close();
+        }
+    }
+    else{
+        alert("구매해주셔서 감사합니다.");
+        window.close();
+    }
 </script>
 
 

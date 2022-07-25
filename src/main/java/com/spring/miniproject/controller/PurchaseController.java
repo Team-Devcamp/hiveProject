@@ -1,6 +1,6 @@
 package com.spring.miniproject.controller;
 
-import com.spring.miniproject.domain.PurchaseProductDetailDto;
+import com.spring.miniproject.domain.PurchaseProductDetailsDto;
 import com.spring.miniproject.domain.UserDto;
 import com.spring.miniproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class PurchaseController {
         String user_email = (String)session.getAttribute("user_email");
 
         for(int i=0; i<qty.length; i++) {
-            PurchaseProductDetailDto dto = new PurchaseProductDetailDto();
+            PurchaseProductDetailsDto dto = new PurchaseProductDetailsDto();
 
                 System.out.println("선택물품");
                 System.out.println("product_id = " + product_id);
@@ -50,6 +50,7 @@ public class PurchaseController {
         m.addAttribute("user_email",user_email);
 
         session.setAttribute("list",list);
+        session.setAttribute("total_price",total_price);
 
         return "purchase/purchase.tiles";
     }

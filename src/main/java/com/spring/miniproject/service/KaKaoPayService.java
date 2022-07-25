@@ -1,9 +1,16 @@
 package com.spring.miniproject.service;
 
-import com.spring.miniproject.domain.PurchaseProductDetailDto;
+import com.spring.miniproject.domain.PurchaseDto;
 
-import java.util.List;
+import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 public interface KaKaoPayService {
-    public String kakaoPayReady(List<PurchaseProductDetailDto> list);
+    public String kakaoPayReady(HttpSession session);
+
+    public void insertPurchaseInfo(Map orderInfoMap);
+
+    public PurchaseDto selectPurchaseId(int user_id);
+
+    public void insertPurchaseProduct(Map orderInfoMap);
 }

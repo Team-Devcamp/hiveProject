@@ -1,6 +1,6 @@
 package com.spring.miniproject.domain;
 
-public class PurchaseProductDetailDto {
+public class PurchaseProductDetailsDto {
     private int purchase_product_details_id;
     private int purchase_id;
     private int product_id;
@@ -10,9 +10,9 @@ public class PurchaseProductDetailDto {
     private int qty;
     private int sub_total_price;
 
-    public PurchaseProductDetailDto() {}
+    public PurchaseProductDetailsDto() {}
 
-    public PurchaseProductDetailDto(int purchase_product_details_id) {
+    public PurchaseProductDetailsDto(int purchase_product_details_id) {
         this.purchase_product_details_id = purchase_product_details_id;
     }
 

@@ -4,27 +4,37 @@ package com.spring.miniproject.domain;
 import java.util.Date;
 
 public class UserPurchaseDto {
+    private Integer purchase_product_details_id;
     private Integer purchase_id;
     private Integer product_id;
-    private Integer user_id;
+    private String  product_thumb_nail;
+    private Integer qty;
     private Date purchase_date;
-    private Integer total_price;
-    private Date payment_end_date;
-    private Date delivery_date;
-    private String product_thumb_nail;
     private String product_title;
+    private Integer user_id;
+    private String option_color;
+    private String option_size;
 
-    public UserPurchaseDto(Integer purchase_id, Integer product_id, Integer user_id, Date purchase_date,
-                           Integer total_price, Date payment_end_date, Date delivery_date, String product_thumb_nail,String product_title) {
+    public UserPurchaseDto(Integer purchase_product_details_id, Integer purchase_id, Integer product_id, String product_thumb_nail, Integer qty,
+                           Date purchase_date,String product_title,Integer user_id,String option_color, String option_size) {
+        this.purchase_product_details_id = purchase_product_details_id;
         this.purchase_id = purchase_id;
         this.product_id = product_id;
-        this.user_id = user_id;
-        this.purchase_date = purchase_date;
-        this.total_price = total_price;
-        this.payment_end_date = payment_end_date;
-        this.delivery_date = delivery_date;
         this.product_thumb_nail = product_thumb_nail;
+        this.qty = qty;
+        this.purchase_date = purchase_date;
         this.product_title = product_title;
+        this.user_id = user_id;
+        this.option_color = option_color;
+        this.option_size = option_size;
+    }
+
+    public Integer getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
     }
 
     public String getProduct_title() {
@@ -33,6 +43,14 @@ public class UserPurchaseDto {
 
     public void setProduct_title(String product_title) {
         this.product_title = product_title;
+    }
+
+    public Integer getPurchase_product_details_id() {
+        return purchase_product_details_id;
+    }
+
+    public void setPurchase_product_details_id(Integer purchase_product_details_id) {
+        this.purchase_product_details_id = purchase_product_details_id;
     }
 
     public Integer getPurchase_id() {
@@ -51,12 +69,20 @@ public class UserPurchaseDto {
         this.product_id = product_id;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public String getProduct_thumb_nail() {
+        return product_thumb_nail;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setProduct_thumb_nail(String product_thumb_nail) {
+        this.product_thumb_nail = product_thumb_nail;
+    }
+
+    public Integer getQty() {
+        return qty;
+    }
+
+    public void setQty(Integer qty) {
+        this.qty = qty;
     }
 
     public Date getPurchase_date() {
@@ -67,50 +93,19 @@ public class UserPurchaseDto {
         this.purchase_date = purchase_date;
     }
 
-    public Integer getTotal_price() {
-        return total_price;
+    public String getOption_color() {
+        return option_color;
     }
 
-    public void setTotal_price(Integer total_price) {
-        this.total_price = total_price;
+    public void setOption_color(String option_color) {
+        this.option_color = option_color;
     }
 
-    public Date getPayment_end_date() {
-        return payment_end_date;
+    public String getOption_size() {
+        return option_size;
     }
 
-    public void setPayment_end_date(Date payment_end_date) {
-        this.payment_end_date = payment_end_date;
-    }
-
-    public Date getDelivery_date() {
-        return delivery_date;
-    }
-
-    public void setDelivery_date(Date delivery_date) {
-        this.delivery_date = delivery_date;
-    }
-
-    public String getProduct_thumb_nail() {
-        return product_thumb_nail;
-    }
-
-    public void setProduct_thumb_nail(String product_thumb_nail) {
-        this.product_thumb_nail = product_thumb_nail;
-    }
-
-    @Override
-    public String toString() {
-        return "UserPurchaseDto{" +
-                "purchase_id=" + purchase_id +
-                ", product_id=" + product_id +
-                ", user_id=" + user_id +
-                ", purchase_date=" + purchase_date +
-                ", total_price=" + total_price +
-                ", payment_end_date=" + payment_end_date +
-                ", delivery_date=" + delivery_date +
-                ", product_thumb_nail='" + product_thumb_nail + '\'' +
-                ", product_title='" + product_title + '\'' +
-                '}';
+    public void setOption_size(String option_size) {
+        this.option_size = option_size;
     }
 }

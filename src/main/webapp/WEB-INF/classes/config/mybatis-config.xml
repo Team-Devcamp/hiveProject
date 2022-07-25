@@ -22,5 +22,7 @@
         <typeAlias alias="ProductOptionDetailDto" type="com.spring.miniproject.domain.ProductOptionDetailDto"/>
         <typeAlias alias="QnaPaging" type="com.spring.miniproject.domain.QnaPaging"/>
         <typeAlias alias="ProductSearchCondition" type="com.spring.miniproject.domain.ProductSearchCondition"/>
+        <typeAlias alias="PurchaseDto" type="com.spring.miniproject.domain.PurchaseDto"/>
+        <typeAlias alias="PurchaseProductDetailsDto" type="com.spring.miniproject.domain.PurchaseProductDetailsDto"/>
     </typeAliases>
 </configuration>

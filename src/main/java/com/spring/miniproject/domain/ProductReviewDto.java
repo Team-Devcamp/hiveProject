@@ -11,16 +11,17 @@ public class ProductReviewDto {
     private String review_content;
     private Date write_date;
     private String upload_file;
+    private Integer product_details_id;
 
 
-    public ProductReviewDto(Integer review_id, Integer purchase_id, Integer user_id, Integer product_id) {
+    public ProductReviewDto(Integer user_id,Integer purchase_id,Integer product_id, Integer review_id) {
         this.review_id = review_id;
         this.purchase_id = purchase_id;
         this.user_id = user_id;
         this.product_id = product_id;
     }
 
-    public ProductReviewDto( String review_content, String upload_file, Integer user_id, Integer purchase_id, Integer product_id) {
+    public ProductReviewDto( String review_content, String upload_file, Integer user_id, Integer purchase_id, Integer product_id,Integer review_id) {
         this.purchase_id = purchase_id;
         this.user_id = user_id;
         this.product_id = product_id;
@@ -45,12 +46,30 @@ public class ProductReviewDto {
         this.review_content = review_content;
         this.upload_file = upload_file;
         this.purchase_id = purchase_id;
+        this.review_id = review_id;
     }
 
-    public ProductReviewDto(Integer user_id, Integer purchase_id, Integer product_id) {
-        this.user_id = user_id;
-        this.product_id = product_id;
+    public ProductReviewDto(Integer review_id, Integer purchase_id, Integer product_id, Integer user_id, Integer product_details_id){
+        this.review_id = review_id;
         this.purchase_id = purchase_id;
+        this.product_id = product_id;
+        this.user_id = user_id;
+        this.product_details_id = product_details_id;
+    }
+
+    public ProductReviewDto(String review_content, String upload_file, Integer review_id) {
+        this.review_content = review_content;
+        this.upload_file = upload_file;
+        this.review_id = review_id;
+    }
+
+
+    public Integer getProduct_details_id() {
+        return product_details_id;
+    }
+
+    public void setProduct_details_id(Integer product_details_id) {
+        this.product_details_id = product_details_id;
     }
 
     public Integer getPurchase_id() {

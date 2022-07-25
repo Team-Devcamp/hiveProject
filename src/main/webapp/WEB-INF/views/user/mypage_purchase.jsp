@@ -61,14 +61,14 @@
                         <div id="product-img"><p><img src="<c:url value='${list.product_thumb_nail}'/>" width="100px;" height="100px"></p>
                     <div id="purchase-detail">
                     <p>
-                        <span id="pur-confirm">구입일 <fmt:formatDate value="${list.payment_end_date}" pattern="yyyy-MM-dd hh:mm"/></span><br>
+                        <span id="pur-confirm">구입일 <fmt:formatDate value="${list.purchase_date}" pattern="yyyy-MM-dd"/>&nbsp 구매 수량 : ${list.qty} &nbsp 색상 : ${list.option_color} &nbsp 사이즈 : ${list.option_size}</span><br>
                         <span id="pur-detail">${list.product_title}</span><br>
                         <input type="hidden" value="${review_list[status.index].review_id}"/>
-                            <a href="#" onclick="window.open('<c:url value='/mypage/purchase/review/insert?purchase_id=${list.purchase_id}&user_id=${list.user_id}&product_id=${list.product_id}'/>','리뷰 등록', 'width=700px,height=1200px,scrollbars=yes');">
+                            <a href="#" onclick="window.open('<c:url value='/mypage/purchase/review/insert?purchase_id=${list.purchase_product_details_id}&user_id=${list.user_id}&product_id=${list.product_id}'/>','리뷰 등록', 'width=700px,height=1200px,scrollbars=yes');">
                                 <input type="button" id="write-btn" value="리뷰작성" ${not empty review_list[status.index].review_id ? "disabled" : ""}></a>
-                        <a href="#" onclick="window.open('<c:url value='/mypage/purchase/review/modify?purchase_id=${list.purchase_id}&user_id=${list.user_id}&product_id=${list.product_id}'/>','리뷰 수정', 'width=700px,height=1200px,scrollbars=yes');">
+                        <a href="#" onclick="window.open('<c:url value='/mypage/purchase/review/modify?purchase_id=${list.purchase_product_details_id}&user_id=${list.user_id}&product_id=${list.product_id}&review_id=${review_list[status.index].review_id}'/>','리뷰 수정', 'width=700px,height=1200px,scrollbars=yes');">
                             <input type="button" id="modify-btn" value="리뷰수정" ${empty review_list[status.index].review_id ? "disabled" : ""}></a>
-                        <a href="<c:url value='/mypage/purchase/review/delete?purchase_id=${list.purchase_id}&user_id=${list.user_id}&product_id=${list.product_id}'/>" onclick="return confirm('삭제하시면 복구가 불가능합니다. 삭제 하시겠습니까?')">
+                        <a href="<c:url value='/mypage/purchase/review/delete?purchase_id=${list.purchase_product_details_id}&user_id=${list.user_id}&product_id=${list.product_id}&review_id=${review_list[status.index].review_id}'/>" onclick="return confirm('삭제하시면 복구가 불가능합니다. 삭제 하시겠습니까?')">
                             <input type="button" id="delete-btn" value="리뷰삭제" ${empty review_list[status.index].review_id ? "disabled" : ""}></a>
                         <h6 id="end-line"></h6>
                         </p>

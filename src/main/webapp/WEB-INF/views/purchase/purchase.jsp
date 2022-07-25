@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: Renee
@@ -43,12 +44,13 @@
                         <span>${items.option_color}/${items.option_size}</span><br>
                         <span>수량 : ${items.qty}개</span>
                     </li>
-                    <li><span>${items.sub_total_price}</span>원</li>
+                    <li><span>
+                            <fmt:formatNumber value="${items.sub_total_price}" pattern="#,###"/></span>원</li>
                 </ul>
             </div>
             </c:forEach>
 
-            <div class="tot">총 결제 금액 : <strong>${total_price}</strong> 원</div>
+            <div class="tot">총 결제 금액 : <strong><fmt:formatNumber value="${total_price}" pattern="#,###"/></strong> 원</div>
 
         </div>
 
@@ -122,11 +124,11 @@
                 <div class="total-price">
                     <dl>
                         <dt>총 상품금액</dt>
-                        <dd><span>${total_price}</span>원</dd>
+                        <dd><span><fmt:formatNumber value="${total_price}" pattern="#,###"/></span>원</dd>
                         <dt>배송비</dt>
                         <dd><span>0</span>원</dd>
                         <dt>총 결제예상 금액</dt>
-                        <dd><span>${total_price}</span>원</dd>
+                        <dd><span><fmt:formatNumber value="${total_price}" pattern="#,###"/></span>원</dd>
                     </dl>
                 </div>
 

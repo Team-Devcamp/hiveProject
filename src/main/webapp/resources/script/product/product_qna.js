@@ -1,11 +1,9 @@
-
 /*url에서 product_id parameter 넘겨받기*/
-let product_id = new URLSearchParams(location.search).get('product_id');
+product_id = new URLSearchParams(location.search).get('product_id');
 
 
 /* 상품 qna count 보여주기 */
 $('#qnaBtn').click(function(){
-    /* qna count */
     $.ajax({
         type: 'get',
         url: '/qna/count?product_id='+product_id,
@@ -30,49 +28,67 @@ function qnaList(){
         url: '/qna/list/product',
         data: 'product_id='+product_id,
         success: function(data){
-            // alert(JSON.stringify(data));
-            let s = '';
 
-            s+="<table class=\"qna-table\">"
-            $.each(data.list, function(index, items) {
-                let secret='';
-                let status='';
-                if(items.secret===0){
-                    secret='공개';
-                }else{
-                    secret='비공개';
-                }
-                if(items.status===0){
-                    status='미완료';
-                }else{
-                    status='완료';
-                }
-                s+='<tr class="tit tit_tr " style="border-bottom: #969696; font-family: "Helvetica Neue", "Noto Sans KR", sans-serif; font-weight: 400; padding: 18px 0;">';
-                s+='<td style="width:50px;">'+items.qna_id+'</td>';
-                s+='<td class="tal qna_title" style="width:*"><a href="#none"' +
-                    'style="text-decoration: none; color:inherit;">'+items.qna_title+'</a></td>';
-                s+='<td style="width:130px;"><span>'+secret+'</span></td>';
-                s+='<td style="width:100px;">'+items.writer+'</td>';
-                s+='<td style="width:122px;">'+items.write_date+'</td>';
-                s+='<td style="width:102px;">'+status+'</td>';
-                s+="</tr>";
+            let empty='';
+            if(data.list==''){
+                empty+='<table class=\"qna-table\"><tr class="tit " >';
+                empty+='<td colSpan="6">';
+                empty+='<div class="qna-answer">';
+                empty+='<div class="q qna-empty" style="padding-top:30px; font-size: 16px">';
+                empty+='<em>등록된 문의사항이 없습니다.</em></div>';
+                empty+='</div></div></td></tr></table>';
 
-                s+='<tr class="tit hidden" >';
-                s+='<td colSpan="6">';
-                s+='<div class="qna-answer">';
-                s+='<div class="q" style="padding-top:12px;">';
-                s+='<em>'+items.qna_content+'</em></div>';
-                s+='<div class="a">';
-                s+='<em>답변</em>';
-                s+='<p><br><br><br></p></div></div></td></tr>';
+                $("#qnaShowList").html(empty);
 
-            });//each
+            }//if
+            else{
 
-            s+="</table>"
+                // alert(JSON.stringify(data));
+                let s = '';
 
-            console.log(s);
-            $("#qnaShowList").html(s);
-            $('#qnaPagingDiv').html(data.qnaPaging.pagingHTML);
+                s+="<table class=\"qna-table\">"
+                $.each(data.list, function(index, items) {
+                    let secret='';
+                    let status='';
+                    if(items.secret===0){
+                        secret='공개';
+                    }else{
+                        secret='비공개';
+                    }
+                    if(items.status===0){
+                        status='미완료';
+                    }else{
+                        status='완료';
+                    }
+                    s+='<tr class="tit tit_tr " style="border-bottom: #969696; font-family: "Helvetica Neue", "Noto Sans KR", sans-serif; font-weight: 400; padding: 18px 0;">';
+                    s+='<td style="width:50px;">'+items.qna_id+'</td>';
+                    s+='<td class="tal qna_title" style="width:*"><a href="#none"' +
+                        'style="text-decoration: none; color:inherit;">'+items.qna_title+'</a></td>';
+                    s+='<td style="width:130px;"><span>'+secret+'</span></td>';
+                    s+='<td style="width:100px;">'+items.writer+'</td>';
+                    s+='<td style="width:122px;">'+items.write_date+'</td>';
+                    s+='<td style="width:102px;">'+status+'</td>';
+                    s+="</tr>";
+
+                    s+='<tr class="tit hidden" >';
+                    s+='<td colSpan="6">';
+                    s+='<div class="qna-answer">';
+                    s+='<div class="q" style="padding-top:12px;">';
+                    s+='<em>'+items.qna_content+'</em></div>';
+                    s+='<div class="a">';
+                    s+='<em>답변</em>';
+                    s+='<p><br><br><br></p></div></div></td></tr>';
+
+                });//each
+
+                s+="</table>"
+
+                console.log(s);
+                $("#qnaShowList").html(s);
+                $('#qnaPagingDiv').html(data.qnaPaging.pagingHTML);
+            }
+
+
         },
         error:function(err){
             console.log(err);
@@ -185,7 +201,6 @@ $('#qnaSubmitBtn').click(function(){
         return false;
     }
     else{
-        // alert("질문하자!"+$('#qna_title').val()+$('#qna_content').val());
         const qna_title = $('#qna_title').val();
         const qna_content = $('#qna_content').val();
 

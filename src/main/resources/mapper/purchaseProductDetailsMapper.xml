@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.spring.miniproject.dao.PurchaseProductDetailsMapper">
+
+
+    <insert id="insertPurchaseProduct" parameterType="java.util.Map">
+        INSERT INTO purchase_product_details(purchase_product_details_id, purchase_id, product_id,
+                                             option_color, option_size, price, qty, sub_total_price)
+        VALUES (null, #{purchase_id}, #{product_id}, #{PurchaseProductDetailsDto.option_color}, #{PurchaseProductDetailsDto.option_size}, 0 , #{PurchaseProductDetailsDto.qty}, #{PurchaseProductDetailsDto.sub_total_price})
+    </insert>
+
+    <select id="selectPurchaseProduct" parameterType="int" resultType="PurchaseDto">
+        select * from purchase_product_details
+    </select>
+
+    <delete id="deletePurchaseProduct" parameterType="int">
+        DELETE FROM purchase_product_details
+        WHERE purchase_id = #{purchase_id} and user_id = #{user_id}
+    </delete>
+
+</mapper>

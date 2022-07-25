@@ -161,11 +161,8 @@ public class MyPageController {
     // 구매 리뷰를 수정하는 메서드
     @ResponseBody
     @PostMapping ("mypage/purchase/review/modify")
-    public String reviewModify(MultipartFile file, Integer user_id, Integer purchase_id, String review_content, int product_id, String user_email, HttpServletRequest request) throws Exception{
-        Map map = new HashMap();
-        map.put("user_id",user_id);
-        map.put("purchase_id",purchase_id);
-        String upload_file = userService.selectUserReviewImage(map);
+    public String reviewModify(MultipartFile file,String review_content,String user_email,Integer review_id, HttpServletRequest request) throws Exception{
+        String upload_file = userService.selectUserReviewImage(review_id);
         // root 경로 조회(프로젝트 기준)
         HttpSession session = request.getSession();
         String root_path = session.getServletContext().getRealPath("/");
@@ -187,7 +184,7 @@ public class MyPageController {
             File uploadFile = new File(uploadPath, fileName);
             file.transferTo(uploadFile);
             String finalPath = "/image/user/product_review/"+fileName;
-            ProductReviewDto productReviewDto = new ProductReviewDto(review_content,finalPath,user_id,purchase_id,product_id);
+            ProductReviewDto productReviewDto = new ProductReviewDto(review_content,finalPath,review_id);
             int result = userService.updateUserProductReview(productReviewDto);
             if(result==1){
                 return "success";
@@ -210,12 +207,9 @@ public class MyPageController {
 
     // 구매리뷰를 삭제하는 메서드
     @RequestMapping("mypage/purchase/review/delete")
-    public String myPurchaseReviewDelete(RedirectAttributes redirectAttributes, Integer user_id, Integer purchase_id,Integer product_id,HttpServletRequest request){
-        ProductReviewDto productReviewDto = new ProductReviewDto(user_id,purchase_id,product_id);
-        Map map = new HashMap();
-        map.put("user_id",user_id);
-        map.put("purchase_id",purchase_id);
-        String upload_file = userService.selectUserReviewImage(map);
+    public String myPurchaseReviewDelete(RedirectAttributes redirectAttributes ,Integer review_id,HttpServletRequest request){
+        System.out.println(review_id);
+        String upload_file = userService.selectUserReviewImage(review_id);
         upload_file = upload_file.replaceAll("/","\\\\");
         HttpSession session = request.getSession();
         String root_path = session.getServletContext().getRealPath("/");
@@ -223,7 +217,7 @@ public class MyPageController {
         String path = deletePath+upload_file;
         File pastFile = new File(path);
         pastFile.delete();
-        int result = userService.deleteUserProductReview(productReviewDto);
+        int result = userService.deleteUserProductReview(review_id);
 
         if(result==1){
             redirectAttributes.addFlashAttribute("success_msg","삭제에 성공했습니다.");

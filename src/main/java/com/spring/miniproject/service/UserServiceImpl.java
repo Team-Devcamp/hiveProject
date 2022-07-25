@@ -101,8 +101,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int deleteUserProductReview(ProductReviewDto productReviewDto) {
-		return userDao.deleteUserProductReview(productReviewDto);
+	public int deleteUserProductReview(Integer review_id) {
+		return userDao.deleteUserProductReview(review_id);
 	}
 
 	@Override
@@ -116,8 +116,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String selectUserReviewImage(Map map) {
-		return userDao.selectUserReviewImage(map);
+	public String selectUserReviewImage(Integer review_id) {
+		return userDao.selectUserReviewImage(review_id);
 	}
 
 	@Override

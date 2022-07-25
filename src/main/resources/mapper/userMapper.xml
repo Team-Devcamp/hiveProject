@@ -66,18 +66,23 @@
 	</select>
 
 	<select id="selectUserPurchase" parameterType="PageHandlerDto" resultType="UserPurChaseDto">
-		SELECT c.purchase_id,c.product_id,c.user_id,c.purchase_date,c.total_price,
-			   c.payment_end_date,c.delivery_date,p.product_thumb_nail,p.product_title
-		FROM product AS p
+		SELECT p.purchase_product_details_id, p.purchase_id, p.product_id,d.product_thumb_nail,
+			   p.qty,c.purchase_date,d.product_title,c.user_id,p.option_color,p.option_size
+		FROM purchase_product_details AS p
 				 JOIN purchase AS c
-					  ON p.product_id = c.product_id
-		WHERE user_id = #{user_id}
-		ORDER BY c.purchase_id DESC
-			LIMIT #{pageSize} OFFSET #{startList}
+					  ON p.purchase_id = c.purchase_id
+				 JOIN product AS d
+					  ON c.product_id = d.product_id
+		WHERE c.user_id = #{user_id}
+		ORDER BY p.purchase_product_details_id DESC
+			LIMIT #{pageSize} offset #{startList};
 	</select>
 
 	<select id="selectUserPurchaseCnt" parameterType="Integer" resultType="Integer">
-		SELECT COUNT(*) FROM purchase where user_id = #{user_id}
+		SELECT count(*) FROM purchase_product_details AS p
+								 JOIN purchase AS c
+									  ON c.purchase_id = p.purchase_id
+		WHERE c.user_id = #{user_id};
 	</select>
 
 	<insert id="insertUserProductReview" parameterType="ProductReviewDto">
@@ -85,25 +90,26 @@
 		VALUES(#{purchase_id},#{user_id},#{product_id},#{user_email},#{review_content},now(),#{upload_file})
 	</insert>
 
-	<delete id="deleteUserProductReview" parameterType="ProductReviewDto">
-		DELETE FROM product_review WHERE user_id = #{user_id} AND purchase_id = #{purchase_id} AND product_id = #{product_id}
+	<delete id="deleteUserProductReview" parameterType="Integer">
+		DELETE FROM product_review WHERE review_id = #{review_id}
 	</delete>
 
 	<select id="selectUserProductReview" parameterType="PageHandlerDto" resultType="ProductReviewDto">
-		SELECT r.review_id,p.purchase_id,p.product_id,p.user_id
-		FROM  product_review r RIGHT JOIN purchase AS p
-										  ON p.purchase_id = r.purchase_id
-										  ORDER BY p.purchase_id DESC
-										  LIMIT #{pageSize} OFFSET #{startList}
+		SELECT r.user_id,r.purchase_id,r.product_id,r.review_id
+		FROM product_review r RIGHT JOIN
+			 purchase_product_details AS p
+			 ON r.purchase_id = p.purchase_product_details_id
+		ORDER BY p.purchase_product_details_id DESC
+		LIMIT #{pageSize} OFFSET #{startList}
 	</select>
 
 	<update id="updateUserProductReview" parameterType="ProductReviewDto">
 		UPDATE product_review SET review_content = #{review_content}, upload_file = #{upload_file}
-		WHERE user_id = #{user_id} AND purchase_id = #{purchase_id} AND product_id = #{product_id}
+		WHERE review_id = #{review_id}
 	</update>
 
-	<select id="selectUserReviewImage" parameterType="map" resultType="String">
-		SELECT upload_file FROM product_review WHERE user_id = #{user_id} AND purchase_id = #{purchase_id}
+	<select id="selectUserReviewImage" parameterType="Integer" resultType="String">
+		SELECT upload_file FROM product_review WHERE review_id = #{review_id}
 	</select>
 
 	<update id="updateNewPassword" parameterType="Map">

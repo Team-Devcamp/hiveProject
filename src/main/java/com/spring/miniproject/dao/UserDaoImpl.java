@@ -101,8 +101,8 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public int deleteUserProductReview(ProductReviewDto productReviewDto) {
-		return sqlSession.delete(namespace+"deleteUserProductReview",productReviewDto);
+	public int deleteUserProductReview(Integer review_id) {
+		return sqlSession.delete(namespace+"deleteUserProductReview",review_id);
 	}
 
 	@Override
@@ -116,8 +116,8 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public String selectUserReviewImage(Map map) {
-		return sqlSession.selectOne(namespace+"selectUserReviewImage",map);
+	public String selectUserReviewImage(Integer review_id) {
+		return sqlSession.selectOne(namespace+"selectUserReviewImage",review_id);
 	}
 
 	@Override

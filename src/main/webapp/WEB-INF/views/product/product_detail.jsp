@@ -12,10 +12,10 @@ template use File | Settings | File Templates. --%>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Document</title>
-<link rel="stylesheet" href="/css/common/reset.css" />
-<link rel="stylesheet" href="/css/product/product_detail.css" />
-<link rel="stylesheet" href="/css/product/product_review.css" />
-<link rel="stylesheet" href="/css/product/product_qna.css" />
+<link rel="stylesheet" href="<c:url value='/css/common/reset.css'/>" />
+<link rel="stylesheet" href="<c:url value='/css/product/product_detail.css'/>" />
+<link rel="stylesheet" href="<c:url value='/css/product/product_review.css'/>" />
+<link rel="stylesheet" href="<c:url value='/css/product/product_qna.css'/>" />
 <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
@@ -32,7 +32,7 @@ template use File | Settings | File Templates. --%>
             <div class="product-image-viewer">
                 <div class="main-image">
                     <img
-                            src="/image/product/product_detail/thumb.png"
+                            src="<c:url value='/image/product/product_detail/thumb.png'/>"
                             srcset="
                   /image/product/product_detail/thumb.png 1x,
                   /image/product/product_detail/thumb.png 2x
@@ -45,7 +45,7 @@ template use File | Settings | File Templates. --%>
                     <li class="view-item selected">
                         <button type="button">
                             <img
-                                    src="/image/product/product_detail/thumb.png"
+                                    src="<c:url value='/image/product/product_detail/thumb.png'/>"
                                     srcset="
                       /image/product/product_detail/thumb.png 1x,
                       /image/product/product_detail/thumb.png 2x
@@ -57,7 +57,7 @@ template use File | Settings | File Templates. --%>
                     <li class="view-item">
                         <button type="button">
                             <img
-                                    src="/image/product/product_detail/thumb.png"
+                                    src="<c:url value='/image/product/product_detail/thumb.png'/>"
                                     srcset="
                       /image/product/product_detail/thumb.png 1x,
                       /image/product/product_detail/thumb.png 2x
@@ -69,7 +69,7 @@ template use File | Settings | File Templates. --%>
                     <li class="view-item">
                         <button type="button">
                             <img
-                                    src="/image/product/product_detail/thumb.png"
+                                    src="<c:url value='/image/product/product_detail/thumb.png'/>"
                                     srcset="
                       /image/product/product_detail/thumb.png 1x,
                       /image/product/product_detail/thumb.png 2x
@@ -244,7 +244,7 @@ template use File | Settings | File Templates. --%>
             <%--탭1 상품정보--%>
             <div id="tab1" class="cont">
                 <img
-                        src="/image/product/product_detail/tab1_detail_sample.jpg"
+                        src="<c:url value='/image/product/product_detail/tab1_detail_sample.jpg'/>"
                         alt="tab1-image"
                 />
             </div>
@@ -255,7 +255,7 @@ template use File | Settings | File Templates. --%>
                 <div class="review-wrap">
                     <%--리뷰샘플css작업해놓은것--%>
                     <div class="profile clearfix">
-                        <img src="/image/product/product_detail/profile_image.png" alt="profile-image" class="profile-user" />
+                        <img src="<c:url value='/image/product/product_detail/profile_image.png'/>" alt="profile-image" class="profile-user" />
                         <div class="profile-content">
                             <h1>User Email ***</h1>
                             <strong>
@@ -357,7 +357,7 @@ template use File | Settings | File Templates. --%>
             <div id="tab4" class="cont">
                 <p>
                     <img
-                            src="/image/product/product_detail/tab4_refund_sample.jpg"
+                            src="<c:url value='/image/product/product_detail/tab4_refund_sample.jpg'/>"
                             alt="tab1-image"
                     />
                 </p>
@@ -389,7 +389,7 @@ template use File | Settings | File Templates. --%>
     $("#reviewBtn").click(function () {
         $.ajax({
             type: "get",
-            url: "/product/review",
+            url: "<c:url value='/product/review'/>",
             data: "product_id=" + 1,
             success: function (data) {
                 alert(JSON.stringify(data));

@@ -63,9 +63,9 @@ public class KakaoPayServiceImpl implements KaKaoPayService {
                     "&total_amount=" +total_price+
                     "&vat_amount=200" +
                     "&tax_free_amount=0" +
-                    "&approval_url=http://localhost:9000/pay/kakaoPaySuccess" +
-                    "&fail_url=http://localhost:9000/pay/kakaoPayFail" +
-                    "&cancel_url=http://localhost:9000/pay/kakaoPayCancel";
+                    "&approval_url=http://13.209.80.187/pay/kakaoPaySuccess" +
+                    "&fail_url=http://13.209.80.187/pay/kakaoPayFail" +
+                    "&cancel_url=http://13.209.80.187/pay/kakaoPayCancel";
             OutputStream outputStream = conn.getOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
             dataOutputStream.writeBytes(parameter);

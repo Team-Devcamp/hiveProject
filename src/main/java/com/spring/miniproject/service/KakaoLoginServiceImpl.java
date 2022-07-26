@@ -31,7 +31,7 @@ public class KakaoLoginServiceImpl implements KakaoLoginService {
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
             sb.append("&client_id=fb59cb87cd202d9b7383d5d6706f43ac"); // REST_API_KEY 입력
-            sb.append("&redirect_uri=http://13.125.217.234:8080/login/kakao");  // 인가코드 받은 redirect_uri 입력
+            sb.append("&redirect_uri=http://13.209.80.187/login/kakao");  // 인가코드 받은 redirect_uri 입력
             sb.append("&code="+code);
             bw.write(sb.toString());
             bw.flush();

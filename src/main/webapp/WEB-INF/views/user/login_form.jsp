@@ -73,7 +73,7 @@
                 <span>SNS 계정으로 로그인</span>
             </div>
             <div class="icon">
-                <span><a href="https://kauth.kakao.com/oauth/authorize?client_id=fb59cb87cd202d9b7383d5d6706f43ac&redirect_uri=http://13.125.217.234:8080/login/kakao&response_type=code">
+                <span><a href="https://kauth.kakao.com/oauth/authorize?client_id=fb59cb87cd202d9b7383d5d6706f43ac&redirect_uri=http://13.209.80.187/login/kakao&response_type=code">
                     <img src="<c:url value='/image/user/kakao.png'/>"></a></span>
                 <span><a href="${naver_url}"><img src="<c:url value='/image/user/naver.png'/>"></a></span>
             </div>

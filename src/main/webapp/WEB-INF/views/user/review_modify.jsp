@@ -86,6 +86,7 @@
                     <input type="hidden" readonly="readonly" value="${param.user_id}" name="user_id">
                     <input type="hidden" readonly="readonly" value="${param.product_id}" name="product_id">
                     <input type="hidden" readonly="readonly" value="${param.purchase_id}" name="purchase_id">
+                    <input type="hidden" readonly="readonly" value="${param.review_id}" name="review_id">
                     <input type="hidden" readonly="readonly" value="${sessionScope.user_email}" name="user_email">
                     <div class="preview">
                         <img src="" id="preview-img" width="500px" height="400px">

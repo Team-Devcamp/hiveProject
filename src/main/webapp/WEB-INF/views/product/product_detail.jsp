@@ -1,7 +1,10 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> <%-- Created by
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%-- Created by
 IntelliJ IDEA. User: Renee Date: 2022-07-12 Time: 오후 12:59 To change this
-template use File | Settings | File Templates. --%> <%@ page
-        contentType="text/html;charset=UTF-8" language="java" %> <%--<!DOCTYPE html>
+template use File | Settings | File Templates. --%>
+ <%--<!DOCTYPE html>
 <html lang="en">
   <head>
     --%>
@@ -9,10 +12,10 @@ template use File | Settings | File Templates. --%> <%@ page
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Document</title>
-<link rel="stylesheet" href="/css/common/reset.css" />
-<link rel="stylesheet" href="/css/product/product_detail.css" />
-<link rel="stylesheet" href="/css/product/product_review.css" />
-<link rel="stylesheet" href="/css/product/product_qna.css" />
+<link rel="stylesheet" href="<c:url value='/css/common/reset.css'/>" />
+<link rel="stylesheet" href="<c:url value='/css/product/product_detail.css'/>" />
+<link rel="stylesheet" href="<c:url value='/css/product/product_review.css'/>" />
+<link rel="stylesheet" href="<c:url value='/css/product/product_qna.css'/>" />
 <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
@@ -28,50 +31,38 @@ template use File | Settings | File Templates. --%> <%@ page
         <section class="product">
             <div class="product-image-viewer">
                 <div class="main-image">
-                    <img
-                            src="/image/product/product_detail/thumb.png"
-                            srcset="
-                  /image/product/product_detail/thumb.png 1x,
-                  /image/product/product_detail/thumb.png 2x
-                "
-                            alt=""
-                    />
+                    <img src="/image/product/thumbnail/${productDto.product_thumb_nail}"
+                         srcset="/image/product/thumbnail/${productDto.product_thumb_nail} 1x,
+                                /image/product/thumbnail/${productDto.product_thumb_nail} 2x" alt="상품이미지" />
                     <%--${productDto.product_thumb_nail}--%>
                 </div>
                 <ul class="view-list">
                     <li class="view-item selected">
                         <button type="button">
-                            <img
-                                    src="/image/product/product_detail/thumb.png"
-                                    srcset="
-                      /image/product/product_detail/thumb.png 1x,
-                      /image/product/product_detail/thumb.png 2x
-                    "
-                                    alt=""
+                            <img src="/image/product/thumbnail/${productDto.product_thumb_nail}"
+                                 srcset="/image/product/thumbnail/${productDto.product_thumb_nail} 1x,
+                                        /image/product/thumbnail/${productDto.product_thumb_nail} 2x" alt=""/>
+                        </button>
+                    </li>
+                    <li class="view-item">
+                        <button type="button">
+                            <img src="/image/product/thumbnail/${productDto.product_thumb_nail}"
+                                 srcset="
+                  /image/product/thumbnail/${productDto.product_thumb_nail} 1x,
+                  /image/product/thumbnail/${productDto.product_thumb_nail} 2x
+                "
+                                 alt=""
                             />
                         </button>
                     </li>
                     <li class="view-item">
                         <button type="button">
-                            <img
-                                    src="/image/product/product_detail/thumb.png"
-                                    srcset="
-                      /image/product/product_detail/thumb.png 1x,
-                      /image/product/product_detail/thumb.png 2x
-                    "
-                                    alt=""
-                            />
-                        </button>
-                    </li>
-                    <li class="view-item">
-                        <button type="button">
-                            <img
-                                    src="/image/product/product_detail/thumb.png"
-                                    srcset="
-                      /image/product/product_detail/thumb.png 1x,
-                      /image/product/product_detail/thumb.png 2x
-                    "
-                                    alt=""
+                            <img src="/image/product/thumbnail/${productDto.product_thumb_nail}"
+                                 srcset="
+                  /image/product/thumbnail/${productDto.product_thumb_nail} 1x,
+                  /image/product/thumbnail/${productDto.product_thumb_nail} 2x
+                "
+                                 alt=""
                             />
                         </button>
                     </li>
@@ -102,7 +93,7 @@ template use File | Settings | File Templates. --%> <%@ page
                 </header>
 
                 <strong class="product-price">
-                    ${productDto.product_price} 원
+                    <fmt:formatNumber value="${productDto.product_price}" pattern="#,###"/> 원
                 </strong>
 
                 <p class="product-desc">
@@ -241,7 +232,7 @@ template use File | Settings | File Templates. --%> <%@ page
             <%--탭1 상품정보--%>
             <div id="tab1" class="cont">
                 <img
-                        src="/image/product/product_detail/tab1_detail_sample.jpg"
+                        src="<c:url value='/image/product/product_detail/tab1_detail_sample.jpg'/>"
                         alt="tab1-image"
                 />
             </div>
@@ -252,7 +243,7 @@ template use File | Settings | File Templates. --%> <%@ page
                 <div class="review-wrap">
                     <%--리뷰샘플css작업해놓은것--%>
                     <div class="profile clearfix">
-                        <img src="/image/product/product_detail/profile_image.png" alt="profile-image" class="profile-user" />
+                        <img src="<c:url value='/image/product/product_detail/profile_image.png'/>" alt="profile-image" class="profile-user" />
                         <div class="profile-content">
                             <h1>User Email ***</h1>
                             <strong>
@@ -354,7 +345,7 @@ template use File | Settings | File Templates. --%> <%@ page
             <div id="tab4" class="cont">
                 <p>
                     <img
-                            src="/image/product/product_detail/tab4_refund_sample.jpg"
+                            src="<c:url value='/image/product/product_detail/tab4_refund_sample.jpg'/>"
                             alt="tab1-image"
                     />
                 </p>
@@ -386,7 +377,7 @@ template use File | Settings | File Templates. --%> <%@ page
     $("#reviewBtn").click(function () {
         $.ajax({
             type: "get",
-            url: "/product/review",
+            url: "<c:url value='/product/review'/>",
             data: "product_id=" + 1,
             success: function (data) {
                 alert(JSON.stringify(data));

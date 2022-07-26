@@ -1,84 +1,72 @@
 package com.spring.miniproject.controller;
 
+import com.spring.miniproject.domain.PurchaseDto;
+import com.spring.miniproject.domain.PurchaseProductDetailsDto;
+import com.spring.miniproject.service.KaKaoPayService;
+import com.spring.miniproject.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 @Controller
 @RequestMapping("/pay")
 public class PaymentController {
+    @Autowired
+    KaKaoPayService paymentService;
+    @Autowired
+    UserService userService;
+
 
     @RequestMapping("/kakaoPay")
     @ResponseBody
-    public String kakaoPay(){
-        try{
-            URL url = new URL("https://kapi.kakao.com/v1/payment/ready");
-            HttpURLConnection conn = (HttpURLConnection)url.openConnection();
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Authorization","KakaoAK b0b44fa551e1c216344468e83da400d4");
-            conn.setRequestProperty("Content-type","application/x-www-form-urlencoded;charset=utf-8");
-            conn.setDoOutput(true);
-            String parameter= "cid=TC0ONETIME" +
-                    "&partner_order_id=partner_order_id" +
-                    "&partner_user_id=partner_user_id" +
-                    "&item_name=초코파이" +
-                    "&quantity=1" +
-                    "&total_amount=2200" +
-                    "&vat_amount=200" +
-                    "&tax_free_amount=0" +
-                    "&approval_url=http://localhost:9000/pay/success" +
-                    "&fail_url=http://localhost:9000/pay/fail" +
-                    "&cancel_url=http://localhost:9000/pay/cancel";
-            OutputStream outputStream = conn.getOutputStream();
-            DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
-            dataOutputStream.writeBytes(parameter);
-            dataOutputStream.close();
-
-            int result = conn.getResponseCode();
-
-            InputStream inputStream;
-
-            if(result==200){
-                inputStream = conn.getInputStream();
-            }else{
-                inputStream = conn.getErrorStream();
-            }
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-            return bufferedReader.readLine();
-
-        }catch(MalformedURLException e){
-            e.printStackTrace();
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-        return "";
+    public String kakaoPay(HttpSession session){
+        return paymentService.kakaoPayReady(session);
     }
 
-    @GetMapping("/success")
-    public String successKakaoPay(){
+    @GetMapping("/kakaoPaySuccess")
+    public String successKakaoPay(HttpSession session, String pg_token, Model m){
 
+        m.addAttribute(session.getAttribute("list"));
+        if(session.getAttribute("user_email")!=null) {
+            m.addAttribute(session.getAttribute("user_email"));
+            int user_id = userService.selectUserId((String)session.getAttribute("user_email"));
+            List<PurchaseProductDetailsDto> orderList = (List)session.getAttribute("list");
+            int product_id = orderList.get(0).getProduct_id();
+            System.out.println("user_id = " + user_id + " product_id="+product_id);
 
+            Map orderInfoMap = new HashMap();
+            orderInfoMap.put("user_id",user_id);
+            orderInfoMap.put("product_id",product_id);
+            orderInfoMap.put("total_price",(int)session.getAttribute("total_price"));
+
+            paymentService.insertPurchaseInfo(orderInfoMap);
+            PurchaseDto purchaseDto = paymentService.selectPurchaseId(user_id);
+            int purchase_id = purchaseDto.getPurchase_id();
+            orderInfoMap.put("purchase_id",purchase_id);
+            orderInfoMap.put("orderList", orderList);
+            paymentService.insertPurchaseProduct(orderInfoMap);
+        }
         return "/pay/success";
     }
 
-    @GetMapping("/fail")
+    @GetMapping("/kakaoPayFail")
     public String failKakaoPay(){
         return "/pay/fail";
     }
 
-    @GetMapping("/cancel")
-    public String cancelKakaoPay(){
+    @GetMapping("/kakaoPayCancel")
+    public String cancelKakaoPay(HttpSession session){
+        session.removeAttribute("list");
+        session.removeAttribute("total_price");
         return "/pay/cancel";
     }
-
-
 }

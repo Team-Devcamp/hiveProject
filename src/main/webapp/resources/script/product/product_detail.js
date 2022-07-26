@@ -68,7 +68,6 @@ function showSelectedOption(){
     $('.product-detail-list-container').children().last().children().next().children('dd#detail_option2').html(option2);
     totalPrice = totalPrice + price;
     $('#total_price').html(totalPrice);
-
 }
 
 /* 상품 원가 */
@@ -117,7 +116,6 @@ $('.product-detail-list-container').on('click','#plus-button',function (){
         alert("한번에 최대 구매수량은 5개 입니다.");
         return;
     }
-
 });
 
 $('.product-detail-list-container').on('click','#delProBtn',function () {
@@ -126,11 +124,13 @@ $('.product-detail-list-container').on('click','#delProBtn',function () {
     $('#total_price').html(totalPrice);
 });
 
-$('#orderBtn').on('click',function(){
-    let cnt = $('.pro').get();
+let product_id = new URLSearchParams(location.search).get('product_id');
 
+$('#orderBtn').on('click',function(){
+
+    let cnt = $('.pro').get();
     let qty = $('.pro input[name=quantity]').length;
-    var qtyArr = new Array(qty);
+    let qtyArr = new Array(qty);
 
     let option_color = $('.pro dd[name=detail_option1]').get();
     let option_size = $('.pro dd[name=detail_option2]').get();
@@ -155,6 +155,7 @@ $('#orderBtn').on('click',function(){
         form.attr('action','/purchase/page')
         form.attr('method','post')
         form.appendTo('body');
+        form.append($('<input type="hidden" value="'+product_id+'" name=product_id>'));
         form.append($('<input type="hidden" value="'+qtyArr+'" name=qty>'));
         form.append($('<input type="hidden" value="'+colorArr+'" name=option_color>'));
         form.append($('<input type="hidden" value="'+sizeArr+'" name=option_size>'));
@@ -165,5 +166,4 @@ $('#orderBtn').on('click',function(){
     }else{
         alert("상품을 선택해주세요.");
     }
-
 });

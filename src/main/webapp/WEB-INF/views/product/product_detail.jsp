@@ -31,50 +31,38 @@ template use File | Settings | File Templates. --%>
         <section class="product">
             <div class="product-image-viewer">
                 <div class="main-image">
-                    <img
-                            src="<c:url value='/image/product/product_detail/thumb.png'/>"
-                            srcset="
-                  /image/product/product_detail/thumb.png 1x,
-                  /image/product/product_detail/thumb.png 2x
-                "
-                            alt=""
-                    />
+                    <img src="/image/product/thumbnail/${productDto.product_thumb_nail}"
+                         srcset="/image/product/thumbnail/${productDto.product_thumb_nail} 1x,
+                                /image/product/thumbnail/${productDto.product_thumb_nail} 2x" alt="상품이미지" />
                     <%--${productDto.product_thumb_nail}--%>
                 </div>
                 <ul class="view-list">
                     <li class="view-item selected">
                         <button type="button">
-                            <img
-                                    src="<c:url value='/image/product/product_detail/thumb.png'/>"
-                                    srcset="
-                      /image/product/product_detail/thumb.png 1x,
-                      /image/product/product_detail/thumb.png 2x
-                    "
-                                    alt=""
+                            <img src="/image/product/thumbnail/${productDto.product_thumb_nail}"
+                                 srcset="/image/product/thumbnail/${productDto.product_thumb_nail} 1x,
+                                        /image/product/thumbnail/${productDto.product_thumb_nail} 2x" alt=""/>
+                        </button>
+                    </li>
+                    <li class="view-item">
+                        <button type="button">
+                            <img src="/image/product/thumbnail/${productDto.product_thumb_nail}"
+                                 srcset="
+                  /image/product/thumbnail/${productDto.product_thumb_nail} 1x,
+                  /image/product/thumbnail/${productDto.product_thumb_nail} 2x
+                "
+                                 alt=""
                             />
                         </button>
                     </li>
                     <li class="view-item">
                         <button type="button">
-                            <img
-                                    src="<c:url value='/image/product/product_detail/thumb.png'/>"
-                                    srcset="
-                      /image/product/product_detail/thumb.png 1x,
-                      /image/product/product_detail/thumb.png 2x
-                    "
-                                    alt=""
-                            />
-                        </button>
-                    </li>
-                    <li class="view-item">
-                        <button type="button">
-                            <img
-                                    src="<c:url value='/image/product/product_detail/thumb.png'/>"
-                                    srcset="
-                      /image/product/product_detail/thumb.png 1x,
-                      /image/product/product_detail/thumb.png 2x
-                    "
-                                    alt=""
+                            <img src="/image/product/thumbnail/${productDto.product_thumb_nail}"
+                                 srcset="
+                  /image/product/thumbnail/${productDto.product_thumb_nail} 1x,
+                  /image/product/thumbnail/${productDto.product_thumb_nail} 2x
+                "
+                                 alt=""
                             />
                         </button>
                     </li>

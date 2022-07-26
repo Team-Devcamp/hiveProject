@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page session="false" %>
 
 <html>
@@ -10,11 +11,11 @@
 <body>
 
 <div id="slider">
-	<img class="slider__item" src="<c:url value='/image/home/banner1.jpg'/>">
 	<img class="slider__item" src="<c:url value='/image/home/banner2.jpg'/>">
 	<img class="slider__item" src="<c:url value='/image/home/banner3.jpg'/>">
 	<img class="slider__item" src="<c:url value='/image/home/banner4.jpg'/>">
 	<img class="slider__item" src="<c:url value='/image/home/banner5.jpg'/>">
+	<img class="slider__item" src="<c:url value='/image/home/banner1.jpg'/>">
 </div>
 
 
@@ -31,11 +32,11 @@
 					<div class="item">
 						<a href="/product/detail?product_id=${productDto.product_id}">
 							<div class="thumb-nail">
-									${productDto.product_thumb_nail}
+								<img src="/image/product/thumbnail/${productDto.product_thumb_nail}"/>
 							</div>
 							<div class="item-info">
 								<span>${productDto.product_title}</span>
-								<span>${productDto.product_price}</span>
+								<span><fmt:formatNumber value="${productDto.product_price}" />원</span>
 							</div>
 						</a>
 					</div>
@@ -58,11 +59,11 @@
 					<div class="item">
 						<a href="/product/detail?product_id=${productDto.product_id}">
 							<div class="thumb-nail">
-								${productDto.product_thumb_nail}
+								<img src="/image/product/thumbnail/${productDto.product_thumb_nail}"/>
 							</div>
 							<div class="item-info">
 								<span>${productDto.product_title}</span>
-								<span>${productDto.product_price}</span>
+								<span><fmt:formatNumber value="${productDto.product_price}" />원</span>
 							</div>
 						</a>
 					</div>

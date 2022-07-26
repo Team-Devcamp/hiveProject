@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page session="true"%>
 
 <!DOCTYPE html>
@@ -49,7 +50,7 @@
                             <p>${productDto.product_title} </p>
                         </a>
                         <div class="detail-price">
-                            <strong class="current-price">${productDto.product_price}원</strong>
+                            <strong class="current-price"><fmt:formatNumber value="${productDto.product_price}" />원</strong>
                             <span class="discount-rate">50%</span>
                         </div>
                     </li>

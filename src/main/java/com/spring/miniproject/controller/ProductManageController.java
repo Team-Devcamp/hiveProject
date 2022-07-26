@@ -408,8 +408,8 @@ public class ProductManageController {
     }
 
     // 상품 수정하는 form을 보여주는 메서드
-    @PostMapping("/productmanage/modify")
-    public String modifyProduct(Integer product_id, Model m) {
+    @GetMapping("/productmanage/modify")
+    public String modifyProduct(Integer page, Integer pageSize, String option, String keyword, Integer product_id, Model m) {
         try {
             ProductDto productDto = productService.selectProduct(product_id);
             m.addAttribute("productDto", productDto);
@@ -419,6 +419,10 @@ public class ProductManageController {
 
             m.addAttribute("categoryList", categoryList);
             m.addAttribute("subCategoryList", subCategoryList);
+            m.addAttribute("page", page);
+            m.addAttribute("pageSize", pageSize);
+            m.addAttribute("option", option);
+            m.addAttribute("keyword", keyword);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -428,7 +432,7 @@ public class ProductManageController {
 
     // 상품 수정form을 제출하는 메서드
     @PostMapping("/productmanage/submitmod")
-    public String submitModifyProduct(ProductDto productDto, Model m, RedirectAttributes rattr) {
+    public String submitModifyProduct(Integer page, Integer pageSize, String option, String keyword, ProductDto productDto, Model m, RedirectAttributes rattr) {
         try {
 
             int rowCnt = productService.updateProduct(productDto);
@@ -436,6 +440,11 @@ public class ProductManageController {
                 throw new Exception("상품 수정에 실패했습니다.");
             }
             rattr.addFlashAttribute("msg", "MOD_OK");
+            rattr.addAttribute("page", page);
+            rattr.addAttribute("pageSize", pageSize);
+            rattr.addAttribute("option", option);
+            rattr.addAttribute("keyword", keyword);
+
             return "redirect:/productmanage";
         } catch (Exception e) {
             e.printStackTrace();

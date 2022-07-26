@@ -191,7 +191,7 @@
         // 상품 수정 버튼 클릭했을 때
         $("#modify-btn").on("click", function(){
             let form = $("#register-form");
-            form.attr("action", "/productmanage/submitmod");
+            form.attr("action", "/productmanage/submitmod?page=${page}&pageSize=${pageSize}&option=${option}&keyword=${keyword}");
             form.submit();
         })
 

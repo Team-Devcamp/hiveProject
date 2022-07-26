@@ -57,7 +57,7 @@
                     <div class="category-id"><p>${productDto.category_id}</p></div>
                     <div class="sub-category-id"><p>${productDto.sub_category_id}</p></div>
                 </div>
-                <button class="modify-product-btn">상품 수정</button>
+                <button type="button" class="modify-product-btn">상품 수정</button>
                 <button class="delete-product-btn">상품 삭제</button>
             </form>
         </c:forEach>
@@ -293,7 +293,7 @@
             type:'GET',       // 요청 메서드
             url: '/productoption/list?product_id=' + product_id,  // 요청 URI
             success : function(result){
-                console.log(result);
+
                 $('.product-option-list').html(optionToHtml(result)); // 서버로부터 응답이 도착하면 호출될 함수
             },
             error   : function(){ alert("상품 상위옵션 불러오기 실패") } // 에러가 발생했을 때, 호출될 함수
@@ -333,10 +333,11 @@
     $(".modify-product-btn").click(function(){
         let product_id = $(this).parent().attr("data-product-id");
 
-        let form = $(".product-wrap");
-        form.attr("action", '/productmanage/modify?product_id=' + product_id);
-        form.attr("method", "post");
-        form.submit();
+        <%--let form = $(".product-wrap");--%>
+        <%--form.attr("action", '/productmanage/modify${pph.psc.queryString}&product_id=' + product_id);--%>
+        <%--form.attr("method", "post");--%>
+        <%--form.submit();--%>
+        location.href="<c:url value='/productmanage/modify${pph.psc.queryString}&product_id='/>" + product_id;
     });
 
     // 상위옵션 추가 버튼 클릭했을 때
@@ -517,7 +518,6 @@
         let option_detail_id = $("input[class=modify-option-detail-id]").val();
         let option_detail_name = $("input[class=modify-option-detail-name]").val();
 
-        console.log(option_detail_id, option_detail_name)
 
         if(option_detail_name.trim()=='') {
             alert("수정할 하위옵션을 입력하세요.");
@@ -614,7 +614,7 @@
             type:'GET',       // 요청 메서드
             url: '/categorymanage/categorylist',  // 요청 URI
             success : function(result){
-                console.log(result)
+
                 $('.category-list').html(CategorytoHtml(result)); // 서버로부터 응답이 도착하면 호출될 함수
             },
             error   : function(){ alert("카테고리 리스트 불러오기 실패") } // 에러가 발생했을 때, 호출될 함수

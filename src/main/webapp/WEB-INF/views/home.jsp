@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page session="false" %>
 
 <html>
@@ -35,7 +36,7 @@
 							</div>
 							<div class="item-info">
 								<span>${productDto.product_title}</span>
-								<span>${productDto.product_price}</span>
+								<span><fmt:formatNumber value="${productDto.product_price}" />원</span>
 							</div>
 						</a>
 					</div>
@@ -62,7 +63,7 @@
 							</div>
 							<div class="item-info">
 								<span>${productDto.product_title}</span>
-								<span>${productDto.product_price}</span>
+								<span><fmt:formatNumber value="${productDto.product_price}" />원</span>
 							</div>
 						</a>
 					</div>

@@ -316,11 +316,14 @@ public class ProductManageController {
 
                 BufferedImage bo_image = ImageIO.read(saveFile);
 
-                //비율
-                double ratio = 3;
-                //넓이 높이
-                int width = (int) (bo_image.getWidth() / ratio);
-                int height = (int) (bo_image.getHeight() / ratio);
+//                //비율
+//                double ratio = 3;
+//                //넓이 높이
+//                int width = (int) (bo_image.getWidth() / ratio);
+//                int height = (int) (bo_image.getHeight() / ratio);
+
+                int width = 500;
+                int height = 500;
 
                 Thumbnails.of(saveFile)
                         .size(width, height)

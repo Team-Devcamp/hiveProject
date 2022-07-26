@@ -84,11 +84,16 @@
 }
 
 .item .thumb-nail {
-    border: 1px solid black;
+    /*  border: 1px solid black;*/
     width: 220px;
     height: 220px;
     margin-bottom: 7px;
     overflow: hidden;
+}
+
+.item .thumb-nail img{
+    width:100%;
+    height:100%;
 }
 
 .item .item-info span {
@@ -101,6 +106,7 @@
 .btn-lank {
     display: flex;
     justify-content: center;
+    padding: 70px 0 20px 0;
 }
 
 .event-wrap {

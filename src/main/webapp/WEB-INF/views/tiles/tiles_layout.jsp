@@ -17,7 +17,7 @@
 	/>
 	<link rel="shortcut icon" href="<c:url value='/image/home/shortcut.png'/> "/>
     <title>HIVE</title>
-    <link rel="stylesheet" href="<c:url value='/css/common/tiles_layout.css'/> " />
+    <link rel="stylesheet" href="/css/common/tiles_layout.css" />
 </head>
 <body>
 

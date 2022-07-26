@@ -1,7 +1,10 @@
 package com.spring.miniproject.controller;
 
+import com.spring.miniproject.dao.ProductDao;
+import com.spring.miniproject.domain.ProductDto;
 import com.spring.miniproject.domain.PurchaseProductDetailsDto;
 import com.spring.miniproject.domain.UserDto;
+import com.spring.miniproject.service.ProductService;
 import com.spring.miniproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +19,8 @@ import java.util.*;
 public class PurchaseController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private ProductService productService;
 
     @PostMapping("/page")
     public String purchasePage(int product_id, int[] qty, String[] option_color, String[] option_size, String[] subTotalPrice,
@@ -44,6 +49,12 @@ public class PurchaseController {
                 list.add(dto);
         }
 
+        try {
+            ProductDto productDto = productService.selectProduct(product_id);
+            m.addAttribute("productDto",productDto);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         m.addAttribute("list",list);
         m.addAttribute("total_price",total_price);
         m.addAttribute("product_title",product_title);

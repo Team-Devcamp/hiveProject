@@ -36,7 +36,8 @@
                 <ul>
                     <li>
                         <div class="p-img">
-                            <img src="/image/product/product_detail/profile_image.png">
+<%--                            <img src="/image/product/product_detail/profile_image.png">--%>
+                            <img src="/image/product/thumbnail/${productDto.product_thumb_nail}" alt="주문상품이미지"/>
                         </div>
                     </li>
                     <li>

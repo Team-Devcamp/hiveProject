@@ -58,7 +58,8 @@
                 <p>구입 내역</p><hr>
                 <c:forEach var="list" items="${purchase_list}" varStatus="status">
                 <div class="deliver-contents">
-                        <div id="product-img"><p><img src="<c:url value='${list.product_thumb_nail}'/>" width="100px;" height="100px"></p>
+                        <div id="product-img"><p><img src="/image/product/thumbnail/${list.product_thumb_nail}" width="100px;" height="100px">
+                            <%--<img src="<c:url value='${list.product_thumb_nail}'/>" width="100px;" height="100px">--%></p>
                     <div id="purchase-detail">
                     <p>
                         <span id="pur-confirm">구입일 <fmt:formatDate value="${list.purchase_date}" pattern="yyyy-MM-dd"/>&nbsp 구매 수량 : ${list.qty} &nbsp 색상 : ${list.option_color} &nbsp 사이즈 : ${list.option_size}</span><br>

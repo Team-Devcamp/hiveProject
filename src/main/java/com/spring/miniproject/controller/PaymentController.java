@@ -58,6 +58,7 @@ public class PaymentController {
             orderInfoMap.put("orderList", orderList);
             paymentService.insertPurchaseProduct(orderInfoMap);
         }
+
         return "/pay/success";
     }
 

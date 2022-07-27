@@ -1,7 +1,6 @@
 /*url에서 product_id parameter 넘겨받기*/
 product_id = new URLSearchParams(location.search).get('product_id');
 
-
 /* 상품 qna count 보여주기 */
 $('#qnaBtn').click(function(){
     $.ajax({

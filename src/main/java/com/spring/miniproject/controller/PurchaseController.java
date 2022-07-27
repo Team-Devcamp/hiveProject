@@ -66,7 +66,6 @@ public class PurchaseController {
         return "purchase/purchase.tiles";
     }
 
-
     @GetMapping("/purchaser")
     @ResponseBody
     public UserDto purchaser(HttpSession session, Model m){
@@ -76,6 +75,5 @@ public class PurchaseController {
 
         return userDto;
     }
-
 
 }

@@ -4,7 +4,7 @@ $(function(){
         if($('#user_name').val()==null){
             alert("이름을 입력하세요");
         }
-        if($('#b_tel').val()==null){
+        /*if($('#b_tel').val()==null){
             alert("주문자번호를 입력하세요");
         }
         if($('#user_email').val()==null){
@@ -20,22 +20,23 @@ $(function(){
         if($('#receiver_phone').val()==null){
             alert("수령인 전화번호를 입력하세요");
         }
-
+*/
         if(!confirm("상품을 주문하시겠습니까?")){
             return;
         }
         else{
-
+           /* alert("결젝ㄱㄱ");
+            window.open('/pay/kakaoPay', "_blank", "width=500,height=700");*/
         $.ajax({
+            type:'post',
             url: '/pay/kakaoPay',
-            dataType: 'json',
+            dataType: "text",
             success:function(data){
-                // alert(data.tid);
-                var box=data.next_redirect_pc_url;
+                var box= data;
                 window.open(box, "_blank", "width=500,height=700");
             },
             error:function(err){
-                alert(err);
+                alert("에러"+err);
             }
         });//ajax
         }

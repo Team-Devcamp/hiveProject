@@ -2,13 +2,14 @@ package com.spring.miniproject.controller;
 
 import com.spring.miniproject.domain.PurchaseDto;
 import com.spring.miniproject.domain.PurchaseProductDetailsDto;
-import com.spring.miniproject.service.KaKaoPayService;
+import com.spring.miniproject.service.KakaoPayService;
 import com.spring.miniproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -21,10 +22,9 @@ import java.util.Map;
 @RequestMapping("/pay")
 public class PaymentController {
     @Autowired
-    KaKaoPayService paymentService;
+    KakaoPayService paymentService;
     @Autowired
     UserService userService;
-
 
     @RequestMapping("/kakaoPay")
     @ResponseBody
@@ -33,9 +33,12 @@ public class PaymentController {
     }
 
     @GetMapping("/kakaoPaySuccess")
-    public String successKakaoPay(HttpSession session, String pg_token, Model m){
+    public String successKakaoPay(HttpSession session, @RequestParam("pg_token") String pg_token, Model m){
+        System.out.println("kakaoPaySuccess get............................................");
+        System.out.println("kakaoPaySuccess pg_token : " + pg_token);
 
-        m.addAttribute(session.getAttribute("list"));
+        m.addAttribute("info", paymentService.kakaoPayInfo(pg_token,session));
+
         if(session.getAttribute("user_email")!=null) {
             m.addAttribute(session.getAttribute("user_email"));
             int user_id = userService.selectUserId((String)session.getAttribute("user_email"));

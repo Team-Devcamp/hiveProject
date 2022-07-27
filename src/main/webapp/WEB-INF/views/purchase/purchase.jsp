@@ -175,7 +175,7 @@
         </div>
 
         <div class="purchase-btn">
-            <button type="submit" id="purchaseBtn">주문하기</button>
+            <button type="submit" id="purchaseBtn">결제하기</button>
         </div>
 
 </div>
@@ -184,6 +184,7 @@
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+<%--<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>--%>
 <script type="text/javascript" src="/script/purchase/purchase.js"></script>
 <script type="text/javascript" src="/script/purchase/kakaoPay.js"></script>
 </body>

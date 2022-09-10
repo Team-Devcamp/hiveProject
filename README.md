@@ -12,10 +12,10 @@
 * 인원 : 7명
 
 ### 프로젝트 규모(기준일 : 2022.9.1)
-* 파일 326개
-* 코드 29,008줄
-* 모듈 21개
-* JAVA 파일, 코드 비율 50%, 33%
+* 파일 204개
+* 코드 15,279줄
+* 모듈 13개
+* JAVA 파일, 코드 비율 49.5%, 37%
 
 >*세부 JAVA, JSP, CSS, 기타 규모는 제일 하단 표 참고*
 
@@ -48,18 +48,18 @@
 
 
 ## 팀원
-|[권능](https://github.com/darren-gwon)|[강은혜](https://github.com/Daniel0915)|[장영욱](https://github.com/carpediem3651)|[서창희](https://github.com/ch4570)|[김윤기](https://github.com/HyeKyungAhn)|[장민수](https://github.com/leejonghyun93)
+|[권능](https://github.com/darren-gwon)|[강은혜](https://github.com/ReneeKang)|[장영욱](https://github.com/JYeongUk)|[서창희](https://github.com/ch4570)|[김윤기](https://github.com/Reprisal123123)|[장민수](https://github.com/ch4570)
 |:---:|:---:|:---:|:---:|:---:|:---:|
 |<img src = "https://github.com/Team-Devcamp/hiveProject/blob/main/profile/%EA%B6%8C%EB%8A%A5%EB%8B%98%EC%82%AC%EC%A7%84.png" width="140" height="180">|<img src = "https://github.com/Team-Devcamp/hiveProject/blob/main/profile/%EC%9D%80%ED%98%9C%EB%8B%98%EC%82%AC%EC%A7%84.png" width="140" height="180">|<img src = "https://github.com/Team-Devcamp/hiveProject/blob/main/profile/%EC%98%81%EC%9A%B1%ED%98%95%EC%82%AC%EC%A7%84.png" width="140" height="180">|<img src = "https://github.com/Team-Devcamp/hiveProject/blob/main/profile/%EC%84%9C%EC%B0%BD%ED%9D%AC%EC%82%AC%EC%A7%84.png" width="140" height="180">|<img src = "https://github.com/Team-Devcamp/hiveProject/blob/main/profile/%EC%9C%A4%EA%B8%B0%ED%98%95%EC%82%AC%EC%A7%84.png" width="140" height="180">|<img src = "https://github.com/Team-Devcamp/hiveProject/blob/main/profile/%EB%AF%BC%EC%88%98%EB%8B%98%EC%82%AC%EC%A7%84.png" width="140" height="180">
 >*해당 프로젝트에 대한 이슈 문의 및 팀원들에게 연락하고 싶다면 이름 링크를 클릭해서 연락부탁드립니다.*
 ## 프로젝트 세부 규모 표(기준일 : 2022.9.1)
-|연어|파일|공백|주석|코드|
+|언어|파일|공백|주석|코드|
 |:---:|:---:|:---:|:---:|:---:|
-|JAVA|164|2,432|1,097|9,628|
-|JSP|83|959|430|10,344|
-|CSS|46|1,259|365|6,630|
-|기타|33|358|114|2,406|
-|총합|326|5,008|2,006|29,008|
+|JAVA|101|1,553|199|5,385|
+|JSP|40|455|193|4,129|
+|CSS|36|633|74|4,056|
+|기타|29|258|126|1,709|
+|총합|206|2,899|592|15,279|
 
 
 

@@ -15,7 +15,7 @@
 * 파일 204개
 * 코드 15,279줄
 * 모듈 13개
-* JAVA 파일, 코드 비율 49.5%, 37%
+* JAVA 파일, 코드 비율 49%, 37%
 
 >*세부 JAVA, JSP, CSS, 기타 규모는 제일 하단 표 참고*
 
@@ -33,7 +33,7 @@
 * [i'mport](https://api.iamport.kr/) - 결제 및 환불
 * [JAVAMAIL | 1.6.2](https://www.javadoc.io/doc/javax.mail/javax.mail-api/latest/javax/mail/package-summary.html) - 이메일 인증 번호 발송
 * [Daum 우편번호 API](http://postcode.map.daum.net/guide) - 다음 우편번호 API
-* [CKEditor 5](https://ckeditor.com/ckeditor-5/) - CKEditor5 API
+* [CKEditor 5](https://ckeditor.com/ckeditor-4/) - CKEditor4 API
 ### 개발환경
 #### DB & Framework & Server 
 <img src="https://img.shields.io/badge/Spring | 5.0.7-6DB33F?style=for-the-badge&logo=Spring&logoColor=white"> <img src="https://img.shields.io/badge/MyBatis | 3.5-26689A?style=for-the-badge&logo=&logoColor=white"> <img src="https://img.shields.io/badge/Spring Security | 5.0.7-6DB33F?style=for-the-badge&logo=Spring Security&logoColor=white"> <img src="https://img.shields.io/badge/Apache Tomcat | 9.0.52-C71A36?style=for-the-badge&logo=Apache Tomcat&logoColor=white">

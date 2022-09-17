@@ -6,14 +6,14 @@
 
 ## 프로젝트 일정 및 규모
 ### 프로젝트 일정
-* 총 개발 기간 : 15일(2022.7.10 ~ 7.25)
-* 총 개발 시간 : 150H(10H x 15일)
+* 총 개발 기간 : 16일(2022.7.11 ~ 7.26)
+* 총 개발 시간 : 160H(10H x 16일)
 * 1인당 일일 평균 개발 시간 : 10H
 * 인원 : 6명(멘토 1명 포함)
 
 ### 프로젝트 규모(기준일 : 2022.9.10)
 * 파일 204개
-* 코드 15,279줄
+* 코드 14,718줄
 * 모듈 13개
 * JAVA 파일, 코드 비율 49%, 37%
 
@@ -25,15 +25,15 @@
 <img src="https://img.shields.io/badge/ajax-0B2C4A?style=for-the-badge&logo=ajax&logoColor=white"> <img src="https://img.shields.io/badge/jquery | 1.1-0769AD?style=for-the-badge&logo=jquery&logoColor=black">
 <img src="https://img.shields.io/badge/hibernate | 6.1.7-007396?style=for-the-badge&logo=hibernate&logoColor=white">
 ### ERD 
-* Table 22개
-* Colunm 127개
+* Table 19개
+* Colunm 114개
 
 ### 사용 API
 * [네이버](https://developers.naver.com/docs/login/api/api.md) / [카카오 로그인 API](https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api) - 소셜 로그인 
 * [i'mport](https://api.iamport.kr/) - 결제 및 환불
 * [JAVAMAIL | 1.6.2](https://www.javadoc.io/doc/javax.mail/javax.mail-api/latest/javax/mail/package-summary.html) - 이메일 인증 번호 발송
 * [Daum 우편번호 API](http://postcode.map.daum.net/guide) - 다음 우편번호 API
-* [CKEditor 5](https://ckeditor.com/ckeditor-4/) - CKEditor4 API
+* [CKEditor 4](https://ckeditor.com/ckeditor-4/) - CKEditor4 API
 ### 개발환경
 #### DB & Framework & Server 
 <img src="https://img.shields.io/badge/Spring | 5.0.7-6DB33F?style=for-the-badge&logo=Spring&logoColor=white"> <img src="https://img.shields.io/badge/MyBatis | 3.5-26689A?style=for-the-badge&logo=&logoColor=white"> <img src="https://img.shields.io/badge/Spring Security | 5.0.7-6DB33F?style=for-the-badge&logo=Spring Security&logoColor=white"> <img src="https://img.shields.io/badge/Apache Tomcat | 9.0.52-C71A36?style=for-the-badge&logo=Apache Tomcat&logoColor=white">
@@ -58,11 +58,11 @@
 ## 프로젝트 세부 규모 표(기준일 : 2022.9.10)
 |언어|파일|공백|주석|코드|
 |:---:|:---:|:---:|:---:|:---:|
-|JAVA|101|1,553|199|5,385|
-|JSP|40|455|193|4,129|
+|JAVA|101|1,549|199|5,368|
+|JSP|40|454|189|4,129|
 |CSS|36|633|74|4,056|
-|기타|29|258|126|1,709|
-|총합|206|2,899|592|15,279|
+|기타|27|257|95|1,165|
+|총합|204|2,893|557|14,718|
 
 
 

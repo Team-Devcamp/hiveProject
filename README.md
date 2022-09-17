@@ -25,8 +25,8 @@
 <img src="https://img.shields.io/badge/ajax-0B2C4A?style=for-the-badge&logo=ajax&logoColor=white"> <img src="https://img.shields.io/badge/jquery | 1.1-0769AD?style=for-the-badge&logo=jquery&logoColor=black">
 <img src="https://img.shields.io/badge/hibernate | 6.1.7-007396?style=for-the-badge&logo=hibernate&logoColor=white">
 ### ERD 
-* Table 19개
-* Colunm 114개
+* Table 18개
+* Colunm 107개
 
 ### 사용 API
 * [네이버](https://developers.naver.com/docs/login/api/api.md) / [카카오 로그인 API](https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api) - 소셜 로그인 

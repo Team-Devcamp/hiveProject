@@ -53,7 +53,7 @@
 ## 팀원
 |[권능](https://github.com/darren-gwon)|[강은혜](https://github.com/ReneeKang)|[장영욱](https://github.com/JYeongUk)|[서창희](https://github.com/ch4570)|[김윤기](https://github.com/Reprisal123123)|[장민수](https://github.com/ch4570)
 |:---:|:---:|:---:|:---:|:---:|:---:|
-|<img src = "https://github.com/Team-Devcamp/hiveProject/blob/main/profile/%EA%B6%8C%EB%8A%A5%EB%8B%98%EC%82%AC%EC%A7%84.png" width="140" height="180">|<img src = "https://github.com/Team-Devcamp/hiveProject/blob/main/profile/%EC%9D%80%ED%98%9C%EB%8B%98%EC%82%AC%EC%A7%84 .png" width="140" height="180">|<img src = "https://github.com/Team-Devcamp/hiveProject/blob/main/profile/%EC%98%81%EC%9A%B1%ED%98%95%EC%82%AC%EC%A7%84.png" width="140" height="180">|<img src = "https://github.com/Team-Devcamp/hiveProject/blob/main/profile/%EC%84%9C%EC%B0%BD%ED%9D%AC%EC%82%AC%EC%A7%84.png" width="140" height="180">|<img src = "https://github.com/Team-Devcamp/hiveProject/blob/main/profile/%EC%9C%A4%EA%B8%B0%ED%98%95%EC%82%AC%EC%A7%84.png" width="140" height="180">|<img src = "https://github.com/Team-Devcamp/hiveProject/blob/main/profile/%EB%AF%BC%EC%88%98%EB%8B%98%EC%82%AC%EC%A7%84.png" width="140" height="180">
+|<img src = "https://user-images.githubusercontent.com/87851820/190892169-294adc23-9695-4e13-b701-32df8f37ce06.png" width="140" height="180">|<img src = "https://github.com/Team-Devcamp/hiveProject/blob/main/profile/%EC%9D%80%ED%98%9C%EB%8B%98%EC%82%AC%EC%A7%84 .png" width="140" height="180">|<img src = "https://github.com/Team-Devcamp/hiveProject/blob/main/profile/%EC%98%81%EC%9A%B1%ED%98%95%EC%82%AC%EC%A7%84.png" width="140" height="180">|<img src = "https://github.com/Team-Devcamp/hiveProject/blob/main/profile/%EC%84%9C%EC%B0%BD%ED%9D%AC%EC%82%AC%EC%A7%84.png" width="140" height="180">|<img src = "https://github.com/Team-Devcamp/hiveProject/blob/main/profile/%EC%9C%A4%EA%B8%B0%ED%98%95%EC%82%AC%EC%A7%84.png" width="140" height="180">|<img src = "https://github.com/Team-Devcamp/hiveProject/blob/main/profile/%EB%AF%BC%EC%88%98%EB%8B%98%EC%82%AC%EC%A7%84.png" width="140" height="180">
 >*해당 프로젝트에 대한 이슈 문의 및 팀원들에게 연락하고 싶다면 이름 링크를 클릭해서 연락부탁드립니다.*
 ## 프로젝트 세부 규모 표(기준일 : 2022.9.10)
 |언어|파일|공백|주석|코드|
@@ -63,7 +63,3 @@
 |CSS|36|633|74|4,056|
 |기타|27|257|95|1,165|
 |총합|204|2,893|557|14,718|
-
-
-
-
